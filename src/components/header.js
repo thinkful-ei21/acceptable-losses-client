@@ -20,7 +20,7 @@ export class HeaderBar extends React.Component {
           <div className="header-bar">
           <div className="navlinks">
               <button className="logout-button"onClick={() => this.logOut()}>Log out</button>
-              <NavLink  role="navigation"  className='link'  to="/" >LINK</NavLink>
+              <NavLink  role="navigation"  className='link'  to="/" >LINK |</NavLink>
               <NavLink  role="navigation"  className='link'  to="/dashboard" >LINK</NavLink>
           </div>
           </div>
