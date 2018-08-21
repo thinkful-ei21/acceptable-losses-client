@@ -24,7 +24,10 @@ export const getAccounts = () => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => dispatch(getAccountsSuccess(data)))
+    .then(data => {
+      console.log(data);
+      dispatch(getAccountsSuccess(data));
+    })
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {

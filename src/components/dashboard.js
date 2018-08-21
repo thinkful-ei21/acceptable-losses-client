@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './require-login';
-import getAccounts from '../actions/getAccounts';
+import { getAccounts } from '../actions/accounts';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    this.dispatch(getAccounts());
+    this.props.dispatch(getAccounts());
   }
 
   render() {
