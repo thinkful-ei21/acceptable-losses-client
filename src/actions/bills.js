@@ -6,7 +6,7 @@ import {SubmissionError} from 'redux-form';
 export const createBill = bill => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   console.log(bill);
-  return fetch(`${API_BASE_URL}/bills`, {
+  return fetch(`${API_BASE_URL}/accounts`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
