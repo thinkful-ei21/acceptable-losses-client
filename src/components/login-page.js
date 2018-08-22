@@ -2,17 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-import RegistrationForm from './registration-form';
+import LoginForm from './login-form';
 
-export function RegistrationPage(props) {
+export function LoginPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
+
   return (
-    <div className="home">
-      <RegistrationForm />
-      <Link className="register-link" to="/">
-        Already have an account? Login here!
+    <div className="login">
+      <LoginForm />
+      <Link className="register-link" to="/register">
+        Register
       </Link>
     </div>
   );
@@ -22,4 +23,4 @@ const mapStateToProps = state => ({
   loggedIn: state.auth.currentUser !== null
 });
 
-export default connect(mapStateToProps)(RegistrationPage);
+export default connect(mapStateToProps)(LoginPage);

@@ -79,6 +79,7 @@ export class AddBillForm extends React.Component {
         >
           Save
         </button>
+        {error}
         {successMessage}
       </form>
     );
