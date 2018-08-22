@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { link } from 'fs';
 
 
 class AccountCard extends React.Component {
@@ -22,27 +21,28 @@ class AccountCard extends React.Component {
     return result;
   }
 
-render(){
-let billsList= this.props.bills;
-let result= this.oldest(billsList)
-  // let mostRecent, unpaidBills, dueDates, earliestDate;
+  render(){
+  let billsList= this.props.bills;
+  let result= this.oldest(billsList)
+    // let mostRecent, unpaidBills, dueDates, earliestDate;
 
-  // if(this.props.bills){
-  //   unpaidBills = this.props.bills.filter(item=> item.isPaid === false);
-  //   dueDates= unpaidBills.map(item => item =item.dueDate);
-  //   earliestDate= this.earliest(dueDates);
-  //   mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);
-  // };
-  return(
-    <div className="account-box">
-      <h4>{this.props.name}</h4>
-      <p>due date: {result.dueDate} </p>
-      <p>amount due: {result.amount ? result.amount : 'TBD'} </p>
-      <button target="_blank" href={this.props.url}>pay now</button>
-      <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
-      <p>---------------------------------------------------------------------------</p>
-    </div>
-  )}
+    // if(this.props.bills){
+    //   unpaidBills = this.props.bills.filter(item=> item.isPaid === false);
+    //   dueDates= unpaidBills.map(item => item =item.dueDate);
+    //   earliestDate= this.earliest(dueDates);
+    //   mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);
+    // };
+    return(
+      <div className="account-box">
+        <h4>{this.props.name}</h4>
+        <p>due date: {result.dueDate} </p>
+        <p>amount due: {result.amount ? result.amount : 'TBD'} </p>
+        <button target="_blank" href={this.props.url}>pay now</button>
+        <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
+        <p>---------------------------------------------------------------------------</p>
+      </div>
+    )
+  }
 }
 
 export default connect()(AccountCard);
