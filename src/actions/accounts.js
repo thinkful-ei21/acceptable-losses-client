@@ -14,6 +14,13 @@ export const getAccountsError = error => ({
   error
 });
 
+export const SEARCH_ACCOUNTS = 'SEARCH_RECIPE';
+export const searchAccounts = (data) => ({
+    type: SEARCH_ACCOUNTS,
+    data
+});
+
+
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts`, {

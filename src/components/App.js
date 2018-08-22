@@ -5,6 +5,7 @@ import {refreshAuthToken} from '../actions/auth';
 import LandingPage from './landing-page';
 import Dashboard from './dashboard';
 import HeaderBar from './header';
+import Accounts from './accounts-page';
 import RegistrationPage from './registration-page';
 
 
@@ -47,6 +48,7 @@ stopPeriodicRefresh() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/register" component={RegistrationPage} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/accounts" component={Accounts} />
           
         </div>
       </div>
