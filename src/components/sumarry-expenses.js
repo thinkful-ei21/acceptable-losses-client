@@ -20,14 +20,15 @@ export class SummaryExpenses extends React.Component {
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
+      const percent =
+        Math.round(
+          (result.amount / AccFreq[account.frequency] / totalExpenses) * 10000
+        ) / 100;
       return (
         <li key={index}>
           <p>
             {account.name}
-            <span>{`${result.amount} / ${Math.round(
-              (result.amount / AccFreq[account.frequency] / totalExpenses) *
-                10000
-            ) / 100}%`}</span>
+            <span>{`${result.amount} / ${percent}%`}</span>
           </p>
         </li>
       );
