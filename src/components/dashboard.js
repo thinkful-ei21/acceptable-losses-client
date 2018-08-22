@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
 import AddBillForm from './add-bill-form';
+import SummaryDisplay from './summary-display';
+import UpcomingBills from './upcoming-bills';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -12,7 +14,11 @@ export class Dashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <h3>Hello there</h3>
+        <h3>Hello there: USER'S NAME</h3>
+        <SummaryDisplay />
+        <span>---------------------------------</span>
+        <UpcomingBills />
+        <span>---------------------------------</span>
         <AddBillForm />
       </div>
     );
