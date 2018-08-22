@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import {Field, reduxForm, focus, reset} from 'redux-form';
 import {connect} from 'react-redux';
 import Input from './input';
 import {searchAccounts} from '../actions/accounts';
@@ -8,16 +8,20 @@ class SearchForm extends React.Component {
 
   onSubmit(values){
     let searchTerm =values.search;
-    if (!searchTerm){
-      searchTerm= ''
-    }
-    this.props.dispatch(searchAccounts(searchTerm));
-    
+    return this.props.dispatch(searchAccounts(searchTerm))
+    // .then(()=>this.props.dispatch(reset('search')));   
   }
 
     render() {
+      let clearButton;
+    if(this.props.currentSearchTerm !== ''){
+      clearButton = <button onClick={e=> this.props.dispatch(searchAccounts(''))} > '{this.props.currentSearchTerm}'|X </button>
+    }
+
       return (
+      <div>
         <form 
+            id="search"
             role="search"
             className="search" 
             onSubmit={this.props.handleSubmit(values =>
@@ -25,18 +29,28 @@ class SearchForm extends React.Component {
           <div className="search-inputs">
           <label htmlFor="search"></label>
           <Field className="search-box"component={Input} type="text" name="search" placeholder="search accounts"/>
-          <button type="submit" className="search-button">search</button>
+          <button 
+            type="submit" 
+            className="search-button"
+            disabled={this.props.pristine || this.props.submitting} 
+            >search</button>
           </div>
         </form>
+          {clearButton}
+      </div>
       );
     }
 }
 
-SearchForm = reduxForm({
+const mapStateToProps = state => {
+  return {currentSearchTerm:state.accounts.searchTerm};
+};
+
+const searchForm= (connect(mapStateToProps)(SearchForm));
+
+export default reduxForm({
     form: 'search',
     onSubmitFail: (errors, dispatch) =>
         dispatch(focus('search', Object.keys(errors)[0]))
-})(SearchForm);
+})(searchForm);
 
-
-export default (connect()(SearchForm));

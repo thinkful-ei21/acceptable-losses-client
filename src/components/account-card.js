@@ -3,28 +3,30 @@ import {connect} from 'react-redux';
 
 
 class AccountCard extends React.Component {
-  earliest(array){ 
+  earliest(array){
+    if(array.length>1){ 
     array.reduce(function (pre, cur) {
       return Date.parse(pre) > Date.parse(cur) ? cur : pre;
-    })
+    })}
+    else return array[0];
   };
 
 render(){
-  let dueBill;
-  let unpaidBills;
-  let dueDates;
+  let mostRecent, unpaidBills, dueDates, earliestDate;
+
   if(this.props.bills){
-    unpaidBills = this.props.bills.filter(item=> item.paid === false);
+    unpaidBills = this.props.bills.filter(item=> item.isPaid === false);
     dueDates= unpaidBills.map(item => item =item.dueDate);
-    dueBill = unpaidBills.filter(item => item.dueDate=== this.earliest(dueDates));
+    earliestDate= this.earliest(dueDates);
+    mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);   
   };  
 
   return(
     <div className="account-box">
       <a target="_blank" href={this.props.url}>pay now</a>
       <h3>{this.props.name}</h3>  
-      <p>{dueBill.amount}</p>
-      <p>{dueBill.dueDate}</p>
+      <p>due date: {mostRecent.dueDate} </p>
+      <p>amount due: {mostRecent.amount} </p>
     </div>
   ) 
   }

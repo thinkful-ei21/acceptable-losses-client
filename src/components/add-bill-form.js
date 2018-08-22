@@ -6,7 +6,7 @@ import { required, nonEmpty } from '../validators';
 
 export class AddBillForm extends React.Component {
   componentWillMount() {
-    this.props.initialize({ url: null });
+    this.props.initialize({ url: null, amount:null });
   }
 
   onSubmit(values) {
@@ -54,8 +54,7 @@ export class AddBillForm extends React.Component {
           component={Input}
           type="number"
           name="amount"
-          validate={[required, nonEmpty]}
-          placeholder="$100"
+          placeholder=""
         />
         <label htmlFor="duedate">Due Date:</label>
         <Field
@@ -63,7 +62,6 @@ export class AddBillForm extends React.Component {
           type="date"
           name="dueDate"
           validate={[required, nonEmpty]}
-          placeholder="1/2/2019"
         />
         <label htmlFor="frequency">Frequency:</label>
         <Field name="frequency" component="select" validate={required} required>

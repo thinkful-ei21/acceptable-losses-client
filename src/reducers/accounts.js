@@ -35,7 +35,6 @@ export default function reducer(state = initialState, action) {
       error: action.error
     };
   } else if (action.type === SEARCH_ACCOUNTS) {
-    console.log('searchterm set to '+ action.data)
     return Object.assign({}, state, {
         searchTerm: action.data.toLowerCase(),
         error: null

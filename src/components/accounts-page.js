@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import AccountCard from './account-card';
 import requiresLogin from './require-login';
-import SearchForm from './search-bar';
+import SearchBar from './search-bar';
 import { getAccounts } from '../actions/accounts';
 
  
@@ -21,7 +21,7 @@ export class Accounts extends React.Component {
         return (
             <div className="accounts">
                 <h3>Accounts</h3>
-                <SearchForm />
+                <SearchBar />
                 {accountResults}
             </div>
         );
@@ -31,7 +31,7 @@ export class Accounts extends React.Component {
 const mapStateToProps = state => {
 
     return {
-        searchTerm:state.accounts.searchTerm,
+        
         accounts: state.accounts.accounts.filter(item=> 
             item.name.toLowerCase().includes(state.accounts.searchTerm) || 
             item.url.toLowerCase().includes(state.accounts.searchTerm) ||
