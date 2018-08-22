@@ -1,10 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import { connect } from 'react-redux';
-import { link } from 'fs';
-=======
-import {connect} from 'react-redux';
->>>>>>> ba19cfe367d949d7974820b25cc90e24915f733f
 
 class AccountCard extends React.Component {
   // earliest(array){
@@ -25,15 +20,9 @@ class AccountCard extends React.Component {
     return result;
   }
 
-<<<<<<< HEAD
   render() {
     let billsList = this.props.bills;
     let result = this.oldest(billsList);
-=======
-  render(){
-  let billsList= this.props.bills;
-  let result= this.oldest(billsList)
->>>>>>> ba19cfe367d949d7974820b25cc90e24915f733f
     // let mostRecent, unpaidBills, dueDates, earliestDate;
 
     // if(this.props.bills){
