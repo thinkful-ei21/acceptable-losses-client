@@ -1,27 +1,32 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AccountCard from './account-card';
+import AccountView from './account-details';
 import requiresLogin from './require-login';
 import SearchBar from './search-bar';
-import { getAccounts } from '../actions/accounts';
+import { getAccount } from '../actions/accounts';
+
 
  
 
 export class Accounts extends React.Component {
-    componentDidMount() {
-        this.props.dispatch(getAccounts());
-      }
+
+    showDetailed(id){
+        this.props.dispatch(getAccount(id))
+    };
 
     render() {
         let accountResults;
         if (this.props.accounts){
             accountResults= this.props.accounts.map(account=>
-                <AccountCard key={account.id}{...account}/>)
+                <AccountCard showDetailed={id => this.showDetailed(id)} key={account.id}{...account}/>)
         };
         return (
             <div className="accounts">
                 <h3>Accounts</h3>
                 <SearchBar />
+                <AccountView/>
+                <p>---------------------------------------------------------------------------</p>
                 {accountResults}
             </div>
         );

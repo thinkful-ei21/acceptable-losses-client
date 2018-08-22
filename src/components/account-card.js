@@ -20,13 +20,14 @@ render(){
     earliestDate= this.earliest(dueDates);
     mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);   
   };  
-
   return(
     <div className="account-box">
-      <a target="_blank" href={this.props.url}>pay now</a>
-      <h3>{this.props.name}</h3>  
+      <h4>{this.props.name}</h4>
       <p>due date: {mostRecent.dueDate} </p>
-      <p>amount due: {mostRecent.amount} </p>
+      <p>amount due: {mostRecent.amount ? mostRecent.amount : 'TBD'} </p>
+      <button target="_blank" href={this.props.url}>pay now</button>
+      <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
+      <p>---------------------------------------------------------------------------</p>
     </div>
   ) 
   }

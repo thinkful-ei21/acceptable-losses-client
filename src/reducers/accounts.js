@@ -1,4 +1,4 @@
-import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS } from '../actions/accounts';
+import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS } from '../actions/accounts';
 
 const initialState = {
   accounts:[
@@ -7,17 +7,19 @@ const initialState = {
     //   userId,
     //   name,
     //   url,
+    //   frequency,
     //   bills: [
     //     {
     //       id,
     //       paid,
-    //       frequency,
     //       dueDate,
     //       amount,
+          // onetime: false,
     //     }
     //   ]
     // }
   ],
+  account:{},
   error: null,
   searchTerm:''
 };
@@ -27,6 +29,12 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       accounts: action.accounts,
+      error: null
+    };
+  } else if (action.type === GET_ACCOUNT_SUCCESS) {
+    return {
+      ...state,
+      account: action.account,
       error: null
     };
   } else if (action.type === GET_ACCOUNTS_ERROR) {
