@@ -8,6 +8,7 @@ const initialState = {
     //   name,
     //   url,
     //   frequency,
+    //   nextDue:{date,amount} === oldest bill not yet paid
     //   bills: [
     //     {
     //       id,
@@ -21,7 +22,9 @@ const initialState = {
   ],
   account:{},
   error: null,
-  searchTerm:''
+  searchTerm:'',
+  alphaSort:false,
+  dateSort:false
 };
 
 export default function reducer(state = initialState, action) {

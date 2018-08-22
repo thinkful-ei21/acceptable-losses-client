@@ -17,8 +17,17 @@ export class Accounts extends React.Component {
 
     render() {
         let accountResults;
+        let accountsSorted;
         if (this.props.accounts){
-            accountResults= this.props.accounts.map(account=>
+            accountsSorted= this.props.accounts.sort(function(a, b){
+                if(a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                if(a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+                return 0;
+            });
+            if(this.props.alphaSort){
+                accountsSorted= accountsSorted.reverse();
+            }
+            accountResults= accountsSorted.map(account=>
                 <AccountCard showDetailed={id => this.showDetailed(id)} key={account.id}{...account}/>)
         };
         return (
@@ -36,7 +45,8 @@ export class Accounts extends React.Component {
 const mapStateToProps = state => {
 
     return {
-        
+        alphaSort: state.accounts.alphaSort,
+        dateSort: state.accounts.dateSort,
         accounts: state.accounts.accounts.filter(item=> 
             item.name.toLowerCase().includes(state.accounts.searchTerm) || 
             item.url.toLowerCase().includes(state.accounts.searchTerm) ||
