@@ -15,11 +15,10 @@ export const getAccountsError = error => ({
 });
 
 export const SEARCH_ACCOUNTS = 'SEARCH_RECIPE';
-export const searchAccounts = (data) => ({
-    type: SEARCH_ACCOUNTS,
-    data
+export const searchAccounts = data => ({
+  type: SEARCH_ACCOUNTS,
+  data
 });
-
 
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
