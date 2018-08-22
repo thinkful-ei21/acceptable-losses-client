@@ -28,9 +28,6 @@ export class SummaryExpenses extends React.Component {
         dueDates = unpaidBills.map(item => (item = item.dueDate));
         earliestDate = this.earliest(dueDates);
         mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);
-        // if (account.frequency === 'monthly') {
-        //   totalExpenses += mostRecent;
-        // }
         if (account.frequency === '6 Months') {
           totalExpenses += mostRecent.amount / 6;
         } else if (account.frequency === 'Annual') {
