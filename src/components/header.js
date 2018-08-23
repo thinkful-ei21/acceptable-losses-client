@@ -15,6 +15,7 @@ export class HeaderBar extends React.Component {
     if (this.props.loggedIn) {
       header = (
         <div className="header-bar">
+          <h1>Acceptable Losses</h1>
           <div className="navlinks">
             <button className="logout-button" onClick={() => this.logOut()}>
               Log out
@@ -23,7 +24,10 @@ export class HeaderBar extends React.Component {
               Home |
             </NavLink>
             <NavLink role="navigation" className="link" to="/accounts">
-              Accounts
+              Accounts |
+            </NavLink>
+            <NavLink role="navigation" className="link" to="/add-account">
+              Add Bill
             </NavLink>
           </div>
         </div>

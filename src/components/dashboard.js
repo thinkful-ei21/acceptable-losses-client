@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
-import AddBillForm from './add-bill-form';
+// import AddBillForm from './add-bill-form';
 import SummaryDisplay from './summary-display';
 import UpcomingBills from './upcoming-bills';
 
@@ -19,7 +19,7 @@ export class Dashboard extends React.Component {
         <span>---------------------------------</span>
         <UpcomingBills />
         <span>---------------------------------</span>
-        <AddBillForm />
+        {/* <AddBillForm /> */}
       </div>
     );
   }

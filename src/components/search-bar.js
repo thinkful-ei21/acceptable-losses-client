@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import { connect } from 'react-redux';
 import Input from './input';
 import { searchAccounts } from '../actions/accounts';
@@ -16,9 +16,8 @@ class SearchForm extends React.Component {
     if (this.props.currentSearchTerm !== '') {
       clearButton = (
         <button onClick={e => this.props.dispatch(searchAccounts(''))}>
-          {' '}
           '{this.props.currentSearchTerm}
-          '|X{' '}
+          '|X
         </button>
       );
     }
