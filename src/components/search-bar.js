@@ -45,9 +45,9 @@ class SearchForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { currentSearchTerm: state.accounts.searchTerm };
-};
+const mapStateToProps = state => ({
+  currentSearchTerm: state.accounts.searchTerm
+});
 
 const searchForm = connect(mapStateToProps)(SearchForm);
 
