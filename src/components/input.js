@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './styles/forms.module.css';
 
 export default class Input extends React.Component {
   componentDidUpdate(prevProps) {
@@ -19,13 +20,14 @@ export default class Input extends React.Component {
     }
 
     return (
-      <div className="form-input">
+      <div>
         <label htmlFor={this.props.input.name}>
           {this.props.label}
           {error}
           {warning}
         </label>
         <input
+          className={styles.formInput}
           {...this.props.input}
           id={this.props.input.name}
           type={this.props.type}

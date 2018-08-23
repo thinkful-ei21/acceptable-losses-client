@@ -11,10 +11,12 @@ export function RegistrationPage(props) {
   }
   return (
     <div className={styles.background}>
-      <RegistrationForm />
-      <Link className="register-link" to="/login">
-        Already have an account? Login here!
-      </Link>
+      <section className={styles.form}>
+        <RegistrationForm />
+        <Link className={styles.linkToOtherForm} to="/login">
+          Already have an account? Login here!
+        </Link>
+      </section>
     </div>
   );
 }

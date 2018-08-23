@@ -3,9 +3,14 @@ import { Field, reduxForm, focus } from 'redux-form';
 import { registerUser } from '../actions/users';
 import { login } from '../actions/auth';
 import Input from './input';
+
+import styles from './styles/forms.module.css';
+import buttonStyles from './styles/buttons.module.css';
+
 import { required, nonEmpty, matches, length, isTrimmed } from '../validators';
 const passwordLength = length({ min: 8, max: 72 });
 const matchesPassword = matches('password');
+
 
 export class RegistrationForm extends React.Component {
   onSubmit(values) {
@@ -17,26 +22,49 @@ export class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <form className="login-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <fieldset>
           <legend>Sign up</legend>
-            <label htmlFor="firstName">First name</label>
-            <Field component={Input} type="text" name="firstName" />
-            <label htmlFor="lastName">Last name</label>
-            <Field component={Input} type="text" name="lastName" />
-            <label htmlFor="username">Username</label>
-            <Field component={Input} type="text" name="username" validate={[required, nonEmpty, isTrimmed]} />
-            <label htmlFor="password">Password</label>
-            <Field component={Input} type="password" name="password" validate={[required, passwordLength, isTrimmed]} />
-            <label htmlFor="passwordConfirm">Confirm password</label>
+            <label htmlFor="firstName" className={styles.inputLabel}>First name</label>
+            <Field component={Input}
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+            />
+
+            <label htmlFor="lastName" className={styles.inputLabel}>Last name</label>
+            <Field component={Input}
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+            />
+
+            <label htmlFor="username" className={styles.inputLabel}>Username</label>
+            <Field component={Input}
+              type="text"
+              name="username"
+              validate={[required, nonEmpty, isTrimmed]}
+              placeholder="Username"
+            />
+
+            <label htmlFor="password" className={styles.inputLabel}>Password</label>
+            <Field component={Input}
+              type="password"
+              name="password"
+              placeholder="Password"
+              validate={[required, passwordLength, isTrimmed]}
+            />
+
+            <label htmlFor="passwordConfirm" className={styles.inputLabel}>Confirm password</label>
             <Field
               component={Input}
               type="password"
               name="passwordConfirm"
               validate={[required, nonEmpty, matchesPassword]}
+              placeholder="Confirm Password"
             />
-            <button className="login-button" type="submit" disabled={this.props.pristine || this.props.submitting}>
-              Create account
+            <button className={buttonStyles.form} type="submit" disabled={this.props.pristine || this.props.submitting}>
+              SUBMIT
             </button>
         </fieldset>
       </form>

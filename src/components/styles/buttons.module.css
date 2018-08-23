@@ -1,0 +1,16 @@
+.form {
+  background-color: #01b09f;
+  color: white;
+  width: 125px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 35px;
+  font-size: .75em;
+}
+
+.form:hover {
+  box-shadow: 0 0 1px 2px rgba(255, 255, 255, .6);
+}
