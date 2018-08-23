@@ -19,10 +19,7 @@ export class LoginForm extends React.Component {
       );
     }
     return (
-      <form
-        className="login-form"
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-      >
+      <form className="login-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <h1>Bills Bills Bills</h1>
         {error}
         <label htmlFor="username">Username</label>
@@ -43,10 +40,7 @@ export class LoginForm extends React.Component {
           id="password"
           validate={[required, nonEmpty]}
         />
-        <button
-          className="login-button"
-          disabled={this.props.pristine || this.props.submitting}
-        >
+        <button className="login-button" disabled={this.props.pristine || this.props.submitting}>
           Log in
         </button>
       </form>

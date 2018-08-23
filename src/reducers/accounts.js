@@ -1,7 +1,7 @@
 import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS } from '../actions/accounts';
 
 const initialState = {
-  accounts:[
+  accounts: [
     // {
     //   id,
     //   userId,
@@ -15,16 +15,16 @@ const initialState = {
     //       paid,
     //       dueDate,
     //       amount,
-          // onetime: false,
+    // onetime: false,
     //     }
     //   ]
     // }
   ],
-  account:{},
+  account: {},
   error: null,
-  searchTerm:'',
-  alphaSort:false,
-  dateSort:false
+  searchTerm: '',
+  alphaSort: false,
+  dateSort: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -47,9 +47,9 @@ export default function reducer(state = initialState, action) {
     };
   } else if (action.type === SEARCH_ACCOUNTS) {
     return Object.assign({}, state, {
-        searchTerm: action.data.toLowerCase(),
-        error: null
+      searchTerm: action.data.toLowerCase(),
+      error: null
     });
-}  
+  }
   return state;
 }

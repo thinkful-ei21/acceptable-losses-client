@@ -9,9 +9,7 @@ export class SummaryDisplay extends React.Component {
     return (
       <section className="summary-display">
         <p>Current Month</p>
-        <p>Pie Chart</p>
         <SummaryExpenses />
-        <p>Income</p>
       </section>
     );
   }

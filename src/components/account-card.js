@@ -40,9 +40,7 @@ class AccountCard extends React.Component {
           pay now
         </button>
         <button onClick={e => this.props.showDetailed(this.props.id)}>v</button>
-        <p>
-          ---------------------------------------------------------------------------
-        </p>
+        <p>---------------------------------------------------------------------------</p>
       </div>
     );
   }

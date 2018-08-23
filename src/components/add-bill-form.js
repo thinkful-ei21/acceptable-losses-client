@@ -5,17 +5,16 @@ import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { getAccounts } from '../actions/accounts';
 
-
 export class AddBillForm extends React.Component {
   componentWillMount() {
-    this.props.initialize({ url: null, amount:null });
+    this.props.initialize({ url: null, amount: null });
   }
 
   onSubmit(values) {
     // const {name, website, amount, duedate, frequency} = values;
     return this.props
       .dispatch(createBill(values))
-      .then(()=>this.props.dispatch(getAccounts()))
+      .then(() => this.props.dispatch(getAccounts()))
       .then(() => this.props.dispatch(reset('bill')));
   }
 
@@ -33,39 +32,15 @@ export class AddBillForm extends React.Component {
       );
     }
     return (
-      <form
-        className="bill-form"
-        onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}
-      >
+      <form className="bill-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <label htmlFor="name">Name:</label>
-        <Field
-          component={Input}
-          type="text"
-          name="name"
-          validate={[required, nonEmpty]}
-          placeholder="Netflix"
-        />
+        <Field component={Input} type="text" name="name" validate={[required, nonEmpty]} placeholder="Netflix" />
         <label htmlFor="url">Website:</label>
-        <Field
-          component={Input}
-          type="text"
-          name="url"
-          placeholder="Netflix.com/payments"
-        />
+        <Field component={Input} type="text" name="url" placeholder="Netflix.com/payments" />
         <label htmlFor="amount">Amount:</label>
-        <Field
-          component={Input}
-          type="number"
-          name="amount"
-          placeholder=""
-        />
+        <Field component={Input} type="number" name="amount" placeholder="" />
         <label htmlFor="duedate">Due Date:</label>
-        <Field
-          component={Input}
-          type="date"
-          name="dueDate"
-          validate={[required, nonEmpty]}
-        />
+        <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
         <label htmlFor="frequency">Frequency:</label>
         <Field name="frequency" component="select" validate={required} required>
           <option value="One Time">One Time</option>
@@ -73,11 +48,7 @@ export class AddBillForm extends React.Component {
           <option value="6 Months">6 Months</option>
           <option value="Annual">Annual</option>
         </Field>
-        <button
-          className="save-button"
-          type="submit"
-          disabled={this.props.pristine || this.props.submitting}
-        >
+        <button className="save-button" type="submit" disabled={this.props.pristine || this.props.submitting}>
           Save
         </button>
         {error}
@@ -89,6 +60,5 @@ export class AddBillForm extends React.Component {
 
 export default reduxForm({
   form: 'bill',
-  onSubmitFail: (errors, dispatch) =>
-    dispatch(focus('bill', Object.keys(errors)[0]))
+  onSubmitFail: (errors, dispatch) => dispatch(focus('bill', Object.keys(errors)[0]))
 })(AddBillForm);
