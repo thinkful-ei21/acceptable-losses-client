@@ -1,23 +1,27 @@
 import React from 'react';
+<<<<<<< HEAD
 import {connect} from 'react-redux';
 import { link } from 'fs';
 
+=======
+import { connect } from 'react-redux';
+>>>>>>> 419cb2be7f3b54f779fa834c2eff1dc17dde2f67
 
 class AccountCard extends React.Component {
   // earliest(array){
-  //   if(array.length>1){ 
+  //   if(array.length>1){
   //   array.reduce(function (pre, cur) {
   //     return Date.parse(pre) > Date.parse(cur) ? cur : pre;
   //   })}
   //   else return array[0];
   // };
 
-  oldest(bills){
-    let result=bills[0];
-    for(let i=bills.length-1; i>=0; i--){
-       if (bills[i].paid === true){
-         result= bills[i+1]
-       }
+  oldest(bills) {
+    let result = bills[0];
+    for (let i = bills.length - 1; i >= 0; i--) {
+      if (bills[i].paid === true) {
+        result = bills[i + 1];
+      }
     }
     return result;
   }
@@ -42,7 +46,7 @@ let result= this.oldest(billsList)
       <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
       <p>---------------------------------------------------------------------------</p>
     </div>
-  ) 
+  ); 
   }
 }
 

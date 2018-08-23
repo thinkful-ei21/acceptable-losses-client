@@ -52,7 +52,7 @@ export const getAccounts = () => (dispatch, getState) => {
     });
 };
 
-export const getAccount = (id) => (dispatch, getState) => {
+export const getAccount = id => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts/${id}`, {
     method: 'GET',
@@ -77,7 +77,6 @@ export const getAccount = (id) => (dispatch, getState) => {
       }
     });
 };
-
 
 export const createBill = bill => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
