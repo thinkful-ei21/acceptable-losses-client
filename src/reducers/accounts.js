@@ -2,7 +2,7 @@ import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_
 
 const initialState = {
   accounts: [
-    // {
+    // 1: {
     //   id,
     //   userId,
     //   name,
@@ -23,8 +23,8 @@ const initialState = {
   account: {},
   error: null,
   searchTerm: '',
-  alphaSort: false,
-  dateSort: false
+  alphaSort: true,
+  dateSort: true
 };
 
 export default function reducer(state = initialState, action) {

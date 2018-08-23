@@ -1,11 +1,6 @@
 import React from 'react';
-<<<<<<< HEAD
 import {connect} from 'react-redux';
-import { link } from 'fs';
 
-=======
-import { connect } from 'react-redux';
->>>>>>> 419cb2be7f3b54f779fa834c2eff1dc17dde2f67
 
 class AccountCard extends React.Component {
   // earliest(array){
@@ -16,19 +11,19 @@ class AccountCard extends React.Component {
   //   else return array[0];
   // };
 
-  oldest(bills) {
-    let result = bills[0];
-    for (let i = bills.length - 1; i >= 0; i--) {
-      if (bills[i].paid === true) {
-        result = bills[i + 1];
-      }
-    }
-    return result;
-  }
+  // oldest(bills) {
+  //   let result = bills[0];
+  //   for (let i = bills.length - 1; i >= 0; i--) {
+  //     if (bills[i].paid === true) {
+  //       result = bills[i + 1];
+  //     }
+  //   }
+  //   return result;
+  // }
 
 render(){
-let billsList= this.props.bills;
-let result= this.oldest(billsList)
+// let billsList= this.props.bills;
+// let result= this.oldest(billsList)
   // let mostRecent, unpaidBills, dueDates, earliestDate;
 
   // if(this.props.bills){
@@ -40,8 +35,8 @@ let result= this.oldest(billsList)
   return(
     <div className="account-box">
       <h4>{this.props.name}</h4>
-      <p>due date: {result.dueDate} </p>
-      <p>amount due: {result.amount ? result.amount : 'TBD'} </p>
+      <p>due date: {this.props.nextDue.dueDate} </p>
+      <p>amount due: {this.props.nextDue.amount ? this.props.nextDue.amount : 'TBD'} </p>
       <button target="_blank" href={this.props.url}>pay now</button>
       <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
       <p>---------------------------------------------------------------------------</p>
