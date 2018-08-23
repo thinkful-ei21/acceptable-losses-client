@@ -26,6 +26,12 @@ export const searchAccounts = data => ({
   data
 });
 
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const toggleFilter = data => ({
+  type: TOGGLE_FILTER,
+  data
+});
+
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts`, {
@@ -80,7 +86,6 @@ export const getAccount = id => (dispatch, getState) => {
 
 export const createBill = bill => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
-  console.log(bill);
   return fetch(`${API_BASE_URL}/accounts`, {
     method: 'POST',
     headers: {
@@ -91,7 +96,6 @@ export const createBill = bill => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res =>  res.json())
-    .then(res =>  console.log(res))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -104,3 +108,34 @@ export const createBill = bill => (dispatch, getState) => {
       }
     });
 };
+
+
+export const updateAccount = (account, id) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/accounts/${id}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify(account)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res =>  res.json())
+    .then(() => {
+      dispatch(getAccounts());
+      dispatch(getAccount(id));
+    })
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
+        console.log('create bill error');
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
+};
+

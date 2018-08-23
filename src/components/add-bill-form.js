@@ -38,7 +38,7 @@ export class AddBillForm extends React.Component {
         <label htmlFor="url">Website:</label>
         <Field component={Input} type="text" name="url" placeholder="Netflix.com/payments" />
         <label htmlFor="amount">Amount:</label>
-        <Field component={Input} type="number" name="amount" placeholder="" />
+        <Field component={Input} type="number" name="amount" placeholder="0.00"/>
         <label htmlFor="duedate">Due Date:</label>
         <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
         <label htmlFor="frequency">Frequency:</label>
