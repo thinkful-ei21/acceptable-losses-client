@@ -7,14 +7,8 @@ export function LandingPage(props) {
     return <Redirect to="/dashboard" />;
   }
 
-  // const onClick = () => {
-  //   console.log("Why won't I work?!?!?!");
-  //   return <Redirect to="/login" />;
-  // };
-
   return (
     <div className="home">
-      <h1 className="">ACCEPTABLE LOSSES</h1>
       <p className="">SELL APP HERE</p>
       <Link to="/login">
         <button className="signin-button">SIGN IN</button>

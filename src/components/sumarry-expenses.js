@@ -22,8 +22,8 @@ export class SummaryExpenses extends React.Component {
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
-      const percent = ((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
-      result.amount = Number(result.amount.toFixed(2));
+      const percent = Number(((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2));
+      result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
 
       return (
         <li key={index}>

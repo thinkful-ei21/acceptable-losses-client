@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 import { createBill } from '../actions/accounts';
+// import { connect } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { getAccounts } from '../actions/accounts';
@@ -11,7 +12,6 @@ export class AddBillForm extends React.Component {
   }
 
   onSubmit(values) {
-    // const {name, website, amount, duedate, frequency} = values;
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))

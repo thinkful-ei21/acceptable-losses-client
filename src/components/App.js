@@ -8,6 +8,7 @@ import HeaderBar from './header';
 import Accounts from './accounts-page';
 import RegistrationPage from './registration-page';
 import loginPage from './login-page';
+import AddBillPage from './add-bill-page';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -45,6 +46,7 @@ export class App extends React.Component {
           <Route exact path="/register" component={RegistrationPage} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/accounts" component={Accounts} />
+          <Route path="/add-account" component={AddBillPage} />
         </div>
       </div>
     );
