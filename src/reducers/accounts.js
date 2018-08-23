@@ -1,4 +1,4 @@
-import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS } from '../actions/accounts';
+import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS,TOGGLE_FILTER } from '../actions/accounts';
 
 const initialState = {
   accounts: [
@@ -23,8 +23,7 @@ const initialState = {
   account: {},
   error: null,
   searchTerm: '',
-  alphaSort: true,
-  dateSort: true
+  filter: 'abc'
 };
 
 export default function reducer(state = initialState, action) {
@@ -50,6 +49,12 @@ export default function reducer(state = initialState, action) {
       searchTerm: action.data.toLowerCase(),
       error: null
     });
+  }else if (action.type === TOGGLE_FILTER) {
+    return Object.assign({}, state, {
+      filter: action.data,
+      error: null
+    });
+    
   }
   return state;
 }

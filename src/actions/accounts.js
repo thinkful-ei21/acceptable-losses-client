@@ -26,6 +26,12 @@ export const searchAccounts = data => ({
   data
 });
 
+export const TOGGLE_FILTER = 'TOGGLE_FILTER';
+export const toggleFilter = data => ({
+  type: TOGGLE_FILTER,
+  data
+});
+
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts`, {

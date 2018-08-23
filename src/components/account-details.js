@@ -4,9 +4,22 @@ import requiresLogin from './require-login';
 
 export class AccountView extends React.Component {
   render() {
+    let billHistory;
+    let accountName;
+    if(this.props.selectedAccount){
+      accountName= this.props.selectedAccount.name
+    }
+    if(this.props.selectedAccount.bills.length>1){
+        billHistory= this.props.selectedAccount.bills.map((bill) =>
+      <li>{bill.dueDate}{bill.amount}{bill.isPaid}</li>
+      );
+    }
     return (
       <div className="accountview">
-        <h2>{this.props.selectedAccount.name}</h2>
+        <h2>{accountName}</h2>
+        <ul>
+          {billHistory}
+        </ul>
       </div>
     );
   }

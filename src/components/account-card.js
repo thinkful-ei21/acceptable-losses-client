@@ -31,12 +31,15 @@ render(){
   //   dueDates= unpaidBills.map(item => item =item.dueDate);
   //   earliestDate= this.earliest(dueDates);
   //   mostRecent = unpaidBills.find(item => item.dueDate === earliestDate);   
-  // };  
+  // }; 
+
+  let finalAmount= Number(this.props.nextDue.amount).toFixed(2)
+
   return(
     <div className="account-box">
       <h4>{this.props.name}</h4>
       <p>due date: {this.props.nextDue.dueDate} </p>
-      <p>amount due: {this.props.nextDue.amount ? this.props.nextDue.amount : 'TBD'} </p>
+      <p>amount due: ${this.props.nextDue.amount ?  finalAmount : '---'} </p>
       <button target="_blank" href={this.props.url}>pay now</button>
       <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
       <p>---------------------------------------------------------------------------</p>
