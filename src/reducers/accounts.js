@@ -15,12 +15,12 @@ const initialState = {
     //       paid,
     //       dueDate,
     //       amount,
-    // onetime: false,
+    //       onetime: false,
     //     }
     //   ]
     // }
   ],
-  account: {},
+  account:null,
   error: null,
   searchTerm: '',
   filter: 'abc'
