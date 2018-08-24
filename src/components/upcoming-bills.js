@@ -8,8 +8,8 @@ export class UpcomingBills extends React.Component {
     let accountResults;
     if (this.props.accounts) {
       accountResults = this.props.accounts.map((account, index) => (
-        <li>
-          <AccountCard key={index} {...account} />
+        <li key={index}>
+          <AccountCard {...account} />
         </li>
       ));
     }

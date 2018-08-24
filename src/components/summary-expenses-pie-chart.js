@@ -4,33 +4,33 @@ import { ResponsivePie } from '@nivo/pie'
 
 export default function PieChartExpenses(props) {
   // console.log(props.graphData);
-  const dummyData = [
-    {
-      "id": "Netflix",
-      "label": "Netflix",
-      "value": 7
-    },
-    {
-      "id": "Phone",
-      "label": "Phone",
-      "value": 167
-    },
-    {
-      "id": "Internet",
-      "label": "Internet",
-      "value": 71
-    },
-    {
-      "id": "Insurance",
-      "label": "Insurance",
-      "value": 366
-    },
-    {
-      "id": "Rent",
-      "label": "Rent",
-      "value": 439
-    }
-  ]
+  // const dummyData = [
+  //   {
+  //     "id": "Netflix",
+  //     "label": "Netflix",
+  //     "value": 7
+  //   },
+  //   {
+  //     "id": "Phone",
+  //     "label": "Phone",
+  //     "value": 167
+  //   },
+  //   {
+  //     "id": "Internet",
+  //     "label": "Internet",
+  //     "value": 71
+  //   },
+  //   {
+  //     "id": "Insurance",
+  //     "label": "Insurance",
+  //     "value": 366
+  //   },
+  //   {
+  //     "id": "Rent",
+  //     "label": "Rent",
+  //     "value": 439
+  //   }
+  // ]
 
   return (
     // make sure parent container have a defined height when using responsive component,

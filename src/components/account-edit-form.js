@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { getAccounts, updateAccount, toggleEdit} from '../actions/accounts';
@@ -55,7 +55,7 @@ export class AccountEdit extends React.Component {
         <button className="edit-button" onClick= {e=> this.props.dispatch(toggleEdit())}>cancel</button>
         {error}
       </form>
-      
+
     );
   }
 }
