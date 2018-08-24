@@ -11,24 +11,28 @@ export default function BarGraphExpenses() {
         <ResponsiveBar
             data={[
               {
+                // "id": "Netflix",
                 "account": "Netflix",
-                "bill": 10,
-                "billColor": "hsl(176, 70%, 50%)"
+                "bill": 10
+                // "billColor": "#A8009C"
               },
               {
+                // "id": "Rent",
                 "account": "Rent",
-                "bill": 500,
-                "billColor": "hsl(225, 70%, 50%)"
+                "bill": 500
+                // "billColor": "#00AEA0"
               },
               {
+                // "id": "Phone",
                 "account": "Phone",
-                "bill": 35,
-                "billColor": "hsl(146, 70%, 50%)"
+                "bill": 35
+                // "billColor": "#005D70"
               },
               {
+                // "id": "Insurance",
                 "account": "Insurance",
-                "bill": 83.33,
-                "billColor": "hsl(123, 70%, 50%)"
+                "bill": 83.33
+                // "billColor": "#FF927C"
               }
             ]}
             keys={[
@@ -43,18 +47,10 @@ export default function BarGraphExpenses() {
             }}
             padding={0.4}
             layout="horizontal"
-            colors="nivo"
+            colors="#271672"
             colorBy="id"
+            labelTextColor="#fff"
             maxValue={628.33}
-            // borderColor="inherit:darker(1.6)"
-            // enableGridY={false}
-            // labelSkipWidth={12}
-            // labelSkipHeight={12}
-            // labelTextColor="inherit:darker(1.6)"
-            // animate={false}
-            // motionStiffness={90}
-            // motionDamping={15}
-            // tooltip={function(e){}}
             legends={[
                 {
                     "dataFrom": "keys",
@@ -75,7 +71,7 @@ export default function BarGraphExpenses() {
                     }
                 },
                 "labels": {
-                    "textColor": "#555"
+                    "textColor": "#fff"
                 }
             }}
         />
