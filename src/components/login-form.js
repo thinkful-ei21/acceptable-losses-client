@@ -4,6 +4,10 @@ import Input from './input';
 import { login } from '../actions/auth';
 import { required, nonEmpty } from '../validators';
 
+import styles from './styles/forms.module.css';
+import buttonStyles from './styles/buttons.module.css';
+
+
 export class LoginForm extends React.Component {
   onSubmit(values) {
     return this.props.dispatch(login(values.username, values.password));
@@ -23,7 +27,7 @@ export class LoginForm extends React.Component {
         <fieldset>
           <legend>Login</legend>
           {error}
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username" className={styles.inputLabel}>Username</label>
           <Field
             className="login-input"
             component={Input}
@@ -31,8 +35,9 @@ export class LoginForm extends React.Component {
             name="username"
             id="username"
             validate={[required, nonEmpty]}
+            placeholder="Username"
           />
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password" className={styles.inputLabel}>Password</label>
           <Field
             className="login-input"
             component={Input}
@@ -40,9 +45,10 @@ export class LoginForm extends React.Component {
             name="password"
             id="password"
             validate={[required, nonEmpty]}
+            placeholder="Password"
           />
-          <button className="login-button" disabled={this.props.pristine || this.props.submitting}>
-            Log in
+          <button className={buttonStyles.form} disabled={this.props.pristine || this.props.submitting}>
+            SUBMIT
           </button>
         </fieldset>
       </form>
