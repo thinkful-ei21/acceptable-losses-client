@@ -35,6 +35,14 @@ export class SummaryExpenses extends React.Component {
     this.props.dispatch(getIncome(id));
   }
 
+  cancelUpdate() {
+    this.props.dispatch(hideUpdateForm());
+  }
+
+  cancelAdd() {
+    this.props.dispatch(hideIncomeForm());
+  }
+
   render() {
     let totalExpenses = 0;
     const barGraphData = [],
@@ -64,6 +72,19 @@ export class SummaryExpenses extends React.Component {
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
       // const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
       result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
+
+      //////// For Bar Graph /////////
+      const label = '$' + `${result.amount}`;
+      barGraphData.push({
+        account: account.name,
+        Bill: result.amount
+      })
+      //////// For Pie Chart ///////////
+      pieGraphData.push({
+        id: account.name,
+        label: account.name,
+        value: result.amount,
+      })
 
       return (
         <li key={index}>
@@ -108,7 +129,7 @@ export class SummaryExpenses extends React.Component {
         <React.Fragment>
           <h3>Update Income Source</h3>
           <UpdateIncomeForm updateItem={this.props.income} />
-          {/* button FOR TOMOROW*/}
+          <button onClick={() => this.cancelUpdate()}>X</button>
         </React.Fragment>
       );
     }
@@ -117,7 +138,7 @@ export class SummaryExpenses extends React.Component {
         <React.Fragment>
           <h3>Enter Income Source</h3>
           <IncomeForm />
-          {/* button FOR TOMOROW*/}
+          <button onClick={() => this.cancelAdd()}>X</button>
         </React.Fragment>
       );
     }
