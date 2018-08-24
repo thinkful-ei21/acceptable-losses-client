@@ -5,12 +5,14 @@ import { loadAuthToken } from './local-storage';
 import authReducer from './reducers/auth';
 import { setAuthToken, refreshAuthToken } from './actions/auth';
 import accountReducer from './reducers/accounts';
+import incomeReducer from './reducers/incomes';
 
 const store = createStore(
   combineReducers({
     form: formReducer,
     auth: authReducer,
-    accounts: accountReducer
+    accounts: accountReducer,
+    incomes: incomeReducer
   }),
   applyMiddleware(thunk)
 );
