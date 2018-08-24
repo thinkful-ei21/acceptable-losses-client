@@ -3,7 +3,7 @@ import { ResponsivePie } from '@nivo/pie'
 
 
 export default function PieChartExpenses(props) {
-  console.log(props.graphData);
+  // console.log(props.graphData);
   const dummyData = [
     {
       "id": "Netflix",

@@ -143,8 +143,6 @@ export class SummaryExpenses extends React.Component {
       );
     }
 
-
-    console.log(pieGraphData);
     return (
       <section className="summary-expenses">
         <PieChartExpenses
@@ -157,7 +155,7 @@ export class SummaryExpenses extends React.Component {
         {(barGraphData.length !== 0 && totalExpenses > 0) ?
           <BarGraphExpenses
             graphData={barGraphData}
-            max={totalExpenses}
+            max={Number(totalExpenses)}
           /> :
           ''
         }
