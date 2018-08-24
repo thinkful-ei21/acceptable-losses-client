@@ -62,7 +62,6 @@ export class AccountView extends React.Component {
 
         <h2>{accountName}</h2>
             {nextDueBill}
-            <p>new changes</p>
         <div>{website}</div>
         {buttons}
         <ul>

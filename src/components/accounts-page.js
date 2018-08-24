@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AccountCard from './account-card';
-import AccountView from './account-view';
+import AccountView from './account-details';
 import requiresLogin from './require-login';
 import SearchBar from './search-bar';
 import { getAccount, getAccounts } from '../actions/accounts';
