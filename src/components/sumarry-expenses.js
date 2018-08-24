@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 // import { Link, Redirect } from 'react-router-dom';
-import GraphExpenses from './graph-expenses';
-
+import PieChartExpenses from './summary-expenses-pie-chart';
+import BarGraphExpenses from './summary-expenses-bar-graph';
 
 
 export class SummaryExpenses extends React.Component {
@@ -55,13 +55,15 @@ export class SummaryExpenses extends React.Component {
       <section className="summary-expenses">
         <p>_______________________________________</p>
         <p>PIE CHART GOES HERE</p>
-        <GraphExpenses />
-        
+        <PieChartExpenses />
+
         <p>_______________________________________</p>
 
         <p>
           Total Expenses: <span>${totalExpenses}</span>
         </p>
+        <BarGraphExpenses />
+        
 
         <ul>{expenseAccounts}</ul>
         <p>_______________________________________</p>

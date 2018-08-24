@@ -2,7 +2,7 @@ import React from 'react';
 import { ResponsivePie } from '@nivo/pie'
 
 
-export default function GraphExpenses() {
+export default function PieChartExpenses() {
 
   return (
     // make sure parent container have a defined height when using responsive component,
