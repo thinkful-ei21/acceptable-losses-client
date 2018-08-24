@@ -14,7 +14,9 @@ export class Dashboard extends React.Component {
     console.log(this.props.user);
     return (
       <div className="dashboard">
-        <h3>Hello {this.props.user.firstName} {this.props.user.lastName}!</h3>
+        <h3>
+          Hello {this.props.user.firstName} {this.props.user.lastName}!
+        </h3>
         <SummaryDisplay />
         <span>________________________________________________________</span>
         <UpcomingBills />

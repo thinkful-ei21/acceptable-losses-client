@@ -15,8 +15,6 @@ import UpdateIncomeForm from './update-income';
 import PieChartExpenses from './summary-expenses-pie-chart';
 import BarGraphExpenses from './summary-expenses-bar-graph';
 
-
-
 export class SummaryExpenses extends React.Component {
   componentDidMount() {
     this.props.dispatch(getIncomes());
@@ -35,18 +33,17 @@ export class SummaryExpenses extends React.Component {
     this.props.dispatch(getIncome(id));
   }
 
-  cancelUpdate() {
-    this.props.dispatch(hideUpdateForm());
-  }
-
   cancelAdd() {
     this.props.dispatch(hideIncomeForm());
+  }
+  cancelUpdate() {
+    this.props.dispatch(hideUpdateForm());
   }
 
   render() {
     let totalExpenses = 0;
     const barGraphData = [],
-          pieGraphData = [];
+      pieGraphData = [];
 
     this.props.accounts.forEach(account => {
       const result = account.bills[account.bills.length - 1];
@@ -78,13 +75,13 @@ export class SummaryExpenses extends React.Component {
       barGraphData.push({
         account: account.name,
         Bill: result.amount
-      })
+      });
       //////// For Pie Chart ///////////
       pieGraphData.push({
         id: account.name,
         label: account.name,
-        value: result.amount,
-      })
+        value: result.amount
+      });
 
       return (
         <li key={index}>
@@ -145,21 +142,16 @@ export class SummaryExpenses extends React.Component {
 
     return (
       <section className="summary-expenses">
-        <PieChartExpenses
-          graphData={pieGraphData}
-        />
+        <PieChartExpenses graphData={pieGraphData} />
 
         <p>
           Total Expenses: <span>${totalExpenses}</span>
         </p>
-        {(barGraphData.length !== 0 && totalExpenses > 0) ?
-          <BarGraphExpenses
-            graphData={barGraphData}
-            max={Number(totalExpenses)}
-          /> :
+        {barGraphData.length !== 0 && totalExpenses > 0 ? (
+          <BarGraphExpenses graphData={barGraphData} max={Number(totalExpenses)} />
+        ) : (
           ''
-        }
-
+        )}
 
         {/* <ul>{expenseAccounts}</ul> */}
         <p>_______________________________________</p>

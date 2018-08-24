@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link, Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 import SummaryExpenses from './sumarry-expenses';
 
 export class SummaryDisplay extends React.Component {
   render() {
+    let currMonth = moment().format('MMMM');
     return (
       <section className="summary-display">
-        <p>Current Month</p>
+        <p>{currMonth}</p>
         <SummaryExpenses />
       </section>
     );
