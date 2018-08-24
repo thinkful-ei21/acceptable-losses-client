@@ -57,10 +57,12 @@ export class AccountView extends React.Component {
         <button type="submit" disabled={this.props.pristine || this.props.submitting}>save</button>
       </form>
     }
-    return (
+    return ( 
       <div className="accountview">
+
         <h2>{accountName}</h2>
             {nextDueBill}
+            <p>new changes</p>
         <div>{website}</div>
         {buttons}
         <ul>
@@ -70,6 +72,7 @@ export class AccountView extends React.Component {
     );
   }
 }
+
 
 const mapStateToProps = (state, props) => {
   return {
