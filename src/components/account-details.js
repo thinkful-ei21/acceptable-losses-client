@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus, reset } from 'redux-form';
 import Input from './input';
-import { updateAccount } from '../actions/accounts';
+import { updateAccount, deleteAccount, toggleEdit  } from '../actions/accounts';
+import moment from 'moment';
+import AccountEdit from './account-edit-form'
+
+
 
 
 export class AccountView extends React.Component {
@@ -20,16 +24,27 @@ export class AccountView extends React.Component {
       bills,
       nextDueBill,
       frequency,
-      account= this.props.selectedAccount
+      buttons,
+      account= this.props.selectedAccount,
+      editForm=this.props.editButtonToggle
 
-    if(account !== null){
+    if(account !== null && !editForm){
       bills= account.bills
-      billHistory= bills.map((bill) => {if(bill.isPaid){ return <li>{bill.dueDate.slice(0,10)} ------ {bill.amount}</li>}})    //---add date paid
+      billHistory= bills.map((bill, index) => {if(bill.isPaid){ return ( <li key={index}>{moment(bill.dueDate).format('MMM Do, YYYY')} ------ {bill.amount}</li>)}})    //---add date paid
       accountName= account.name
-      let nextDueDate= account.nextDue.dueDate
+      let nextDueDate= moment(account.nextDue.dueDate).format('MMM Do, YYYY')
       let nextDueAmount= Number(account.nextDue.amount).toFixed(2)
-      nextDueBill= <h3>Next due:{nextDueDate} -- ${!isNaN(account.nextDue.amount) ?  nextDueAmount : ' ---'}</h3>
       frequency= account.frequency
+      nextDueBill= <h3>Next due:{nextDueDate} -- ${!isNaN(account.nextDue.amount) ?  `${nextDueAmount} --- ${frequency}` : ' ---'}</h3>
+      buttons= 
+      <div>
+          <button className="edit-button" onClick= {e=> this.props.dispatch(toggleEdit())}>Edit</button>
+          <button className="delete-button" onClick= {e=> this.props.dispatch(deleteAccount(account.id))}>Delete</button>
+      </div>
+    }
+    if(account !== null && editForm){
+      nextDueBill= <AccountEdit/>
+      
     }
     if(account !== null && account.url){
       website= <button target="_blank" href={account.url}>Pay here!</button>
@@ -45,9 +60,9 @@ export class AccountView extends React.Component {
     return (
       <div className="accountview">
         <h2>{accountName}</h2>
-        {nextDueBill}
+            {nextDueBill}
         <div>{website}</div>
-        <h3>{frequency}</h3>
+        {buttons}
         <ul>
           {billHistory}
         </ul>
@@ -58,6 +73,7 @@ export class AccountView extends React.Component {
 
 const mapStateToProps = (state, props) => {
   return {
+    editButtonToggle:state.accounts.editButtonToggle,
     selectedAccount: state.accounts.account
   };
 };

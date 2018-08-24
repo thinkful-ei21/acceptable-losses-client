@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import moment from 'moment'
+import {payBill} from '../actions/accounts'
 
 class AccountCard extends React.Component {
 
@@ -11,10 +12,11 @@ render(){
   return(
     <div className="account-box">
       <h4>{this.props.name}</h4>
-      <p>due date: {this.props.nextDue.dueDate} </p>
+      <p>due date: {moment(this.props.nextDue.dueDate).format('MMM Do, YYYY')} </p>
       <p>amount due: ${this.props.nextDue.amount ?  finalAmount : ' ---'} </p>
-      <button target="_blank" href={this.props.url}>pay now</button>
-      <button onClick= {e=>this.props.showDetailed(this.props.id)}>v</button>
+      <button target="_blank" href={this.props.url}>Pay here!</button>
+      <button onClick= {e=>this.props.dispatch(payBill(this.props.nextDue, this.props.id))}>mark as paid</button>
+      <button onClick= {e=>this.props.showDetailed(this.props.id)}>details</button>
       <p>---------------------------------------------------------------------------</p>
     </div>
   ); 
