@@ -75,14 +75,9 @@ export class SummaryExpenses extends React.Component {
     console.log(pieGraphData);
     return (
       <section className="summary-expenses">
-        <p>_______________________________________</p>
-        <p>PIE CHART GOES HERE</p>
         <PieChartExpenses
           graphData={pieGraphData}
         />
-
-
-        <p>_______________________________________</p>
 
         <p>
           Total Expenses: <span>${totalExpenses}</span>
