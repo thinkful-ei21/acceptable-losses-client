@@ -27,7 +27,7 @@ export class SummaryExpenses extends React.Component {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
       const percent = ((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
-      result.amount = Number(result.amount / AccFreq[account.frequency]).toFixed(2);
+      result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
 
       //////// For Graph /////////
       const label = '$' + `${result.amount} / ${percent}%`;
@@ -63,7 +63,7 @@ export class SummaryExpenses extends React.Component {
     }
 
     console.log(barGraphData);
-    console.log(totalExpenses);
+    // console.log(totalExpenses);
 
     return (
       <section className="summary-expenses">

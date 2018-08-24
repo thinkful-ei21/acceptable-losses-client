@@ -3,6 +3,25 @@ import { ResponsiveBar } from '@nivo/bar'
 
 
 export default function BarGraphExpenses(props) {
+console.log(props.graphData);
+  const dummyData = [
+    {
+      "account": "netflix",
+      "bill": 10
+    },
+    {
+      "account": "cats",
+      "bill": 230
+    },
+    {
+      "account": "internet",
+      "bill": 100
+    },
+    {
+      "account": "phone",
+      "bill": 300
+    }
+  ]
 
   return (
     // make sure parent container have a defined height when using responsive component,
