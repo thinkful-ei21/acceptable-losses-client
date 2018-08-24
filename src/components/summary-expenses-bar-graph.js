@@ -2,39 +2,14 @@ import React from 'react';
 import { ResponsiveBar } from '@nivo/bar'
 
 
-export default function BarGraphExpenses() {
+export default function BarGraphExpenses(props) {
 
   return (
     // make sure parent container have a defined height when using responsive component,
     // otherwise height will be 0 and no chart will be rendered.
       <div style={{height: '500px'}}>
         <ResponsiveBar
-            data={[
-              {
-                // "id": "Netflix",
-                "account": "Netflix",
-                "bill": 10
-                // "billColor": "#A8009C"
-              },
-              {
-                // "id": "Rent",
-                "account": "Rent",
-                "bill": 500
-                // "billColor": "#00AEA0"
-              },
-              {
-                // "id": "Phone",
-                "account": "Phone",
-                "bill": 35
-                // "billColor": "#005D70"
-              },
-              {
-                // "id": "Insurance",
-                "account": "Insurance",
-                "bill": 83.33
-                // "billColor": "#FF927C"
-              }
-            ]}
+            data={props.graphData}
             keys={[
                 "bill"
             ]}
@@ -49,8 +24,9 @@ export default function BarGraphExpenses() {
             layout="horizontal"
             colors="#271672"
             colorBy="id"
-            labelTextColor="#fff"
-            maxValue={628.33}
+            enableLabel={false}
+            // labelTextColor="#271672"
+            maxValue={props.max}
             legends={[
                 {
                     "dataFrom": "keys",
