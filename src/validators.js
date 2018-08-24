@@ -11,3 +11,6 @@ export const length = length => value => {
 };
 export const matches = field => (value, allValues) =>
   field in allValues && value.trim() === allValues[field].trim() ? undefined : 'Does not match';
+
+export const unique = (value, allValues) => !allValues.includes(value) ? undefined :'Account already exists';
+

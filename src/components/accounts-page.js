@@ -5,6 +5,7 @@ import AccountView from './account-details';
 import requiresLogin from './require-login';
 import SearchBar from './search-bar';
 import { getAccount, getAccounts } from '../actions/accounts';
+import Filters from './account-filters'
 
 export class Accounts extends React.Component {
   componentDidMount(){
@@ -27,22 +28,35 @@ export class Accounts extends React.Component {
     let accountResults;
     let accountsSorted;
     if (accounts) {
-      console.log(accounts +'accounts')
-      accountsSorted = accounts.sort(function(a, b) {
-        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-        return 0;
-      });
-      if (this.props.alphaSort) {accountsSorted = accountsSorted.reverse();}
-      accountResults = accountsSorted.map((account) => {console.log('got here'); return (
+      if(this.props.filter==='abc')
+        accountsSorted = accounts.sort(function(a, b) {
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+          return 0;
+        }); 
+      if(this.props.filter==='newest'){
+        accountsSorted= accounts.sort(function compare(a, b) {
+          var dateA = new Date(a.nextDue.dueDate);
+          var dateB = new Date(b.nextDue.dueDate);
+          return dateA - dateB;
+        });
+      }
+      if(this.props.filter==='oldest'){
+        accountsSorted= accounts.sort(function compare(a, b) {
+          var dateA = new Date(a.nextDue.dueDate);
+          var dateB = new Date(b.nextDue.dueDate);
+          return dateB - dateA;
+        });
+      }
+      accountResults = accountsSorted.map((account) => { return (
         <AccountCard showDetailed={id => this.showDetailed(id)} key={account.id} {...account} />
       )});
     }
-    console.log(accountResults);
     return (
       <div className="accounts">
         <h3>Accounts</h3>
         <SearchBar />
+        <Filters/>
         <AccountView />
         <p>---------------------------------------------------------------------------</p>
         {accountResults}
@@ -51,11 +65,9 @@ export class Accounts extends React.Component {
   }
 }
 
-const mapStateToProps = state => {console.log('getting state')
-
+const mapStateToProps = state => {
   return {
-    alphaSort: state.accounts.alphaSort,
-    dateSort: state.accounts.dateSort,
+    filter: state.accounts.filter,
     accounts: state.accounts.accounts,
     searchTerm:state.accounts.searchTerm
   };
