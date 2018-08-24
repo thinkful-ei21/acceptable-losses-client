@@ -4,18 +4,20 @@ import AccountCard from './account-card';
 // import { Link, Redirect } from 'react-router-dom';
 
 export class UpcomingBills extends React.Component {
-  
   render() {
     let accountResults;
-    if (this.props.accounts){
-        accountResults= this.props.accounts.map(account=>
-            <AccountCard key={account.id}{...account}/>)
-    };
+    if (this.props.accounts) {
+      accountResults = this.props.accounts.map((account, index) => (
+        <li>
+          <AccountCard key={index} {...account} />
+        </li>
+      ));
+    }
     return (
-        <div>
-            <h3>Upcoming</h3>
-            {accountResults}
-        </div>
+      <div>
+        <h3>Upcoming</h3>
+        <ul>{accountResults}</ul>
+      </div>
     );
   }
 }

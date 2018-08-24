@@ -3,7 +3,15 @@ import { connect } from 'react-redux';
 import GraphExpenses from './graph-expenses';
 import IncomeForm from './income-form';
 import UpdateIncomeForm from './update-income';
-import { getIncomes, showIncomeForm, deleteIncome, showUpdateForm, getIncome } from '../actions/incomes';
+import {
+  getIncomes,
+  getIncome,
+  deleteIncome,
+  showIncomeForm,
+  hideIncomeForm,
+  showUpdateForm,
+  hideUpdateForm
+} from '../actions/incomes';
 
 export class SummaryExpenses extends React.Component {
   componentDidMount() {
@@ -21,6 +29,13 @@ export class SummaryExpenses extends React.Component {
   toggleUpdate(id) {
     this.props.dispatch(showUpdateForm());
     this.props.dispatch(getIncome(id));
+  }
+
+  cancelAdd() {
+    this.props.dispatch(hideIncomeForm());
+  }
+  cancelUpdate() {
+    this.props.dispatch(hideUpdateForm());
   }
 
   render() {
@@ -94,6 +109,7 @@ export class SummaryExpenses extends React.Component {
         <React.Fragment>
           <h3>Update Income Source</h3>
           <UpdateIncomeForm updateItem={this.props.income} />
+          <button onClick={() => this.cancelUpdate()}>X</button>
           {/* button FOR TOMOROW*/}
         </React.Fragment>
       );
@@ -103,6 +119,7 @@ export class SummaryExpenses extends React.Component {
         <React.Fragment>
           <h3>Enter Income Source</h3>
           <IncomeForm />
+          <button onClick={() => this.cancelAdd()}>X</button>
           {/* button FOR TOMOROW*/}
         </React.Fragment>
       );
