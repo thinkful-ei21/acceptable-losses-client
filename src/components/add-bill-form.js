@@ -15,14 +15,15 @@ export class AddBillForm extends React.Component {
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))
-      .then(() => this.props.dispatch(reset('bill')));
+      .then(() =>{ 
+           if(this.props.error ===null){
+            this.props.dispatch(reset('bill'))
+            }
+          }
+      )
   }
 
   render() {
-    let successMessage;
-    if (this.props.submitSucceeded) {
-      successMessage = <p>Successfully added!</p>;
-    }
     let error;
     if (this.props.error) {
       error = (
@@ -52,7 +53,6 @@ export class AddBillForm extends React.Component {
           Save
         </button>
         {error}
-        {successMessage}
       </form>
     );
   }

@@ -1,29 +1,12 @@
-import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS,TOGGLE_FILTER } from '../actions/accounts';
+import { GET_ACCOUNTS_SUCCESS, GET_ACCOUNTS_ERROR, SEARCH_ACCOUNTS, GET_ACCOUNT_SUCCESS,TOGGLE_FILTER,TOGGLE_EDIT } from '../actions/accounts';
 
 const initialState = {
-  accounts: [
-    // 1: {
-    //   id,
-    //   userId,
-    //   name,
-    //   url,
-    //   frequency,
-    //   nextDue:{date,amount} === oldest bill not yet paid
-    //   bills: [
-    //     {
-    //       id,
-    //       paid,
-    //       dueDate,
-    //       amount,
-    //       onetime: false,
-    //     }
-    //   ]
-    // }
-  ],
+  accounts: [],
   account:null,
   error: null,
   searchTerm: '',
-  filter: 'abc'
+  filter: 'abc',
+  editButtonToggle: false
 };
 
 export default function reducer(state = initialState, action) {
@@ -53,8 +36,13 @@ export default function reducer(state = initialState, action) {
     return Object.assign({}, state, {
       filter: action.data,
       error: null
+    }); 
+  }else if (action.type === TOGGLE_EDIT) {
+    console.log('edit is toggled')
+    return Object.assign({}, state, {
+      editButtonToggle: !state.editButtonToggle,
+      error: null
     });
-    
   }
   return state;
 }
