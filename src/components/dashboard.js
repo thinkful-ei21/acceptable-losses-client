@@ -2,10 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
-<<<<<<< income
-import AddBillForm from './add-bill-form';
-=======
->>>>>>> local
 import SummaryDisplay from './summary-display';
 import UpcomingBills from './upcoming-bills';
 
@@ -21,12 +17,7 @@ export class Dashboard extends React.Component {
         <SummaryDisplay />
         <span>________________________________________________________</span>
         <UpcomingBills />
-<<<<<<< income
-        <span>---------------------------------</span>
-        <AddBillForm />
-=======
         <span>________________________________________________________</span>
->>>>>>> local
       </div>
     );
   }

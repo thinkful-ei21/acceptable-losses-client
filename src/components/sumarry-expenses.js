@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-<<<<<<< income
-// import { Link, Redirect } from 'react-router-dom';
-=======
-import GraphExpenses from './graph-expenses';
+// import GraphExpenses from './graph-expenses';
 import IncomeForm from './income-form';
 import UpdateIncomeForm from './update-income';
 import { getIncomes, showIncomeForm, deleteIncome, showUpdateForm, getIncome } from '../actions/incomes';
@@ -25,7 +22,6 @@ export class SummaryExpenses extends React.Component {
     this.props.dispatch(showUpdateForm());
     this.props.dispatch(getIncome(id));
   }
->>>>>>> local
 
   render() {
     let totalExpenses = 0;
@@ -41,9 +37,6 @@ export class SummaryExpenses extends React.Component {
       }
     });
 
-<<<<<<< income
-    totalExpenses = totalExpenses.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-=======
     totalExpenses = Number(totalExpenses).toFixed(2);
 
     let totalIncome = 0;
@@ -51,18 +44,12 @@ export class SummaryExpenses extends React.Component {
       totalIncome += Number(income.amount);
     });
     totalIncome = Number(totalIncome).toFixed(2);
->>>>>>> local
 
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
-<<<<<<< income
-      const percent = ((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
-      result.amount = result.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
-=======
       const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
       result.amount = Number(result.amount / AccFreq[account.frequency]).toFixed(2);
->>>>>>> local
 
       return (
         <li key={index}>
@@ -124,11 +111,7 @@ export class SummaryExpenses extends React.Component {
     return (
       <section className="summary-expenses">
         <p>_______________________________________</p>
-<<<<<<< income
-        <p>PIE CHART GOES HERE</p>
-=======
-        <GraphExpenses />
->>>>>>> local
+        {/* <GraphExpenses /> */}
         <p>_______________________________________</p>
         <p>
           Total Expenses: <span>${totalExpenses}</span>

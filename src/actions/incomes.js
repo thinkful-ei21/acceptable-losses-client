@@ -135,7 +135,6 @@ export const createIncome = income => (dispatch, getState) => {
 };
 
 export const updateIncome = (values, id) => (dispatch, getState) => {
-  console.log(values, id, 'sdfsfadgetgaegdfg');
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/income/${id}`, {
     method: 'PUT',
