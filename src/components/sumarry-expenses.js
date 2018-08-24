@@ -1,11 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { Link, Redirect } from 'react-router-dom';
 import GraphExpenses from './graph-expenses';
-
-
+import IncomeForm from './income-form';
+import UpdateIncomeForm from './update-income';
+import { getIncomes, showIncomeForm, deleteIncome, showUpdateForm, getIncome } from '../actions/incomes';
 
 export class SummaryExpenses extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getIncomes());
+  }
+
+  showForm() {
+    this.props.dispatch(showIncomeForm());
+  }
+
+  deleteIncome(id) {
+    this.props.dispatch(deleteIncome(id));
+  }
+
+  toggleUpdate(id) {
+    this.props.dispatch(showUpdateForm());
+    this.props.dispatch(getIncome(id));
+  }
+
   render() {
     let totalExpenses = 0;
 
@@ -20,13 +37,19 @@ export class SummaryExpenses extends React.Component {
       }
     });
 
-    totalExpenses = Number(totalExpenses.toFixed(2));
+    totalExpenses = Number(totalExpenses).toFixed(2);
+
+    let totalIncome = 0;
+    this.props.incomes.forEach(income => {
+      totalIncome += Number(income.amount);
+    });
+    totalIncome = Number(totalIncome).toFixed(2);
 
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
-      const percent = Number(((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2));
-      result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
+      const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
+      result.amount = Number(result.amount / AccFreq[account.frequency]).toFixed(2);
 
       return (
         <li key={index}>
@@ -37,43 +60,81 @@ export class SummaryExpenses extends React.Component {
       );
     });
 
-    let income;
-    if (this.props.income) {
-      income = (
-        <section>
+    const incomes = this.props.incomes.map((income, index) => {
+      income.amount = Number(income.amount).toFixed(2);
+      const id = income.id;
+      // let updateItem = {
+      //   id,
+      //   source: income.source,
+      //   amount: income.amount
+      // };
+
+      return (
+        <li key={index}>
           <p>
-            Income: <span>{this.props.income}</span>
+            {income.source}
+            <span>
+              ${income.amount}
+              /Mo
+            </span>
           </p>
-          {/* <ul>{incomeTypes}</ul> */}
-        </section>
+          <button onClick={() => this.deleteIncome(id)}>Del</button>
+          <button onClick={() => this.toggleUpdate(id)}>Update</button>
+        </li>
       );
-    } else {
-      income = <p>This is a post MVP... needs to update the user schema to contain income</p>;
+    });
+    let incomeDisplay, addIncome;
+    if (!this.props.toggleForm && !this.props.toggleUpdateForm) {
+      incomeDisplay = incomes;
+      addIncome = <button onClick={() => this.showForm()}>Add Income</button>;
+    }
+    if (!this.props.toggleForm && this.props.toggleUpdateForm) {
+      incomeDisplay = incomes;
+      addIncome = (
+        <React.Fragment>
+          <h3>Update Income Source</h3>
+          <UpdateIncomeForm updateItem={this.props.income} />
+          {/* button FOR TOMOROW*/}
+        </React.Fragment>
+      );
+    }
+    if (this.props.toggleForm && !this.props.toggleUpdateForm) {
+      addIncome = (
+        <React.Fragment>
+          <h3>Enter Income Source</h3>
+          <IncomeForm />
+          {/* button FOR TOMOROW*/}
+        </React.Fragment>
+      );
     }
 
     return (
       <section className="summary-expenses">
         <p>_______________________________________</p>
-        <p>PIE CHART GOES HERE</p>
         <GraphExpenses />
-        
         <p>_______________________________________</p>
-
         <p>
           Total Expenses: <span>${totalExpenses}</span>
         </p>
-
         <ul>{expenseAccounts}</ul>
         <p>_______________________________________</p>
-
-        {income}
+        <p>
+          Incomes: <span>${totalIncome}</span>
+        </p>
+        {addIncome}
+        <ul>{incomeDisplay}</ul>
       </section>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  accounts: state.accounts.accounts
+  accounts: state.accounts.accounts,
+  incomes: state.incomes.incomes,
+  income: state.incomes.income,
+  toggleForm: state.incomes.toggleForm,
+  toggleUpdateForm: state.incomes.toggleUpdateForm,
+  currentUser: state.auth.currentUser
 });
 
 export default connect(mapStateToProps)(SummaryExpenses);
