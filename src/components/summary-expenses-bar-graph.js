@@ -9,96 +9,43 @@ export default function BarGraphExpenses() {
     // otherwise height will be 0 and no chart will be rendered.
       <div style={{height: '500px'}}>
         <ResponsiveBar
-            data={[{
-                "account": "AD",
-                "bill": 183,
+            data={[
+              {
+                "account": "Netflix",
+                "bill": 10,
                 "billColor": "hsl(176, 70%, 50%)"
-                // "burger": 24,
-                // "burgerColor": "hsl(113, 70%, 50%)",
-                // "sandwich": 189,
-                // "sandwichColor": "hsl(141, 70%, 50%)",
-                // "kebab": 137,
-                // "kebabColor": "hsl(13, 70%, 50%)",
-                // "fries": 98,
-                // "friesColor": "hsl(135, 70%, 50%)",
-                // "donut": 172,
-                // "donutColor": "hsl(94, 70%, 50%)"
               },
               {
-                "account": "AE",
-                "bill": 170,
+                "account": "Rent",
+                "bill": 500,
                 "billColor": "hsl(225, 70%, 50%)"
-                // "burger": 46,
-                // "burgerColor": "hsl(277, 70%, 50%)",
-                // "sandwich": 153,
-                // "sandwichColor": "hsl(57, 70%, 50%)",
-                // "kebab": 137,
-                // "kebabColor": "hsl(69, 70%, 50%)",
-                // "fries": 3,
-                // "friesColor": "hsl(77, 70%, 50%)",
-                // "donut": 137,
-                // "donutColor": "hsl(348, 70%, 50%)"
               },
               {
-                "account": "AF",
-                "bill": 43,
+                "account": "Phone",
+                "bill": 35,
                 "billColor": "hsl(146, 70%, 50%)"
-                // "burger": 59,
-                // "burgerColor": "hsl(284, 70%, 50%)",
-                // "sandwich": 84,
-                // "sandwichColor": "hsl(136, 70%, 50%)",
-                // "kebab": 148,
-                // "kebabColor": "hsl(225, 70%, 50%)",
-                // "fries": 123,
-                // "friesColor": "hsl(292, 70%, 50%)",
-                // "donut": 173,
-                // "donutColor": "hsl(161, 70%, 50%)"
               },
               {
-                "account": "AG",
-                "bill": 13,
+                "account": "Insurance",
+                "bill": 83.33,
                 "billColor": "hsl(123, 70%, 50%)"
-                // "burger": 136,
-                // "burgerColor": "hsl(78, 70%, 50%)",
-                // "sandwich": 49,
-                // "sandwichColor": "hsl(270, 70%, 50%)",
-                // "kebab": 67,
-                // "kebabColor": "hsl(103, 70%, 50%)",
-                // "fries": 19,
-                // "friesColor": "hsl(15, 70%, 50%)",
-                // "donut": 18,
-                // "donutColor": "hsl(90, 70%, 50%)"
-              },
-              {
-                "account": "AI",
-                "bill": 109,
-                "billColor": "hsl(302, 70%, 50%)"
-                // "burger": 119,
-                // "burgerColor": "hsl(52, 70%, 50%)",
-                // "sandwich": 97,
-                // "sandwichColor": "hsl(146, 70%, 50%)",
-                // "kebab": 61,
-                // "kebabColor": "hsl(71, 70%, 50%)",
-                // "fries": 6,
-                // "friesColor": "hsl(255, 70%, 50%)",
-                // "donut": 40,
-                // "donutColor": "hsl(46, 70%, 50%)"
-            }]}
+              }
+            ]}
             keys={[
                 "bill"
-
             ]}
             indexBy="account"
             margin={{
                 "top": 50,
                 "right": 130,
                 "bottom": 50,
-                "left": 60
+                "left": 80
             }}
             padding={0.4}
             layout="horizontal"
             colors="nivo"
             colorBy="id"
+            maxValue={628.33}
             // borderColor="inherit:darker(1.6)"
             // enableGridY={false}
             // labelSkipWidth={12}
