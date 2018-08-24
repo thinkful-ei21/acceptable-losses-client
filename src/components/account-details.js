@@ -42,7 +42,7 @@ export class AccountView extends React.Component {
           <button className="delete-button" onClick= {e=> this.props.dispatch(deleteAccount(account.id))}>Delete</button>
       </div>
     }
-    if(account !== null && editForm){
+    if(account !== null && editForm){ 
       nextDueBill= <AccountEdit/>
       
     }
