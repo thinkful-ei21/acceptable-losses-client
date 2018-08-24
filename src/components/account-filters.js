@@ -1,7 +1,7 @@
 import React from 'react';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import { connect } from 'react-redux';
-import { searchAccounts, toggleFilter } from '../actions/accounts';
+import { toggleFilter } from '../actions/accounts';
 
 
 class Filters extends React.Component {
@@ -15,7 +15,6 @@ class Filters extends React.Component {
       <div>
         <form
           id="filter"
-          role="filter"
           className="filter"
         >
           <div className="search-inputs">

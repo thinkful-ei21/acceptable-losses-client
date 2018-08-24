@@ -64,14 +64,13 @@ export class SummaryExpenses extends React.Component {
     });
     totalIncome = Number(totalIncome).toFixed(2);
 
-    const expenseAccounts = this.props.accounts.map((account, index) => {
+    this.props.accounts.forEach(account => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
       // const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
       result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
 
       //////// For Bar Graph /////////
-      const label = '$' + `${result.amount}`;
       barGraphData.push({
         account: account.name,
         Bill: result.amount
@@ -82,14 +81,14 @@ export class SummaryExpenses extends React.Component {
         label: account.name,
         value: result.amount
       });
-
-      return (
-        <li key={index}>
-          <p>
-            {account.name} <span>{label}</span>
-          </p>
-        </li>
-      );
+      //
+      // return (
+      //   <li key={index}>
+      //     <p>
+      //       {account.name} <span>{`$${result.amount}`}</span>
+      //     </p>
+      //   </li>
+      // );
     });
 
     const incomes = this.props.incomes.map((income, index) => {
