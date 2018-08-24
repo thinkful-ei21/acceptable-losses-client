@@ -30,7 +30,7 @@ export class AccountView extends React.Component {
 
     if(account !== null && !editForm){
       bills= account.bills
-      billHistory= bills.map((bill, index) => {if(bill.isPaid){ return ( <li key={index}>{moment(bill.dueDate).format('MMM Do, YYYY')} ------ {bill.amount}</li>)}})    //---add date paid
+      billHistory= bills.map((bill, index) => {if(bill.isPaid){ return ( <li key={index}> Due: {moment(bill.dueDate).format('MMM Do, YYYY')} ---- Paid: {moment(bill.datePaid).format('MMM Do, YYYY')} ------ ${bill.amount}</li>)}})    //---add date paid
       accountName= account.name
       let nextDueDate= moment(account.nextDue.dueDate).format('MMM Do, YYYY')
       let nextDueAmount= Number(account.nextDue.amount).toFixed(2)
