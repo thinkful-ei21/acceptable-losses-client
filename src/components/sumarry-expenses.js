@@ -1,8 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import GraphExpenses from './graph-expenses';
-import IncomeForm from './income-form';
-import UpdateIncomeForm from './update-income';
 import {
   getIncomes,
   getIncome,
@@ -12,6 +9,11 @@ import {
   showUpdateForm,
   hideUpdateForm
 } from '../actions/incomes';
+
+import IncomeForm from './income-form';
+import UpdateIncomeForm from './update-income';
+import PieChartExpenses from './summary-expenses-pie-chart';
+import BarGraphExpenses from './summary-expenses-bar-graph';
 
 export class SummaryExpenses extends React.Component {
   componentDidMount() {
@@ -40,6 +42,8 @@ export class SummaryExpenses extends React.Component {
 
   render() {
     let totalExpenses = 0;
+    const barGraphData = [],
+      pieGraphData = [];
 
     this.props.accounts.forEach(account => {
       const result = account.bills[account.bills.length - 1];
@@ -63,13 +67,26 @@ export class SummaryExpenses extends React.Component {
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
-      const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
-      result.amount = Number(result.amount / AccFreq[account.frequency]).toFixed(2);
+      // const percent = Number((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
+      result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
+
+      //////// For Bar Graph /////////
+      const label = '$' + `${result.amount}`;
+      barGraphData.push({
+        account: account.name,
+        Bill: result.amount
+      });
+      //////// For Pie Chart ///////////
+      pieGraphData.push({
+        id: account.name,
+        label: account.name,
+        value: result.amount
+      });
 
       return (
         <li key={index}>
           <p>
-            {account.name} <span>${`${result.amount} / ${percent}%`}</span>
+            {account.name} <span>{label}</span>
           </p>
         </li>
       );
@@ -110,7 +127,6 @@ export class SummaryExpenses extends React.Component {
           <h3>Update Income Source</h3>
           <UpdateIncomeForm updateItem={this.props.income} />
           <button onClick={() => this.cancelUpdate()}>X</button>
-          {/* button FOR TOMOROW*/}
         </React.Fragment>
       );
     }
@@ -120,20 +136,24 @@ export class SummaryExpenses extends React.Component {
           <h3>Enter Income Source</h3>
           <IncomeForm />
           <button onClick={() => this.cancelAdd()}>X</button>
-          {/* button FOR TOMOROW*/}
         </React.Fragment>
       );
     }
 
     return (
       <section className="summary-expenses">
-        <p>_______________________________________</p>
-        <GraphExpenses />
-        <p>_______________________________________</p>
+        <PieChartExpenses graphData={pieGraphData} />
+
         <p>
           Total Expenses: <span>${totalExpenses}</span>
         </p>
-        <ul>{expenseAccounts}</ul>
+        {barGraphData.length !== 0 && totalExpenses > 0 ? (
+          <BarGraphExpenses graphData={barGraphData} max={Number(totalExpenses)} />
+        ) : (
+          ''
+        )}
+
+        {/* <ul>{expenseAccounts}</ul> */}
         <p>_______________________________________</p>
         <p>
           Incomes: <span>${totalIncome}</span>

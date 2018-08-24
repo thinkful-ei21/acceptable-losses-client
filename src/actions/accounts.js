@@ -31,6 +31,10 @@ export const toggleFilter = data => ({
   type: TOGGLE_FILTER,
   data
 });
+export const TOGGLE_EDIT = 'TOGGLE_EDIT';
+export const toggleEdit = () => ({
+  type: TOGGLE_EDIT,
+});
 
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
@@ -99,7 +103,7 @@ export const createBill = bill => (dispatch, getState) => {
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
-        console.log('create bill error');
+        console.log('create error');
         return Promise.reject(
           new SubmissionError({
             [location]: message
@@ -121,7 +125,6 @@ export const updateAccount = (account, id) => (dispatch, getState) => {
     body: JSON.stringify(account)
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res =>  res.json())
     .then(() => {
       dispatch(getAccounts());
       dispatch(getAccount(id));
@@ -139,3 +142,63 @@ export const updateAccount = (account, id) => (dispatch, getState) => {
     });
 };
 
+
+
+export const payBill = (account, id) => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/accounts/bills/${id}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify(account)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(() => {
+      dispatch(getAccountSuccess(null));
+    })
+    .then(() => {
+      dispatch(getAccounts());
+    })
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
+        console.log('create bill error');
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
+};
+
+export const deleteAccount = id => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/accounts/${id}`, {
+      method: 'DELETE',
+      headers: {
+          'content-type': 'application/json',
+          Authorization: `Bearer ${authToken}`
+      }
+  })
+      .then(res => normalizeResponseErrors(res))
+      .then(() => {
+        dispatch(getAccountSuccess(null));
+      })
+    .then(() => {
+      dispatch(getAccounts());
+    })
+      .catch(err => {
+          const {reason, message, location} = err;
+          if (reason === 'ValidationError') {
+        console.log('delete bill error');
+              return Promise.reject(
+                  new SubmissionError({
+                      [location]: message
+                  })
+              );
+          }
+      });
+};
