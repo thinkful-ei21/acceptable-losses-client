@@ -22,6 +22,7 @@ legend {
 .form {
   margin: 0 auto;
   width: 70%;
+  max-width: 320px;
   text-align: center;
 }
 
