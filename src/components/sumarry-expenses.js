@@ -8,7 +8,8 @@ import BarGraphExpenses from './summary-expenses-bar-graph';
 export class SummaryExpenses extends React.Component {
   render() {
     let totalExpenses = 0;
-    const barGraphData = [];
+    const barGraphData = [],
+          pieGraphData = [];
 
     this.props.accounts.forEach(account => {
       const result = account.bills[account.bills.length - 1];
@@ -26,16 +27,24 @@ export class SummaryExpenses extends React.Component {
     const expenseAccounts = this.props.accounts.map((account, index) => {
       const result = account.bills[account.bills.length - 1];
       const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
-      const percent = ((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
+      // const percent = ((result.amount / AccFreq[account.frequency] / totalExpenses) * 100).toFixed(2);
       result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
 
-      //////// For Graph /////////
-      const label = '$' + `${result.amount} / ${percent}%`;
+      //////// For Bar Graph /////////
+      const label = '$' + `${result.amount}`;
       barGraphData.push({
         account: account.name,
-        bill: result.amount
+        Bill: result.amount
       })
-      ////////////////////////////
+      ////////////////////////////////
+
+      //////// For Pie Chart ///////////
+      pieGraphData.push({
+        id: account.name,
+        label: account.name,
+        value: result.amount,
+      })
+      /////////////////////////////////
 
       return (
         <li key={index}>
@@ -62,14 +71,15 @@ export class SummaryExpenses extends React.Component {
       income = <p>This is a post MVP... needs to update the user schema to contain income</p>;
     }
 
-    console.log(barGraphData);
-    // console.log(totalExpenses);
 
+    console.log(pieGraphData);
     return (
       <section className="summary-expenses">
         <p>_______________________________________</p>
         <p>PIE CHART GOES HERE</p>
-        <PieChartExpenses />
+        <PieChartExpenses
+          graphData={pieGraphData}
+        />
 
 
         <p>_______________________________________</p>
@@ -86,7 +96,7 @@ export class SummaryExpenses extends React.Component {
         }
 
 
-        <ul>{expenseAccounts}</ul>
+        {/* <ul>{expenseAccounts}</ul> */}
         <p>_______________________________________</p>
 
         {income}
