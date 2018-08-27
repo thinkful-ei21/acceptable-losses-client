@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
-import SummaryDisplay from './summary-display';
-import UpcomingBills from './upcoming-bills';
+import SummaryDisplay from './summary/summary-display';
+import UpcomingBills from './summary/upcoming-bills';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -12,7 +13,7 @@ export class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className="dashboard">
+      <div>
         <h3>
           Hello {this.props.user.firstName} {this.props.user.lastName}!
         </h3>

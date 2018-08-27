@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
+
 import styles from './styles/forms.module.css';
 
 export function RegistrationPage(props) {
