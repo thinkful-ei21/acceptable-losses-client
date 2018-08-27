@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
-import { updateAccount, deleteAccount, toggleEdit, payBill, getAccount  } from '../actions/accounts';
+import { updateAccount, deleteAccount, toggleEdit, payBill } from '../actions/accounts';
 import moment from 'moment';
 import AccountEdit from './account-edit-form'
 

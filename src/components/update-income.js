@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { updateIncome } from '../actions/incomes';
-import { required, nonEmpty } from '../validators';
+import { required} from '../validators';
 
 export class UpdateIncomeForm extends React.Component {
     componentDidMount() {
