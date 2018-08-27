@@ -156,7 +156,7 @@ export const payBill = (account, id) => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(() => {
-      dispatch(getAccountSuccess(null));
+      dispatch(getAccount(id));
     })
     .then(() => {
       dispatch(getAccounts());
