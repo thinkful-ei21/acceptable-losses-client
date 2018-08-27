@@ -25,7 +25,7 @@ render(){
       <p>due date: {moment(this.props.nextDue.dueDate).format('MMM Do, YYYY')} </p>
       <p>amount due: ${this.props.nextDue.amount ?  finalAmount : ' ---'} </p>
       <button target="_blank" href={this.props.url}>Pay here!</button>
-      <button onClick= {e=>this.props.dispatch(payBill(this.props.nextDue, this.props.id))}>mark as paid</button>
+      <button onClick= {e=>this.props.dispatch(payBill(this.props.nextDue, this.props.id))}>Mark as Paid</button>
       {detailsButton}
       <p>---------------------------------------------------------------------------</p>
     </div>

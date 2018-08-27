@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
-import { updateAccount, deleteAccount, toggleEdit  } from '../actions/accounts';
+import { updateAccount, deleteAccount, toggleEdit, payBill, getAccount  } from '../actions/accounts';
 import moment from 'moment';
 import AccountEdit from './account-edit-form'
 
@@ -56,11 +56,16 @@ export class AccountView extends React.Component {
           nextDueAmount= Number(account.nextDue.amount).toFixed(2);
 
       frequency= account.frequency
-      nextDueBill= <h3>Next due:{nextDueDate} -- ${!isNaN(account.nextDue.amount) ?  `${nextDueAmount} --- ${frequency}` : ' ---'}</h3>
+      nextDueBill= <h3>Next due: {nextDueDate} -- ${!isNaN(account.nextDue.amount) ?  `${nextDueAmount} --- ${frequency}` : ' ---'}</h3>
       buttons= (
         <div>
-            <button className="edit-button" onClick= {e=> this.props.dispatch(toggleEdit())}>Edit</button>
-            <button className="delete-button" onClick= {e=> this.props.dispatch(deleteAccount(account.id))}>Delete</button>
+          <button onClick= {e=>{
+            e.preventDefault();
+            return this.props.dispatch(payBill(account.nextDue, account.id))
+            }
+            }>Mark as Paid</button>
+          <button className="edit-button" onClick= {e=> this.props.dispatch(toggleEdit())}>Edit</button>
+          <button className="delete-button" onClick= {e=> this.props.dispatch(deleteAccount(account.id))}>Delete</button>
         </div>
       );
     }
@@ -70,12 +75,12 @@ export class AccountView extends React.Component {
     if (account !== null && account.url) {
       website = <button target="_blank" href={account.url}>Pay here!</button>
     }
-    if (account !==null && !account.url) {
+    if (account !==null && !account.url && !editForm) {
       website = (
         <form id="website" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
           <label htmlFor="website" />
           <Field component={Input} type="text" name="url" placeholder="add website" />
-          <button type="submit" disabled={this.props.pristine || this.props.submitting}>save</button>
+          <button type="submit" disabled={this.props.pristine || this.props.submitting}>Save</button>
         </form>
       );
     }
