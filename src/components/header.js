@@ -31,33 +31,46 @@ export class HeaderBar extends React.Component {
 
     if (this.props.loggedIn) {
       header = (
-        <div>
+        <React.Fragment>
           {/* <h1>Acceptable Losses</h1> */}
           <div className={styles.mobile}>
-            <button onClick={() => this.toggleShowMenu()}>
-              <img className={styles.menu}
+            <button className={styles.menuButton}
+              onClick={() => this.toggleShowMenu()}
+            >
+              <img className={styles.menuIcon}
                 src={require('../assets/menu.svg')}
                 alt="hamburger menu icon"
               />
             </button>
             {this.state.showMenu ?
-              <React.Fragment>
-                <NavLink role="navigation" to="/dashboard">
+              <div className={styles.mobileMenuPage}>
+                <NavLink role="navigation"
+                  to="/dashboard"
+                  className={styles.link}
+                >
                   <img />
                   Home
                 </NavLink>
-                <NavLink role="navigation" to="/accounts">
+                <NavLink role="navigation"
+                  to="/accounts"
+                  className={styles.link}
+                >
                   <img />
                   Accounts
                 </NavLink>
-                <NavLink role="navigation" to="/add-account">
+                <NavLink role="navigation"
+                  to="/add-account"
+                  className={styles.link}
+                >
                   <img />
                   Add Bill
                 </NavLink>
-                <button onClick={() => this.logOut()}>
+                <button className={styles.link}
+                  onClick={() => this.logOut()}
+                >
                   Log out
                 </button>
-              </React.Fragment>
+              </div>
               :
             ''}
           </div>
@@ -75,7 +88,7 @@ export class HeaderBar extends React.Component {
               Log out
             </button>
           </div>
-        </div>
+        </React.Fragment>
       );
     }
 
