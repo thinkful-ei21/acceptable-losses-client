@@ -44,12 +44,12 @@ export class AccountView extends React.Component {
                 <tr>
                 <td>{moment(bill.dueDate).format('MMM Do, YYYY')}</td>
                 <td>{moment(bill.datePaid).format('MMM Do, YYYY')}</td>
-                <td>${bill.amount}</td>
+                <td>$ {(bill.amount)>0 ? `${bill.amount}`: '---'}</td>
                 </tr>
             ) :
             ''
         );
-      })    //---add date paid
+      })  
       billHistoryTable=  
       <table>
       <th>Bill History</th>
@@ -65,8 +65,8 @@ export class AccountView extends React.Component {
       let nextDueDate= moment(account.nextDue.dueDate).format('MMM Do, YYYY'),
           nextDueAmount= Number(account.nextDue.amount).toFixed(2);
 
-      frequency= <p>{account.frequency}</p>
-      nextDueBill= <p>Next due: {nextDueDate} .... ${(account.nextDue.amount)> 0 ?  `${nextDueAmount}` : `---`}</p>
+      frequency= <p>Frequency:{account.frequency}</p>
+      nextDueBill= <p>Next due: {nextDueDate} .... $ {(account.nextDue.amount)> 0 ?  `${nextDueAmount}` : `---`}</p>
       buttons= (
         <div>
           <button onClick= {e=>{
@@ -83,7 +83,7 @@ export class AccountView extends React.Component {
       nextDueBill = <AccountEdit/>
     }
     if (account !== null && account.url) {
-      website = <button target="_blank" href={account.url}>Pay here!</button>
+      website =<a target='_blank' href={account.url} className="button">Pay Here</a>
     }
     if (account !==null && !account.url && !editForm) {
       website = (
@@ -96,13 +96,11 @@ export class AccountView extends React.Component {
     }
     return (
       <div className="accountview">
-        <h2>{accountName}</h2>
+        <h3>{accountName}</h3>
+        {buttons}
+        {website}
         {frequency}
         {nextDueBill}
-        <div>
-          {website}
-        </div>
-        {buttons}
         {billHistoryTable}
       </div>
     );

@@ -4,16 +4,12 @@ import AccountCard from './account-card';
 import AccountView from './account-details';
 import requiresLogin from './require-login';
 import SearchBar from './search-bar';
-import { getAccount, getAccounts } from '../actions/accounts';
+import { getAccounts } from '../actions/accounts';
 import Filters from './account-filters';
 
 export class Accounts extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
-  }
-
-  showDetailed(id) {
-    this.props.dispatch(getAccount(id));
   }
 
   render() {
@@ -50,12 +46,12 @@ export class Accounts extends React.Component {
         });
       }
       accountResults = accountsSorted.map(account => {
-        return <AccountCard showDetailed={id => this.showDetailed(id)} key={account.id} {...account} />;
+        return <AccountCard key={account.id} {...account} />;
       });
     }
     return (
       <div className="accounts">
-        <h3>Accounts</h3>
+        <h2>Accounts</h2>
         <SearchBar />
         <Filters />
         <AccountView />
