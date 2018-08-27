@@ -42,7 +42,8 @@ export class SummaryExpenses extends React.Component {
 
   render() {
     let totalExpenses = 0;
-    const barGraphData = [],
+    const expensesBarGraphData = [],
+      incomeBarGraphData = [],
       pieGraphData = [];
 
     this.props.accounts.forEach(account => {
@@ -71,7 +72,7 @@ export class SummaryExpenses extends React.Component {
       result.amount = Number((result.amount / AccFreq[account.frequency]).toFixed(2));
 
       //////// For Bar Graph /////////
-      barGraphData.push({
+      expensesBarGraphData.push({
         account: account.name,
         Bill: result.amount
       });
@@ -91,36 +92,36 @@ export class SummaryExpenses extends React.Component {
       // );
     });
 
-    const incomes = this.props.incomes.map((income, index) => {
-      income.amount = Number(income.amount).toFixed(2);
-      const id = income.id;
-      // let updateItem = {
-      //   id,
-      //   source: income.source,
-      //   amount: income.amount
-      // };
-
-      return (
-        <li key={index}>
-          <p>
-            {income.source}
-            <span>
-              ${income.amount}
-              /Mo
-            </span>
-          </p>
-          <button onClick={() => this.deleteIncome(id)}>Del</button>
-          <button onClick={() => this.toggleUpdate(id)}>Update</button>
-        </li>
-      );
-    });
+    // const incomes = this.props.incomes.map((income, index) => {
+    //   income.amount = Number(income.amount).toFixed(2);
+    //   const id = income.id;
+    //   // let updateItem = {
+    //   //   id,
+    //   //   source: income.source,
+    //   //   amount: income.amount
+    //   // };
+    //
+    //   return (
+    //     <li key={index}>
+    //       <p>
+    //         {income.source}
+    //         <span>
+    //           ${income.amount}
+    //           /Mo
+    //         </span>
+    //       </p>
+    //       <button onClick={() => this.deleteIncome(id)}>Del</button>
+    //       <button onClick={() => this.toggleUpdate(id)}>Update</button>
+    //     </li>
+    //   );
+    // });
     let incomeDisplay, addIncome;
     if (!this.props.toggleForm && !this.props.toggleUpdateForm) {
-      incomeDisplay = incomes;
+      // incomeDisplay = incomes;
       addIncome = <button onClick={() => this.showForm()}>Add Income</button>;
     }
     if (!this.props.toggleForm && this.props.toggleUpdateForm) {
-      incomeDisplay = incomes;
+      // incomeDisplay = incomes;
       addIncome = (
         <React.Fragment>
           <h3>Update Income Source</h3>
@@ -138,6 +139,14 @@ export class SummaryExpenses extends React.Component {
         </React.Fragment>
       );
     }
+    console.log(this.props.incomes);
+
+    this.props.incomes.map(income => {
+      incomeBarGraphData.push({
+        income: income.source,
+        Amount: income.amount
+      })
+    })
 
     return (
       <section className="summary-expenses">
@@ -146,11 +155,15 @@ export class SummaryExpenses extends React.Component {
         <p>
           Total Expenses: <span>${totalExpenses}</span>
         </p>
-        {barGraphData.length !== 0 && totalExpenses > 0 ? (
-          <BarGraphExpenses graphData={barGraphData} max={Number(totalExpenses)} />
-        ) : (
-          ''
-        )}
+        {expensesBarGraphData.length !== 0 && totalExpenses > 0 ? (
+          <BarGraphExpenses
+            graphData={expensesBarGraphData}
+            max={Number(totalExpenses)}
+            keys={["Bill"]}
+            indexBy="account"
+          />
+        ) : ''
+        }
 
         {/* <ul>{expenseAccounts}</ul> */}
         <p>_______________________________________</p>
@@ -158,7 +171,13 @@ export class SummaryExpenses extends React.Component {
           Incomes: <span>${totalIncome}</span>
         </p>
         {addIncome}
-        <ul>{incomeDisplay}</ul>
+        {/* <ul>{incomeDisplay}</ul> */}
+        <BarGraphExpenses
+          graphData={incomeBarGraphData}
+          max={Number(totalIncome)}
+          keys={["Amount"]}
+          indexBy="income"
+        />
       </section>
     );
   }
