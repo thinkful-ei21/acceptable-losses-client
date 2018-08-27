@@ -5,7 +5,6 @@ import { Link, Redirect } from 'react-router-dom';
 import LoginForm from './login-form';
 import styles from './styles/forms.module.css';
 
-
 export function LoginPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;

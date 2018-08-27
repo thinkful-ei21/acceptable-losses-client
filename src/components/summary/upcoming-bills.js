@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import AccountCard from './account-card';
+import AccountCard from '../account/account-card';
 // import { Link, Redirect } from 'react-router-dom';
 
 export class UpcomingBills extends React.Component {

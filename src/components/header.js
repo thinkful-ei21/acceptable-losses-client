@@ -14,23 +14,12 @@ export class HeaderBar extends React.Component {
     let header;
     if (this.props.loggedIn) {
       header = (
-        <div className="header-bar">
-          <h1>Acceptable Losses</h1>
-          <div className="navlinks">
-            <button className="logout-button" onClick={() => this.logOut()}>
-              Log out
-            </button>
-            <NavLink role="navigation" className="link" to="/dashboard">
-              Home |
-            </NavLink>
-            <NavLink role="navigation" className="link" to="/accounts">
-              Accounts |
-            </NavLink>
-            <NavLink role="navigation" className="link" to="/add-account">
-              Add Bill
-            </NavLink>
-          </div>
-        </div>
+        <nav>
+          <button onClick={() => this.logOut()}>Log out</button>
+          <NavLink to="/dashboard">Home |</NavLink>
+          <NavLink to="/accounts">Accounts |</NavLink>
+          <NavLink to="/add-account">Add Bill</NavLink>
+        </nav>
       );
     }
     return <div>{header}</div>;

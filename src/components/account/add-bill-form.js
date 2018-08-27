@@ -1,9 +1,11 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
-import { createBill } from '../actions/accounts';
-import Input from './input';
-import { required, nonEmpty } from '../validators';
-import { getAccounts } from '../actions/accounts';
+
+import { createBill } from '../../actions/accounts';
+import { required, nonEmpty } from '../../validators';
+import { getAccounts } from '../../actions/accounts';
+
+import Input from '../input';
 
 export class AddBillForm extends React.Component {
   componentWillMount() {
@@ -14,20 +16,17 @@ export class AddBillForm extends React.Component {
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))
-      .then(() => this.props.history.push(`/dashboard`));
+      .then(() => this.props.history.push('/dashboard'));
   }
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
+    const { handleSubmit, error, pristine, submitting } = this.props;
+    let err;
+    if (error) {
+      err = <div aria-live="polite">{error}</div>;
     }
     return (
-      <form className="bill-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <form className="bill-form" onSubmit={handleSubmit(values => this.onSubmit(values))}>
         <label htmlFor="name">Name:</label>
         <Field component={Input} type="text" name="name" validate={[required, nonEmpty]} placeholder="Netflix" />
         <label htmlFor="url">Website:</label>
@@ -43,10 +42,10 @@ export class AddBillForm extends React.Component {
           <option value="6 Months">6 Months</option>
           <option value="Annual">Annual</option>
         </Field>
-        <button className="save-button" type="submit" disabled={this.props.pristine || this.props.submitting}>
+        <button type="submit" disabled={pristine || submitting}>
           Save
         </button>
-        {error}
+        {err}
       </form>
     );
   }
