@@ -8,7 +8,7 @@ import HeaderBar from './header';
 import Accounts from './accounts-page';
 import RegistrationPage from './registration-page';
 import loginPage from './login-page';
-import AddBillPage from './add-bill-page';
+import AddBillForm from './add-bill-form';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -46,7 +46,7 @@ export class App extends React.Component {
           <Route exact path="/register" component={RegistrationPage} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/accounts" component={Accounts} />
-          <Route path="/add-account" component={AddBillPage} />
+          <Route exact path="/add-account" component={AddBillForm} />
         </div>
       </div>
     );
