@@ -56,7 +56,7 @@ export class AccountView extends React.Component {
       <tr>
         <th>Due Date</th>
         <th>Date Paid</th>
-        <th>Amount</th>
+        <th className="amountRow">Amount</th>
       </tr>
       {billHistory}
       </table>
