@@ -7,23 +7,6 @@ import { required, nonEmpty } from '../validators';
 
 export class IncomeForm extends React.Component {
   onSubmit(values) {
-    // console.log('got here 1', this.props.toggleUpdateForm, this.props.updateItem);
-    // const { id, source, amount } = this.props.updateItem;
-    // let updateVal = values;
-    // if (this.props.toggleUpdateForm) {
-    //   console.log('got here 2');
-    //   if (!values.source) {
-    //     console.log('got here 3');
-    //     updateVal = { source, amount: values.amount };
-    //   } else if (!values.amount) {
-    //     console.log('got here 4');
-    //     updateVal = { source: values.source, amount };
-    //   } else {
-    //     console.log('got here 5');
-    //     updateVal = values;
-    //   }
-    //   this.props.dispacth(updateIncome(updateVal, id));
-    // }
     this.props.dispatch(createIncome(values));
   }
 

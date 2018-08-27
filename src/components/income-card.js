@@ -1,39 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import moment from 'moment';
-import { getIncome } from '../actions/incomes';
-import { Link } from 'react-router-dom';
+import { deleteIncome, showUpdateForm, getIncome } from '../actions/incomes';
 
 class IncomeCard extends React.Component {
   render() {
-    let incomeAmount = Number(this.props.amount).toFixed(2);
-    let detailsButton;
-    if (this.props.showDetailed) {
-      detailsButton = <button onClick={e => this.props.showDetailed(this.props.id)}>Details</button>;
-    } else {
-      detailsButton = (
-        <Link to="/incomes">
-          <button className="" onClick={e => this.props.dispatch(getIncome(this.props.id))}>
-            Income Details
-          </button>
-        </Link>
-      );
-    }
+    // console.log(this.props.income);
+    // let income = this.props.income;
 
     return (
-      <div className="income-box">
+      <li key={this.props.key} className="income-box">
         <h4>{this.props.source}</h4>
-        {/* <p>due date: {moment(this.props.source).format('MMM Do, YYYY')} </p> */}
-        <p>amount: ${this.props.amount ? incomeAmount : ' ---'} </p>
-        {/* <button target="_blank" href={this.props.url}>
-          Pay here!
-        </button> */}
-        {/* <button onClick={e => this.props.dispatch(payBill(this.props.nextDue, this.props.id))}>mark as paid</button> */}
-        {detailsButton}
-        <p>---------------------------------------------------------------------------</p>
-      </div>
+        <p>Amount: ${Number(this.props.amount).toFixed(2)}</p>
+        <button className="edit-button" onClick={() => this.toggleUpdate(this.props.id)}>
+          Edit
+        </button>
+        <button className="delete-button" onClick={() => this.props.dispatch(deleteIncome(this.props.id))}>
+          Delete
+        </button>
+      </li>
     );
   }
 }
+
+// const mapStateToProps = state => ({
+//   income: state.incomes.income
+// });
 
 export default connect()(IncomeCard);

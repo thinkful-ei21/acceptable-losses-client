@@ -8,39 +8,31 @@ import { connect } from 'react-redux';
 import { showUpdateForm } from '../actions/incomes';
 
 export class IncomeView extends React.Component {
-  // onSubmit(value) {
-  //   let income = this.props.income,
-  //     newIncome = {
-  //       source: income.name,
-  //       amount: income.amount
-  //     };
-  //   return this.props.dispatch(updateIncome(newIncome, income.id));
-  // }
-
   render() {
-    let updateIncome,
-      buttons,
-      income = this.props.income,
-      toggleForm = this.props.toggleForm,
-      toggleUpdateForm = this.props.toggleUpdateForm;
+    console.log('hello?');
+    // let updateIncome,
+    //   buttons,
+    //   income = this.props.income,
+    //   toggleForm = this.props.toggleForm,
+    //   toggleUpdateForm = this.props.toggleUpdateForm;
 
-    if (income !== null && !toggleForm) {
-      nextDueBill = (
-        <h3>
-          Income: {income.source} -- ${income.amount}
-        </h3>
-      );
-      buttons = (
-        <div>
-          <button className="edit-button" onClick={e => this.props.dispatch(showUpdateForm())}>
-            Edit
-          </button>
-          <button className="delete-button" onClick={e => this.props.dispatch(deleteIncome(income.id))}>
-            Delete
-          </button>
-        </div>
-      );
-    }
+    // if (income !== null && !toggleForm) {
+    //   nextDueBill = (
+    //     <h3>
+    //       Income: {income.source} -- ${income.amount}
+    //     </h3>
+    //   );
+    //   buttons = (
+    //     <div>
+    //       <button className="edit-button" onClick={() => this.props.dispatch(showUpdateForm())}>
+    //         Edit
+    //       </button>
+    //       <button className="delete-button" onClick={() => this.props.dispatch(deleteIncome(income.id))}>
+    //         Delete
+    //       </button>
+    //     </div>
+    //   );
+    // }
     if (income !== null && toggleUpdateForm) {
       updateIncome = <UpdateIncome />;
     }

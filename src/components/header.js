@@ -27,7 +27,7 @@ export class HeaderBar extends React.Component {
               Accounts |
             </NavLink>
             <NavLink role="navigation" className="link" to="/add-account">
-              Add Bill
+              Add Bill |
             </NavLink>
             <NavLink role="navigation" className="link" to="/incomes">
               Incomes |
