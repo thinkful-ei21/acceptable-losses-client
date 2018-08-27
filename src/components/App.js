@@ -9,6 +9,8 @@ import Accounts from './accounts-page';
 import RegistrationPage from './registration-page';
 import loginPage from './login-page';
 import AddBillForm from './add-bill-form';
+import IncomeForm from './income-form';
+import Incomes from './income-page';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -47,6 +49,8 @@ export class App extends React.Component {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route path="/accounts" component={Accounts} />
           <Route exact path="/add-account" component={AddBillForm} />
+          <Route path="/income" component={Incomes} />
+          <Route exact path="/add-income" component={IncomeForm} />
         </div>
       </div>
     );

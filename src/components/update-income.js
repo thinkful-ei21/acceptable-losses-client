@@ -6,9 +6,9 @@ import { updateIncome } from '../actions/incomes';
 import { required, nonEmpty } from '../validators';
 
 export class UpdateIncomeForm extends React.Component {
-    componentDidMount() {
-      console.log(this.props.updateItem)
-    this.props.initialize({ source:this.props.initialValues.source, amount:this.props.initialValues.amount });
+  componentDidMount() {
+    console.log(this.props.updateItem);
+    this.props.initialize({ source: this.props.initialValues.source, amount: this.props.initialValues.amount });
   }
   onSubmit(values) {
     const id = this.props.initialValues.id;
@@ -16,14 +16,14 @@ export class UpdateIncomeForm extends React.Component {
   }
 
   render() {
-    // let error;
-    // if (this.props.error) {
-    //   error = (
-    //     <div className="form-error" aria-live="polite">
-    //       {this.props.error}
-    //     </div>
-    //   );
-    // }
+    let error;
+    if (this.props.error) {
+      error = (
+        <div className="form-error" aria-live="polite">
+          {this.props.error}
+        </div>
+      );
+    }
     return (
       <form className="income-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <label htmlFor="source">Source</label>
@@ -33,7 +33,7 @@ export class UpdateIncomeForm extends React.Component {
           type="text"
           name="source"
           id="source"
-          validate={required}
+          validate={[required, nonEmpty]}
         />
         <label htmlFor="amount">Amount</label>
         <Field
@@ -42,26 +42,24 @@ export class UpdateIncomeForm extends React.Component {
           type="amount"
           name="amount"
           id="amount"
-          validate={required}
-
+          validate={[required, nonEmpty]}
         />
         <button className="income-button" type="submit" disabled={this.props.submitting}>
           Submit
         </button>
+        {error}
       </form>
     );
   }
 }
 
 const mapStateToProps = state => ({
-    initialValues: state.incomes.income
-  
+  initialValues: state.incomes.income
 });
 
 const updateIncomeForm = connect(mapStateToProps)(UpdateIncomeForm);
 
 export default reduxForm({
   form: 'income',
-  onSubmitFail: (errors, dispatch) =>
-  dispatch(focus('income', Object.keys(errors)[0]))
+  onSubmitFail: (errors, dispatch) => dispatch(focus('income', Object.keys(errors)[0]))
 })(updateIncomeForm);
