@@ -1,7 +1,6 @@
 import React from 'react';
-import { Field, reduxForm, focus, reset } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import { createBill } from '../actions/accounts';
-// import { connect } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty } from '../validators';
 import { getAccounts } from '../actions/accounts';
@@ -15,12 +14,7 @@ export class AddBillForm extends React.Component {
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))
-      .then(() =>{ 
-           if(this.props.error ===null){
-            this.props.dispatch(reset('bill'))
-            }
-          }
-      )
+      .then(() => this.props.history.push(`/dashboard`));
   }
 
   render() {
@@ -39,7 +33,7 @@ export class AddBillForm extends React.Component {
         <label htmlFor="url">Website:</label>
         <Field component={Input} type="text" name="url" placeholder="Netflix.com/payments" />
         <label htmlFor="amount">Amount:</label>
-        <Field component={Input} type="number" name="amount" placeholder="0.00"/>
+        <Field component={Input} type="number" name="amount" placeholder="0.00" />
         <label htmlFor="duedate">Due Date:</label>
         <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
         <label htmlFor="frequency">Frequency:</label>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import moment from 'moment'
-import {payBill} from '../actions/accounts'
+import {payBill, getAccount} from '../actions/accounts'
+import { Link } from 'react-router-dom';
 
 class AccountCard extends React.Component {
 
@@ -11,7 +12,13 @@ render(){
   let detailsButton;
   if (this.props.showDetailed){
     detailsButton= <button onClick= {e=>this.props.showDetailed(this.props.id)}>details</button>  
+  }  else{
+    detailsButton=
+    <Link to="/accounts">
+      <button className="" onClick= {e=>this.props.dispatch(getAccount(this.props.id))}>Account Details</button>
+    </Link>
   }
+  
   return(
     <div className="account-box">
       <h4>{this.props.name}</h4>
