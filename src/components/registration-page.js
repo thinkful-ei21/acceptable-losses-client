@@ -3,17 +3,20 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import RegistrationForm from './registration-form';
+import styles from './styles/forms.module.css';
 
 export function RegistrationPage(props) {
   if (props.loggedIn) {
     return <Redirect to="/dashboard" />;
   }
   return (
-    <div className="home">
-      <RegistrationForm />
-      <Link className="register-link" to="/">
-        Already have an account? Login here!
-      </Link>
+    <div className={styles.background}>
+      <section className={styles.form}>
+        <RegistrationForm />
+        <Link className={styles.linkToOtherForm} to="/login">
+          Already have an account? Login here!
+        </Link>
+      </section>
     </div>
   );
 }
