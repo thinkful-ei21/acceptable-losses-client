@@ -29,8 +29,9 @@ export class SummaryExpenses extends React.Component {
   }
 
   toggleUpdate(id) {
-    this.props.dispatch(showUpdateForm());
-    this.props.dispatch(getIncome(id));
+    return this.props.dispatch(getIncome(id))
+    .then(()=>this.props.dispatch(showUpdateForm()))
+    
   }
 
   cancelAdd() {
