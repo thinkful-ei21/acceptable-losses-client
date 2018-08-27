@@ -30,33 +30,43 @@ export class AccountView extends React.Component {
       nextDueBill,
       frequency,
       buttons,
+      billHistoryTable,
       account= this.props.selectedAccount,
       editForm=this.props.editButtonToggle
 
     if(account !== null && !editForm){
       bills= account.bills
+
       billHistory= bills.map((bill, index) => {
         return (
           bill.isPaid ?
             (
-              <li key={index}>
-                <p>
-                Due: {moment(bill.dueDate).format('MMM Do, YYYY')}
-                ---- Paid: {moment(bill.datePaid).format('MMM Do, YYYY')}
-                ------ ${bill.amount}
-                </p>
-              </li>
+                <tr>
+                <td>{moment(bill.dueDate).format('MMM Do, YYYY')}</td>
+                <td>{moment(bill.datePaid).format('MMM Do, YYYY')}</td>
+                <td>${bill.amount}</td>
+                </tr>
             ) :
             ''
         );
       })    //---add date paid
+      billHistoryTable=  
+      <table>
+      <th>Bill History</th>
+      <tr>
+        <th>Due Date</th>
+        <th>Date Paid</th>
+        <th>Amount</th>
+      </tr>
+      {billHistory}
+      </table>
       accountName= account.name
 
       let nextDueDate= moment(account.nextDue.dueDate).format('MMM Do, YYYY'),
           nextDueAmount= Number(account.nextDue.amount).toFixed(2);
 
-      frequency= account.frequency
-      nextDueBill= <h3>Next due: {nextDueDate} -- ${!isNaN(account.nextDue.amount) ?  `${nextDueAmount} --- ${frequency}` : ' ---'}</h3>
+      frequency= <p>{account.frequency}</p>
+      nextDueBill= <p>Next due: {nextDueDate} .... ${(account.nextDue.amount)> 0 ?  `${nextDueAmount}` : `---`}</p>
       buttons= (
         <div>
           <button onClick= {e=>{
@@ -87,14 +97,13 @@ export class AccountView extends React.Component {
     return (
       <div className="accountview">
         <h2>{accountName}</h2>
+        {frequency}
         {nextDueBill}
         <div>
           {website}
         </div>
         {buttons}
-        <ul>
-          {billHistory}
-        </ul>
+        {billHistoryTable}
       </div>
     );
   }
