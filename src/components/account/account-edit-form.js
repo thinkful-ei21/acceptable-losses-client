@@ -45,18 +45,20 @@ export class AccountEdit extends React.Component {
         <Field component={Input} type="text" name="name" value={name} validate={[required, nonEmpty]} />
         <label htmlFor="url">Website:</label>
         <Field component={Input} type="text" name="url" value={url} />
-        <label htmlFor="frequency">Frequency:</label>
-        <Field name="frequency" component="select" value={frequency} validate={required} required>
+        <label htmlFor="frequency" />
+        <Field name="frequency" component="select" value={frequency} validate={[required, nonEmpty]} required>
+          <option hidden>Frequency</option>
           <option value="One Time">One Time</option>
           <option value="Monthly">Monthly</option>
           <option value="Quarterly">Quarterly</option>
           <option value="Semi-Annually">Semi-Annually</option>
           <option value="Annually">Annually</option>
         </Field>
-        <label htmlFor="duedate">Due Date: {moment(nextDue.dueDate).format('MMM Do, YYYY')}</label>
+        <label htmlFor="dueDate">Due Date: {moment(nextDue.dueDate).format('MMM Do, YYYY')}</label>
         <Field component={Input} type="date" name="dueDate" value={nextDue.dueDate} />
-        <label htmlFor="reminder">Reminder:</label>
-        <Field name="reminder" component="select" value={reminder} required>
+        <label htmlFor="reminder" />
+        <Field name="reminder" component="select" value={reminder} validate={[required, nonEmpty]} required>
+          <option hidden>Reminder</option>
           <option value="No Reminder">No Reminder</option>
           <option value="Same Day">Same Day</option>
           <option value="Day Before">Day Before</option>
