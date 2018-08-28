@@ -44,29 +44,53 @@ export class HeaderBar extends React.Component {
             </button>
             {this.state.showMenu ?
               <div className={styles.mobileMenuPage}>
-                <NavLink role="navigation"
-                  to="/dashboard"
-                  className={styles.link}
-                >
-                  <img />
-                  Home
-                </NavLink>
-                <NavLink role="navigation"
-                  to="/accounts"
-                  className={styles.link}
-                >
-                  <img />
-                  Accounts
-                </NavLink>
-                <NavLink role="navigation"
-                  to="/add-account"
-                  className={styles.link}
-                >
-                  <img />
-                  Add Bill
-                </NavLink>
-                <button className={styles.link}
-                  onClick={() => this.logOut()}
+                <div className={styles.row}>
+                  <img className={styles.linkIcon}
+                    src={require('../assets/summary.svg')}
+                    alt="summary (or home) icon"
+                  />
+                  <NavLink role="navigation"
+                    to="/dashboard"
+                    className={styles.link}
+                    onClick={() => this.toggleShowMenu()}
+                  >
+                    <span>Home</span>
+                  </NavLink>
+                </div>
+
+                <div className={styles.row}>
+                  <img className={styles.linkIcon}
+                    src={require('../assets/bills.svg')}
+                    alt="bills icon"
+                  />
+                  <NavLink role="navigation"
+                    to="/accounts"
+                    className={styles.link}
+                    onClick={() => this.toggleShowMenu()}
+                  >
+                    <span>Accounts</span>
+                  </NavLink>
+                </div>
+
+                <div className={styles.row}>
+                  <img className={styles.linkIcon}
+                    src={require('../assets/add.svg')}
+                    alt="add bill icon"
+                  />
+                  <NavLink role="navigation"
+                    to="/add-account"
+                    className={styles.link}
+                    onClick={() => this.toggleShowMenu()}
+                  >
+                    <span>Add Bill</span>
+                  </NavLink>
+                </div>
+
+                <button className={`${styles.row} ${styles.logout}`}
+                  onClick={() => {
+                    this.toggleShowMenu()
+                    this.logOut()
+                  }}
                 >
                   Log out
                 </button>

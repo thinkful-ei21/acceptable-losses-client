@@ -1,7 +1,8 @@
 .background {
   position: relative;
   height: 50px;
-  /* border: 1px solid black; */
+  /* opacity: 0; */
+  background-color: transparent;
 }
 
 .desktop {
@@ -29,22 +30,43 @@
   top: 0;
   overflow-x: hidden;
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* .link:first-child {
-  margin-top: 35px;
-} */
+.row {
+  margin-left: 40vw;
+  margin-bottom: 20px;
+  /* border: 1px solid black; */
+}
 
 .link {
-  display: block;
+  /* font-family: 'Source Sans Pro'; */
+  font-size: 1.75em;
+  font-weight: 600;
+  color: black;
+  padding-left: 20px;
+  /* border: 1px solid black; */
 }
 
 .link:link {
   text-decoration: none;
 }
 
-.link button {
-  border: none;
+.linkIcon {
+  width: 32px;
+  vertical-align: bottom;
+}
+
+/* logout button */
+.logout {
+  margin-top: 30px;
+  width: 65px;
+}
+
+.logout:hover {
+  cursor: pointer;
 }
 
 
