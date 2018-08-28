@@ -40,13 +40,13 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <Route path="" component={HeaderBar} />
+        <Route path="/app" component={HeaderBar} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={loginPage} />
         <Route exact path="/register" component={RegistrationPage} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route path="/accounts" component={AccountsPage} />
-        <Route exact path="/add-account" component={AddBillForm} />
+        <Route exact path="/app/dashboard" component={Dashboard} />
+        <Route path="/app/accounts" component={AccountsPage} />
+        <Route exact path="/app/add-account" component={AddBillForm} />
       </div>
     );
   }

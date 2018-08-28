@@ -16,9 +16,9 @@ export class HeaderBar extends React.Component {
       header = (
         <nav>
           <button onClick={() => this.logOut()}>Log out</button>
-          <NavLink to="/dashboard">Home |</NavLink>
-          <NavLink to="/accounts">Accounts |</NavLink>
-          <NavLink to="/add-account">Add Bill</NavLink>
+          <NavLink to="/app/dashboard">Home |</NavLink>
+          <NavLink to="/app/accounts">Accounts |</NavLink>
+          <NavLink to="/app/add-account">Add Bill</NavLink>
         </nav>
       );
     }

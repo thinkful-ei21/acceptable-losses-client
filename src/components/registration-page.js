@@ -8,7 +8,7 @@ import styles from './styles/forms.module.css';
 
 export function RegistrationPage(props) {
   if (props.loggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/app/dashboard" />;
   }
   return (
     <div className={styles.background}>
