@@ -1,29 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteIncome, showUpdateForm, getIncome } from '../actions/incomes';
+
+import { deleteIncome, getIncome, showUpdateForm } from '../actions/incomes';
 
 class IncomeCard extends React.Component {
-  render() {
-    // console.log(this.props.income);
-    // let income = this.props.income;
+  toggleUpdate(id) {
+    const { dispatch } = this.props;
+    return dispatch(getIncome(id)).then(() => dispatch(showUpdateForm()));
+  }
 
+  render() {
+    const { key, source, amount, id, dispatch } = this.props;
     return (
-      <li key={this.props.key} className="income-box">
-        <h4>{this.props.source}</h4>
-        <p>Amount: ${Number(this.props.amount).toFixed(2)}</p>
-        <button className="edit-button" onClick={() => this.toggleUpdate(this.props.id)}>
-          Edit
-        </button>
-        <button className="delete-button" onClick={() => this.props.dispatch(deleteIncome(this.props.id))}>
-          Delete
-        </button>
+      <li key={key} className="income-box">
+        <h4>{source}</h4>
+        <p>Amount: ${Number(amount).toFixed(2)}</p>
+        <button onClick={() => this.toggleUpdate(id)}>Edit</button>
+        <button onClick={() => dispatch(deleteIncome(id))}>Delete</button>
       </li>
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   income: state.incomes.income
-// });
 
 export default connect()(IncomeCard);

@@ -36,14 +36,7 @@ export class UpdateIncomeForm extends React.Component {
           validate={[required, nonEmpty]}
         />
         <label htmlFor="amount">Amount</label>
-        <Field
-          className="amount-input"
-          component={Input}
-          type="amount"
-          name="amount"
-          id="amount"
-          validate={[required, nonEmpty]}
-        />
+        <Field className="amount-input" component={Input} type="amount" name="amount" id="amount" validate={required} />
         <button className="income-button" type="submit" disabled={this.props.submitting}>
           Submit
         </button>
