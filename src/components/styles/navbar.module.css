@@ -78,6 +78,40 @@
 
   .desktop {
     display: inline-block;
+    width: 65px;
+    height: 100vh;
+    border: 1px solid black;
+    text-align: center;
+  }
+
+  .row {
+    margin-left: 0;
+  }
+
+  .link {
+    padding: 0; /* removes mobile styling */
+  }
+
+  .firstLink {
+    margin-top: 15px;
+  }
+
+  /* .link img,
+  .link p,
+  .link {
+    z-index: 5;
+  } */
+
+  .linkIcon {
+    width: 45px;
+  }
+
+  .link p {
+    color: #01B09F;
+    font-size: .4em;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 25px;
   }
 
 

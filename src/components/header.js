@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './styles/navbar.module.css';
 
 
-export class HeaderBar extends React.Component {
+export default class HeaderBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,12 +26,9 @@ export class HeaderBar extends React.Component {
   }
 
   render() {
-    let header;
-
-    if (this.props.loggedIn) {
-      header = (
+    return (
+      <div className={styles.background}>
         <React.Fragment>
-          {/* <h1>Acceptable Losses</h1> */}
           <div className={styles.mobile}>
             <button className={styles.menuButton}
               onClick={() => this.toggleShowMenu()}
@@ -97,52 +94,49 @@ export class HeaderBar extends React.Component {
               :
             ''}
           </div>
+
           <div className={styles.desktop}>
-            <NavLink role="navigation" to="/app/dashboard">
-              Home |
+            {/* <div className={styles.row}> */}
+            <NavLink role="navigation"
+              to="/app/dashboard"
+              className={styles.link}
+            >
+              <img className={`${styles.linkIcon} ${styles.firstLink}`}
+                src={require('../assets/summary.svg')}
+                alt="summary (or home) icon"
+              />
+              <p>Home</p>
             </NavLink>
-            <NavLink role="navigation" to="/app/accounts">
-              Accounts |
+            {/* </div> */}
+
+            {/* <div className={styles.row}> */}
+            <NavLink role="navigation"
+              to="/app/accounts"
+              className={styles.link}
+            >
+              <img className={styles.linkIcon}
+                src={require('../assets/bills.svg')}
+                alt="bills icon"
+              />
+              <p>Accounts</p>
             </NavLink>
-            <NavLink role="navigation" to="/app/add-account">
-              Add Bill
+            {/* </div> */}
+
+            {/* <div className={styles.row}> */}
+            <NavLink role="navigation"
+              to="/app/add-account"
+              className={styles.link}
+            >
+              <img className={styles.linkIcon}
+                src={require('../assets/add.svg')}
+                alt="add bill icon"
+              />
+              <p>Add Bill</p>
             </NavLink>
-            <button onClick={() => this.logOut()}>
-              Log out
-            </button>
+            {/* </div> */}
           </div>
         </React.Fragment>
+      </div>
       );
     }
-
-    // if (this.state.showMenu) {
-    //   menu = (
-    //     <React.Fragment>
-    //       <NavLink role="navigation" to="/dashboard">
-    //         <img />
-    //         Home
-    //       </NavLink>
-    //       <NavLink role="navigation" to="/accounts">
-    //         <img />
-    //         Accounts
-    //       </NavLink>
-    //       <NavLink role="navigation" to="/add-account">
-    //         <img />
-    //         Add Bill
-    //       </NavLink>
-    //       <button onClick={() => this.logOut()}>
-    //         Log out
-    //       </button>
-    //     </React.Fragment>
-    //   )
-    // }
-
-    return <div className={styles.background}>{header}</div>;
-  }
 }
-
-const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null
-});
-
-export default connect(mapStateToProps)(HeaderBar);
