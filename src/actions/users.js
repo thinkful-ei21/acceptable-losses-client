@@ -2,7 +2,7 @@ import { SubmissionError } from 'redux-form';
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
-export const registerUser = user => dispatch => {
+export const registerUser = user => () => {
   return fetch(`${API_BASE_URL}/users`, {
     method: 'POST',
     headers: {

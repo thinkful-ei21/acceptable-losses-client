@@ -1,12 +1,12 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
+
 import Input from './input';
 import { login } from '../actions/auth';
 import { required, nonEmpty } from '../validators';
 
 import styles from './styles/forms.module.css';
 import buttonStyles from './styles/buttons.module.css';
-
 
 export class LoginForm extends React.Component {
   onSubmit(values) {
@@ -16,18 +16,16 @@ export class LoginForm extends React.Component {
   render() {
     let error;
     if (this.props.error) {
-      error = (
-        <div className="form-error" aria-live="polite">
-          {this.props.error}
-        </div>
-      );
+      error = <div aria-live="polite">{this.props.error}</div>;
     }
     return (
-      <form className="login-form" onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <fieldset>
           <legend>Login</legend>
           {error}
-          <label htmlFor="username" className={styles.inputLabel}>Username</label>
+          <label htmlFor="username" className={styles.inputLabel}>
+            Username
+          </label>
           <Field
             styleClass={styles.formInput}
             component={Input}
@@ -37,7 +35,9 @@ export class LoginForm extends React.Component {
             validate={[required, nonEmpty]}
             placeholder="Username"
           />
-          <label htmlFor="password" className={styles.inputLabel}>Password</label>
+          <label htmlFor="password" className={styles.inputLabel}>
+            Password
+          </label>
           <Field
             styleClass={styles.formInput}
             component={Input}

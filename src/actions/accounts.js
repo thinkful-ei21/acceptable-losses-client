@@ -1,4 +1,5 @@
 import { SubmissionError } from 'redux-form';
+
 import { API_BASE_URL } from '../config';
 import { normalizeResponseErrors } from './utils';
 
@@ -33,7 +34,7 @@ export const toggleFilter = data => ({
 });
 export const TOGGLE_EDIT = 'TOGGLE_EDIT';
 export const toggleEdit = () => ({
-  type: TOGGLE_EDIT,
+  type: TOGGLE_EDIT
 });
 
 export const getAccounts = () => (dispatch, getState) => {
@@ -46,9 +47,7 @@ export const getAccounts = () => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => {
-      dispatch(getAccountsSuccess(data));
-    })
+    .then(data => dispatch(getAccountsSuccess(data)))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -72,9 +71,7 @@ export const getAccount = id => (dispatch, getState) => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => {
-      dispatch(getAccountSuccess(data));
-    })
+    .then(data => dispatch(getAccountSuccess(data)))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -99,7 +96,7 @@ export const createBill = bill => (dispatch, getState) => {
     body: JSON.stringify(bill)
   })
     .then(res => normalizeResponseErrors(res))
-    .then(res =>  res.json())
+    .then(res => res.json())
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -112,7 +109,6 @@ export const createBill = bill => (dispatch, getState) => {
       }
     });
 };
-
 
 export const updateAccount = (account, id) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
@@ -142,8 +138,6 @@ export const updateAccount = (account, id) => (dispatch, getState) => {
     });
 };
 
-
-
 export const payBill = (account, id) => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts/bills/${id}`, {
@@ -155,12 +149,8 @@ export const payBill = (account, id) => (dispatch, getState) => {
     body: JSON.stringify(account)
   })
     .then(res => normalizeResponseErrors(res))
-    .then(() => {
-      dispatch(getAccount(id));
-    })
-    .then(() => {
-      dispatch(getAccounts());
-    })
+    .then(() => dispatch(getAccount(id)))
+    .then(() => dispatch(getAccounts()))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {
@@ -177,28 +167,24 @@ export const payBill = (account, id) => (dispatch, getState) => {
 export const deleteAccount = id => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts/${id}`, {
-      method: 'DELETE',
-      headers: {
-          'content-type': 'application/json',
-          Authorization: `Bearer ${authToken}`
-      }
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
   })
-      .then(res => normalizeResponseErrors(res))
-      .then(() => {
-        dispatch(getAccountSuccess(null));
-      })
-    .then(() => {
-      dispatch(getAccounts());
-    })
-      .catch(err => {
-          const {reason, message, location} = err;
-          if (reason === 'ValidationError') {
+    .then(res => normalizeResponseErrors(res))
+    .then(() => dispatch(getAccountSuccess(null)))
+    .then(() => dispatch(getAccounts()))
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
         console.log('delete bill error');
-              return Promise.reject(
-                  new SubmissionError({
-                      [location]: message
-                  })
-              );
-          }
-      });
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
 };

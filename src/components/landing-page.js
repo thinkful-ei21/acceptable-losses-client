@@ -4,18 +4,16 @@ import { Link, Redirect } from 'react-router-dom';
 
 export function LandingPage(props) {
   if (props.loggedIn) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/app/dashboard" />;
   }
 
   return (
-    <div className="home">
-      <p className="">SELL APP HERE</p>
+    <div>
+      <p>SELL APP HERE</p>
       <Link to="/login">
-        <button className="signin-button">SIGN IN</button>
+        <button>SIGN IN</button>
       </Link>
-      <Link className="register-link" to="/register">
-        Sign Up Here
-      </Link>
+      <Link to="/register">Sign Up Here</Link>
     </div>
   );
 }
