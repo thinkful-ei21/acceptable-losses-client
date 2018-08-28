@@ -26,8 +26,7 @@ export class HeaderBar extends React.Component {
   }
 
   render() {
-    let header,
-        menu;
+    let header;
 
     if (this.props.loggedIn) {
       header = (

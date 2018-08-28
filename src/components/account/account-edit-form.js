@@ -46,7 +46,7 @@ export class AccountEdit extends React.Component {
         <label htmlFor="url">Website:</label>
         <Field component={Input} type="text" name="url" value={url} />
         <label htmlFor="frequency">Frequency:</label>
-        <Field name="frequency" component="select" validate={required} required>
+        <Field name="frequency" component="select" value={frequency} validate={required} required>
          <option value="one-time">One Time</option>
          <option value="monthly">Monthly</option>
          <option value="quarterly">Quarterly</option>

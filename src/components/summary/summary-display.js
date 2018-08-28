@@ -11,8 +11,8 @@ import {
   hideUpdateForm
 } from '../../actions/incomes';
 
-import IncomeForm from '../income/income-form';
-import UpdateIncomeForm from '../income/update-income';
+// import IncomeForm from '../income/income-form';
+// import UpdateIncomeForm from '../income/update-income';
 import PieChartExpenses from './summary-expenses-pie-chart';
 import BarGraphExpenses from './summary-expenses-bar-graph';
 
@@ -82,16 +82,16 @@ export class SummaryDisplay extends React.Component {
   render() {
     let totalExpenses = 0,
       totalIncome = 0,
-      incomeDisplay,
       addIncome,
-      barGraphData = [],
+      incomeBarGraphData = [],
+      expensesBarGraphData = [],
       pieGraphData = [];
 
     this.props.accounts.forEach(account => {
       const bill = this.findNextDueBill(account);
       const AccFreq = { 'one-time': 1, monthly: 1, quarterly: 3, 'semi-annually': 6, annually: 12 };
       const amount = Number((bill.amount / AccFreq[account.frequency]).toFixed(2));
-      barGraphData = [...barGraphData, ...this.creatBarGraphData(account, amount)];
+      expensesBarGraphData = [...expensesBarGraphData, ...this.creatBarGraphData(account, amount)];
       pieGraphData = [...pieGraphData, ...this.creatPieChartData(account, amount)];
       totalExpenses += this.calcTotalExpences(account);
     });
@@ -104,54 +104,51 @@ export class SummaryDisplay extends React.Component {
 
     totalIncome = Number(totalIncome).toFixed(2);
 
-    const incomes = this.props.incomes.map((income, index) => {
-      income.amount = Number(income.amount).toFixed(2);
-      const id = income.id;
+    // const incomes = this.props.incomes.map((income, index) => {
+    //   income.amount = Number(income.amount).toFixed(2);
+    //   const id = income.id;
+    //
+    //   return (
+    //     <li key={index}>
+    //       <p>
+    //         {income.source}
+    //         <span>
+    //           ${income.amount}
+    //           /Mo
+    //         </span>
+    //       </p>
+    //       <button onClick={() => this.deleteIncome(id)}>Del</button>
+    //       <button onClick={() => this.toggleUpdate(id)}>Update</button>
+    //     </li>
+    //   );
+    // });
 
-      return (
-        <li key={index}>
-          <p>
-            {income.source}
-            <span>
-              ${income.amount}
-              /Mo
-            </span>
-          </p>
-          <button onClick={() => this.deleteIncome(id)}>Del</button>
-          <button onClick={() => this.toggleUpdate(id)}>Update</button>
-        </li>
-      );
-    });
-
-    if (!this.props.toggleForm && !this.props.toggleUpdateForm) {
-      // incomeDisplay = incomes;
-      addIncome = <button onClick={() => this.showForm()}>Add Income</button>;
-    }
-    if (!this.props.toggleForm && this.props.toggleUpdateForm) {
-      // incomeDisplay = incomes;
-      addIncome = (
-        <React.Fragment>
-          <h3>Update Income Source</h3>
-          <UpdateIncomeForm updateItem={this.props.income} />
-          <button onClick={() => this.cancelUpdate()}>X</button>
-        </React.Fragment>
-      );
-    }
-    if (this.props.toggleForm && !this.props.toggleUpdateForm) {
-      addIncome = (
-        <React.Fragment>
-          <h3>Enter Income Source</h3>
-          <IncomeForm />
-          <button onClick={() => this.cancelAdd()}>X</button>
-        </React.Fragment>
-      );
-    }
-    console.log(this.props.incomes);
+    // if (!this.props.toggleForm && !this.props.toggleUpdateForm) {
+    //   addIncome = <button onClick={() => this.showForm()}>Add Income</button>;
+    // }
+    // if (!this.props.toggleForm && this.props.toggleUpdateForm) {
+    //   addIncome = (
+    //     <React.Fragment>
+    //       <h3>Update Income Source</h3>
+    //       <UpdateIncomeForm updateItem={this.props.income} />
+    //       <button onClick={() => this.cancelUpdate()}>X</button>
+    //     </React.Fragment>
+    //   );
+    // }
+    // if (this.props.toggleForm && !this.props.toggleUpdateForm) {
+    //   addIncome = (
+    //     <React.Fragment>
+    //       <h3>Enter Income Source</h3>
+    //       <IncomeForm />
+    //       <button onClick={() => this.cancelAdd()}>X</button>
+    //     </React.Fragment>
+    //   );
+    // }
 
     this.props.incomes.map(income => {
-      incomeBarGraphData.push({
+      return incomeBarGraphData.push({
         income: income.source,
-        Amount: income.amount
+        Amount: Number(income.amount)
       })
     })
 
@@ -159,7 +156,6 @@ export class SummaryDisplay extends React.Component {
       <section>
         <PieChartExpenses graphData={pieGraphData} />
         <p>
-          {' '}
           Total Expenses: <span>${totalExpenses}</span>
         </p>
         {expensesBarGraphData.length !== 0 && totalExpenses > 0 ? (
