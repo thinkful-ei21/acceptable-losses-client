@@ -37,11 +37,12 @@ export class AddBillForm extends React.Component {
         <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
         <label htmlFor="frequency">Frequency:</label>
         <Field name="frequency" component="select" validate={required} required>
-          <option value="One Time">One Time</option>
-          <option value="Monthly">Monthly</option>
-          <option value="6 Months">6 Months</option>
-          <option value="Annual">Annual</option>
-        </Field>
+         <option value="one-time">One Time</option>
+         <option value="monthly">Monthly</option>
+         <option value="quarterly">Quarterly</option>
+         <option value="semi-annually">Semi-Annually</option>
+         <option value="annually">Annual</option>
+       </Field>
         <button type="submit" disabled={pristine || submitting}>
           Save
         </button>
