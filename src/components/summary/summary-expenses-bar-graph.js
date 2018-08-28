@@ -1,6 +1,8 @@
 import React from 'react';
 import { ResponsiveBar } from '@nivo/bar'
 
+import styles from '../styles/graphs.module.css';
+
 
 export default function BarGraphExpenses(props) {
 // console.log(props.graphData);
@@ -26,7 +28,7 @@ export default function BarGraphExpenses(props) {
   return (
     // make sure parent container have a defined height when using responsive component,
     // otherwise height will be 0 and no chart will be rendered.
-      <div style={{height: '500px'}}>
+      <div className={styles.expensesBar}>
         <ResponsiveBar
             data={props.graphData}
             keys={props.keys}

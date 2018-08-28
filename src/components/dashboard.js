@@ -7,6 +7,8 @@ import HeaderBar from './header';
 import SummaryDisplay from './summary/summary-display';
 import UpcomingBills from './summary/upcoming-bills';
 
+import styles from './styles/dashboard.module.css';
+
 export class Dashboard extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
@@ -14,7 +16,7 @@ export class Dashboard extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.background}>
         <HeaderBar />
         <h3>
           Hello {this.props.user.firstName} {this.props.user.lastName}!

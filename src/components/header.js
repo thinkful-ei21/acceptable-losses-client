@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import styles from './styles/navbar.module.css';
 
 
-export default class HeaderBar extends React.Component {
+export class HeaderBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -140,3 +140,5 @@ export default class HeaderBar extends React.Component {
       );
     }
 }
+
+export default connect()(HeaderBar);
