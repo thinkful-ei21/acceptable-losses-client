@@ -28,7 +28,7 @@ export class AccountDetails extends React.Component {
 
   render() {
     const { selectedAccount, editButtonToggle, dispatch, handleSubmit, pristine, submitting } = this.props;
-    const { name, nextDue, id, bills, url } = selectedAccount;
+    const { name, nextDue, id, bills, url, reminder } = selectedAccount;
 
     let billHistory,
       accountName,
@@ -36,11 +36,12 @@ export class AccountDetails extends React.Component {
       nextDueBill,
       frequency,
       buttons,
+      reminderFrequency,
       billHistoryTable,
       account = selectedAccount,
       editForm = editButtonToggle;
 
-    if (account !== null && !editForm) {
+    if (!editForm) {
       billHistory = bills.map((bill, index) => {
         return bill.isPaid ? (
           <tr key={index}>
@@ -50,7 +51,9 @@ export class AccountDetails extends React.Component {
           </tr>
         ) : (
           <tr key={index}>
-            <td> </td>
+            <td></td>
+            <td></td>
+            <td></td>
           </tr>
         );
       });
@@ -74,13 +77,13 @@ export class AccountDetails extends React.Component {
       );
 
       accountName = name;
-
+      reminderFrequency= <p>Reminder: {reminder}</p> ;
       let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
         nextDueAmount = Number(nextDue.amount).toFixed(2);
 
       frequency = (
         <p>
-          Frequency:
+          Frequency: 
           {account.frequency}
         </p>
       );
@@ -100,11 +103,11 @@ export class AccountDetails extends React.Component {
       );
     }
 
-    if (account !== null && editForm) {
+    if (editForm) {
       nextDueBill = <AccountEdit />;
     }
 
-    if (account !== null && url) {
+    if (url) {
       website = (
         <a target="_blank" href={url}>
           Pay Here
@@ -112,7 +115,7 @@ export class AccountDetails extends React.Component {
       );
     }
 
-    if (account !== null && !url && !editForm) {
+    if (!url && !editForm) {
       website = (
         <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
           <label htmlFor="website" />
@@ -130,6 +133,7 @@ export class AccountDetails extends React.Component {
         {buttons}
         {website}
         {frequency}
+        {reminderFrequency}
         {nextDueBill}
         {billHistoryTable}
       </section>
