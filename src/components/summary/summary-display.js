@@ -89,7 +89,7 @@ export class SummaryDisplay extends React.Component {
 
     this.props.accounts.forEach(account => {
       const bill = this.findNextDueBill(account);
-      const AccFreq = { 'one-time': 1, monthly: 1, quarterly: 3, 'semi-annually': 6, annually: 12 };
+      const AccFreq = { 'One Time': 1, Monthly: 1, Quarterly: 3, 'Semi-Annually': 6, Annually: 12 };
       const amount = Number((bill.amount / AccFreq[account.frequency]).toFixed(2));
       expensesBarGraphData = [...expensesBarGraphData, ...this.creatBarGraphData(account, amount)];
       pieGraphData = [...pieGraphData, ...this.creatPieChartData(account, amount)];
@@ -149,8 +149,8 @@ export class SummaryDisplay extends React.Component {
       return incomeBarGraphData.push({
         income: income.source,
         Amount: Number(income.amount)
-      })
-    })
+      });
+    });
 
     return (
       <section>
@@ -162,11 +162,12 @@ export class SummaryDisplay extends React.Component {
           <BarGraphExpenses
             graphData={expensesBarGraphData}
             max={Number(totalExpenses)}
-            keys={["Bill"]}
+            keys={['Bill']}
             indexBy="account"
           />
-        ) : ''
-        }
+        ) : (
+          ''
+        )}
 
         {/* <ul>{expenseAccounts}</ul> */}
         <p>_______________________________________</p>
@@ -175,12 +176,7 @@ export class SummaryDisplay extends React.Component {
         </p>
         {addIncome}
         {/* <ul>{incomeDisplay}</ul> */}
-        <BarGraphExpenses
-          graphData={incomeBarGraphData}
-          max={Number(totalIncome)}
-          keys={["Amount"]}
-          indexBy="income"
-        />
+        <BarGraphExpenses graphData={incomeBarGraphData} max={Number(totalIncome)} keys={['Amount']} indexBy="income" />
       </section>
     );
   }
