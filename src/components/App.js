@@ -40,7 +40,7 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        <Route path="/app" component={HeaderBar} />
+        {/* <Route path="/app" component={HeaderBar} /> */}
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={loginPage} />
         <Route exact path="/register" component={RegistrationPage} />
