@@ -33,14 +33,22 @@ export class AddBillForm extends React.Component {
         <Field component={Input} type="text" name="url" placeholder="Netflix.com/payments" />
         <label htmlFor="amount">Amount:</label>
         <Field component={Input} type="number" name="amount" placeholder="0.00" />
-        <label htmlFor="duedate">Due Date:</label>
-        <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
         <label htmlFor="frequency">Frequency:</label>
         <Field name="frequency" component="select" validate={required} required>
-          <option value="One Time">One Time</option>
-          <option value="Monthly">Monthly</option>
-          <option value="6 Months">6 Months</option>
-          <option value="Annual">Annual</option>
+          <option value="one-time">One Time</option>
+          <option value="monthly">Monthly</option>
+          <option value="quarterly">Quarterly</option>
+          <option value="semi-annually">Semi-Annually</option>
+          <option value="annually">Annual</option>
+        </Field>
+        <label htmlFor="duedate">Due Date:</label>
+        <Field component={Input} type="date" name="dueDate" validate={[required, nonEmpty]} />
+        <label htmlFor="reminder">Reminder:</label>
+        <Field name="reminder" component="select" validate={required} required>
+          <option value="no-reminder">No Reminder</option>
+          <option value="same-day">Same Day</option>
+          <option value="day-before">Day Before</option>
+          <option value="week-before">Week Before</option>
         </Field>
         <button type="submit" disabled={pristine || submitting}>
           Save

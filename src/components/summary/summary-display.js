@@ -67,9 +67,11 @@ export class SummaryDisplay extends React.Component {
   calcTotalExpences(account) {
     let totalExpenses = 0;
     const bill = this.findNextDueBill(account);
-    if (account.frequency === '6 Months') {
+    if (account.frequency === 'quarterly') {
+      totalExpenses += bill.amount / 3;
+    } else if (account.frequency === 'semi-annual') {
       totalExpenses += bill.amount / 6;
-    } else if (account.frequency === 'Annual') {
+    } else if (account.frequency === 'annual') {
       totalExpenses += bill.amount / 12;
     } else if (bill.amount !== null) {
       totalExpenses += bill.amount;
@@ -87,7 +89,7 @@ export class SummaryDisplay extends React.Component {
 
     this.props.accounts.forEach(account => {
       const bill = this.findNextDueBill(account);
-      const AccFreq = { 'One Time': 1, Monthly: 1, '6 Months': 6, Annual: 12 };
+      const AccFreq = { 'one-time': 1, monthly: 1, quarterly: 3, 'semi-annually': 6, annually: 12 };
       const amount = Number((bill.amount / AccFreq[account.frequency]).toFixed(2));
       barGraphData = [...barGraphData, ...this.creatBarGraphData(account, amount)];
       pieGraphData = [...pieGraphData, ...this.creatPieChartData(account, amount)];
