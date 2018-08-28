@@ -98,14 +98,17 @@ export class HeaderBar extends React.Component {
             <NavLink role="navigation" to="/accounts">
               Accounts |
             </NavLink>
-            <NavLink role="navigation" className="link" to="/add-account">
+            <NavLink role="navigation" to="/add-account">
               Add Bill |
             </NavLink>
-            <NavLink role="navigation" className="link" to="/incomes">
+            <NavLink role="navigation" to="/incomes">
               Incomes |
             </NavLink>
-            <NavLink role="navigation" className="link" to="/add-income">
-              Add Income
+            <NavLink role="navigation" to="/add-income">
+              Add Income |
+            </NavLink>
+            <NavLink role="navigation" to="/profile">
+              Profile
             </NavLink>
             <button onClick={() => this.logOut()}>Log out</button>
           </div>

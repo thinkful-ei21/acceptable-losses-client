@@ -13,6 +13,7 @@ import loginPage from './login-page';
 import AddBillForm from './account/add-bill-form';
 import IncomeForm from './income/income-form';
 import Incomes from './income/income-page';
+import Profile from './profile';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -42,7 +43,6 @@ export class App extends React.Component {
   render() {
     return (
       <div className="">
-        <header className="" />
         <div className="app">
           <Route path="" component={HeaderBar} />
           <Route exact path="/" component={LandingPage} />
@@ -53,6 +53,7 @@ export class App extends React.Component {
           <Route exact path="/add-account" component={AddBillForm} />
           <Route path="/incomes" component={Incomes} />
           <Route exact path="/add-income" component={IncomeForm} />
+          <Route exact path="/profile" component={Profile} />
         </div>
       </div>
     );
