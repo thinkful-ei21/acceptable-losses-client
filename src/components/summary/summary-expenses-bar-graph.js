@@ -29,10 +29,8 @@ export default function BarGraphExpenses(props) {
       <div style={{height: '500px'}}>
         <ResponsiveBar
             data={props.graphData}
-            keys={[
-                "Bill"
-            ]}
-            indexBy="account"
+            keys={props.keys}
+            indexBy={props.indexBy}
             margin={{
                 "top": 50,
                 "right": 130,
