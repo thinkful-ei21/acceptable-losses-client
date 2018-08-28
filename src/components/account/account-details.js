@@ -29,6 +29,7 @@ export class AccountDetails extends React.Component {
   render() {
     const { selectedAccount, editButtonToggle, dispatch, handleSubmit, pristine, submitting } = this.props;
     const { name, nextDue, id, bills, url } = selectedAccount;
+
     let billHistory,
       accountName,
       website,
@@ -40,27 +41,35 @@ export class AccountDetails extends React.Component {
       editForm = editButtonToggle;
 
     if (account !== null && !editForm) {
-      billHistory = bills.map(bill => {
+      billHistory = bills.map((bill, index) => {
         return bill.isPaid ? (
-          <tr>
+          <tr key={index}>
             <td>{moment(bill.dueDate).format('MMM Do, YYYY')}</td>
             <td>{moment(bill.datePaid).format('MMM Do, YYYY')}</td>
             <td>$ {bill.amount > 0 ? `${bill.amount}` : '---'}</td>
           </tr>
         ) : (
-          ''
+          <tr key={index}>
+            <td> </td>
+          </tr>
         );
       });
 
       billHistoryTable = (
         <table>
-          <th>Bill History</th>
-          <tr>
-            <th>Due Date</th>
-            <th>Date Paid</th>
-            <th>Amount</th>
-          </tr>
-          {billHistory}
+          <thead>
+            <tr>
+              <th>Bill History</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Due Date</th>
+              <th>Date Paid</th>
+              <th>Amount</th>
+            </tr>
+            {billHistory}
+          </tbody>
         </table>
       );
 

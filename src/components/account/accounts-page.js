@@ -16,7 +16,7 @@ export class AccountsPage extends React.Component {
   }
 
   render() {
-    const { searchTerm, filter } = this.props;
+    const { searchTerm, filter, selectedAccount } = this.props;
     let accounts = this.props.accounts.filter(
       item =>
         item.name.toLowerCase().includes(searchTerm) ||
@@ -50,7 +50,7 @@ export class AccountsPage extends React.Component {
         });
       }
       accountResults = accountsSorted.map((account, index) => {
-        return <AccountCard showDetailed={id => this.showDetailed(id)} key={index} {...account} />;
+        return <AccountCard key={index} {...account} />;
       });
     }
     return (
@@ -58,7 +58,7 @@ export class AccountsPage extends React.Component {
         <h3>Accounts</h3>
         <SearchBar />
         <Filters />
-        <AccountDetails />
+        {selectedAccount ? <AccountDetails /> : ''}
         <ul>{accountResults}</ul>
       </section>
     );
@@ -68,7 +68,8 @@ export class AccountsPage extends React.Component {
 const mapStateToProps = state => ({
   filter: state.accounts.filter,
   accounts: state.accounts.accounts,
-  searchTerm: state.accounts.searchTerm
+  searchTerm: state.accounts.searchTerm,
+  selectedAccount: state.accounts.account
 });
 
 export default requiresLogin()(connect(mapStateToProps)(AccountsPage));
