@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getIncomes, getIncome, showUpdateForm } from '../actions/incomes';
+import { getIncomes, getIncome, showUpdateForm } from '../../actions/incomes';
 
 import IncomeCard from './income-card';
 import IncomeView from './income-details';
-import requiresLogin from './require-login';
+import requiresLogin from '../require-login';
 
 export class Incomes extends React.Component {
   componentDidMount() {
@@ -34,7 +34,6 @@ export class Incomes extends React.Component {
       <div className="incomes">
         <h3>Incomes</h3>
         <IncomeView />
-        <p>stuff</p>
         <p>---------------------------------------------------------------------------</p>
         <ul>{incomeResults}</ul>
       </div>

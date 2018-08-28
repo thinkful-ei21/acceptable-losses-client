@@ -9,28 +9,31 @@ import Input from '../input';
 
 export class UpdateIncomeForm extends React.Component {
   componentDidMount() {
-    const { source, amount } = this.props.initialValues;
-    this.props.initialize({ source, amount });
+    const { initialValues, initialize } = this.props;
+    const { source, amount } = initialValues;
+    initialize({ source, amount });
   }
 
   onSubmit(values) {
-    const { id } = this.props.initialValues;
-    this.props.dispatch(updateIncome(values, id));
+    const { initialValues, dispatch } = this.props;
+    const { id } = initialValues;
+    dispatch(updateIncome(values, id));
   }
 
   render() {
-    let error;
-    if (this.props.error) {
-      error = <div aria-live="polite">{this.props.error}</div>;
+    const { error, handleSubmit, submitting } = this.props;
+    let err;
+    if (error) {
+      err = <div aria-live="polite">{error}</div>;
     }
     return (
-      <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
-        {error}
+      <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
+        {err}
         <label htmlFor="source">Source</label>
         <Field component={Input} type="text" name="source" id="source" validate={[required, nonEmpty]} />
         <label htmlFor="amount">Amount</label>
-        <Field component={Input} type="amount" name="amount" id="amount" validate={[required, nonEmpty]} />
-        <button type="submit" disabled={this.props.submitting}>
+        <Field component={Input} type="amount" name="amount" id="amount" validate={required} />
+        <button type="submit" disabled={submitting}>
           Submit
         </button>
       </form>

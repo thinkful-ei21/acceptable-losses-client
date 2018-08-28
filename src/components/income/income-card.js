@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { deleteIncome, getIncome, showUpdateForm } from '../actions/incomes';
+import { deleteIncome, getIncome, showUpdateForm } from '../../actions/incomes';
 
 class IncomeCard extends React.Component {
   toggleUpdate(id) {
