@@ -4,14 +4,4 @@
   background: -webkit-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 41.9%, rgba(39, 22, 114, 1) 100%);
   background: -ms-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 41.9%, rgba(39, 22, 114, 1) 100%);
   background: linear-gradient(0deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 41.9%, rgba(39, 22, 114, 1) 100%);
-  position: relative;
-}
-
-h3 {
-  margin-left: 10vw;
-  color: white;
-  font-size: 1.5em;
-  text-transform: capitalize;
-  position: relative;
-  top: -5vh;
 }

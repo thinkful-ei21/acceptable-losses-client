@@ -1,6 +1,26 @@
-.background {
+h3 {
+  margin-left: 10vw;
+  color: white;
+  font-size: 1.5em;
+  text-transform: capitalize;
+  position: relative;
+  top: -5vh;
+}
+
+.expenses {
+  float: left;
+  /* position: relative; */
   margin-left: 10vw;
   width: 50vw;
+  height: 75vh;
+  background-color: white;
+  overflow: auto;
+  border-radius: 7px;
+}
+
+.upcomingBills {
+  margin-right: 10vw;
+  width: 25vw;
   height: 75vh;
   background-color: white;
   overflow: auto;

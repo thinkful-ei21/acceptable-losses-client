@@ -12,6 +12,8 @@ import RegistrationPage from './registration-page';
 import loginPage from './login-page';
 import AddBillForm from './account/add-bill-form';
 
+import styles from './styles/app.module.css';
+
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
@@ -40,13 +42,17 @@ export class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <Route path="/app" component={HeaderBar} /> */}
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={loginPage} />
-        <Route exact path="/register" component={RegistrationPage} />
-        <Route exact path="/app/dashboard" component={Dashboard} />
-        <Route path="/app/accounts" component={AccountsPage} />
-        <Route exact path="/app/add-account" component={AddBillForm} />
+        <div>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={loginPage} />
+          <Route exact path="/register" component={RegistrationPage} />
+        </div>
+        <div className={styles.background}>
+          <Route path="/app" component={HeaderBar} />
+          <Route exact path="/app/dashboard" component={Dashboard} />
+          <Route path="/app/accounts" component={AccountsPage} />
+          <Route exact path="/app/add-account" component={AddBillForm} />
+        </div>
       </div>
     );
   }

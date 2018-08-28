@@ -155,7 +155,7 @@ export class SummaryDisplay extends React.Component {
     });
 
     return (
-      <div className={styles.background}>
+      <div className={styles.expenses}>
         <section className={styles.pieChart}>
           <PieChartExpenses graphData={pieGraphData} />
         </section>

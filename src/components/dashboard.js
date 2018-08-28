@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
-import HeaderBar from './header';
+// import HeaderBar from './header';
 import SummaryDisplay from './summary/summary-display';
 import UpcomingBills from './summary/upcoming-bills';
 
-import styles from './styles/dashboard.module.css';
+import styles from './styles/desktop.module.css';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
@@ -16,15 +16,17 @@ export class Dashboard extends React.Component {
 
   render() {
     return (
-      <div className={styles.background}>
-        <HeaderBar />
+      <div>
+        {/* <HeaderBar /> */}
         <h3>
           Hello {this.props.user.firstName} {this.props.user.lastName}!
         </h3>
-        <SummaryDisplay />
-        <span>________________________________________________________</span>
-        <UpcomingBills />
-        <span>________________________________________________________</span>
+        <div className={styles.desktopView}>
+          <SummaryDisplay />
+          {/* <span>________________________________________________________</span> */}
+          <UpcomingBills />
+          {/* <span>________________________________________________________</span> */}
+        </div>
       </div>
     );
   }

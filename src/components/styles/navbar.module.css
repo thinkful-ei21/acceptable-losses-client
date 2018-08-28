@@ -1,7 +1,6 @@
-.background {
+.navBackground {
   position: relative;
   height: 50px;
-  /* opacity: 0; */
   background-color: transparent;
 }
 
