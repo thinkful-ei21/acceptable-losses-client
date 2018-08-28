@@ -7,7 +7,7 @@ import styles from './styles/forms.module.css';
 
 export function LoginPage(props) {
   if (props.loggedIn) {
-    return <Redirect to="/app/dashboard" />;
+    return <Redirect to="/dashboard" />;
   }
 
   return (

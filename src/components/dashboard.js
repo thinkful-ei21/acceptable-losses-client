@@ -1,21 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import requiresLogin from './require-login';
 import { getAccounts } from '../actions/accounts';
+import requiresLogin from './require-login';
+
 import SummaryDisplay from './summary/summary-display';
 import UpcomingBills from './summary/upcoming-bills';
 
 export class Dashboard extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getAccounts());
+    const { dispatch } = this.props;
+    dispatch(getAccounts());
   }
 
   render() {
+    const { firstName, lastName } = this.props.user;
     return (
       <div>
         <h3>
-          Hello {this.props.user.firstName} {this.props.user.lastName}!
+          Hello {firstName} {lastName}!
         </h3>
         <SummaryDisplay />
         <span>________________________________________________________</span>
