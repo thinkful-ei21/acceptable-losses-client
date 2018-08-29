@@ -13,6 +13,8 @@ import loginPage from './login-page';
 import AddBillForm from './account/add-bill-form';
 import Calendar from './calendar/calendar';
 
+import IncomeForm from './income/income-form';
+import Incomes from './income/income-page';
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -41,16 +43,20 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Route path="/app" component={HeaderBar} />
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={loginPage} />
-        <Route exact path="/register" component={RegistrationPage} />
-        <Route exact path="/app/dashboard" component={Dashboard} />
-        <Route path="/app/accounts" component={AccountsPage} />
-        <Route exact path="/app/add-account" component={AddBillForm} />
-        <Route exact path="/app/calendar" component={Calendar} />
-
+      <div className="">
+        <header className="" />
+        <div className="app">
+          <Route path="" component={HeaderBar} />
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={loginPage} />
+          <Route exact path="/register" component={RegistrationPage} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route path="/accounts" component={AccountsPage} />
+          <Route exact path="/add-account" component={AddBillForm} />
+          <Route path="/incomes" component={Incomes} />
+          <Route exact path="/add-income" component={IncomeForm} />
+         <Route exact path="/app/calendar" component={Calendar} />
+        </div>
       </div>
     );
   }

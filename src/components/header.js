@@ -6,13 +6,12 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './styles/navbar.module.css';
 
-
 export class HeaderBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showMenu: false
-    }
+    };
   }
   logOut() {
     this.props.dispatch(clearAuth());
@@ -22,7 +21,7 @@ export class HeaderBar extends React.Component {
   toggleShowMenu() {
     this.setState({
       showMenu: !this.state.showMenu
-    })
+    });
   }
 
   render() {
@@ -33,23 +32,20 @@ export class HeaderBar extends React.Component {
         <React.Fragment>
           {/* <h1>Acceptable Losses</h1> */}
           <div className={styles.mobile}>
-            <button className={styles.menuButton}
-              onClick={() => this.toggleShowMenu()}
-            >
-              <img className={styles.menuIcon}
-                src={require('../assets/menu.svg')}
-                alt="hamburger menu icon"
-              />
+            <button className={styles.menuButton} onClick={() => this.toggleShowMenu()}>
+              <img className={styles.menuIcon} src={require('../assets/menu.svg')} alt="hamburger menu icon" />
             </button>
-            {this.state.showMenu ?
+            {this.state.showMenu ? (
               <div className={styles.mobileMenuPage}>
                 <div className={styles.row}>
-                  <img className={styles.linkIcon}
+                  <img
+                    className={styles.linkIcon}
                     src={require('../assets/summary.svg')}
                     alt="summary (or home) icon"
                   />
-                  <NavLink role="navigation"
-                    to="/app/dashboard"
+                  <NavLink
+                    role="navigation"
+                    to="/dashboard"
                     className={styles.link}
                     onClick={() => this.toggleShowMenu()}
                   >
@@ -58,12 +54,10 @@ export class HeaderBar extends React.Component {
                 </div>
 
                 <div className={styles.row}>
-                  <img className={styles.linkIcon}
-                    src={require('../assets/bills.svg')}
-                    alt="bills icon"
-                  />
-                  <NavLink role="navigation"
-                    to="/app/accounts"
+                  <img className={styles.linkIcon} src={require('../assets/bills.svg')} alt="bills icon" />
+                  <NavLink
+                    role="navigation"
+                    to="/accounts"
                     className={styles.link}
                     onClick={() => this.toggleShowMenu()}
                   >
@@ -72,12 +66,10 @@ export class HeaderBar extends React.Component {
                 </div>
 
                 <div className={styles.row}>
-                  <img className={styles.linkIcon}
-                    src={require('../assets/add.svg')}
-                    alt="add bill icon"
-                  />
-                  <NavLink role="navigation"
-                    to="/app/add-account"
+                  <img className={styles.linkIcon} src={require('../assets/add.svg')} alt="add bill icon" />
+                  <NavLink
+                    role="navigation"
+                    to="/add-account"
                     className={styles.link}
                     onClick={() => this.toggleShowMenu()}
                   >
@@ -85,60 +77,44 @@ export class HeaderBar extends React.Component {
                   </NavLink>
                 </div>
 
-                <button className={`${styles.row} ${styles.logout}`}
+                <button
+                  className={`${styles.row} ${styles.logout}`}
                   onClick={() => {
-                    this.toggleShowMenu()
-                    this.logOut()
+                    this.toggleShowMenu();
+                    this.logOut();
                   }}
                 >
                   Log out
                 </button>
               </div>
-              :
-            ''}
+            ) : (
+              ''
+            )}
           </div>
           <div className={styles.desktop}>
-            <NavLink role="navigation" to="/app/dashboard">
+            <NavLink role="navigation" to="/dashboard">
               Home | 
             </NavLink>
-            <NavLink role="navigation" to="/app/accounts">
+            <NavLink role="navigation" to="/accounts">
               Accounts | 
             </NavLink>
-            <NavLink role="navigation" to="/app/add-account">
+            <NavLink role="navigation" to="/add-account">
               Add Bill | 
             </NavLink>
-            <NavLink role="navigation" to="/app/calendar">
+            <NavLink role="navigation" to="/calendar">
               Calendar 
             </NavLink>
-            <button onClick={() => this.logOut()}>
-              Log out
-            </button>
+            <NavLink role="navigation" className="link" to="/incomes">
+              Incomes |
+            </NavLink>
+            <NavLink role="navigation" className="link" to="/add-income">
+              Add Income
+            </NavLink>
+            <button onClick={() => this.logOut()}>Log out</button>
           </div>
         </React.Fragment>
       );
     }
-
-    // if (this.state.showMenu) {
-    //   menu = (
-    //     <React.Fragment>
-    //       <NavLink role="navigation" to="/dashboard">
-    //         <img />
-    //         Home
-    //       </NavLink>
-    //       <NavLink role="navigation" to="/accounts">
-    //         <img />
-    //         Accounts
-    //       </NavLink>
-    //       <NavLink role="navigation" to="/add-account">
-    //         <img />
-    //         Add Bill
-    //       </NavLink>
-    //       <button onClick={() => this.logOut()}>
-    //         Log out
-    //       </button>
-    //     </React.Fragment>
-    //   )
-    // }
 
     return <div className={styles.background}>{header}</div>;
   }

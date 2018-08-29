@@ -16,7 +16,7 @@ export class AddBillForm extends React.Component {
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))
-      .then(() => this.props.history.push('/app/dashboard'));
+      .then(() => this.props.history.push('/dashboard'));
   }
 
   render() {
