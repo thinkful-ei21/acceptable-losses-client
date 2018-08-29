@@ -11,6 +11,8 @@ import AccountsPage from './account/accounts-page';
 import RegistrationPage from './registration-page';
 import loginPage from './login-page';
 import AddBillForm from './account/add-bill-form';
+import Calendar from './calendar/calendar';
+
 
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
@@ -47,6 +49,8 @@ export class App extends React.Component {
         <Route exact path="/app/dashboard" component={Dashboard} />
         <Route path="/app/accounts" component={AccountsPage} />
         <Route exact path="/app/add-account" component={AddBillForm} />
+        <Route exact path="/app/calendar" component={Calendar} />
+
       </div>
     );
   }

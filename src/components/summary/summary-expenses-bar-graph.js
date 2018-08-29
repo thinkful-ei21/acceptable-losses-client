@@ -23,6 +23,8 @@ export default function BarGraphExpenses(props) {
   //   }
   // ]
 
+//   let graphHeight= (number of bills x 50) + 'px'
+
   return (
     // make sure parent container have a defined height when using responsive component,
     // otherwise height will be 0 and no chart will be rendered.

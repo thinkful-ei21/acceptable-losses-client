@@ -36,6 +36,20 @@ export const TOGGLE_EDIT = 'TOGGLE_EDIT';
 export const toggleEdit = () => ({
   type: TOGGLE_EDIT
 });
+export const TOGGLE_DELETE= 'TOGGLE_DELETE';
+export const toggleDelete = () => ({
+  type: TOGGLE_DELETE
+});
+export const TOGGLE_PAY= 'TOGGLE_PAY';
+export const togglePay = (data) => ({
+  type: TOGGLE_PAY,
+  data
+});
+export const GET_DAYS_BILLS= 'GET_DAYS_BILLS';
+export const getDaysBills = (data) => ({
+  type: GET_DAYS_BILLS,
+  data
+});
 
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;

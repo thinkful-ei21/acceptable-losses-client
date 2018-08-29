@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { payBill, getAccount } from '../../actions/accounts';
+import { togglePay, getAccount } from '../../actions/accounts';
+import AccountPay from './account-pay-form';
+
 
 class AccountCard extends React.Component {
   render() {
-    const { nextDue, id, url, dispatch, name, key } = this.props;
+    const { nextDue, id, url, dispatch, name, key, payButtonToggle } = this.props;
     let finalAmount = Number(nextDue.amount).toFixed(2);
 
     return (
@@ -18,7 +20,7 @@ class AccountCard extends React.Component {
         <a target="_blank" href={url}>
           Pay Here
         </a>
-        <button onClick={e => dispatch(payBill(nextDue, id))}>Mark as Paid</button>
+        {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>}
         <Link to="/app/accounts">
           <button onClick={() => dispatch(getAccount(id))}>Account Details</button>
         </Link>
@@ -28,4 +30,8 @@ class AccountCard extends React.Component {
   }
 }
 
-export default connect()(AccountCard);
+const mapStateToProps = state => ({
+  payButtonToggle: state.accounts.payButtonToggle
+});
+export default connect(mapStateToProps)(AccountCard);
+

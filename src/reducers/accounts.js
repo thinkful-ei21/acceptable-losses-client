@@ -4,8 +4,12 @@ import {
   SEARCH_ACCOUNTS,
   GET_ACCOUNT_SUCCESS,
   TOGGLE_FILTER,
-  TOGGLE_EDIT
+  TOGGLE_EDIT,
+  TOGGLE_DELETE,
+  TOGGLE_PAY,
+  GET_DAYS_BILLS
 } from '../actions/accounts';
+import moment from 'moment';
 
 const initialState = {
   accounts: [],
@@ -13,7 +17,11 @@ const initialState = {
   error: null,
   searchTerm: '',
   filter: 'abc',
-  editButtonToggle: false
+  editButtonToggle: false,
+  deleteButtonToggle:false,
+  payButtonToggle:null,
+  daysBills:null,
+  selectedDay:null
 };
 
 export default function reducer(state = initialState, action) {
@@ -52,6 +60,28 @@ export default function reducer(state = initialState, action) {
       editButtonToggle: !state.editButtonToggle,
       error: null
     };
+  } else if (action.type === TOGGLE_DELETE) {
+    return {
+      ...state,
+      deleteButtonToggle: !state.deleteButtonToggle,
+      error: null
+    };
+  } else if (action.type === TOGGLE_PAY) {
+    return {
+      ...state,
+      payButtonToggle: action.data,
+      error: null
+    };
+  }  else if (action.type === GET_DAYS_BILLS) {
+    return {
+      ...state,
+      selectedDay:action.data,
+      daysBills: state.accounts.filter((account)=>{if(moment(account.nextDue.dueDate).format('YYYY-MM-DD')=== action.data){return account.nextDue}}),
+      error: null
+    };
   }
+
+  
+
   return state;
 }

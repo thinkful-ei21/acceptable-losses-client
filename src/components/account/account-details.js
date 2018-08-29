@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import moment from 'moment';
 
-import { updateAccount, deleteAccount, toggleEdit, payBill } from '../../actions/accounts';
+import { updateAccount, deleteAccount, toggleEdit, payBill, toggleDelete, togglePay } from '../../actions/accounts';
 import AccountEdit from './account-edit-form';
+import AccountPay from './account-pay-form';
+
 
 import Input from '../input';
 
@@ -27,8 +29,8 @@ export class AccountDetails extends React.Component {
   }
 
   render() {
-    const { selectedAccount, editButtonToggle, dispatch, handleSubmit, pristine, submitting } = this.props;
-    const { name, nextDue, id, bills, url, reminder } = selectedAccount;
+    const { selectedAccount, editButtonToggle, dispatch, handleSubmit, pristine, submitting, deleteButtonToggle, payButtonToggle } = this.props;
+    const { name, nextDue, id, bills, url, reminder} = selectedAccount;
 
     let billHistory,
       accountName,
@@ -96,9 +98,10 @@ export class AccountDetails extends React.Component {
 
       buttons = (
         <div>
-          <button onClick={e => this.whenClicked(e)}>Mark as Paid</button>
+          {payButtonToggle===id? <AccountPay/>:<button onClick={() => dispatch(togglePay(id))}>Mark as Paid</button>}      
           <button onClick={() => dispatch(toggleEdit())}>Edit</button>
-          <button onClick={() => dispatch(deleteAccount(id))}>Delete</button>
+          {deleteButtonToggle ? <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>: <button onClick={() => dispatch(toggleDelete())}>Delete</button>}
+          {deleteButtonToggle ? <button onclick={()=> {return dispatch(deleteAccount(id)).then(() =>dispatch(toggleDelete())) }}>Confirm Delete</button>: ''}
         </div>
       );
     }
@@ -142,6 +145,8 @@ export class AccountDetails extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  deleteButtonToggle: state.accounts.deleteButtonToggle,
+  payButtonToggle: state.accounts.payButtonToggle,
   editButtonToggle: state.accounts.editButtonToggle,
   selectedAccount: state.accounts.account
 });
