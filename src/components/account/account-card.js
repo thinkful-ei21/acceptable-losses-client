@@ -20,7 +20,7 @@ class AccountCard extends React.Component {
         <a target="_blank" href={url}>
           Pay Here
         </a>
-        <button onClick={e => dispatch(payBill(nextDue, id))}>Mark as Paid</button>
+        {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>}
         <Link to="/accounts">
           <button onClick={() => dispatch(getAccount(id))}>Account Details</button>
         </Link>
