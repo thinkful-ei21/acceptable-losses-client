@@ -18,9 +18,9 @@ export class Dashboard extends React.Component {
     return (
       <div>
         {/* <HeaderBar /> */}
-        <h3>
+        <h2>
           Hello {this.props.user.firstName} {this.props.user.lastName}!
-        </h3>
+        </h2>
         <div className={styles.desktopView}>
           <SummaryDisplay />
           {/* <span>________________________________________________________</span> */}

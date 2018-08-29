@@ -1,7 +1,7 @@
-h3 {
+h2 {
   margin-left: 10vw;
   color: white;
-  font-size: 1.5em;
+  font-size: 1.75em;
   text-transform: capitalize;
   position: relative;
   top: -5vh;
@@ -9,16 +9,7 @@ h3 {
 
 .expenses {
   margin-left: 10vw;
-  width: 60vw;
-  height: 75vh;
-  background-color: white;
-  overflow: auto;
-  border-radius: 7px;
-}
-
-.upcomingBills {
-  margin: 0 5vw;
-  width: 25vw;
+  width: 57vw;
   height: 75vh;
   background-color: white;
   overflow: auto;
@@ -38,7 +29,90 @@ section {
 }
 
 .header {
+  font-size: 1.25em;
   font-weight: 600;
   margin: 0;
   margin-left: 5%;
+}
+
+.upcomingBills {
+  margin: 0 5vw;
+  width: 27vw;
+  height: 75vh;
+  background-color: white;
+  overflow: auto;
+  border-radius: 7px;
+}
+
+h3 {
+  color: black;
+  margin-left: 8%;
+}
+
+li {
+  list-style: none;
+  /* width: 85%;
+  margin: 0 auto; */
+  padding-right: 40px;
+}
+
+hr {
+  margin-right: 40px;
+}
+
+h4 {
+  font-size: 1.25em;
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+
+.accDetailsLink {
+  text-decoration: none;
+  color: black;
+}
+
+.accDetailsLink:hover {
+  text-decoration: underline;
+}
+
+/* Due date and Amount info */
+.info {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+
+.info div:last-child {
+  margin-left: 30px;
+}
+
+.dueLabel,
+.amountLabel {
+  font-style: italic;
+  font-size: .75em;
+  color: #00506B;
+  margin-bottom: 0;
+}
+
+.due,
+.amount {
+  font-size: 1.25em;
+  margin: 0;
+}
+
+.amount {
+  color: #A8009C;
+}
+
+.centerButtons {
+  text-align: center;
+}
+
+li button {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+li button:last-child {
+  margin-left: 20px;
 }

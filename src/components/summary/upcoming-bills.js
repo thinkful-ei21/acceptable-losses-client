@@ -9,11 +9,16 @@ export class UpcomingBills extends React.Component {
   render() {
     let accountResults;
     if (this.props.accounts) {
-      accountResults = this.props.accounts.map((account, index) => <AccountCard key={index} {...account} />);
+      accountResults = this.props.accounts.map((account, index) => (
+        <React.Fragment>
+          <AccountCard key={index} {...account} />
+          <hr />
+        </React.Fragment>
+      ));
     }
     return (
       <div className={styles.upcomingBills}>
-        <h3>Upcoming</h3>
+        <h3>Upcoming Bills</h3>
         <ul>{accountResults}</ul>
       </div>
     );
