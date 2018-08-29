@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { required, nonEmpty } from '../../validators';
-import { getAccounts, updateAccount, toggleEdit } from '../../actions/accounts';
+import { updateAccount, toggleEdit } from '../../actions/accounts';
 
 import Input from '../input';
 
@@ -26,7 +26,6 @@ export class AccountEdit extends React.Component {
     const { dispatch } = this.props;
     return this.props
       .dispatch(updateAccount(values, id))
-      .then(() => dispatch(getAccounts()))
       .then(() => dispatch(toggleEdit()));
   }
 

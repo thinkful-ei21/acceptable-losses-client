@@ -101,7 +101,7 @@ export class AccountDetails extends React.Component {
           {payButtonToggle===id? <AccountPay/>:<button onClick={() => dispatch(togglePay(id))}>Mark as Paid</button>}      
           <button onClick={() => dispatch(toggleEdit())}>Edit</button>
           {deleteButtonToggle ? <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>: <button onClick={() => dispatch(toggleDelete())}>Delete</button>}
-          {deleteButtonToggle ? <button onclick={()=> {return dispatch(deleteAccount(id)).then(() =>dispatch(toggleDelete())) }}>Confirm Delete</button>: ''}
+          {deleteButtonToggle ? <button onClick={()=> {return dispatch(deleteAccount(id)).then(() =>dispatch(toggleDelete())) }}>Confirm Delete</button>: ''}
         </div>
       );
     }

@@ -3,7 +3,7 @@ import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { togglePay, payBill } from '../../actions/accounts';
+import { togglePay, payBill,getDaysBills } from '../../actions/accounts';
 
 import Input from '../input';
 
@@ -21,7 +21,8 @@ class AccountPay extends React.Component {
     let {dueDate}=selectedAccount.nextDue;
     let updatedAccount= {amount:value.amount, dueDate}
     return dispatch(payBill(updatedAccount, selectedAccount.id))
-    .then(() =>dispatch(togglePay(null)));
+    .then(() =>dispatch(togglePay(null)))
+    .then(() => this.props.dispatch(getDaysBills(this.props.selectedDay)));
   }
 
   render() {
@@ -42,6 +43,7 @@ class AccountPay extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  selectedDay: state.accounts.selectedDay,
   selectedAccount: state.accounts.account
 });
 

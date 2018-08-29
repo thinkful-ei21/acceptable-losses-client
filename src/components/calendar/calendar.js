@@ -16,14 +16,42 @@ class Calendar extends React.Component {
     let date= moment(start).format('YYYY-MM-DD')
     this.props.dispatch(getDaysBills(date));
   }
+
+  getBillHistory(){
+    let allBills= this.props.accounts.map((account)=>account.bills);
+    console.log(allBills)
+    let newArr;
+    for(let i=0;i<allBills.length;i++){
+      for(let j=0;j<allBills[i].length;j++){
+        newArr.push(allBills[i][j])
+      }
+    }
+    return newArr
+  }
   customDayPropGetter = date => {
     let dates= moment(date).format('YYYY-MM-DD'),
     billsDue= this.props.accounts.map((account)=>moment(account.nextDue.dueDate).format('YYYY-MM-DD'))
+    let allBills= this.props.accounts.map((account)=> account.bills)
+    let billsPaid=[]; 
+    for(let i=0;i<allBills.length;i++){
+      for(let j= 0; j<allBills[i].length; j++){
+        billsPaid.push(moment(allBills[i][j].dueDate).format('YYYY-MM-DD'))
+      } 
+    }
+
     if (billsDue.includes(dates)){
       return {
-        className: 'bill-due-day',
+        className: '',
         style: {
           background: 'yellow'
+        },
+      }
+    }
+    if (billsPaid.includes(dates)){
+      return {
+        className: '',
+        style: {
+          background: 'green'
         },
       }
     }

@@ -76,7 +76,7 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       selectedDay:action.data,
-      daysBills: state.accounts.filter((account)=>{if(moment(account.nextDue.dueDate).format('YYYY-MM-DD')=== action.data){return account.nextDue}}),
+      daysBills: state.accounts.filter((account)=>{if(moment(account.nextDue.dueDate).format('YYYY-MM-DD')=== action.data){return account.nextDue}return null}),
       error: null
     };
   }
