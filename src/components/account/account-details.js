@@ -92,7 +92,7 @@ export class AccountDetails extends React.Component {
 
       nextDueBill = (
         <p>
-          Next due: {nextDueDate} <span>$ {nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
+          Next Due: {nextDueDate} <span>$ {nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
         </p>
       );
 
