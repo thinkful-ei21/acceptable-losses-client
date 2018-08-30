@@ -12,7 +12,30 @@
   transition: all 0.07s;
 }
 
-.form:hover {
+.form:hover,
+.payHere:hover,
+.markAsPaid:hover {
   box-shadow: 0 0 1px 2px rgba(255, 255, 255, .6);
   transform: scale(1.1);
+}
+
+/* More styles specifc to pages can be found under page modules */
+/* ie: For Summary page specific designs, see summary.module.css */
+.payHere,
+.markAsPaid {
+  background-color: #01b09f;
+  color: white;
+  width: 100px;
+  height: 30px;
+  font-size: 10px;
+  border: none;
+  border-radius: 5px;
+  transition: all 0.07s;
+  text-transform: uppercase;
+}
+
+.payHere a {
+  text-decoration: none;
+  color: white;
+  font-size: 10px;
 }

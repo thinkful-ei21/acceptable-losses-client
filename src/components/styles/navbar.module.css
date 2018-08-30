@@ -1,7 +1,6 @@
-.background {
+.navBackground {
   position: relative;
   height: 50px;
-  /* opacity: 0; */
   background-color: transparent;
 }
 
@@ -19,6 +18,7 @@
   right: 0;
   border: none;
   z-index: 5;
+  background-color: transparent;
 }
 
 .mobileMenuPage {
@@ -78,7 +78,51 @@
 
   .desktop {
     display: inline-block;
+    width: 65px;
+    height: 100vh;
+    /* border: 1px solid black; */
+    text-align: center;
   }
 
+  .row {
+    margin-left: 0;
+  }
 
+  .link {
+    padding: 0; /* removes mobile styling */
+  }
+
+  .firstLink {
+    margin-top: 15px;
+  }
+
+  .linkIcon {
+    width: 45px;
+  }
+
+  .link p {
+    color: #01B09F;
+    font-size: .4em;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 25px;
+  }
+
+  .logout {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    color: white;
+    opacity: .5;
+    top: 10px;
+    right: 5vw;
+    z-index: 5;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+  }
+
+  .logout:hover {
+    opacity: 1;
+  }
 }

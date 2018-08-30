@@ -25,6 +25,7 @@ export class HeaderBar extends React.Component {
   }
 
   render() {
+<<<<<<< HEAD
     let header;
 
     if (this.props.loggedIn) {
@@ -83,10 +84,63 @@ export class HeaderBar extends React.Component {
                     this.toggleShowMenu();
                     this.logOut();
                   }}
+=======
+    return (
+      <div className={styles.navBackground}>
+        <div className={styles.mobile}>
+          <button className={styles.menuButton}
+            onClick={() => this.toggleShowMenu()}
+          >
+            <img className={styles.menuIcon}
+              src={require('../assets/menu.svg')}
+              alt="hamburger menu icon"
+            />
+          </button>
+          {this.state.showMenu ?
+            <div className={styles.mobileMenuPage}>
+              <div className={styles.row}>
+                <img className={styles.linkIcon}
+                  src={require('../assets/summary.svg')}
+                  alt="summary (or home) icon"
+                />
+                <NavLink role="navigation"
+                  to="/app/dashboard"
+                  className={styles.link}
+                  onClick={() => this.toggleShowMenu()}
                 >
-                  Log out
-                </button>
+                  <span>Home</span>
+                </NavLink>
               </div>
+
+              <div className={styles.row}>
+                <img className={styles.linkIcon}
+                  src={require('../assets/bills.svg')}
+                  alt="bills icon"
+                />
+                <NavLink role="navigation"
+                  to="/app/accounts"
+                  className={styles.link}
+                  onClick={() => this.toggleShowMenu()}
+                >
+                  <span>Accounts</span>
+                </NavLink>
+              </div>
+
+              <div className={styles.row}>
+                <img className={styles.linkIcon}
+                  src={require('../assets/add.svg')}
+                  alt="add bill icon"
+                />
+                <NavLink role="navigation"
+                  to="/app/add-account"
+                  className={styles.link}
+                  onClick={() => this.toggleShowMenu()}
+>>>>>>> desktopHeaderStyle
+                >
+                  <span>Add Bill</span>
+                </NavLink>
+              </div>
+<<<<<<< HEAD
             ) : (
               ''
             )}
@@ -119,9 +173,67 @@ export class HeaderBar extends React.Component {
     return <div className={styles.background}>{header}</div>;
   }
 }
+=======
 
-const mapStateToProps = state => ({
-  loggedIn: state.auth.currentUser !== null
-});
+              <button className={`${styles.row} ${styles.logout}`}
+                onClick={() => {
+                  this.toggleShowMenu()
+                  this.logOut()
+                }}
+              >
+                Log out
+              </button>
+            </div>
+            :
+          ''}
+        </div>
 
-export default connect(mapStateToProps)(HeaderBar);
+        <div className={styles.desktop}>
+          <NavLink role="navigation"
+            to="/app/dashboard"
+            className={styles.link}
+          >
+            <img className={`${styles.linkIcon} ${styles.firstLink}`}
+              src={require('../assets/summary.svg')}
+              alt="summary (or home) icon"
+            />
+            <p>Home</p>
+          </NavLink>
+
+          <NavLink role="navigation"
+            to="/app/accounts"
+            className={styles.link}
+          >
+            <img className={styles.linkIcon}
+              src={require('../assets/bills.svg')}
+              alt="bills icon"
+            />
+            <p>Accounts</p>
+          </NavLink>
+
+          <NavLink role="navigation"
+            to="/app/add-account"
+            className={styles.link}
+          >
+            <img className={styles.linkIcon}
+              src={require('../assets/add.svg')}
+              alt="add bill icon"
+            />
+            <p>Add Bill</p>
+          </NavLink>
+>>>>>>> desktopHeaderStyle
+
+          <button className={`${styles.row} ${styles.logout}`}
+            onClick={() => {
+              this.logOut()
+            }}
+          >
+            Log out
+          </button>
+        </div>
+      </div>
+      );
+    }
+}
+
+export default connect()(HeaderBar);

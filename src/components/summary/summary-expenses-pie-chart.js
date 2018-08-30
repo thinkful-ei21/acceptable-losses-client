@@ -1,6 +1,8 @@
 import React from 'react';
 import { ResponsivePie } from '@nivo/pie'
 
+import styles from '../styles/graphs.module.css';
+
 
 export default function PieChartExpenses(props) {
   // console.log(props.graphData);
@@ -35,7 +37,7 @@ export default function PieChartExpenses(props) {
   return (
     // make sure parent container have a defined height when using responsive component,
     // otherwise height will be 0 and no chart will be rendered.
-    <div style={{height: '500px'}}>
+    <div className={styles.pieChart}>
       <ResponsivePie
           data={props.graphData}
           margin={{

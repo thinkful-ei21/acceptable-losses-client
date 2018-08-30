@@ -7,6 +7,9 @@ import { togglePay, getAccount } from '../../actions/accounts';
 import AccountPay from './account-pay-form';
 
 
+import styles from '../styles/summary.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
 class AccountCard extends React.Component {
   render() {
     const { nextDue, id, url, dispatch, name, key, payButtonToggle } = this.props;
@@ -14,15 +17,45 @@ class AccountCard extends React.Component {
 
     return (
       <li key={key}>
-        <h4>{name}</h4>
+        <Link to="/app/accounts"
+          className={styles.accDetailsLink}
+        >
+          <h4 onClick={() => dispatch(getAccount(id))}>{name}</h4>
+        </Link>
         <p>Due: {moment(nextDue.dueDate).format('MMM Do, YYYY')} </p>
         <p>Amount: ${nextDue.amount ? finalAmount : ' ---'} </p>
         {url? <a target="_blank" href={url}> Pay Here</a>:''}
         {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>}
-        <Link to="/accounts">
-          <button onClick={() => dispatch(getAccount(id))}>Account Details</button>
-        </Link>
-        <p>_____________________________________________________________</p>
+        {/* <Link to="/accounts"
+          className={styles.accDetailsLink}
+        > */}
+          {/* <button onClick={() => dispatch(getAccount(id))}>Account Details</button> */}
+
+        <div className={styles.tabletViewBillInfo}>
+          <div className={styles.info}>
+            <div>
+              <p className={styles.dueLabel}>Due Date:</p>
+              <p className={styles.due}>{moment(nextDue.dueDate).format('MMM Do, YYYY')}</p>
+            </div>
+            <div>
+              <p className={styles.amountLabel}>Amount:</p>
+              <p className={styles.amount}>${nextDue.amount ? finalAmount : ' ---'}</p>
+            </div>
+          </div>
+
+          <div className={styles.centerButtons}>
+            <button className={buttonStyles.markAsPaid}
+              onClick={e => dispatch(payBill(nextDue, id))}
+            >
+              Mark as Paid
+            </button>
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          </div>
+        </div>
       </li>
     );
   }
@@ -32,4 +65,3 @@ const mapStateToProps = state => ({
   payButtonToggle: state.accounts.payButtonToggle
 });
 export default connect(mapStateToProps)(AccountCard);
-

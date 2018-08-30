@@ -16,6 +16,8 @@ import Calendar from './calendar/calendar';
 import IncomeForm from './income/income-form';
 import Incomes from './income/income-page';
 
+import styles from './styles/app.module.css';
+
 export class App extends React.Component {
   componentDidUpdate(prevProps) {
     if (!prevProps.loggedIn && this.props.loggedIn) {
@@ -43,19 +45,19 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div className="">
-        <header className="" />
-        <div className="app">
-          <Route path="" component={HeaderBar} />
+      <div>
+        <div>
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/login" component={loginPage} />
           <Route exact path="/register" component={RegistrationPage} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route path="/accounts" component={AccountsPage} />
-          <Route exact path="/add-account" component={AddBillForm} />
+        </div>
+        <div className={styles.background}>
+          <Route path="/app" component={HeaderBar} />
+          <Route exact path="/app/dashboard" component={Dashboard} />
+          <Route path="/app/accounts" component={AccountsPage} />
+          <Route exact path="/app/add-account" component={AddBillForm} />
           <Route path="/incomes" component={Incomes} />
-          <Route exact path="/add-income" component={IncomeForm} />
-         <Route exact path="/calendar" component={Calendar} />
+          <Route exact path="/calendar" component={Calendar} />
         </div>
       </div>
     );

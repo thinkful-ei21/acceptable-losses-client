@@ -24,60 +24,63 @@ export class RegistrationForm extends React.Component {
       <form onSubmit={this.props.handleSubmit(values => this.onSubmit(values))}>
         <fieldset>
           <legend>Sign up</legend>
-          <label htmlFor="firstName" className={styles.inputLabel}>
-            First name
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-          />
 
-          <label htmlFor="lastName" className={styles.inputLabel}>
-            Last name
-          </label>
-          <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
+          <div className={styles.formInputs}>
+            <label htmlFor="firstName" className={styles.inputLabel}>
+              First name
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+            />
 
-          <label htmlFor="username" className={styles.inputLabel}>
-            Username
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="text"
-            name="username"
-            validate={[required, nonEmpty, isTrimmed]}
-            placeholder="Username"
-          />
+            <label htmlFor="lastName" className={styles.inputLabel}>
+              Last name
+            </label>
+            <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
 
-          <label htmlFor="password" className={styles.inputLabel}>
-            Password
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="password"
-            name="password"
-            placeholder="Password"
-            validate={[required, passwordLength, isTrimmed]}
-          />
+            <label htmlFor="username" className={styles.inputLabel}>
+              Username
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="text"
+              name="username"
+              validate={[required, nonEmpty, isTrimmed]}
+              placeholder="Username"
+            />
 
-          <label htmlFor="passwordConfirm" className={styles.inputLabel}>
-            Confirm password
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="password"
-            name="passwordConfirm"
-            validate={[required, nonEmpty, matchesPassword]}
-            placeholder="Confirm Password"
-          />
-          <button className={buttonStyles.form} type="submit" disabled={this.props.pristine || this.props.submitting}>
-            SUBMIT
-          </button>
+            <label htmlFor="password" className={styles.inputLabel}>
+              Password
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="password"
+              name="password"
+              placeholder="Password"
+              validate={[required, passwordLength, isTrimmed]}
+            />
+
+            <label htmlFor="passwordConfirm" className={styles.inputLabel}>
+              Confirm password
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="password"
+              name="passwordConfirm"
+              validate={[required, nonEmpty, matchesPassword]}
+              placeholder="Confirm Password"
+            />
+            <button className={buttonStyles.form} type="submit" disabled={this.props.pristine || this.props.submitting}>
+              SUBMIT
+            </button>
+          </div>
         </fieldset>
       </form>
     );

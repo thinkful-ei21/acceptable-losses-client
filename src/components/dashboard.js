@@ -7,6 +7,8 @@ import requiresLogin from './require-login';
 import SummaryDisplay from './summary/summary-display';
 import UpcomingBills from './summary/upcoming-bills';
 
+import styles from './styles/desktop.module.css';
+
 export class Dashboard extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -17,13 +19,16 @@ export class Dashboard extends React.Component {
     const { firstName, lastName } = this.props.user;
     return (
       <div>
-        <h3>
+        {/* <HeaderBar /> */}
+        <h2>
           Hello {firstName} {lastName}!
-        </h3>
-        <SummaryDisplay />
-        <span>________________________________________________________</span>
-        <UpcomingBills />
-        <span>________________________________________________________</span>
+        </h2>
+        <div className={styles.desktopView}>
+          <SummaryDisplay />
+          {/* <span>________________________________________________________</span> */}
+          <UpcomingBills />
+          {/* <span>________________________________________________________</span> */}
+        </div>
       </div>
     );
   }

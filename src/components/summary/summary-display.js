@@ -16,6 +16,8 @@ import {
 import PieChartExpenses from './summary-expenses-pie-chart';
 import BarGraphExpenses from './summary-expenses-bar-graph';
 
+import styles from '../styles/summary.module.css';
+
 export class SummaryDisplay extends React.Component {
   componentDidMount() {
     this.props.dispatch(getIncomes());
@@ -153,31 +155,43 @@ export class SummaryDisplay extends React.Component {
     });
 
     return (
-      <section>
-        <PieChartExpenses graphData={pieGraphData} />
-        <p>
-          Total Expenses: <span>${totalExpenses}</span>
-        </p>
-        {expensesBarGraphData.length !== 0 && totalExpenses > 0 ? (
-          <BarGraphExpenses
-            graphData={expensesBarGraphData}
-            max={Number(totalExpenses)}
-            keys={['Bill']}
-            indexBy="account"
-          />
-        ) : (
-          ''
-        )}
-
-        {/* <ul>{expenseAccounts}</ul> */}
-        <p>_______________________________________</p>
-        <p>
-          Incomes: <span>${totalIncome}</span>
-        </p>
-        {addIncome}
-        {/* <ul>{incomeDisplay}</ul> */}
-        <BarGraphExpenses graphData={incomeBarGraphData} max={Number(totalIncome)} keys={['Amount']} indexBy="income" />
-      </section>
+      <div className={styles.expenses}>
+        <section className={styles.pieChart}>
+          <PieChartExpenses graphData={pieGraphData} />
+        </section>
+        <div className={styles.barGraphs}>
+          <section>
+            <p className={styles.header}>
+              Total Expenses: <span>${totalExpenses}</span>
+            </p>
+            {expensesBarGraphData.length !== 0 && totalExpenses > 0 ? (
+              <BarGraphExpenses
+                graphData={expensesBarGraphData}
+                // max={Number(totalExpenses)}
+                keys={['Bill']}
+                indexBy="account"
+              />
+            ) : (
+              ''
+            )}
+          </section>
+          <section>
+            {/* <ul>{expenseAccounts}</ul> */}
+            {/* <p>_______________________________________</p> */}
+            <p className={styles.header}>
+              Incomes: <span>${totalIncome}</span>
+            </p>
+            {addIncome}
+            {/* <ul>{incomeDisplay}</ul> */}
+            <BarGraphExpenses
+              graphData={incomeBarGraphData}
+              // max={Number(totalIncome)} 
+              keys={['Amount']}
+              indexBy="income"
+            />
+          </section>
+        </div>
+      </div>
     );
   }
 }
