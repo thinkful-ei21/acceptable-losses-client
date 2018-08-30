@@ -56,8 +56,8 @@ export class App extends React.Component {
           <Route exact path="/app/dashboard" component={Dashboard} />
           <Route path="/app/accounts" component={AccountsPage} />
           <Route exact path="/app/add-account" component={AddBillForm} />
-          <Route path="/incomes" component={Incomes} />
-          <Route exact path="/calendar" component={Calendar} />
+          <Route path="/app/incomes" component={Incomes} />
+          <Route exact path="/app/calendar" component={Calendar} />
         </div>
       </div>
     );
