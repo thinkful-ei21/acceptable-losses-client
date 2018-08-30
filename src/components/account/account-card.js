@@ -17,9 +17,7 @@ class AccountCard extends React.Component {
         <h4>{name}</h4>
         <p>Due: {moment(nextDue.dueDate).format('MMM Do, YYYY')} </p>
         <p>Amount: ${nextDue.amount ? finalAmount : ' ---'} </p>
-        <a target="_blank" href={url}>
-          Pay Here
-        </a>
+        {url? <a target="_blank" href={url}> Pay Here</a>:''}
         {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>}
         <Link to="/accounts">
           <button onClick={() => dispatch(getAccount(id))}>Account Details</button>
