@@ -127,6 +127,14 @@ export class HeaderBar extends React.Component {
             />
             <p>Add Bill</p>
           </NavLink>
+
+          <button className={`${styles.row} ${styles.logout}`}
+            onClick={() => {
+              this.logOut()
+            }}
+          >
+            Log out
+          </button>
         </div>
       </div>
       );

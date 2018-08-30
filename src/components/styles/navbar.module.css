@@ -96,12 +96,6 @@
     margin-top: 15px;
   }
 
-  /* .link img,
-  .link p,
-  .link {
-    z-index: 5;
-  } */
-
   .linkIcon {
     width: 45px;
   }
@@ -114,5 +108,21 @@
     margin-bottom: 25px;
   }
 
+  .logout {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    color: white;
+    opacity: .5;
+    top: 10px;
+    right: 5vw;
+    z-index: 5;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 20px;
+  }
 
+  .logout:hover {
+    opacity: 1;
+  }
 }
