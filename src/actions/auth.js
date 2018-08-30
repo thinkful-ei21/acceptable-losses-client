@@ -11,6 +11,12 @@ export const setAuthToken = authToken => ({
   authToken
 });
 
+export const UPDATE_USER = 'UPDATE_USER';
+export const updateUser = data => ({
+  type: UPDATE_USER,
+  data
+});
+
 export const CLEAR_AUTH = 'CLEAR_AUTH';
 export const clearAuth = () => ({
   type: CLEAR_AUTH
@@ -84,4 +90,43 @@ export const refreshAuthToken = () => (dispatch, getState) => {
       dispatch(clearAuth());
       clearAuthToken(authToken);
     });
+};
+
+export const editInfo = values => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/users/settings`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify(values)
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(data => dispatch(updateUser(data)))
+    .catch(err => {
+      const { reason, message, location } = err;
+      if (reason === 'ValidationError') {
+        console.log('create bill error');
+        return Promise.reject(
+          new SubmissionError({
+            [location]: message
+          })
+        );
+      }
+    });
+};
+
+export const deleteUser = () => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/users/delete`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(() => this.logout())
+    .catch(err => console.error(err));
 };

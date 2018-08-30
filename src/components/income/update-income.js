@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 
-import { updateIncome } from '../../actions/incomes';
+import { updateIncome, hideUpdateForm } from '../../actions/incomes';
 import { required, nonEmpty } from '../../validators';
 
 import Input from '../input';
@@ -20,8 +20,13 @@ export class UpdateIncomeForm extends React.Component {
     dispatch(updateIncome(values, id));
   }
 
+  // cancelUpdate() {
+  //   const { dispatch } = this.props;
+  //   dispatch(hideUpdateForm());
+  // }
+
   render() {
-    const { error, handleSubmit, submitting } = this.props;
+    const { error, handleSubmit, submitting, dispatch } = this.props;
     let err;
     if (error) {
       err = <div aria-live="polite">{error}</div>;
@@ -36,6 +41,7 @@ export class UpdateIncomeForm extends React.Component {
         <button type="submit" disabled={submitting}>
           Submit
         </button>
+        <button onClick={() => dispatch(hideUpdateForm())}>X</button>
       </form>
     );
   }

@@ -101,12 +101,12 @@ export class HeaderBar extends React.Component {
             <NavLink role="navigation" to="/add-account">
               Add Bill |
             </NavLink>
-            <NavLink role="navigation" to="/incomes">
+            {/* <NavLink role="navigation" to="/incomes">
               Incomes |
             </NavLink>
             <NavLink role="navigation" to="/add-income">
               Add Income |
-            </NavLink>
+            </NavLink> */}
             <NavLink role="navigation" to="/profile">
               Profile
             </NavLink>

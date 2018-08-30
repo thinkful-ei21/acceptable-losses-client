@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 
-import { createIncome, getIncomes } from '../../actions/incomes';
+import { createIncome, getIncomes, hideIncomeForm } from '../../actions/incomes';
 import { required, nonEmpty } from '../../validators';
 
 import Input from '../input';
@@ -13,6 +13,9 @@ export class IncomeForm extends React.Component {
     return dispatch(createIncome(values))
       .then(() => dispatch(getIncomes()))
       .then(() => history.push(`/dashboard`));
+  }
+  cancelAdd() {
+    this.props.dispatch(hideIncomeForm());
   }
 
   render() {
@@ -28,7 +31,10 @@ export class IncomeForm extends React.Component {
         <Field component={Input} type="text" name="source" id="source" validate={[required, nonEmpty]} />
         <label htmlFor="amount">Amount</label>
         <Field component={Input} type="amount" name="amount" id="amount" validate={required} />
-        <button disabled={pristine || submitting}>Submit</button>
+        <button type="submit" disabled={pristine || submitting}>
+          Submit
+        </button>
+        <button onClick={() => this.cancelAdd()}>X</button>
       </form>
     );
   }
