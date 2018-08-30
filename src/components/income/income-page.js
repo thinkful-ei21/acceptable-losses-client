@@ -1,26 +1,46 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getIncomes, getIncome, showUpdateForm } from '../../actions/incomes';
+import {
+  getIncomes,
+  getIncome,
+  showUpdateForm,
+  hideUpdateForm,
+  showIncomeForm,
+  hideIncomeForm
+} from '../../actions/incomes';
 
 import IncomeCard from './income-card';
-import IncomeView from './income-details';
+import IncomeForm from './income-form';
+import UpdateIncome from './update-income';
 import requiresLogin from '../require-login';
 
 export class Incomes extends React.Component {
   componentDidMount() {
-    this.props.dispatch(getIncomes());
+    const { dispatch } = this.props;
+    dispatch(hideUpdateForm());
+    dispatch(hideIncomeForm());
+    dispatch(getIncomes());
   }
 
   toggleUpdate(id) {
-    return this.props.dispatch(getIncome(id)).then(() => this.props.dispatch(showUpdateForm()));
+    const { dispatch } = this.props;
+    return dispatch(getIncome(id))
+      .then(() => dispatch(hideIncomeForm()))
+      .then(() => dispatch(showUpdateForm()));
+  }
+
+  addIncome() {
+    const { dispatch } = this.props;
+    dispatch(hideUpdateForm());
+    dispatch(showIncomeForm());
   }
 
   render() {
-    let incomeResults;
-    let incomesSorted;
-    if (this.props.incomes) {
-      incomesSorted = this.props.incomes.sort(function(a, b) {
+    const { incomes, addIncome, editIncome } = this.props;
+    let incomeResults, incomesSorted, formDisplay;
+    if (incomes) {
+      incomesSorted = incomes.sort((a, b) => {
         if (a.source.toLowerCase() < b.source.toLowerCase()) return -1;
         if (a.source.toLowerCase() > b.source.toLowerCase()) return 1;
         return 0;
@@ -30,10 +50,19 @@ export class Incomes extends React.Component {
       });
     }
 
+    if (addIncome && !editIncome) {
+      formDisplay = <IncomeForm />;
+    } else if (!addIncome && editIncome) {
+      formDisplay = <UpdateIncome />;
+    } else {
+      formDisplay = '';
+    }
+
     return (
-      <div className="incomes">
+      <div>
         <h3>Incomes</h3>
-        <IncomeView />
+        <button onClick={() => this.addIncome()}>Add Income</button>
+        {formDisplay}
         <p>---------------------------------------------------------------------------</p>
         <ul>{incomeResults}</ul>
       </div>
@@ -42,7 +71,9 @@ export class Incomes extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  incomes: state.incomes.incomes
+  incomes: state.incomes.incomes,
+  addIncome: state.incomes.toggleForm,
+  editIncome: state.incomes.toggleUpdateForm
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Incomes));

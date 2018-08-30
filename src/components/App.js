@@ -12,9 +12,8 @@ import RegistrationPage from './registration-page';
 import loginPage from './login-page';
 import AddBillForm from './account/add-bill-form';
 import Calendar from './calendar/calendar';
-
-import IncomeForm from './income/income-form';
 import Incomes from './income/income-page';
+import Profile from './profile/profile';
 
 import styles from './styles/app.module.css';
 
@@ -58,6 +57,7 @@ export class App extends React.Component {
           <Route exact path="/app/add-account" component={AddBillForm} />
           <Route path="/app/incomes" component={Incomes} />
           <Route exact path="/app/calendar" component={Calendar} />
+          <Route exact path="/app/profile" component={Profile} />
         </div>
       </div>
     );
