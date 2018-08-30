@@ -47,7 +47,7 @@ li {
 }
 
 hr {
-  margin-right: 40px;
+  margin-right: 30px;
 }
 
 h4 {
@@ -107,6 +107,22 @@ li button:last-child {
   margin-left: 20px;
 }
 
+@media screen and (min-width: 500px) and (max-width: 799px) {
+  .tabletViewBillInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .centerButtons {
+    margin-right: 30px;
+  }
+
+  li button:last-child {
+    margin-left: 5px;
+  }
+}
+
 @media screen and (min-width: 800px) {
   h2 {
     margin-left: 10vw;
@@ -141,6 +157,10 @@ li button:last-child {
 
   .centerButtons {
     text-align: center;
+  }
+
+  hr {
+    margin-right: 40px;
   }
 }
 

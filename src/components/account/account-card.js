@@ -20,29 +20,30 @@ class AccountCard extends React.Component {
         >
           <h4 onClick={() => dispatch(getAccount(id))}>{name}</h4>
         </Link>
-
-        <div className={styles.info}>
-          <div>
-            <p className={styles.dueLabel}>Due Date:</p>
-            <p className={styles.due}>{moment(nextDue.dueDate).format('MMM Do, YYYY')}</p>
+        <div className={styles.tabletViewBillInfo}>
+          <div className={styles.info}>
+            <div>
+              <p className={styles.dueLabel}>Due Date:</p>
+              <p className={styles.due}>{moment(nextDue.dueDate).format('MMM Do, YYYY')}</p>
+            </div>
+            <div>
+              <p className={styles.amountLabel}>Amount:</p>
+              <p className={styles.amount}>${nextDue.amount ? finalAmount : ' ---'}</p>
+            </div>
           </div>
-          <div>
-            <p className={styles.amountLabel}>Amount:</p>
-            <p className={styles.amount}>${nextDue.amount ? finalAmount : ' ---'}</p>
-          </div>
-        </div>
 
-        <div className={styles.centerButtons}>
-          <button className={buttonStyles.markAsPaid}
-            onClick={e => dispatch(payBill(nextDue, id))}
-          >
-            Mark as Paid
-          </button>
-          <button className={buttonStyles.payHere}>
-            <a target="_blank" href={url}>
-              Pay Here
-            </a>
-          </button>
+          <div className={styles.centerButtons}>
+            <button className={buttonStyles.markAsPaid}
+              onClick={e => dispatch(payBill(nextDue, id))}
+            >
+              Mark as Paid
+            </button>
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          </div>
         </div>
       </li>
     );
