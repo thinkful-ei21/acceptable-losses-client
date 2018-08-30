@@ -18,6 +18,7 @@
   right: 0;
   border: none;
   z-index: 5;
+  background-color: transparent;
 }
 
 .mobileMenuPage {
