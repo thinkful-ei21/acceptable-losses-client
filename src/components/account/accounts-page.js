@@ -10,6 +10,8 @@ import Filters from './account-filters';
 import AccountCard from './account-card';
 import AccountDetails from './account-details';
 
+// import styles from '../styles/accountPage.module.css';
+
 export class AccountsPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
@@ -55,7 +57,7 @@ export class AccountsPage extends React.Component {
     }
     return (
       <section>
-        <h3>Accounts</h3>
+        <h2>Bills</h2>
         <SearchBar />
         <Filters />
         {selectedAccount ? <AccountDetails /> : ''}
