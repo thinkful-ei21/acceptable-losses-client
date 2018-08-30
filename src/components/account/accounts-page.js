@@ -20,7 +20,6 @@ export class AccountsPage extends React.Component {
     let accounts = this.props.accounts.filter(
       item =>
         item.name.toLowerCase().includes(searchTerm) ||
-        item.url.toLowerCase().includes(searchTerm) ||
         item.bills.find(item => item.dueDate.includes(searchTerm)) ||
         item.bills.find(item => item.frequency === searchTerm) ||
         item.bills.find(item => item.amount === searchTerm)
