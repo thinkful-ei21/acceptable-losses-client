@@ -1,5 +1,5 @@
 import React from 'react';
-import { Field, reduxForm, focus,reset } from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { searchAccounts } from '../../actions/accounts';
@@ -9,14 +9,14 @@ import Input from '../input';
 class SearchForm extends React.Component {
   onSubmit(values) {
     let searchTerm = values.search;
-    return this.props.dispatch(searchAccounts(searchTerm))
+    return this.props.dispatch(searchAccounts(searchTerm));
   }
 
   render() {
     const { handleSubmit, currentSearchTerm, dispatch, pristine, submitting } = this.props;
     let clearButton;
     if (currentSearchTerm !== '') {
-      clearButton = <button onClick={() => dispatch(searchAccounts(''))}>" {currentSearchTerm} "  X</button>;
+      clearButton = <button onClick={() => dispatch(searchAccounts(''))}>" {currentSearchTerm} " X</button>;
     }
 
     return (

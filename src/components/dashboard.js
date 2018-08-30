@@ -19,15 +19,12 @@ export class Dashboard extends React.Component {
     const { firstName, lastName } = this.props.user;
     return (
       <div>
-        {/* <HeaderBar /> */}
         <h2>
           Hello {firstName} {lastName}!
         </h2>
         <div className={styles.desktopView}>
           <SummaryDisplay />
-          {/* <span>________________________________________________________</span> */}
           <UpcomingBills />
-          {/* <span>________________________________________________________</span> */}
         </div>
       </div>
     );

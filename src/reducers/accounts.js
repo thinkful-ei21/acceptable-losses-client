@@ -18,10 +18,10 @@ const initialState = {
   searchTerm: '',
   filter: 'abc',
   editButtonToggle: false,
-  deleteButtonToggle:false,
-  payButtonToggle:null,
-  daysBills:null,
-  selectedDay:null
+  deleteButtonToggle: false,
+  payButtonToggle: null,
+  daysBills: null,
+  selectedDay: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -72,16 +72,19 @@ export default function reducer(state = initialState, action) {
       payButtonToggle: action.data,
       error: null
     };
-  }  else if (action.type === GET_DAYS_BILLS) {
+  } else if (action.type === GET_DAYS_BILLS) {
     return {
       ...state,
-      selectedDay:action.data,
-      daysBills: state.accounts.filter((account)=>{if(moment(account.nextDue.dueDate).format('YYYY-MM-DD')=== action.data){return account.nextDue}return null}),
+      selectedDay: action.data,
+      daysBills: state.accounts.filter(account => {
+        if (moment(account.nextDue.dueDate).format('YYYY-MM-DD') === action.data) {
+          return account.nextDue;
+        }
+        return null;
+      }),
       error: null
     };
   }
-
-  
 
   return state;
 }

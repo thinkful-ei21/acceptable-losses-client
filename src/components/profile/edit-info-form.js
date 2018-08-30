@@ -23,7 +23,6 @@ export class EditInfoForm extends React.Component {
   }
 
   render() {
-    // console.log(this.props.currentUser);
     const { error, handleSubmit, pristine, submitting, dispatch } = this.props;
     let err;
     if (error) {

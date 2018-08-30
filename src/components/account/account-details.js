@@ -7,13 +7,12 @@ import { updateAccount, deleteAccount, toggleEdit, payBill, toggleDelete, toggle
 import AccountEdit from './account-edit-form';
 import AccountPay from './account-pay-form';
 
-
 import Input from '../input';
 
 export class AccountDetails extends React.Component {
   onSubmit(value) {
     const { selectedAccount, dispatch } = this.props;
-    const { name, frequency, id,reminder } = selectedAccount;
+    const { name, frequency, id, reminder } = selectedAccount;
     const newAccount = {
       reminder,
       name,
@@ -30,8 +29,17 @@ export class AccountDetails extends React.Component {
   }
 
   render() {
-    const { selectedAccount, editButtonToggle, dispatch, handleSubmit, pristine, submitting, deleteButtonToggle, payButtonToggle } = this.props;
-    const { name, nextDue, id, bills, url, reminder} = selectedAccount;
+    const {
+      selectedAccount,
+      editButtonToggle,
+      dispatch,
+      handleSubmit,
+      pristine,
+      submitting,
+      deleteButtonToggle,
+      payButtonToggle
+    } = this.props;
+    const { name, nextDue, id, bills, url, reminder } = selectedAccount;
 
     let billHistory,
       accountName,
@@ -54,9 +62,9 @@ export class AccountDetails extends React.Component {
           </tr>
         ) : (
           <tr key={index}>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td />
+            <td />
+            <td />
           </tr>
         );
       });
@@ -80,13 +88,13 @@ export class AccountDetails extends React.Component {
       );
 
       accountName = name;
-      reminderFrequency= <p>Reminder: {reminder}</p> ;
+      reminderFrequency = <p>Reminder: {reminder}</p>;
       let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
         nextDueAmount = Number(nextDue.amount).toFixed(2);
 
       frequency = (
         <p>
-          Frequency: 
+          Frequency:
           {account.frequency}
         </p>
       );
@@ -99,10 +107,28 @@ export class AccountDetails extends React.Component {
 
       buttons = (
         <div>
-          {payButtonToggle===id? <AccountPay/>:<button onClick={() => dispatch(togglePay(id))}>Mark as Paid</button>}      
+          {payButtonToggle === id ? (
+            <AccountPay />
+          ) : (
+            <button onClick={() => dispatch(togglePay(id))}>Mark as Paid</button>
+          )}
           <button onClick={() => dispatch(toggleEdit())}>Edit</button>
-          {deleteButtonToggle ? <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>: <button onClick={() => dispatch(toggleDelete())}>Delete</button>}
-          {deleteButtonToggle ? <button onClick={()=> {return dispatch(deleteAccount(id)).then(() =>dispatch(toggleDelete())) }}>Confirm Delete</button>: ''}
+          {deleteButtonToggle ? (
+            <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
+          ) : (
+            <button onClick={() => dispatch(toggleDelete())}>Delete</button>
+          )}
+          {deleteButtonToggle ? (
+            <button
+              onClick={() => {
+                return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
+              }}
+            >
+              Confirm Delete
+            </button>
+          ) : (
+            ''
+          )}
         </div>
       );
     }

@@ -20,11 +20,6 @@ export class UpdateIncomeForm extends React.Component {
     dispatch(updateIncome(values, id));
   }
 
-  // cancelUpdate() {
-  //   const { dispatch } = this.props;
-  //   dispatch(hideUpdateForm());
-  // }
-
   render() {
     const { error, handleSubmit, submitting, dispatch } = this.props;
     let err;

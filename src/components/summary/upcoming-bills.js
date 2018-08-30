@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AccountCard from '../account/account-card';
-// import { Link, Redirect } from 'react-router-dom';
 
 import styles from '../styles/summary.module.css';
 
@@ -10,8 +9,8 @@ export class UpcomingBills extends React.Component {
     let accountResults;
     if (this.props.accounts) {
       accountResults = this.props.accounts.map((account, index) => (
-        <React.Fragment>
-          <AccountCard key={index} {...account} />
+        <React.Fragment key={index}>
+          <AccountCard {...account} />
           <hr />
         </React.Fragment>
       ));

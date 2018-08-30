@@ -29,9 +29,7 @@ export class AddBillForm extends React.Component {
       err = <div aria-live="polite">{error}</div>;
     }
     return (
-      <form className={styles.form}
-        onSubmit={handleSubmit(values => this.onSubmit(values))}
-      >
+      <form className={styles.form} onSubmit={handleSubmit(values => this.onSubmit(values))}>
         <fieldset>
           <legend>Add New Bill</legend>
           {err}
@@ -39,7 +37,8 @@ export class AddBillForm extends React.Component {
             <label htmlFor="name" className={styles.inputLabel}>
               Name:
             </label>
-            <Field component={Input}
+            <Field
+              component={Input}
               type="text"
               name="name"
               validate={[required, nonEmpty]}
@@ -50,7 +49,8 @@ export class AddBillForm extends React.Component {
             <label htmlFor="url" className={styles.inputLabel}>
               Website:
             </label>
-            <Field component={Input}
+            <Field
+              component={Input}
               type="text"
               name="url"
               placeholder="Payment Website"
@@ -60,15 +60,11 @@ export class AddBillForm extends React.Component {
             <label htmlFor="amount" className={styles.inputLabel}>
               Amount:
             </label>
-            <Field component={Input}
-              type="number"
-              name="amount"
-              placeholder="Amount"
-              styleClass={styles.formInput}
-            />
+            <Field component={Input} type="number" name="amount" placeholder="Amount" styleClass={styles.formInput} />
 
-            <label htmlFor="frequency" className={styles.inputLabel}/>
-            <Field name="frequency"
+            <label htmlFor="frequency" className={styles.inputLabel} />
+            <Field
+              name="frequency"
               component="select"
               validate={[required, nonEmpty]}
               required
@@ -85,16 +81,17 @@ export class AddBillForm extends React.Component {
             <label htmlFor="dueDate" className={styles.inputLabel}>
               Due Date:
             </label>
-            <Field component={Input}
+            <Field
+              component={Input}
               type="date"
               name="dueDate"
-              // placeholder="Due Date"
               validate={[required, nonEmpty]}
               styleClass={styles.formInput}
             />
 
-            <label htmlFor="reminder" className={styles.inputLabel}/>
-            <Field name="reminder"
+            <label htmlFor="reminder" className={styles.inputLabel} />
+            <Field
+              name="reminder"
               component="select"
               validate={[required, nonEmpty]}
               required

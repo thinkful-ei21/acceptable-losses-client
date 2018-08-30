@@ -24,9 +24,7 @@ export class AccountEdit extends React.Component {
   onSubmit(values) {
     const { id } = this.props.selectedAccount;
     const { dispatch } = this.props;
-    return this.props
-      .dispatch(updateAccount(values, id))
-      .then(() => dispatch(toggleEdit()));
+    return this.props.dispatch(updateAccount(values, id)).then(() => dispatch(toggleEdit()));
   }
 
   render() {

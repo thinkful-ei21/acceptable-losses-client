@@ -93,7 +93,7 @@ export class Profile extends React.Component {
     }
 
     if (image) {
-      userImg = <img key={image.public_id} src={image.secure_url} />;
+      userImg = <img key={image.public_id} src={image.secure_url} alt="your ugly mug :)" />;
     } else {
       userImg = <div>Need a Pic</div>;
     }

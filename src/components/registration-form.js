@@ -40,7 +40,13 @@ export class RegistrationForm extends React.Component {
             <label htmlFor="lastName" className={styles.inputLabel}>
               Last name
             </label>
-            <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+            />
 
             <label htmlFor="username" className={styles.inputLabel}>
               Username
