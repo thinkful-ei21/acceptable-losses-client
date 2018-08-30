@@ -5,7 +5,7 @@ import { getAccounts, getDaysBills } from '../../actions/accounts';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import TodaysBills from './todays-bills'
+import SelectedBills from './selected-bills'
 
 class Calendar extends React.Component {
   componentDidMount() {
@@ -38,24 +38,42 @@ class Calendar extends React.Component {
         billsPaid.push(moment(allBills[i][j].dueDate).format('YYYY-MM-DD'))
       } 
     }
-
-    if (billsDue.includes(dates)){
-      return {
-        className: '',
+    let borderColor='1px lightgrey solid';
+    if (dates===this.props.selectedDay){
+      borderColor= 'blue 3px dotted'
+    }
+    if (billsDue.includes(dates) && moment().format('YYYY-MM-DD')>dates){
+      return{
         style: {
-          background: 'yellow'
+          border: `${borderColor}`,
+          background:'red'
+        },
+      }
+    }
+    if (billsDue.includes(dates)){
+      return{
+        style: {
+          border: `${borderColor}`,
+          background:'yellow'
         },
       }
     }
     if (billsPaid.includes(dates)){
-      return {
-        className: '',
+     return {
         style: {
-          background: 'green'
+          border: `${borderColor}`,
+          background:'green'
         },
       }
     }
-    else return {}
+    else{
+      return{
+        style: {
+          border: `${borderColor}`
+        },
+      }
+    }
+    
   }
 
 
@@ -84,7 +102,7 @@ render(){
         onSelectSlot={this.handleSelect}
       />
   </div>
-  <div><TodaysBills/></div>
+  <div><SelectedBills/></div>
   </div>
 )
 }
@@ -92,6 +110,7 @@ render(){
 
 const mapStateToProps = state => ({
   accounts: state.accounts.accounts,
+  selectedDay: state.accounts.selectedDay,
   daysBills: state.accounts.daysBills
 });
 

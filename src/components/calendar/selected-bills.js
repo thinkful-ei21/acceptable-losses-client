@@ -7,7 +7,7 @@ import {getDaysBills,getAccounts } from '../../actions/accounts';
 
 
 
-export class TodaysBills extends React.Component {
+export class SelectedBills extends React.Component {
   componentDidMount() {
     this.props.dispatch(getDaysBills(this.props.selectedDay));
     this.props.dispatch(getAccounts());
@@ -39,4 +39,4 @@ const mapStateToProps = state => ({
   daysBills: state.accounts.daysBills
 });
 
-export default connect(mapStateToProps)(TodaysBills);
+export default connect(mapStateToProps)(SelectedBills);
