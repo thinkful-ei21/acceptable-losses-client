@@ -8,12 +8,15 @@ import {
   showEditInfoForm,
   hideEditInfoForm,
   showConfirmDeleteUser,
-  hideConfirmDeleteUser
+  hideConfirmDeleteUser,
+  uploadImage
 } from '../../actions/profile';
 import { deleteUser } from '../../actions/auth';
 
 import buttonStyles from '../styles/buttons.module.css';
 import requiresLogin from '../require-login';
+import { clearAuth } from '../../actions/auth';
+import { clearAuthToken } from '../../local-storage';
 
 import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
@@ -27,8 +30,10 @@ export class Profile extends React.Component {
   }
 
   confirmDelete() {
-    const { dispatch, history } = this.props;
-    return dispatch(deleteUser()).then(() => history.push(`/dashboard`));
+    const { dispatch } = this.props;
+    dispatch(deleteUser());
+    dispatch(clearAuth());
+    clearAuthToken();
   }
 
   showEditInfoForm() {
@@ -52,18 +57,25 @@ export class Profile extends React.Component {
     dispatch(showConfirmDeleteUser());
   }
 
+  upload(e) {
+    const { dispatch } = this.props;
+    const formData = new FormData();
+    formData.append('fileName', e.target.files[0]);
+    dispatch(uploadImage(formData));
+  }
+
   render() {
-    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user } = this.props;
+    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, image } = this.props;
     const { firstName } = user;
-    let display;
+    let form, userImg;
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
-      display = <ChangePasswordForm />;
+      form = <ChangePasswordForm />;
     }
     if (!changePasswordForm && editInfoForm && !confirmDeleteUser) {
-      display = <EditInfoForm />;
+      form = <EditInfoForm />;
     }
     if (!changePasswordForm && !editInfoForm && confirmDeleteUser) {
-      display = (
+      form = (
         <div>
           <p>
             <span>WARNING!</span>
@@ -80,12 +92,18 @@ export class Profile extends React.Component {
       );
     }
 
+    if (image) {
+      userImg = <img key={image.public_id} src={image.secure_url} />;
+    } else {
+      userImg = <div>Need a Pic</div>;
+    }
+
     return (
       <div>
         <h2>{firstName}</h2>
-        <p>Image from Cloudinary Goes Here</p>
-        <button className={buttonStyles.form}>Add Photo</button>
-        {display}
+        {userImg}
+        <input type="file" onChange={e => this.upload(e)} />
+        {form}
         <section>
           <h3>Manage Profile</h3>
           <p>Manage Your Profile Configs Here.</p>
@@ -96,7 +114,6 @@ export class Profile extends React.Component {
           <button className={buttonStyles.form} onClick={() => this.showChangePasswordForm()}>
             Change Password
           </button>
-
           <p>Change Your Password.</p>
           <button className={buttonStyles.form} onClick={() => this.deleteUser()}>
             Delete User
@@ -118,7 +135,8 @@ const mapStateToProps = state => ({
   user: state.auth.currentUser,
   changePasswordForm: state.profile.toggleChangePasswordForm,
   editInfoForm: state.profile.toggleEditInfoForm,
-  confirmDeleteUser: state.profile.toggleConfirmDelete
+  confirmDeleteUser: state.profile.toggleConfirmDelete,
+  image: state.profile.image
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Profile));

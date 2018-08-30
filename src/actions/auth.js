@@ -127,6 +127,9 @@ export const deleteUser = () => (dispatch, getState) => {
     }
   })
     .then(res => normalizeResponseErrors(res))
-    .then(() => this.logout())
+    .then(() => {
+      clearAuth();
+      clearAuthToken();
+    })
     .catch(err => console.error(err));
 };
