@@ -103,8 +103,8 @@ li button {
   margin-bottom: 25px;
 }
 
-li button:last-child {
-  margin-left: 20px;
+li button:first-child {
+  margin-right: 20px;
 }
 
 @media screen and (min-width: 500px) and (max-width: 799px) {
@@ -118,8 +118,8 @@ li button:last-child {
     margin-right: 30px;
   }
 
-  li button:last-child {
-    margin-left: 5px;
+  li button:first-child {
+    margin-right: 5px;
   }
 }
 
@@ -164,7 +164,7 @@ li button:last-child {
   }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1099px) {
+@media screen and (min-width: 800px) and (max-width: 1200px) {
   .info {
     display: flex;
     flex-direction: column;
@@ -182,15 +182,7 @@ li button:last-child {
     margin-bottom: 0;
   }
 
-  li button:last-child {
-    margin-left: 0;
+  li button:first-child {
+    margin-right: 0;
   }
-}
-
-@media screen and (min-width: 1100px) {
-  .centerButtons {
-    display: flex;
-    flex-direction: row;
-  }
-
 }

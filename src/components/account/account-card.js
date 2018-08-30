@@ -22,10 +22,10 @@ class AccountCard extends React.Component {
         >
           <h4 onClick={() => dispatch(getAccount(id))}>{name}</h4>
         </Link>
-        <p>Due: {moment(nextDue.dueDate).format('MMM Do, YYYY')} </p>
+        {/* <p>Due: {moment(nextDue.dueDate).format('MMM Do, YYYY')} </p>
         <p>Amount: ${nextDue.amount ? finalAmount : ' ---'} </p>
         {url? <a target="_blank" href={url}> Pay Here</a>:''}
-        {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>}
+        {payButtonToggle=== id ? <AccountPay/>:<button onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}>Mark as Paid</button>} */}
         {/* <Link to="/accounts"
           className={styles.accDetailsLink}
         > */}
@@ -43,17 +43,29 @@ class AccountCard extends React.Component {
             </div>
           </div>
 
+
+
           <div className={styles.centerButtons}>
-            <button className={buttonStyles.markAsPaid}
+            {/* <button className={buttonStyles.markAsPaid}
               onClick={e => dispatch(payBill(nextDue, id))}
             >
               Mark as Paid
-            </button>
-            <button className={buttonStyles.payHere}>
-              <a target="_blank" href={url}>
-                Pay Here
-              </a>
-            </button>
+            </button> */}
+            { payButtonToggle === id ?
+              <AccountPay/> :
+              <button className={buttonStyles.markAsPaid}
+                onClick={() => {return dispatch(getAccount(id)).then(()=>dispatch(togglePay(id)))}}
+              >
+                Mark as Paid
+              </button>
+            }
+            {url ?
+              <button className={buttonStyles.payHere}>
+                <a target="_blank" href={url}>
+                  Pay Here
+                </a>
+              </button>
+            : '' }
           </div>
         </div>
       </li>
