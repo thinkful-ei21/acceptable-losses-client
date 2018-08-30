@@ -43,7 +43,7 @@ export class AddBillForm extends React.Component {
             type="text"
             name="name"
             validate={[required, nonEmpty]}
-            placeholder="Netflix"
+            placeholder="Bill Name"
             styleClass={styles.formInput}
           />
 
@@ -53,7 +53,7 @@ export class AddBillForm extends React.Component {
           <Field component={Input}
             type="text"
             name="url"
-            placeholder="Netflix.com/payments"
+            placeholder="Payment Website"
             styleClass={styles.formInput}
           />
 
@@ -63,12 +63,17 @@ export class AddBillForm extends React.Component {
           <Field component={Input}
             type="number"
             name="amount"
-            placeholder="0.00"
+            placeholder="Amount"
             styleClass={styles.formInput}
           />
 
           <label htmlFor="frequency" className={styles.inputLabel}/>
-          <Field name="frequency" component="select" validate={[required, nonEmpty]} required >
+          <Field name="frequency"
+            component="select"
+            validate={[required, nonEmpty]}
+            required
+            className={`${styles.dropDown} ${styles.formInput}`}
+          >
             <option hidden>Frequency</option>
             <option value="One Time">One Time</option>
             <option value="Monthly">Monthly</option>
@@ -83,13 +88,19 @@ export class AddBillForm extends React.Component {
           <Field component={Input}
             type="date"
             name="dueDate"
+            // placeholder="Due Date"
             validate={[required, nonEmpty]}
             styleClass={styles.formInput}
           />
 
           <label htmlFor="reminder" className={styles.inputLabel}/>
-          <Field name="reminder" component="select" validate={[required, nonEmpty]} required>
-            <option hidden>Reminder</option>
+          <Field name="reminder"
+            component="select"
+            validate={[required, nonEmpty]}
+            required
+            className={`${styles.dropDown} ${styles.formInput}`}
+          >
+            <option hidden>When to be Reminded</option>
             <option value="No Reminder">No Reminder</option>
             <option value="Same Day">Same Day</option>
             <option value="Day Before">Day Before</option>
