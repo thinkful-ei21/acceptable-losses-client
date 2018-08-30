@@ -23,33 +23,36 @@ export class LoginForm extends React.Component {
         <fieldset>
           <legend>Login</legend>
           {error}
-          <label htmlFor="username" className={styles.inputLabel}>
-            Username
-          </label>
-          <Field
-            styleClass={styles.formInput}
-            component={Input}
-            type="text"
-            name="username"
-            id="username"
-            validate={[required, nonEmpty]}
-            placeholder="Username"
-          />
-          <label htmlFor="password" className={styles.inputLabel}>
-            Password
-          </label>
-          <Field
-            styleClass={styles.formInput}
-            component={Input}
-            type="password"
-            name="password"
-            id="password"
-            validate={[required, nonEmpty]}
-            placeholder="Password"
-          />
-          <button className={buttonStyles.form} disabled={this.props.pristine || this.props.submitting}>
-            SUBMIT
-          </button>
+
+          <div className={styles.formInputs}>
+            <label htmlFor="username" className={styles.inputLabel}>
+              Username
+            </label>
+            <Field
+              styleClass={styles.formInput}
+              component={Input}
+              type="text"
+              name="username"
+              id="username"
+              validate={[required, nonEmpty]}
+              placeholder="Username"
+            />
+            <label htmlFor="password" className={styles.inputLabel}>
+              Password
+            </label>
+            <Field
+              styleClass={styles.formInput}
+              component={Input}
+              type="password"
+              name="password"
+              id="password"
+              validate={[required, nonEmpty]}
+              placeholder="Password"
+            />
+            <button className={buttonStyles.form} disabled={this.props.pristine || this.props.submitting}>
+              SUBMIT
+            </button>
+          </div>
         </fieldset>
       </form>
     );
