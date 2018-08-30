@@ -13,8 +13,9 @@ import Input from '../input';
 export class AccountDetails extends React.Component {
   onSubmit(value) {
     const { selectedAccount, dispatch } = this.props;
-    const { name, frequency, id } = selectedAccount;
+    const { name, frequency, id,reminder } = selectedAccount;
     const newAccount = {
+      reminder,
       name,
       url: value.url,
       frequency
