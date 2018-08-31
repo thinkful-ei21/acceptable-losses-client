@@ -33,17 +33,6 @@ export const hideConfirmDeleteUser = () => ({
   type: HIDE_CONFIRM_DELETE_USER
 });
 
-export const UPLOADING_REQUEST = 'UPLOADING_REQUEST';
-export const uploadingRequest = () => ({
-  type: UPLOADING_REQUEST
-});
-
-export const UPLOADING_SUCCESS = 'UPLOADING_SUCCESS';
-export const uploadingSuccess = image => ({
-  type: UPLOADING_SUCCESS,
-  image
-});
-
 export const changePassword = values => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/users/password`, {
@@ -68,15 +57,4 @@ export const changePassword = values => (dispatch, getState) => {
         );
       }
     });
-};
-
-export const uploadImage = value => dispatch => {
-  dispatch(uploadingRequest());
-  fetch(`${API_BASE_URL}/images/upload`, {
-    method: 'POST',
-    body: value
-  })
-    .then(res => res.json())
-    .then(image => dispatch(uploadingSuccess(image)))
-    .catch(err => console.error(err));
 };

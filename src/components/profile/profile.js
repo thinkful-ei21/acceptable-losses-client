@@ -8,10 +8,9 @@ import {
   showEditInfoForm,
   hideEditInfoForm,
   showConfirmDeleteUser,
-  hideConfirmDeleteUser,
-  uploadImage
+  hideConfirmDeleteUser
 } from '../../actions/profile';
-import { deleteUser } from '../../actions/auth';
+import { deleteUser, uploadImage } from '../../actions/auth';
 
 import buttonStyles from '../styles/buttons.module.css';
 import requiresLogin from '../require-login';
@@ -58,6 +57,7 @@ export class Profile extends React.Component {
   }
 
   upload(e) {
+    console.log('uploading!');
     const { dispatch } = this.props;
     const formData = new FormData();
     formData.append('fileName', e.target.files[0]);
@@ -65,9 +65,10 @@ export class Profile extends React.Component {
   }
 
   render() {
-    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, image } = this.props;
-    const { firstName } = user;
-    let form, userImg;
+    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, image, uploading } = this.props;
+    const { firstName, profilePic } = user;
+    console.log(user);
+    let form, userImg, uploadButtons;
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
       form = <ChangePasswordForm />;
     }
@@ -92,20 +93,43 @@ export class Profile extends React.Component {
       );
     }
 
-    if (image) {
-      userImg = <img key={image.public_id} src={image.secure_url} alt="your ugly mug :)" />;
+    if (profilePic.public_id && profilePic.secure_url) {
+      userImg = <img key={profilePic.public_id} src={profilePic.secure_url} alt="your ugly mug :)" />;
     } else {
       userImg = <div>Need a Pic</div>;
+    }
+
+    if (uploading) {
+      uploadButtons = (
+        <React.Fragment>
+          <p>Uploading Image... Please Wait</p>
+        </React.Fragment>
+      );
+    } else if (!profilePic.public_id && !profilePic.secure_url && !uploading) {
+      uploadButtons = (
+        <React.Fragment>
+          <p>Upload an Image</p>
+          <input type="file" onChange={e => this.upload(e)} />
+        </React.Fragment>
+      );
+    } else {
+      uploadButtons = (
+        <React.Fragment>
+          <p>Edit Image</p>
+          <input type="file" onChange={e => this.upload(e)} />
+          <button>Delete</button>
+        </React.Fragment>
+      );
     }
 
     return (
       <div>
         <h2>{firstName}</h2>
         {userImg}
-        <input type="file" onChange={e => this.upload(e)} />
-        {form}
+        {uploadButtons}
         <section>
           <h3>Manage Profile</h3>
+          {form}
           <p>Manage Your Profile Configs Here.</p>
           <button className={buttonStyles.form} onClick={() => this.showEditInfoForm()}>
             Update Your Info
@@ -136,7 +160,8 @@ const mapStateToProps = state => ({
   changePasswordForm: state.profile.toggleChangePasswordForm,
   editInfoForm: state.profile.toggleEditInfoForm,
   confirmDeleteUser: state.profile.toggleConfirmDelete,
-  image: state.profile.image
+  image: state.profile.image,
+  uploading: state.profile.uploading
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Profile));

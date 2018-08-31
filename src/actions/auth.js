@@ -39,6 +39,22 @@ export const authError = error => ({
   error
 });
 
+export const UPLOADING_REQUEST = 'UPLOADING_REQUEST';
+export const uploadingRequest = () => ({
+  type: UPLOADING_REQUEST
+});
+
+export const UPLOADING_SUCCESS = 'UPLOADING_SUCCESS';
+export const uploadingSuccess = image => ({
+  type: UPLOADING_SUCCESS,
+  image
+});
+
+export const DELETE_IMAGE = 'DELETE_IMAGE';
+export const deleteImage = () => ({
+  type: DELETE_IMAGE
+});
+
 const storeAuthInfo = (authToken, dispatch) => {
   const decodedToken = jwtDecode(authToken);
   dispatch(setAuthToken(authToken));
@@ -131,5 +147,20 @@ export const deleteUser = () => (dispatch, getState) => {
       clearAuth();
       clearAuthToken();
     })
+    .catch(err => console.error(err));
+};
+
+export const uploadImage = value => (dispatch, getState) => {
+  dispatch(uploadingRequest());
+  const authToken = getState().auth.authToken;
+  fetch(`${API_BASE_URL}/images/upload`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    },
+    body: value
+  })
+    .then(res => res.json())
+    .then(image => dispatch(uploadingSuccess(image)))
     .catch(err => console.error(err));
 };
