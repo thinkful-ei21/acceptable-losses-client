@@ -58,6 +58,30 @@ export class HeaderBar extends React.Component {
               </div>
 
               <div className={styles.row}>
+                <img className={styles.linkIcon} src={require('../assets/calendar.svg')} alt="calendar icon" />
+                <NavLink
+                  role="navigation"
+                  to="/app/calendar"
+                  className={styles.link}
+                  onClick={() => this.toggleShowMenu()}
+                >
+                  <span>Calendar</span>
+                </NavLink>
+              </div>
+
+              <div className={styles.row}>
+                <img className={styles.linkIcon} src={require('../assets/settings.svg')} alt="settings icon" />
+                <NavLink
+                  role="navigation"
+                  to="/app/profile"
+                  className={styles.link}
+                  onClick={() => this.toggleShowMenu()}
+                >
+                  <span>Settings</span>
+                </NavLink>
+              </div>
+
+              <div className={styles.row}>
                 <img className={styles.linkIcon} src={require('../assets/add.svg')} alt="add bill icon" />
                 <NavLink
                   role="navigation"
@@ -97,6 +121,16 @@ export class HeaderBar extends React.Component {
           <NavLink role="navigation" to="/app/accounts" className={styles.link}>
             <img className={styles.linkIcon} src={require('../assets/bills.svg')} alt="bills icon" />
             <p>Accounts</p>
+          </NavLink>
+
+          <NavLink role="navigation" to="/app/calendar" className={styles.link}>
+            <img className={styles.linkIcon} src={require('../assets/calendar.svg')} alt="calendar icon" />
+            <p>Calendar</p>
+          </NavLink>
+
+          <NavLink role="navigation" to="/app/profile" className={styles.link}>
+            <img className={styles.linkIcon} src={require('../assets/settings.svg')} alt="settings icon" />
+            <p>Settings</p>
           </NavLink>
 
           <NavLink role="navigation" to="/app/add-account" className={styles.link}>
