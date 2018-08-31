@@ -36,7 +36,7 @@
 }
 
 .row {
-  margin-left: 40vw;
+  margin-left: 30vw;
   margin-bottom: 20px;
   /* border: 1px solid black; */
 }
@@ -69,6 +69,11 @@
   cursor: pointer;
 }
 
+@media screen and (min-width: 500px) {
+  .row {
+    margin-left: 40vw;
+  }
+}
 
 
 @media only screen and (min-width: 800px) {
