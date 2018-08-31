@@ -1,4 +1,4 @@
-/* h2 {
+.h2 {
   color: white;
   font-size: 1.75em;
   text-transform: capitalize;
@@ -7,10 +7,19 @@
   margin-left: 20px;
 }
 
+.background {
+  background-color: white;
+}
+
+.hr {
+  margin-right: 40px;
+}
+
+
 
 @media screen and (min-width: 800px) {
-  h2 {
+  .h2 {
     margin-left: 10vw;
     top: -5vh;
   }
-} */
+}

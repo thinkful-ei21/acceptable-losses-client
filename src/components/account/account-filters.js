@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 
 import { toggleFilter } from '../../actions/accounts';
 
+import styles from '../styles/accountPage.module.css';
+
+
 class Filters extends React.Component {
   onChange(event) {
     this.props.dispatch(toggleFilter(event.target.value));

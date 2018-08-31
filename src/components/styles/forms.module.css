@@ -60,6 +60,39 @@ legend {
   margin-top: 20px;
 }
 
+.searchForm {
+  display: flex;
+}
+
+.searchForm label {
+  font-size: .5em;
+  opacity: 0;
+}
+
+.searchInput {
+  width: 200px;
+  height: 35px;
+  border-radius: 5px 0 0 5px; /* top-left, top-right, bottom-right, bottom-left */
+  border: none;
+  padding: 0 10px;
+  color: grey;
+}
+
+.searchForm button {
+  background-color: #A8009C;
+  border: none;
+  width: 50px;
+  border-radius: 0 5px 5px 0; /* top-left, top-right, bottom-right, bottom-left */
+}
+
+.searchForm button:disabled {
+  opacity: .7;
+}
+
+.searchForm button img {
+  width: 75%;
+}
+
 @media screen and (min-width: 800px) {
   .formInputs {
     background-color: white;

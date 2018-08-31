@@ -6,6 +6,9 @@ import { searchAccounts } from '../../actions/accounts';
 
 import Input from '../input';
 
+import styles from '../styles/forms.module.css';
+
+
 class SearchForm extends React.Component {
   onSubmit(values) {
     let searchTerm = values.search;
@@ -20,16 +23,23 @@ class SearchForm extends React.Component {
     }
 
     return (
-      <section>
-        <form id="search" role="search" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-          <label htmlFor="search" />
-          <Field component={Input} type="text" name="search" placeholder="search accounts" />
+        <form id="search"
+          role="search"
+          onSubmit={handleSubmit(values => this.onSubmit(values))}
+          className={styles.searchForm}
+        >
+          <label htmlFor="search">Search</label>
+          <Field component={Input}
+            type="text"
+            name="search"
+            placeholder="Search"
+            styleClass={styles.searchInput}
+          />
           <button type="submit" disabled={pristine || submitting}>
-            search
+            <img src={require('../../assets/search.svg')} alt="search icon"/>
           </button>
+          {clearButton}
         </form>
-        {clearButton}
-      </section>
     );
   }
 }

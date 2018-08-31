@@ -10,7 +10,7 @@ import Filters from './account-filters';
 import AccountCard from './account-card';
 import AccountDetails from './account-details';
 
-// import styles from '../styles/accountPage.module.css';
+import styles from '../styles/accountPage.module.css';
 
 export class AccountsPage extends React.Component {
   componentDidMount() {
@@ -50,17 +50,27 @@ export class AccountsPage extends React.Component {
           return dateB - dateA;
         });
       }
-      accountResults = accountsSorted.map((account, index) => {
-        return <AccountCard key={index} {...account} />;
-      });
+      accountResults = accountsSorted.map((account, index) => (
+        <React.Fragment key={index}>
+          <AccountCard {...account} />
+          <hr className={styles.hr}/>
+        </React.Fragment>
+      ));
     }
     return (
       <section>
-        <h2>Bills</h2>
-        <SearchBar />
-        <Filters />
-        {selectedAccount ? <AccountDetails /> : ''}
-        <ul>{accountResults}</ul>
+        <h2 className={styles.h2}>Bills</h2>
+        <section className={styles.searchFilters}>
+          <SearchBar />
+          <Filters />
+        </section>
+
+        <section className={styles.background}>
+          {selectedAccount ? <AccountDetails /> : ''}
+          <ul className={styles.billsList}>
+            {accountResults}
+          </ul>
+        </section>
       </section>
     );
   }
