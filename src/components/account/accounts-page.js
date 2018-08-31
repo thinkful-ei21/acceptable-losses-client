@@ -58,18 +58,22 @@ export class AccountsPage extends React.Component {
       ));
     }
     return (
-      <section>
+      <section className={styles.wholePage}>
         <h2 className={styles.h2}>Bills</h2>
-        <section className={styles.searchFilters}>
-          <SearchBar />
+        <section className={styles.searchBillFilters}>
           <Filters />
+          <SearchBar />
         </section>
 
-        <section className={styles.background}>
-          {selectedAccount ? <AccountDetails /> : ''}
-          <ul className={styles.billsList}>
-            {accountResults}
-          </ul>
+        <section className={styles.allContent}>
+          <div className={styles.bills}>
+            <ul className={styles.billsList}>
+              {accountResults}
+            </ul>
+          </div>
+          <div className={styles.details}>
+            {selectedAccount ? <AccountDetails /> : ''}
+          </div>
         </section>
       </section>
     );

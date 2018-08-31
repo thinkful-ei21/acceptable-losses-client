@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { toggleFilter } from '../../actions/accounts';
 
-import styles from '../styles/accountPage.module.css';
+import styles from '../styles/forms.module.css';
 
 
 class Filters extends React.Component {
@@ -14,12 +14,17 @@ class Filters extends React.Component {
 
   render() {
     return (
-      <form id="filter">
-        <label htmlFor="filters" />
-        <Field name="filters" component="select" onChange={this.onChange.bind(this)}>
-          <option value="abc">abc</option>
-          <option value="newest">newest</option>
-          <option value="oldest">oldest</option>
+      <form id="filter" className={styles.filterForm}>
+        <label htmlFor="filters">Filter</label>
+        <Field name="filters"
+          component="select"
+          onChange={this.onChange.bind(this)}
+          class={styles.filterDropDown}
+        >
+          <option hidden>Filter by</option>
+          <option value="abc">A-Z</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
         </Field>
       </form>
     );

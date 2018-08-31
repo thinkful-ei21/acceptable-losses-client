@@ -1,3 +1,7 @@
+.wholePage {
+  position: relative;
+}
+
 .h2 {
   color: white;
   font-size: 1.75em;
@@ -7,8 +11,21 @@
   margin-left: 20px;
 }
 
-.background {
+.bills {
   background-color: white;
+  padding-top: .5px; /* value doesn't matter here for some reason, any value gives a fixed top padding */
+}
+
+.searchBillFilters {
+  margin-top: -55px;
+  margin-bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.searchBillFilters form:last-child {
+  margin-right: 20px;
 }
 
 .hr {
@@ -21,5 +38,35 @@
   .h2 {
     margin-left: 10vw;
     top: -5vh;
+  }
+
+  .allContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .bills {
+    margin-top: 0;
+    margin-left: 10vw;
+    width: 57vw;
+    height: 75vh;
+    background-color: white;
+    overflow: auto;
+    border-radius: 7px;
+  }
+
+  .searchBillFilters {
+    margin-left: 10vw;
+    justify-content: flex-end;
+    width: 57vw;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    /* border: 1px solid black; */
+  }
+
+  .searchBillFilters form:last-child {
+    margin-right: 0;
   }
 }

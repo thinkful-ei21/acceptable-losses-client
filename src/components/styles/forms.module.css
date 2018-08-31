@@ -62,15 +62,17 @@ legend {
 
 .searchForm {
   display: flex;
+  margin-bottom: 10px;
 }
 
-.searchForm label {
+.searchForm label,
+.filterForm label {
   font-size: .5em;
   opacity: 0;
 }
 
 .searchInput {
-  width: 200px;
+  width: 40vw;
   height: 35px;
   border-radius: 5px 0 0 5px; /* top-left, top-right, bottom-right, bottom-left */
   border: none;
@@ -81,7 +83,8 @@ legend {
 .searchForm button {
   background-color: #A8009C;
   border: none;
-  width: 50px;
+  width: 10vw;
+  max-width: 50px;
   border-radius: 0 5px 5px 0; /* top-left, top-right, bottom-right, bottom-left */
 }
 
@@ -91,6 +94,15 @@ legend {
 
 .searchForm button img {
   width: 75%;
+}
+
+.filterDropDown {
+  width: 25vw;
+  height: 35px;
+  border: none;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  color: grey;
 }
 
 @media screen and (min-width: 800px) {
@@ -111,5 +123,13 @@ legend {
 
   .form {
     width: 50vw;
+  }
+
+  .searchInput {
+    width: 150px;
+  }
+
+  .filterDropDown {
+    width: 75px;
   }
 }
