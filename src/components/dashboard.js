@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getAccounts } from '../actions/accounts';
+import { getAccounts, resetToggles } from '../actions/accounts';
 import requiresLogin from './require-login';
 
 import SummaryDisplay from './summary/summary-display';
@@ -13,6 +13,7 @@ export class Dashboard extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(getAccounts());
+    dispatch(resetToggles())
   }
 
   render() {
