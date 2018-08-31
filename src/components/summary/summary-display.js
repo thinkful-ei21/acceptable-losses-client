@@ -117,7 +117,7 @@ export class SummaryDisplay extends React.Component {
           <PieChartExpenses graphData={pieGraphData} />
         </section>
         <div className={styles.barGraphs}>
-          <section>
+          <section className={styles.section}>
             <p className={styles.header}>
               Total Expenses: <span>${totalExpenses}</span>
             </p>
@@ -127,7 +127,7 @@ export class SummaryDisplay extends React.Component {
               ''
             )}
           </section>
-          <section>
+          <section className={styles.section}>
             <p className={styles.header}>
               Incomes: <span>${totalIncome}</span>
             </p>

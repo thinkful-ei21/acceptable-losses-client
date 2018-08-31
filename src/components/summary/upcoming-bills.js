@@ -11,13 +11,13 @@ export class UpcomingBills extends React.Component {
       accountResults = this.props.accounts.map((account, index) => (
         <React.Fragment key={index}>
           <AccountCard {...account} />
-          <hr />
+          <hr className={styles.hr}/>
         </React.Fragment>
       ));
     }
     return (
       <div className={styles.upcomingBills}>
-        <h3>Upcoming Bills</h3>
+        <h3 className={styles.h3}>Upcoming Bills</h3>
         <ul>{accountResults}</ul>
       </div>
     );

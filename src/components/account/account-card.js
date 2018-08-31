@@ -15,9 +15,13 @@ class AccountCard extends React.Component {
     let finalAmount = Number(nextDue.amount).toFixed(2);
 
     return (
-      <li>
+      <li className={styles.li}>
         <Link to="/app/accounts" className={styles.accDetailsLink}>
-          <h4 onClick={() => dispatch(getAccount(id))}>{name}</h4>
+          <h4 className={styles.h4}
+            onClick={() => dispatch(getAccount(id))}
+          >
+            {name}
+          </h4>
         </Link>
         <div className={styles.tabletViewBillInfo}>
           <div className={styles.info}>

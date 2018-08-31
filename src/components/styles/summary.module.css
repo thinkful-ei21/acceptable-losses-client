@@ -1,4 +1,4 @@
-h2 {
+.h2 {
   color: white;
   font-size: 1.75em;
   text-transform: capitalize;
@@ -18,7 +18,7 @@ h2 {
   margin-top: -25px;
 }
 
-section {
+.section {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -35,22 +35,20 @@ section {
   background-color: white;
 }
 
-h3 {
+.h3 {
   color: black;
   margin-left: 5%;
 }
 
-li {
+.li {
   list-style: none;
-  /* width: 85%;
-  margin: 0 auto; */
 }
 
-hr {
+.hr {
   margin-right: 30px;
 }
 
-h4 {
+.h4 {
   font-size: 1.25em;
   padding-top: 10px;
   margin-bottom: 0;
@@ -98,12 +96,12 @@ h4 {
   /* text-align: center; */
 }
 
-li button {
+.li button {
   margin-top: 15px;
   margin-bottom: 25px;
 }
 
-li button:first-child {
+.li button:first-child {
   margin-right: 20px;
 }
 
@@ -118,13 +116,13 @@ li button:first-child {
     margin-right: 30px;
   }
 
-  li button:first-child {
+  .li button:first-child {
     margin-right: 5px;
   }
 }
 
 @media screen and (min-width: 800px) {
-  h2 {
+  .h2 {
     margin-left: 10vw;
     top: -5vh;
   }
@@ -147,11 +145,11 @@ li button:first-child {
     border-radius: 7px;
   }
 
-  h3 {
+  .h3 {
     margin-left: 8%;
   }
 
-  li {
+  .li {
     padding-right: 40px;
   }
 
@@ -159,12 +157,12 @@ li button:first-child {
     text-align: center;
   }
 
-  hr {
+  .hr {
     margin-right: 40px;
   }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1200px) {
+@media screen and (min-width: 800px) {
   .info {
     display: flex;
     flex-direction: column;
@@ -178,11 +176,17 @@ li button:first-child {
     text-align: left;
   }
 
-  li button:first-child {
+  .li button:first-child {
     margin-bottom: 0;
   }
 
-  li button:first-child {
+  .li button:first-child {
     margin-right: 0;
+  }
+
+  .desktopView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }
