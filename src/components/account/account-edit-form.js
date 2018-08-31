@@ -10,14 +10,15 @@ import Input from '../input';
 
 export class AccountEdit extends React.Component {
   componentDidMount() {
-    const { url, frequency, name, nextDue, reminder } = this.props.selectedAccount;
+    const { url, frequency, name, nextDue, reminder,amount } = this.props.selectedAccount;
     const { initialize } = this.props;
     initialize({
       url,
       frequency,
       name,
-      dueDate: nextDue.dueDate,
-      reminder
+      dueDate:new Date(nextDue.dueDate).toISOString().substr(0, 10),
+      reminder,
+      amount:nextDue.amount
     });
   }
 
@@ -30,7 +31,7 @@ export class AccountEdit extends React.Component {
   render() {
     let err;
     const { handleSubmit, dispatch, error, pristine, submitting } = this.props;
-    const { url, frequency, name, nextDue, reminder } = this.props.selectedAccount;
+    const { url, frequency, name, nextDue, reminder, amount } = this.props.selectedAccount;
 
     if (error) {
       err = <div aria-live="polite">{error}</div>;
@@ -42,6 +43,10 @@ export class AccountEdit extends React.Component {
         <Field component={Input} type="text" name="name" value={name} validate={[required, nonEmpty]} />
         <label htmlFor="url">Website:</label>
         <Field component={Input} type="text" name="url" value={url} />
+        <label htmlFor="amount">
+              Amount:
+            </label>
+            <Field component={Input} type="number" name="amount" value={amount} />
         <label htmlFor="frequency" />
         <Field name="frequency" component="select" value={frequency} validate={[required, nonEmpty]} required>
           <option hidden>Frequency</option>
@@ -51,8 +56,8 @@ export class AccountEdit extends React.Component {
           <option value="Semi-Annually">Semi-Annually</option>
           <option value="Annually">Annually</option>
         </Field>
-        <label htmlFor="dueDate">Due Date: {moment(nextDue.dueDate).format('MMM Do, YYYY')}</label>
-        <Field component={Input} type="date" name="dueDate" value={nextDue.dueDate} />
+        <label htmlFor="dueDate">Due Date:</label>
+        <Field id="dateField"component={Input} type="date" name="dueDate" value={new Date(nextDue.dueDate).toISOString().substr(0, 10)} />
         <label htmlFor="reminder" />
         <Field name="reminder" component="select" value={reminder} validate={[required, nonEmpty]} required>
           <option hidden>Reminder</option>

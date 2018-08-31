@@ -7,7 +7,8 @@ import {
   TOGGLE_EDIT,
   TOGGLE_DELETE,
   TOGGLE_PAY,
-  GET_DAYS_BILLS
+  GET_DAYS_BILLS,
+  RESET_TOGGLES
 } from '../actions/accounts';
 import moment from 'moment';
 
@@ -70,6 +71,14 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       payButtonToggle: action.data,
+      error: null
+    };
+  }else if (action.type === RESET_TOGGLES) {
+    return {
+      ...state,
+      payButtonToggle: null,  
+      editButtonToggle: false,
+      deleteButtonToggle: false,
       error: null
     };
   } else if (action.type === GET_DAYS_BILLS) {

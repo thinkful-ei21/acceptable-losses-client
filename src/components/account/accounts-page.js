@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import requiresLogin from '../require-login';
-import { getAccounts } from '../../actions/accounts';
+import { getAccounts, resetToggles } from '../../actions/accounts';
 
 import SearchBar from './search-bar';
 
@@ -15,6 +15,7 @@ import AccountDetails from './account-details';
 export class AccountsPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
+    this.props.dispatch(resetToggles())
   }
 
   render() {

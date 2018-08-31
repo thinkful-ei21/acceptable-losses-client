@@ -38,7 +38,7 @@ class Calendar extends React.Component {
         billsPaid.push(moment(allBills[i][j].dueDate).format('YYYY-MM-DD'));
       }
     }
-    let borderColor = '1px lightgrey solid';
+    let borderColor = '2px lightgrey solid';
     if (dates === this.props.selectedDay) {
       borderColor = 'blue 3px dotted';
     }
@@ -68,7 +68,9 @@ class Calendar extends React.Component {
     } else {
       return {
         style: {
-          border: `${borderColor}`
+          border: `${borderColor}`,
+          'background':'white',
+          'font-weight': 'normal'
         }
       };
     }
@@ -86,7 +88,7 @@ class Calendar extends React.Component {
     let bills = [];
     return (
       <div>
-        <div style={{ height: '500px' }}>
+        <div style={{ height: '500px', width:'80%', margin:'0 auto', color:'white' }}>
           <BigCalendar
             selectable
             events={bills}

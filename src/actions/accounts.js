@@ -51,6 +51,12 @@ export const getDaysBills = data => ({
   data
 });
 
+export const RESET_TOGGLES = 'RESET_TOGGLES';
+export const resetToggles = () => ({
+  type: RESET_TOGGLES
+});
+
+
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
   return fetch(`${API_BASE_URL}/accounts`, {
