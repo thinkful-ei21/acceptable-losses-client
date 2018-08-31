@@ -46,6 +46,20 @@
     justify-content: space-between;
   }
 
+  .searchBillFilters {
+    margin-left: 10vw;
+    justify-content: flex-end;
+    width: 54vw;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    /* border: 1px solid black; */
+  }
+
+  .searchBillFilters form:last-child {
+    margin-right: 0;
+  }
+
   .bills {
     margin-top: 0;
     margin-left: 10vw;
@@ -56,17 +70,14 @@
     border-radius: 7px;
   }
 
-  .searchBillFilters {
-    margin-left: 10vw;
-    justify-content: flex-end;
-    width: 57vw;
-    position: absolute;
-    top: 20px;
-    left: 0;
-    /* border: 1px solid black; */
+  .details {
+    margin: 0 5vw;
+    width: 27vw;
+    height: 75vh;
+    overflow: auto;
+    border-radius: 7px;
+    background-color: white;
+
   }
 
-  .searchBillFilters form:last-child {
-    margin-right: 0;
-  }
 }

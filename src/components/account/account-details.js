@@ -9,6 +9,8 @@ import AccountPay from './account-pay-form';
 
 import Input from '../input';
 
+import styles from '../styles/accountPage.module.css';
+
 export class AccountDetails extends React.Component {
   onSubmit(value) {
     const { selectedAccount, dispatch } = this.props;
@@ -158,7 +160,7 @@ export class AccountDetails extends React.Component {
     }
 
     return (
-      <section>
+      <section className={styles.details}>
         <h3>{accountName}</h3>
         {buttons}
         {website}
