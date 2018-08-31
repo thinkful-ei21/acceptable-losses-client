@@ -21,7 +21,7 @@ legend {
 }
 
 .form {
-  width: 50vw;
+  width: 70vw;
   margin: 0 auto;
   text-align: center;
 }
@@ -35,6 +35,7 @@ legend {
   border-radius: 5px;
   border: none;
   width: 100%;
+  max-width: 325px;
   height: 35px;
   padding: 0 10px;
   color: grey;
@@ -75,5 +76,7 @@ legend {
     color: grey;
   }
 
-
+  .form {
+    width: 50vw;
+  }
 }
