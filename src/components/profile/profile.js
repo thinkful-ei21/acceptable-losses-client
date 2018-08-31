@@ -65,7 +65,7 @@ export class Profile extends React.Component {
   }
 
   render() {
-    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, image, uploading } = this.props;
+    const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, uploading } = this.props;
     const { firstName, profilePic } = user;
     console.log(user);
     let form, userImg, uploadButtons;
