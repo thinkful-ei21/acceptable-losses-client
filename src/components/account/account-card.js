@@ -13,7 +13,7 @@ class AccountCard extends React.Component {
   render() {
     const { nextDue, id, url, dispatch, name, payButtonToggle } = this.props;
     let finalAmount = Number(nextDue.amount).toFixed(2);
-
+    console.log(nextDue.dueDate + '' + name)
     return (
       <li>
         <Link to="/app/accounts" className={styles.accDetailsLink}>
@@ -44,7 +44,7 @@ class AccountCard extends React.Component {
                 Mark as Paid
               </button>
             )}
-            {url ? (
+            {url && !payButtonToggle ? (
               <button className={buttonStyles.payHere}>
                 <a target="_blank" href={url}>
                   Pay Here
