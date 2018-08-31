@@ -50,9 +50,10 @@ export const uploadingSuccess = user => ({
   user
 });
 
-export const DELETE_IMAGE = 'DELETE_IMAGE';
-export const deleteImage = () => ({
-  type: DELETE_IMAGE
+export const DELETE_IMAGE_SUCCESS = 'DELETE_IMAGE_SUCCESS';
+export const deleteImageSuccess = user => ({
+  type: DELETE_IMAGE_SUCCESS,
+  user
 });
 
 const storeAuthInfo = (authToken, dispatch) => {
@@ -162,5 +163,21 @@ export const uploadImage = value => (dispatch, getState) => {
   })
     .then(res => res.json())
     .then(image => dispatch(uploadingSuccess(image)))
+    .catch(err => console.error(err));
+};
+
+export const deleteImage = public_id => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/images/delete`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify({ public_id })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(user => dispatch(deleteImageSuccess(user)))
     .catch(err => console.error(err));
 };

@@ -10,7 +10,7 @@ import {
   showConfirmDeleteUser,
   hideConfirmDeleteUser
 } from '../../actions/profile';
-import { deleteUser, uploadImage, refreshAuthToken } from '../../actions/auth';
+import { deleteUser, uploadImage, deleteImage } from '../../actions/auth';
 
 import buttonStyles from '../styles/buttons.module.css';
 import requiresLogin from '../require-login';
@@ -57,19 +57,17 @@ export class Profile extends React.Component {
   }
 
   upload(e) {
-    console.log('uploading!');
     const { dispatch } = this.props;
     const formData = new FormData();
     formData.append('fileName', e.target.files[0]);
     dispatch(uploadImage(formData));
-    dispatch(refreshAuthToken());
   }
 
   render() {
     const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, uploading } = this.props;
     const { firstName, profilePic } = user;
-    console.log(user);
     let form, userImg, uploadButtons;
+
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
       form = <ChangePasswordForm />;
     }
@@ -94,10 +92,10 @@ export class Profile extends React.Component {
       );
     }
 
-    if (profilePic.public_id && profilePic.secure_url) {
-      userImg = <img key={profilePic.public_id} src={profilePic.secure_url} alt="your ugly mug :)" />;
+    if (profilePic && profilePic.public_id && profilePic.secure_url) {
+      userImg = <img key={profilePic.public_id} src={profilePic.secure_url} alt="Your Ugly Mug :)" />;
     } else {
-      userImg = <div>Need a Pic</div>;
+      userImg = <img src={require('../../assets/no-profile-image.png')} alt="missing profile pic" />;
     }
 
     if (uploading) {
@@ -118,7 +116,9 @@ export class Profile extends React.Component {
         <React.Fragment>
           <p>Edit Image</p>
           <input type="file" onChange={e => this.upload(e)} />
-          <button>Delete</button>
+          <button className={buttonStyles.form} onClick={() => dispatch(deleteImage(profilePic.public_id))}>
+            Delete
+          </button>
         </React.Fragment>
       );
     }
@@ -127,7 +127,7 @@ export class Profile extends React.Component {
       <div>
         <h2>{firstName}</h2>
         {userImg}
-        {uploadButtons}
+        <div>{uploadButtons}</div>
         <section>
           <h3>Manage Profile</h3>
           {form}
@@ -162,7 +162,7 @@ const mapStateToProps = state => ({
   editInfoForm: state.profile.toggleEditInfoForm,
   confirmDeleteUser: state.profile.toggleConfirmDelete,
   image: state.profile.image,
-  uploading: state.profile.uploading
+  uploading: state.auth.uploading
 });
 
 export default requiresLogin()(connect(mapStateToProps)(Profile));
