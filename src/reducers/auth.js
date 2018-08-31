@@ -51,12 +51,7 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === UPDATE_USER) {
     return {
       ...state,
-      currentUser: {
-        ...state.currentUser,
-        username: action.data.username,
-        firstName: action.data.firstName,
-        lastName: action.data.lastName
-      }
+      currentUser: action.user
     };
   } else if (action.type === UPLOADING_REQUEST) {
     return {
@@ -67,19 +62,13 @@ export default function reducer(state = initialState, action) {
     return {
       ...state,
       uploading: false,
-      currentUser: {
-        ...state.currentUser,
-        profilePic: action.image
-      }
+      currentUser: action.user
     };
   } else if (action.type === DELETE_IMAGE) {
     return {
       ...state,
       uploading: false,
-      currentUser: {
-        ...state.currentUser,
-        profilePic: ''
-      }
+      currentUser: action.user
     };
   }
   return state;

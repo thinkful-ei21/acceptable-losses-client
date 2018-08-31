@@ -10,7 +10,7 @@ import {
   showConfirmDeleteUser,
   hideConfirmDeleteUser
 } from '../../actions/profile';
-import { deleteUser, uploadImage } from '../../actions/auth';
+import { deleteUser, uploadImage, refreshAuthToken } from '../../actions/auth';
 
 import buttonStyles from '../styles/buttons.module.css';
 import requiresLogin from '../require-login';
@@ -62,6 +62,7 @@ export class Profile extends React.Component {
     const formData = new FormData();
     formData.append('fileName', e.target.files[0]);
     dispatch(uploadImage(formData));
+    dispatch(refreshAuthToken());
   }
 
   render() {

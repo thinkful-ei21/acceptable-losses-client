@@ -12,9 +12,9 @@ export const setAuthToken = authToken => ({
 });
 
 export const UPDATE_USER = 'UPDATE_USER';
-export const updateUser = data => ({
+export const updateUser = user => ({
   type: UPDATE_USER,
-  data
+  user
 });
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
@@ -45,9 +45,9 @@ export const uploadingRequest = () => ({
 });
 
 export const UPLOADING_SUCCESS = 'UPLOADING_SUCCESS';
-export const uploadingSuccess = image => ({
+export const uploadingSuccess = user => ({
   type: UPLOADING_SUCCESS,
-  image
+  user
 });
 
 export const DELETE_IMAGE = 'DELETE_IMAGE';
