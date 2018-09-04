@@ -54,7 +54,7 @@ export class AccountEdit extends React.Component {
             name="name"
             value={name}
             validate={[required, nonEmpty]}
-            styleClass={styles.formInput}
+            styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
           <label htmlFor="url" className={styles.editFormLabel}>
@@ -64,7 +64,7 @@ export class AccountEdit extends React.Component {
             type="text"
             name="url"
             value={url}
-            styleClass={styles.formInput}
+            styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
           <label htmlFor="amount" className={styles.editFormLabel}>
@@ -74,7 +74,7 @@ export class AccountEdit extends React.Component {
             type="number"
             name="amount"
             value={amount}
-            styleClass={styles.formInput}
+            styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
           <label htmlFor="frequency" className={styles.editFormLabel}>
@@ -85,7 +85,7 @@ export class AccountEdit extends React.Component {
             value={frequency}
             validate={[required, nonEmpty]}
             required
-            className={`${styles.dropDown} ${styles.formInput} ${styles.editDropDown}`}
+            className={`${styles.dropDown} ${`${styles.formInput} ${styles.editFormInput}`} ${styles.editDropDown}`}
           >
             <option hidden>Frequency</option>
             <option value="One Time">One Time</option>
@@ -104,7 +104,7 @@ export class AccountEdit extends React.Component {
             type="date"
             name="dueDate"
             value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
-            styleClass={styles.formInput}
+            styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
           <label htmlFor="reminder" className={styles.editFormLabel}>
@@ -115,7 +115,7 @@ export class AccountEdit extends React.Component {
             value={reminder}
             validate={[required, nonEmpty]}
             required
-            className={`${styles.dropDown} ${styles.formInput} ${styles.editDropDown}`}
+            className={`${styles.dropDown} ${`${styles.formInput} ${styles.editFormInput}`} ${styles.editDropDown}`}
           >
             <option hidden>Reminder</option>
             <option value="No Reminder">No Reminder</option>
@@ -124,10 +124,12 @@ export class AccountEdit extends React.Component {
             <option value="Week Before">Week Before</option>
           </Field>
 
-          <button type="submit" disabled={pristine || submitting}  className={`${buttonStyles.updateForm} ${styles.editUpdateButton}`}>
-            Update
-          </button>
-          <button className={`${buttonStyles.cancelForm} ${styles.editCancelButton}`} onClick={e => dispatch(toggleEdit())}>Cancel</button>
+          <div className={styles.editButtons}>
+            <button type="submit" disabled={pristine || submitting}  className={`${buttonStyles.updateForm} ${styles.editUpdateButton}`}>
+              Update
+            </button>
+            <button className={`${buttonStyles.cancelForm} ${styles.editCancelButton}`} onClick={e => dispatch(toggleEdit())}>Cancel</button>
+          </div>
         </fieldset>
       </form>
     );
