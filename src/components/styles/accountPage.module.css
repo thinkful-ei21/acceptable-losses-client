@@ -28,8 +28,71 @@
   margin-right: 20px;
 }
 
+/* Styling account card */
+.li {
+  list-style: none;
+}
+
 .hr {
-  margin-right: 40px;
+  margin-right: 30px;
+}
+
+.h4 {
+  font-size: 1.25em;
+  padding-top: 10px;
+  margin-bottom: 0;
+}
+
+.accDetailsLink {
+  text-decoration: none;
+  color: black;
+}
+
+.accDetailsLink:hover {
+  text-decoration: underline;
+}
+
+/* Due date and Amount info */
+.info {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+
+/* Amount info */
+.info div:last-child {
+  margin-left: 30px;
+}
+
+.dueLabel,
+.amountLabel {
+  font-style: italic;
+  font-size: .75em;
+  color: #00506B;
+  margin-bottom: 0;
+}
+
+.due,
+.amount {
+  font-size: 1.25em;
+  margin: 0;
+}
+
+.amount {
+  color: #A8009C;
+}
+
+.centerButtons {
+  /* text-align: center; */
+}
+
+.li button {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.li button:last-child {
+  margin-left: 20px;
 }
 
 /* .details {
@@ -42,6 +105,22 @@
   overflow-x: hidden;
   background-color: white;
 } */
+
+@media screen and (min-width: 500px) and (max-width: 799px) {
+  .tabletViewBillInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .centerButtons {
+    margin-right: 30px;
+  }
+
+  .li button:last-child {
+    margin-left: 5px;
+  }
+}
 
 @media screen and (min-width: 800px) {
   .h2 {
@@ -88,5 +167,19 @@
     background-color: white;
     position: relative;
   } */
+
+  .li {
+    padding-right: 40px;
+  }
+
+  .hr {
+    margin-right: 40px;
+  }
+
+  .tabletViewBillInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 
 }

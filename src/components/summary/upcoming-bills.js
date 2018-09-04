@@ -15,12 +15,12 @@ export class UpcomingBills extends React.Component {
         var dateA = new Date(a.nextDue.dueDate);
         var dateB = new Date(b.nextDue.dueDate);
         return dateA - dateB;
-      });     
+      });
       accountResults = accountsSorted.map((account, index) => (
         <React.Fragment key={index}>
           <AccountCard
             {...account}
-            // styles={styles}
+            styles={styles}
           />
           <hr className={styles.hr}/>
         </React.Fragment>
