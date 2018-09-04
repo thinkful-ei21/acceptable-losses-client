@@ -14,17 +14,34 @@ class AccountPay extends React.Component {
       amount: nextDue.amount
     });
   }
+
+  submitPayment() {
+    if (this.props.payToggle) {
+      this.props.payToggle(false);
+    }
+    return;
+  }
+
+  cancel() {
+    const { dispatch, payToggle } = this.props;
+    dispatch(togglePay(null));
+    if (payToggle) {
+      payToggle(false);
+    }
+  }
+
   onSubmit(value) {
-    const { dispatch, selectedAccount } = this.props;
+    const { dispatch, selectedAccount, selectedDay } = this.props;
     let { dueDate } = selectedAccount.nextDue;
     let updatedAccount = { amount: value.amount, dueDate };
+    this.submitPayment();
     return dispatch(payBill(updatedAccount, selectedAccount.id))
       .then(() => dispatch(togglePay(null)))
-      .then(() => this.props.dispatch(getDaysBills(this.props.selectedDay)));
+      .then(() => dispatch(getDaysBills(selectedDay)));
   }
 
   render() {
-    const { handleSubmit, submitting, dispatch } = this.props;
+    const { handleSubmit, submitting } = this.props;
     return (
       <section>
         <form id="amount" onSubmit={handleSubmit(values => this.onSubmit(values))}>
@@ -33,7 +50,7 @@ class AccountPay extends React.Component {
           <button type="submit" disabled={submitting}>
             Confirm Payment
           </button>
-          <button onClick={() => dispatch(togglePay(null))}>Cancel</button>
+          <button onClick={() => this.cancel()}>Cancel</button>
         </form>
       </section>
     );

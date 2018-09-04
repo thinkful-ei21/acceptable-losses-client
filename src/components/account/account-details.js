@@ -9,8 +9,8 @@ import {
   toggleEdit,
   payBill,
   toggleDelete,
-  togglePay,
-  clearAccount
+  clearAccount,
+  getAccount
 } from '../../actions/accounts';
 import AccountEdit from './account-edit-form';
 import AccountPay from './account-pay-form';
@@ -24,7 +24,8 @@ export class AccountDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      confirmPayment: false
+      payToggle: false,
+      webToggle: false
     };
   }
 
@@ -34,10 +35,20 @@ export class AccountDetails extends React.Component {
     const newAccount = {
       reminder,
       name,
-      url: value.url,
-      frequency
+      frequency,
+      url: value.url
     };
-    return dispatch(updateAccount(newAccount, id));
+    return dispatch(updateAccount(newAccount, id))
+      .then(() => dispatch(getAccount(id)))
+      .then(() => this.webToggle(false));
+  }
+
+  webToggle(val) {
+    return this.setState({ webToggle: val });
+  }
+
+  payToggle(val) {
+    return this.setState({ payToggle: val });
   }
 
   whenClicked(e) {
@@ -54,16 +65,13 @@ export class AccountDetails extends React.Component {
       handleSubmit,
       pristine,
       submitting,
-      deleteButtonToggle,
-      payButtonToggle
+      deleteButtonToggle
     } = this.props;
     const { name, nextDue, id, bills, url, reminder } = selectedAccount;
 
     let billHistory,
       accountName,
       payButtons,
-      // website,
-      addPaySiteForm,
       nextDueBill,
       frequency,
       editingButtons,
@@ -73,17 +81,39 @@ export class AccountDetails extends React.Component {
       editForm = editButtonToggle,
       showSingleAction;
 
-    addPaySiteForm = (
-      <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-        <label htmlFor="website" />
-        <Field component={Input} type="text" name="url" placeholder="add website" />
-        <button type="submit" disabled={pristine || submitting}>
-          Save
-        </button>
-      </form>
-    );
+    if (this.state.webToggle && !this.state.payToggle) {
+      payButtons = (
+        <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
+          <label htmlFor="website" />
+          <Field component={Input} type="text" name="url" placeholder="add website" />
+          <button type="submit" disabled={pristine || submitting}>
+            Save
+          </button>
+          <button onClick={() => this.webToggle(false)}>X</button>
+        </form>
+      );
+    } else if (!this.state.webToggle && this.state.payToggle) {
+      payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
+    } else {
+      payButtons = (
+        <div>
+          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+            Mark as Paid
+          </button>
+          {url ? (
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          ) : (
+            <button onClick={() => this.webToggle(true)}>Add Website</button>
+          )}
+        </div>
+      );
+    }
 
-    if (!editForm && !deleteButtonToggle && !payButtonToggle) {
+    if (!editForm && !deleteButtonToggle && !this.state.payToggle) {
       billHistory = bills.map((bill, index) => {
         return bill.isPaid ? (
           <tr key={index}>
@@ -151,67 +181,16 @@ export class AccountDetails extends React.Component {
           <button onClick={() => dispatch(toggleEdit())} className={buttonStyles.editting}>
             <img src={require('../../assets/edit.svg')} alt="Edit icon" />
           </button>
-
           <button onClick={() => dispatch(clearAccount())} className={buttonStyles.editting}>
             back
             {/* <img src={require('../../assets/edit.svg')} alt="Back icon"/> */}
           </button>
-
-          {/* {deleteButtonToggle ? (
-            <React.Fragment>
-              <button
-                onClick={() => {
-                  return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
-                }}
-              >
-                Confirm Delete
-              </button>
-              <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
-            </React.Fragment>
-          ) : ( */}
           <button onClick={() => dispatch(toggleDelete())} className={buttonStyles.editting}>
             <img src={require('../../assets/delete.svg')} alt="Delete icon" />
           </button>
-          {/* )} */}
-          {/* {deleteButtonToggle ? (
-            <button
-              onClick={() => {
-                return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
-              }}
-            >
-              Confirm Delete
-            </button>
-          ) : (
-            ''
-          )} */}
-        </div>
-      );
-
-      payButtons = (
-        <div>
-          {/* {payButtonToggle === id ? (
-            <AccountPay />
-          ) : ( */}
-          <button className={buttonStyles.markAsPaid} onClick={() => dispatch(togglePay(id))}>
-            Mark as Paid
-          </button>
-          {/* )} */}
-          {url ? (
-            <button className={buttonStyles.payHere}>
-              <a target="_blank" href={url}>
-                Pay Here
-              </a>
-            </button>
-          ) : (
-            addPaySiteForm
-          )}
         </div>
       );
     }
-
-    // if (url && !editForm) {
-    //
-    // }
 
     if (editForm) {
       showSingleAction = <AccountEdit />;
@@ -233,14 +212,14 @@ export class AccountDetails extends React.Component {
       );
     }
 
-    if (payButtonToggle) {
-      showSingleAction = (
-        <React.Fragment>
-          <p>How much did you pay?</p>
-          <AccountPay />
-        </React.Fragment>
-      );
-    }
+    // if (this.state.payToggle) {
+    //   showSingleAction = (
+    //     <React.Fragment>
+    //       <p>How much did you pay?</p>
+    //       <AccountPay />
+    //     </React.Fragment>
+    //   );
+    // }
     // if (url) {
     //   website = (
     //     <a target="_blank" href={url}>
@@ -281,7 +260,6 @@ export class AccountDetails extends React.Component {
 
 const mapStateToProps = state => ({
   deleteButtonToggle: state.accounts.deleteButtonToggle,
-  payButtonToggle: state.accounts.payButtonToggle,
   editButtonToggle: state.accounts.editButtonToggle,
   selectedAccount: state.accounts.account
 });

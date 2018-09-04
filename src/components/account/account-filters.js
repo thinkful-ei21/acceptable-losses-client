@@ -6,7 +6,6 @@ import { toggleFilter } from '../../actions/accounts';
 
 import styles from '../styles/forms.module.css';
 
-
 class Filters extends React.Component {
   onChange(event) {
     this.props.dispatch(toggleFilter(event.target.value));
@@ -16,11 +15,7 @@ class Filters extends React.Component {
     return (
       <form id="filter" className={styles.filterForm}>
         <label htmlFor="filters">Filter</label>
-        <Field name="filters"
-          component="select"
-          onChange={this.onChange.bind(this)}
-          class={styles.filterDropDown}
-        >
+        <Field name="filters" component="select" onChange={this.onChange.bind(this)} className={styles.filterDropDown}>
           <option hidden>Filter by</option>
           <option value="abc">A-Z</option>
           <option value="newest">Newest</option>

@@ -9,7 +9,8 @@ import {
   TOGGLE_PAY,
   GET_DAYS_BILLS,
   RESET_TOGGLES,
-  CLEAR_ACCOUNT
+  CLEAR_ACCOUNT,
+  TOGGLE_WEB
 } from '../actions/accounts';
 import moment from 'moment';
 
@@ -22,6 +23,7 @@ const initialState = {
   editButtonToggle: false,
   deleteButtonToggle: false,
   payButtonToggle: null,
+  toggleWeb: null,
   daysBills: null,
   selectedDay: null
 };
@@ -67,6 +69,12 @@ export default function reducer(state = initialState, action) {
       editButtonToggle: !state.editButtonToggle,
       error: null
     };
+  } else if (action.type === TOGGLE_WEB) {
+    return {
+      ...state,
+      toggleWeb: action.data,
+      error: null
+    };
   } else if (action.type === TOGGLE_DELETE) {
     return {
       ...state,
@@ -85,6 +93,7 @@ export default function reducer(state = initialState, action) {
       payButtonToggle: null,
       editButtonToggle: false,
       deleteButtonToggle: false,
+      toggleWeb: null,
       error: null
     };
   } else if (action.type === GET_DAYS_BILLS) {

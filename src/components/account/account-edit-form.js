@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm, focus } from 'redux-form';
 import { connect } from 'react-redux';
-import moment from 'moment';
+// import moment from 'moment';
 
 import { required, nonEmpty } from '../../validators';
 import { updateAccount, toggleEdit } from '../../actions/accounts';
@@ -10,7 +10,7 @@ import Input from '../input';
 
 export class AccountEdit extends React.Component {
   componentDidMount() {
-    const { url, frequency, name, nextDue, reminder, amount } = this.props.selectedAccount;
+    const { url, frequency, name, nextDue, reminder } = this.props.selectedAccount;
     const { initialize } = this.props;
     initialize({
       url,

@@ -3,23 +3,57 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { togglePay, getAccount } from '../../actions/accounts';
+import { togglePay, getAccount, toggleWeb } from '../../actions/accounts';
 import AccountPay from './account-pay-form';
 
 import styles from '../styles/summary.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
 class AccountCard extends React.Component {
+  webToggle() {
+    const { dispatch, id } = this.props;
+    return dispatch(toggleWeb(id));
+  }
+
   render() {
     const { nextDue, id, url, dispatch, name, payButtonToggle } = this.props;
     let finalAmount = Number(nextDue.amount).toFixed(2);
-    console.log(nextDue.dueDate + '' + name)
+    let buttons;
+    const markAsPaid = (
+      <button
+        className={buttonStyles.markAsPaid}
+        onClick={() => dispatch(getAccount(id)).then(() => dispatch(togglePay(id)))}
+      >
+        Mark as Paid
+      </button>
+    );
+
+    if (payButtonToggle === id) {
+      buttons = <AccountPay />;
+    } else if (payButtonToggle === null && url) {
+      buttons = (
+        <React.Fragment>
+          {markAsPaid}
+          <button className={buttonStyles.payHere}>
+            <a target="_blank" href={url}>
+              Pay Here
+            </a>
+          </button>
+        </React.Fragment>
+      );
+    } else if (payButtonToggle === null && !url) {
+      buttons = (
+        <React.Fragment>
+          {markAsPaid}
+          <button onClick={() => this.webToggle(true)}>Add Website</button>
+        </React.Fragment>
+      );
+    }
+
     return (
       <li className={styles.li}>
         <Link to="/app/accounts" className={styles.accDetailsLink}>
-          <h4 className={styles.h4}
-            onClick={() => dispatch(getAccount(id))}
-          >
+          <h4 className={styles.h4} onClick={() => dispatch(getAccount(id))}>
             {name}
           </h4>
         </Link>
@@ -35,29 +69,7 @@ class AccountCard extends React.Component {
             </div>
           </div>
 
-          <div className={styles.centerButtons}>
-            {payButtonToggle === id ? (
-              <AccountPay />
-            ) : (
-              <button
-                className={buttonStyles.markAsPaid}
-                onClick={() => {
-                  return dispatch(getAccount(id)).then(() => dispatch(togglePay(id)));
-                }}
-              >
-                Mark as Paid
-              </button>
-            )}
-            {url && !payButtonToggle ? (
-              <button className={buttonStyles.payHere}>
-                <a target="_blank" href={url}>
-                  Pay Here
-                </a>
-              </button>
-            ) : (
-              ''
-            )}
-          </div>
+          <div className={styles.centerButtons}>{buttons}</div>
         </div>
       </li>
     );
@@ -65,7 +77,8 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  payButtonToggle: state.accounts.payButtonToggle
+  payButtonToggle: state.accounts.payButtonToggle,
+  toggleWeb: state.accounts.toggleWeb
 });
 
 export default connect(mapStateToProps)(AccountCard);
