@@ -1,16 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import {
-  getIncomes,
-  getIncome,
-  deleteIncome,
-  showIncomeForm,
-  hideIncomeForm,
-  showUpdateForm,
-  hideUpdateForm
-} from '../../actions/incomes';
-
+import { getIncomes } from '../../actions/incomes';
 import PieChartExpenses from './summary-expenses-pie-chart';
 import BarGraphExpenses from './summary-expenses-bar-graph';
 
@@ -19,26 +10,6 @@ import styles from '../styles/summary.module.css';
 export class SummaryDisplay extends React.Component {
   componentDidMount() {
     this.props.dispatch(getIncomes());
-  }
-
-  showForm() {
-    this.props.dispatch(showIncomeForm());
-  }
-
-  deleteIncome(id) {
-    this.props.dispatch(deleteIncome(id));
-  }
-
-  toggleUpdate(id) {
-    return this.props.dispatch(getIncome(id)).then(() => this.props.dispatch(showUpdateForm()));
-  }
-
-  cancelAdd() {
-    this.props.dispatch(hideIncomeForm());
-  }
-
-  cancelUpdate() {
-    this.props.dispatch(hideUpdateForm());
   }
 
   creatPieChartData(account, amount) {
@@ -67,11 +38,11 @@ export class SummaryDisplay extends React.Component {
   calcTotalExpences(account) {
     let totalExpenses = 0;
     const bill = this.findNextDueBill(account);
-    if (account.frequency === 'quarterly') {
+    if (account.frequency === 'Quarterly') {
       totalExpenses += bill.amount / 3;
-    } else if (account.frequency === 'semi-annual') {
+    } else if (account.frequency === 'Semi-Annually') {
       totalExpenses += bill.amount / 6;
-    } else if (account.frequency === 'annual') {
+    } else if (account.frequency === 'Annually') {
       totalExpenses += bill.amount / 12;
     } else if (bill.amount !== null) {
       totalExpenses += bill.amount;
@@ -80,6 +51,7 @@ export class SummaryDisplay extends React.Component {
   }
 
   render() {
+    const { accounts, incomes } = this.props;
     let totalExpenses = 0,
       totalIncome = 0,
       addIncome,
@@ -87,7 +59,7 @@ export class SummaryDisplay extends React.Component {
       expensesBarGraphData = [],
       pieGraphData = [];
 
-    this.props.accounts.forEach(account => {
+    accounts.forEach(account => {
       const bill = this.findNextDueBill(account);
       const AccFreq = { 'One Time': 1, Monthly: 1, Quarterly: 3, 'Semi-Annually': 6, Annually: 12 };
       const amount = Number((bill.amount / AccFreq[account.frequency]).toFixed(2));
@@ -98,13 +70,13 @@ export class SummaryDisplay extends React.Component {
 
     totalExpenses = Number(totalExpenses).toFixed(2);
 
-    this.props.incomes.forEach(income => {
+    incomes.forEach(income => {
       totalIncome += Number(income.amount);
     });
 
     totalIncome = Number(totalIncome).toFixed(2);
 
-    this.props.incomes.map(income => {
+    incomes.map(income => {
       return incomeBarGraphData.push({
         income: income.source,
         Amount: Number(income.amount)
@@ -142,11 +114,7 @@ export class SummaryDisplay extends React.Component {
 
 const mapStateToProps = state => ({
   accounts: state.accounts.accounts,
-  incomes: state.incomes.incomes,
-  income: state.incomes.income,
-  toggleForm: state.incomes.toggleForm,
-  toggleUpdateForm: state.incomes.toggleUpdateForm,
-  currentUser: state.auth.currentUser
+  incomes: state.incomes.incomes
 });
 
 export default connect(mapStateToProps)(SummaryDisplay);

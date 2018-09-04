@@ -1,9 +1,20 @@
-import { SET_AUTH_TOKEN, CLEAR_AUTH, AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, UPDATE_USER } from '../actions/auth';
+import {
+  SET_AUTH_TOKEN,
+  CLEAR_AUTH,
+  AUTH_REQUEST,
+  AUTH_SUCCESS,
+  AUTH_ERROR,
+  UPDATE_USER,
+  UPLOADING_REQUEST,
+  UPLOADING_SUCCESS,
+  DELETE_IMAGE_SUCCESS
+} from '../actions/auth';
 
 const initialState = {
   authToken: null, // authToken !== null does not mean it has been validated
   currentUser: null,
   loading: false,
+  uploading: false,
   error: null
 };
 
@@ -40,12 +51,23 @@ export default function reducer(state = initialState, action) {
   } else if (action.type === UPDATE_USER) {
     return {
       ...state,
-      currentUser: {
-        ...state.currentUser,
-        username: action.data.username,
-        firstName: action.data.firstName,
-        lastName: action.data.lastName
-      }
+      currentUser: action.user
+    };
+  } else if (action.type === UPLOADING_REQUEST) {
+    return {
+      ...state,
+      uploading: true
+    };
+  } else if (action.type === UPLOADING_SUCCESS) {
+    return {
+      ...state,
+      uploading: false,
+      currentUser: action.user
+    };
+  } else if (action.type === DELETE_IMAGE_SUCCESS) {
+    return {
+      ...state,
+      currentUser: action.user
     };
   }
   return state;

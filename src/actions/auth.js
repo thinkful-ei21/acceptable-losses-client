@@ -12,9 +12,9 @@ export const setAuthToken = authToken => ({
 });
 
 export const UPDATE_USER = 'UPDATE_USER';
-export const updateUser = data => ({
+export const updateUser = user => ({
   type: UPDATE_USER,
-  data
+  user
 });
 
 export const CLEAR_AUTH = 'CLEAR_AUTH';
@@ -37,6 +37,23 @@ export const AUTH_ERROR = 'AUTH_ERROR';
 export const authError = error => ({
   type: AUTH_ERROR,
   error
+});
+
+export const UPLOADING_REQUEST = 'UPLOADING_REQUEST';
+export const uploadingRequest = () => ({
+  type: UPLOADING_REQUEST
+});
+
+export const UPLOADING_SUCCESS = 'UPLOADING_SUCCESS';
+export const uploadingSuccess = user => ({
+  type: UPLOADING_SUCCESS,
+  user
+});
+
+export const DELETE_IMAGE_SUCCESS = 'DELETE_IMAGE_SUCCESS';
+export const deleteImageSuccess = user => ({
+  type: DELETE_IMAGE_SUCCESS,
+  user
 });
 
 const storeAuthInfo = (authToken, dispatch) => {
@@ -131,5 +148,36 @@ export const deleteUser = () => (dispatch, getState) => {
       clearAuth();
       clearAuthToken();
     })
+    .catch(err => console.error(err));
+};
+
+export const uploadImage = value => (dispatch, getState) => {
+  dispatch(uploadingRequest());
+  const authToken = getState().auth.authToken;
+  fetch(`${API_BASE_URL}/images/upload`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    },
+    body: value
+  })
+    .then(res => res.json())
+    .then(image => dispatch(uploadingSuccess(image)))
+    .catch(err => console.error(err));
+};
+
+export const deleteImage = public_id => (dispatch, getState) => {
+  const authToken = getState().auth.authToken;
+  return fetch(`${API_BASE_URL}/images/delete`, {
+    method: 'DELETE',
+    headers: {
+      'content-type': 'application/json',
+      Authorization: `Bearer ${authToken}`
+    },
+    body: JSON.stringify({ public_id })
+  })
+    .then(res => normalizeResponseErrors(res))
+    .then(res => res.json())
+    .then(user => dispatch(deleteImageSuccess(user)))
     .catch(err => console.error(err));
 };

@@ -105,6 +105,11 @@ legend {
   color: grey;
 }
 
+.validator {
+  color: white;
+  margin-bottom: 5px;
+}
+
 @media screen and (min-width: 800px) {
   .formInputs {
     background-color: white;
@@ -121,6 +126,7 @@ legend {
     color: grey;
   }
 
+<<<<<<< HEAD
   .form {
     width: 50vw;
   }
@@ -131,5 +137,10 @@ legend {
 
   .filterDropDown {
     width: 75px;
+=======
+  .validator {
+    color: #A8009C;
+    margin-bottom: 5px;
+>>>>>>> 7ab9192776f89c164cf370af7f0b3a678adef74d
   }
 }

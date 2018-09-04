@@ -25,6 +25,7 @@ class Filters extends React.Component {
           <option value="abc">A-Z</option>
           <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
+          <option value="pastDue">Past Due</option>
         </Field>
       </form>
     );
