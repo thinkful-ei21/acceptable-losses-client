@@ -71,9 +71,9 @@ export class AccountsPage extends React.Component {
               {accountResults}
             </ul>
           </div>
-          <div className={styles.details}>
+          {/* <div className={styles.details}> */}
             {selectedAccount ? <AccountDetails /> : ''}
-          </div>
+          {/* </div> */}
         </section>
       </section>
     );

@@ -32,7 +32,16 @@
   margin-right: 40px;
 }
 
-
+/* .details {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  background-color: white;
+} */
 
 @media screen and (min-width: 800px) {
   .h2 {
@@ -70,14 +79,14 @@
     border-radius: 7px;
   }
 
-  .details {
+  /* .details {
     margin: 0 5vw;
     width: 27vw;
     height: 75vh;
     overflow: auto;
     border-radius: 7px;
     background-color: white;
-
-  }
+    position: relative;
+  } */
 
 }

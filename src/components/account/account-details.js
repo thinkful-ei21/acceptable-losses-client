@@ -223,7 +223,7 @@ export class AccountDetails extends React.Component {
     // }
 
     return (
-      <section>
+      <section className={styles.detailPage}>
         <div className={styles.allContent}>
           {editingButtons}
           <h3 className={styles.h3}>{accountName}</h3>
