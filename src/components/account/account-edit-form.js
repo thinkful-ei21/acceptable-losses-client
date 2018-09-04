@@ -124,10 +124,10 @@ export class AccountEdit extends React.Component {
             <option value="Week Before">Week Before</option>
           </Field>
 
-          <button type="submit" disabled={pristine || submitting}  className={buttonStyles.updateForm}>
+          <button type="submit" disabled={pristine || submitting}  className={`${buttonStyles.updateForm} ${styles.editUpdateButton}`}>
             Update
           </button>
-          <button className={buttonStyles.cancelForm} onClick={e => dispatch(toggleEdit())}>Cancel</button>
+          <button className={`${buttonStyles.cancelForm} ${styles.editCancelButton}`} onClick={e => dispatch(toggleEdit())}>Cancel</button>
         </fieldset>
       </form>
     );

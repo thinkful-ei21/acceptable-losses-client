@@ -126,6 +126,16 @@ legend {
   margin-top: 0;
 }
 
+.editCancelButton,
+.editUpdateButton {
+  margin-top: 30px;
+}
+
+.editCancelButton {
+  margin-left: 20px;
+}
+
+
 @media screen and (min-width: 800px) {
   .formInputs {
     background-color: white;
