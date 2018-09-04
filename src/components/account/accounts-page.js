@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import requiresLogin from '../require-login';
-import { getAccounts, resetToggles } from '../../actions/accounts';
+import { getAccounts, resetToggles, toggleFilter } from '../../actions/accounts';
+import moment from 'moment';
 
 import SearchBar from './search-bar';
 
@@ -15,11 +16,12 @@ import AccountDetails from './account-details';
 export class AccountsPage extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
-    this.props.dispatch(resetToggles())
+    this.props.dispatch(resetToggles());
+    this.props.dispatch(toggleFilter('abc'));
   }
 
   render() {
-    const { searchTerm, filter, selectedAccount } = this.props;
+    const { searchTerm, filter, selectedAccount} = this.props;
     let accounts = this.props.accounts.filter(
       item =>
         item.name.toLowerCase().includes(searchTerm) ||
@@ -28,9 +30,12 @@ export class AccountsPage extends React.Component {
         item.bills.find(item => item.amount === searchTerm)
     );
 
-    let accountResults;
-    let accountsSorted;
+    let accountResults,accountsSorted;
     if (accounts) {
+      if(filter === 'pastDue'){
+        accountsSorted= accounts.filter(account=> moment(account.nextDue.dueDate).format('MM-DD-YYYY')< moment().format('MM-DD-YYYY'))
+        // accountsSorted= accounts
+      }
       if (filter === 'abc')
         accountsSorted = accounts.sort((a, b) => {
           if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
