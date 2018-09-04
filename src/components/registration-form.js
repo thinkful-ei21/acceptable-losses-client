@@ -57,7 +57,7 @@ export class RegistrationForm extends React.Component {
               type="text"
               name="username"
               validate={[required, nonEmpty, isTrimmed, isEmail]}
-              placeholder="Username"
+              placeholder="Email"
             />
 
             <label htmlFor="password" className={styles.inputLabel}>
