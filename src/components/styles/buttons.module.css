@@ -39,3 +39,14 @@
   color: white;
   font-size: 10px;
 }
+
+.editting {
+  border: none;
+  width: 32px;
+  transition: all 0.07s;
+}
+
+.editting:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

@@ -133,7 +133,9 @@ export class AccountDetails extends React.Component {
 
       editingButtons = (
         <div>
-          <button onClick={() => dispatch(toggleEdit())}>
+          <button onClick={() => dispatch(toggleEdit())}
+            className={buttonStyles.editting}
+          >
             <img src={require('../../assets/edit.svg')} alt="Edit icon"/>
           </button>
 
@@ -149,7 +151,9 @@ export class AccountDetails extends React.Component {
               <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
             </React.Fragment>
           ) : (
-            <button onClick={() => dispatch(toggleDelete())}>
+            <button onClick={() => dispatch(toggleDelete())}
+              className={buttonStyles.editting}
+            >
               <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
             </button>
           )}
@@ -221,13 +225,13 @@ export class AccountDetails extends React.Component {
     return (
       <section>
         <div className={styles.allContent}>
-          <h3>{accountName}</h3>
           {editingButtons}
+          <h3 className={styles.h3}>{accountName}</h3>
           {payButtons}
+          {nextDueBill}
           {/* {website} */}
           {frequency}
           {reminderFrequency}
-          {nextDueBill}
           {billHistoryTable}
         </div>
       </section>

@@ -1,5 +1,12 @@
 .allContent {
   margin: 0 40px;
+  margin-top: 25px;
+}
+
+.h3 {
+  font-size: 2em;
+  margin: 0;
+  margin-bottom: 20px;
 }
 
 .label {
