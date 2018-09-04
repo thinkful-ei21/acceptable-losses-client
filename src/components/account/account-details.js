@@ -9,7 +9,9 @@ import AccountPay from './account-pay-form';
 
 import Input from '../input';
 
-import styles from '../styles/accountPage.module.css';
+import styles from '../styles/accountDetails.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
 
 export class AccountDetails extends React.Component {
   onSubmit(value) {
@@ -45,14 +47,26 @@ export class AccountDetails extends React.Component {
 
     let billHistory,
       accountName,
-      website,
+      payButtons,
+      // website,
+      addPaySiteForm,
       nextDueBill,
       frequency,
-      buttons,
+      editingButtons,
       reminderFrequency,
       billHistoryTable,
       account = selectedAccount,
       editForm = editButtonToggle;
+
+    addPaySiteForm = (
+      <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
+        <label htmlFor="website" />
+        <Field component={Input} type="text" name="url" placeholder="add website" />
+        <button type="submit" disabled={pristine || submitting}>
+          Save
+        </button>
+      </form>
+    );
 
     if (!editForm) {
       billHistory = bills.map((bill, index) => {
@@ -60,7 +74,7 @@ export class AccountDetails extends React.Component {
           <tr key={index}>
             <td>{moment(bill.dueDate).format('MMM Do, YYYY')}</td>
             <td>{moment(bill.datePaid).format('MMM Do, YYYY')}</td>
-            <td>$ {bill.amount > 0 ? `${bill.amount}` : '---'}</td>
+            <td>${bill.amount > 0 ? `${bill.amount}` : '---'}</td>
           </tr>
         ) : (
           <tr key={index}>
@@ -72,7 +86,7 @@ export class AccountDetails extends React.Component {
       });
 
       billHistoryTable = (
-        <table>
+        <table className={styles.billHistory}>
           <thead>
             <tr>
               <th>Bill History</th>
@@ -90,37 +104,56 @@ export class AccountDetails extends React.Component {
       );
 
       accountName = name;
-      reminderFrequency = <p>Reminder: {reminder}</p>;
+      reminderFrequency = (
+        <React.Fragment>
+          <p className={styles.label}>Reminder:</p>
+          <p className={styles.details}>{reminder}</p>
+        </React.Fragment>
+      );
+
       let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
         nextDueAmount = Number(nextDue.amount).toFixed(2);
 
       frequency = (
-        <p>
-          Frequency:
-          {account.frequency}
-        </p>
+        <React.Fragment>
+          <p className={styles.label}>Frequency:</p>
+          <p className={styles.details}>{account.frequency}</p>
+        </React.Fragment>
       );
 
       nextDueBill = (
-        <p>
-          Next Due: {nextDueDate} <span>$ {nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
-        </p>
+        <React.Fragment>
+          <p className={styles.label}>Next Due:</p>
+          <p className={styles.details}>
+            {nextDueDate}
+            <span>${nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
+          </p>
+        </React.Fragment>
       );
 
-      buttons = (
+      editingButtons = (
         <div>
-          {payButtonToggle === id ? (
-            <AccountPay />
-          ) : (
-            <button onClick={() => dispatch(togglePay(id))}>Mark as Paid</button>
-          )}
-          <button onClick={() => dispatch(toggleEdit())}>Edit</button>
+          <button onClick={() => dispatch(toggleEdit())}>
+            <img src={require('../../assets/edit.svg')} alt="Edit icon"/>
+          </button>
+
           {deleteButtonToggle ? (
-            <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
+            <React.Fragment>
+              <button
+                onClick={() => {
+                  return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
+                }}
+              >
+                Confirm Delete
+              </button>
+              <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
+            </React.Fragment>
           ) : (
-            <button onClick={() => dispatch(toggleDelete())}>Delete</button>
+            <button onClick={() => dispatch(toggleDelete())}>
+              <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
+            </button>
           )}
-          {deleteButtonToggle ? (
+          {/* {deleteButtonToggle ? (
             <button
               onClick={() => {
                 return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
@@ -130,44 +163,73 @@ export class AccountDetails extends React.Component {
             </button>
           ) : (
             ''
-          )}
+          )} */}
         </div>
       );
+
+      payButtons = (
+        <div>
+          {payButtonToggle === id ? (
+            <AccountPay />
+          ) : (
+            <button className={buttonStyles.markAsPaid}
+              onClick={() => dispatch(togglePay(id))}
+            >
+              Mark as Paid
+            </button>
+          )}
+          {url ? (
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          ) : addPaySiteForm
+          }
+        </div>
+      )
     }
+
+    // if (url && !editForm) {
+    //
+    // }
 
     if (editForm) {
       nextDueBill = <AccountEdit />;
     }
 
-    if (url) {
-      website = (
-        <a target="_blank" href={url}>
-          Pay Here
-        </a>
-      );
-    }
+    // if (url) {
+    //   website = (
+    //     <a target="_blank" href={url}>
+    //       Pay Here
+    //     </a>
+    //   );
+    // }
 
-    if (!url && !editForm) {
-      website = (
-        <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-          <label htmlFor="website" />
-          <Field component={Input} type="text" name="url" placeholder="add website" />
-          <button type="submit" disabled={pristine || submitting}>
-            Save
-          </button>
-        </form>
-      );
-    }
+    // if (!url && !editForm) {
+    //   website = (
+    //     <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
+    //       <label htmlFor="website" />
+    //       <Field component={Input} type="text" name="url" placeholder="add website" />
+    //       <button type="submit" disabled={pristine || submitting}>
+    //         Save
+    //       </button>
+    //     </form>
+    //   );
+    // }
 
     return (
-      <section className={styles.details}>
-        <h3>{accountName}</h3>
-        {buttons}
-        {website}
-        {frequency}
-        {reminderFrequency}
-        {nextDueBill}
-        {billHistoryTable}
+      <section>
+        <div className={styles.allContent}>
+          <h3>{accountName}</h3>
+          {editingButtons}
+          {payButtons}
+          {/* {website} */}
+          {frequency}
+          {reminderFrequency}
+          {nextDueBill}
+          {billHistoryTable}
+        </div>
       </section>
     );
   }

@@ -1,0 +1,28 @@
+.allContent {
+  margin: 0 40px;
+}
+
+.label {
+  font-style: italic;
+  font-size: .75em;
+  color: #00506B;
+  margin-bottom: 0;
+}
+
+.details {
+  font-size: 1.25em;
+  margin: 0;
+}
+
+.details span {
+  color: #A8009C;
+  float: right;
+}
+
+.billHistory {
+  margin-top: 25px;
+}
+
+@media screen and (min-width: 800px) {
+
+}
