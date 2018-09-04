@@ -43,6 +43,7 @@ legend {
 
 .inputLabel {
   opacity: 0;
+  /* display: block; */
 }
 
 .linkToOtherForm {
@@ -108,6 +109,21 @@ legend {
 .validator {
   color: white;
   margin-bottom: 5px;
+}
+
+.editFormLegend {
+  color: black;
+  text-align: left;
+  font-size: 1.5em;
+}
+
+.editFormLabel {
+  margin-top: 10px;
+  display: block;
+}
+
+.editDropDown {
+  margin-top: 0;
 }
 
 @media screen and (min-width: 800px) {

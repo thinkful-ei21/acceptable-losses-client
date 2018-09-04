@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { togglePay, getAccount, toggleWeb } from '../../actions/accounts';
 import AccountPay from './account-pay-form';
 
-import styles from '../styles/summary.module.css';
+// import styles from '../styles/summary.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
 class AccountCard extends React.Component {
@@ -16,7 +16,7 @@ class AccountCard extends React.Component {
   }
 
   render() {
-    const { nextDue, id, url, dispatch, name, payButtonToggle } = this.props;
+    const { nextDue, id, url, dispatch, name, payButtonToggle, styles } = this.props;
     let finalAmount = Number(nextDue.amount).toFixed(2);
     let buttons;
     const markAsPaid = (

@@ -58,7 +58,9 @@ export class AccountsPage extends React.Component {
       }
       accountResults = accountsSorted.map((account, index) => (
         <React.Fragment key={index}>
-          <AccountCard {...account} />
+          <AccountCard {...account}
+            styles={styles}
+          />
           <hr className={styles.hr}/>
         </React.Fragment>
       ));
