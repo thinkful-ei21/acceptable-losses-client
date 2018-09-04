@@ -147,51 +147,23 @@ export class AccountDetails extends React.Component {
             <img src={require('../../assets/edit.svg')} alt="Edit icon"/>
           </button>
 
-          {/* {deleteButtonToggle ? (
-            <React.Fragment>
-              <button
-                onClick={() => {
-                  return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
-                }}
-              >
-                Confirm Delete
-              </button>
-              <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
-            </React.Fragment>
-          ) : ( */}
-            <button onClick={() => dispatch(toggleDelete())}
-              className={buttonStyles.editting}
-            >
-              <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
-            </button>
-          {/* )} */}
-          {/* {deleteButtonToggle ? (
-            <button
-              onClick={() => {
-                return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
-              }}
-            >
-              Confirm Delete
-            </button>
-          ) : (
-            ''
-          )} */}
+          <button onClick={() => dispatch(toggleDelete())}
+            className={buttonStyles.editting}
+          >
+            <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
+          </button>
         </div>
       );
 
       payButtons = (
         <div>
-          {/* {payButtonToggle === id ? (
-            <AccountPay />
-          ) : ( */}
-            <button className={buttonStyles.markAsPaid}
-              onClick={() => dispatch(togglePay(id))}
-            >
-              Mark as Paid
-            </button>
-          {/* )} */}
+          <button className={`${buttonStyles.markAsPaid} ${styles.markAsPaid}`}
+            onClick={() => dispatch(togglePay(id))}
+          >
+            Mark as Paid
+          </button>
           {url ? (
-            <button className={buttonStyles.payHere}>
+            <button className={`${buttonStyles.payHere} ${styles.payHere}`}>
               <a target="_blank" href={url}>
                 Pay Here
               </a>
@@ -201,10 +173,6 @@ export class AccountDetails extends React.Component {
         </div>
       )
     }
-
-    // if (url && !editForm) {
-    //
-    // }
 
     if (editForm) {
       showSingleAction = <AccountEdit />;

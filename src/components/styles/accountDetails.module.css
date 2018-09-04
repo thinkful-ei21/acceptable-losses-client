@@ -52,4 +52,8 @@
     background-color: white;
     position: relative;
   }
+
+  .payHere {
+    margin-left: 20px;
+  }
 }

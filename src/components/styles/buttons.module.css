@@ -14,7 +14,9 @@
 
 .form:hover,
 .payHere:hover,
-.markAsPaid:hover {
+.markAsPaid:hover,
+.cancelForm:hover,
+.updateForm:hover {
   box-shadow: 0 0 1px 2px rgba(255, 255, 255, .6);
   transform: scale(1.1);
 }
@@ -22,7 +24,9 @@
 /* More styles specifc to pages can be found under page modules */
 /* ie: For Summary page specific designs, see summary.module.css */
 .payHere,
-.markAsPaid {
+.markAsPaid,
+.cancelForm,
+.updateForm {
   background-color: #01b09f;
   color: white;
   width: 100px;
@@ -49,4 +53,12 @@
 .editting:hover {
   cursor: pointer;
   transform: scale(1.2);
+}
+
+.updateForm {
+  background-color: #6F0084;
+}
+
+.cancelForm {
+  background-color: #00506B;
 }

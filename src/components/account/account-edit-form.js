@@ -8,6 +8,10 @@ import { updateAccount, toggleEdit } from '../../actions/accounts';
 
 import Input from '../input';
 
+import styles from '../styles/forms.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
+
 export class AccountEdit extends React.Component {
   componentDidMount() {
     const { url, frequency, name, nextDue, reminder, amount } = this.props.selectedAccount;
@@ -39,42 +43,92 @@ export class AccountEdit extends React.Component {
 
     return (
       <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
-        <label htmlFor="name">Name:</label>
-        <Field component={Input} type="text" name="name" value={name} validate={[required, nonEmpty]} />
-        <label htmlFor="url">Website:</label>
-        <Field component={Input} type="text" name="url" value={url} />
-        <label htmlFor="amount">Amount:</label>
-        <Field component={Input} type="number" name="amount" value={amount} />
-        <label htmlFor="frequency" />
-        <Field name="frequency" component="select" value={frequency} validate={[required, nonEmpty]} required>
-          <option hidden>Frequency</option>
-          <option value="One Time">One Time</option>
-          <option value="Monthly">Monthly</option>
-          <option value="Quarterly">Quarterly</option>
-          <option value="Semi-Annually">Semi-Annually</option>
-          <option value="Annually">Annually</option>
-        </Field>
-        <label htmlFor="dueDate">Due Date:</label>
-        <Field
-          id="dateField"
-          component={Input}
-          type="date"
-          name="dueDate"
-          value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
-        />
-        <label htmlFor="reminder" />
-        <Field name="reminder" component="select" value={reminder} validate={[required, nonEmpty]} required>
-          <option hidden>Reminder</option>
-          <option value="No Reminder">No Reminder</option>
-          <option value="Same Day">Same Day</option>
-          <option value="Day Before">Day Before</option>
-          <option value="Week Before">Week Before</option>
-        </Field>
-        <button type="submit" disabled={pristine || submitting}>
-          Save
-        </button>
-        <button onClick={e => dispatch(toggleEdit())}>cancel</button>
-        {err}
+        <fieldset>
+          <legend className={styles.editFormLegend}>Update Bill</legend>
+          {err}
+          <label htmlFor="name" className={styles.editFormLabel}>
+            Name:
+          </label>
+          <Field component={Input}
+            type="text"
+            name="name"
+            value={name}
+            validate={[required, nonEmpty]}
+            styleClass={styles.formInput}
+          />
+
+          <label htmlFor="url" className={styles.editFormLabel}>
+            Website:
+          </label>
+          <Field component={Input}
+            type="text"
+            name="url"
+            value={url}
+            styleClass={styles.formInput}
+          />
+
+          <label htmlFor="amount" className={styles.editFormLabel}>
+            Amount:
+          </label>
+          <Field component={Input}
+            type="number"
+            name="amount"
+            value={amount}
+            styleClass={styles.formInput}
+          />
+
+          <label htmlFor="frequency" className={styles.editFormLabel}>
+            Frequency:
+          </label>
+          <Field name="frequency"
+            component="select"
+            value={frequency}
+            validate={[required, nonEmpty]}
+            required
+            className={`${styles.dropDown} ${styles.formInput} ${styles.editDropDown}`}
+          >
+            <option hidden>Frequency</option>
+            <option value="One Time">One Time</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Quarterly">Quarterly</option>
+            <option value="Semi-Annually">Semi-Annually</option>
+            <option value="Annually">Annually</option>
+          </Field>
+
+          <label htmlFor="dueDate"  className={styles.editFormLabel}>
+            Due Date:
+          </label>
+          <Field
+            id="dateField"
+            component={Input}
+            type="date"
+            name="dueDate"
+            value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
+            styleClass={styles.formInput}
+          />
+
+          <label htmlFor="reminder" className={styles.editFormLabel}>
+            Reminder:
+          </label>
+          <Field name="reminder"
+            component="select"
+            value={reminder}
+            validate={[required, nonEmpty]}
+            required
+            className={`${styles.dropDown} ${styles.formInput} ${styles.editDropDown}`}
+          >
+            <option hidden>Reminder</option>
+            <option value="No Reminder">No Reminder</option>
+            <option value="Same Day">Same Day</option>
+            <option value="Day Before">Day Before</option>
+            <option value="Week Before">Week Before</option>
+          </Field>
+
+          <button type="submit" disabled={pristine || submitting}  className={buttonStyles.updateForm}>
+            Update
+          </button>
+          <button className={buttonStyles.cancelForm} onClick={e => dispatch(toggleEdit())}>Cancel</button>
+        </fieldset>
       </form>
     );
   }
