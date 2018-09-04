@@ -59,6 +59,11 @@ legend {
   margin-top: 20px;
 }
 
+.validator {
+  color: white;
+  margin-bottom: 5px;
+}
+
 @media screen and (min-width: 800px) {
   .formInputs {
     background-color: white;
@@ -75,5 +80,8 @@ legend {
     color: grey;
   }
 
-
+  .validator {
+    color: #A8009C;
+    margin-bottom: 5px;
+  }
 }
