@@ -8,7 +8,7 @@ import Input from './input';
 import styles from './styles/forms.module.css';
 import buttonStyles from './styles/buttons.module.css';
 
-import { required, nonEmpty, matches, length, isTrimmed } from '../validators';
+import { required, nonEmpty, matches, length, isTrimmed, isEmail } from '../validators';
 const passwordLength = length({ min: 8, max: 72 });
 const matchesPassword = matches('password');
 
@@ -56,8 +56,8 @@ export class RegistrationForm extends React.Component {
               styleClass={styles.formInput}
               type="text"
               name="username"
-              validate={[required, nonEmpty, isTrimmed]}
-              placeholder="Username"
+              validate={[required, nonEmpty, isTrimmed, isEmail]}
+              placeholder="Email"
             />
 
             <label htmlFor="password" className={styles.inputLabel}>
