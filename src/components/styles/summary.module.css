@@ -66,7 +66,8 @@
 /* Due date and Amount info */
 .info {
   display: flex;
-  /* flex-direction: row; */
+  flex-direction: row;
+  /* justify-content: space-between; */
 }
 
 /* Amount info */
@@ -160,21 +161,21 @@
   .hr {
     margin-right: 40px;
   }
-}
+/* }
 
-@media screen and (min-width: 800px) {
-  .info {
+@media screen and (min-width: 800px) { */
+  /* .info {
     display: flex;
     flex-direction: column;
-  }
+  } */
 
-  .info div:last-child {
+  /* .info div:last-child {
     margin-left: 0;
-  }
+  } */
 
-  .centerButtons {
+  /* .centerButtons {
     text-align: left;
-  }
+  } */
 
   .li button:first-child {
     margin-bottom: 0;

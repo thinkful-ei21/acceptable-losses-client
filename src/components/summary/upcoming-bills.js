@@ -10,7 +10,10 @@ export class UpcomingBills extends React.Component {
     if (this.props.accounts) {
       accountResults = this.props.accounts.map((account, index) => (
         <React.Fragment key={index}>
-          <AccountCard {...account} />
+          <AccountCard
+            {...account}
+            // styles={styles}
+          />
           <hr className={styles.hr}/>
         </React.Fragment>
       ));

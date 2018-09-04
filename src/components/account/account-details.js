@@ -14,6 +14,13 @@ import buttonStyles from '../styles/buttons.module.css';
 
 
 export class AccountDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      confirmPayment: false
+    })
+  }
+
   onSubmit(value) {
     const { selectedAccount, dispatch } = this.props;
     const { name, frequency, id, reminder } = selectedAccount;
@@ -56,7 +63,8 @@ export class AccountDetails extends React.Component {
       reminderFrequency,
       billHistoryTable,
       account = selectedAccount,
-      editForm = editButtonToggle;
+      editForm = editButtonToggle,
+      showSingleAction;
 
     addPaySiteForm = (
       <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
@@ -68,7 +76,7 @@ export class AccountDetails extends React.Component {
       </form>
     );
 
-    if (!editForm) {
+    if (!editForm && !deleteButtonToggle && !payButtonToggle) {
       billHistory = bills.map((bill, index) => {
         return bill.isPaid ? (
           <tr key={index}>
@@ -139,7 +147,7 @@ export class AccountDetails extends React.Component {
             <img src={require('../../assets/edit.svg')} alt="Edit icon"/>
           </button>
 
-          {deleteButtonToggle ? (
+          {/* {deleteButtonToggle ? (
             <React.Fragment>
               <button
                 onClick={() => {
@@ -150,13 +158,13 @@ export class AccountDetails extends React.Component {
               </button>
               <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
             </React.Fragment>
-          ) : (
+          ) : ( */}
             <button onClick={() => dispatch(toggleDelete())}
               className={buttonStyles.editting}
             >
               <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
             </button>
-          )}
+          {/* )} */}
           {/* {deleteButtonToggle ? (
             <button
               onClick={() => {
@@ -173,15 +181,15 @@ export class AccountDetails extends React.Component {
 
       payButtons = (
         <div>
-          {payButtonToggle === id ? (
+          {/* {payButtonToggle === id ? (
             <AccountPay />
-          ) : (
+          ) : ( */}
             <button className={buttonStyles.markAsPaid}
               onClick={() => dispatch(togglePay(id))}
             >
               Mark as Paid
             </button>
-          )}
+          {/* )} */}
           {url ? (
             <button className={buttonStyles.payHere}>
               <a target="_blank" href={url}>
@@ -199,9 +207,33 @@ export class AccountDetails extends React.Component {
     // }
 
     if (editForm) {
-      nextDueBill = <AccountEdit />;
+      showSingleAction = <AccountEdit />;
     }
 
+    if (deleteButtonToggle) {
+      showSingleAction = (
+        <React.Fragment>
+          <p>Are you sure you want to delete this account?</p>
+          <button
+            onClick={() => {
+              return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
+            }}
+          >
+            Confirm Delete
+          </button>
+          <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
+        </React.Fragment>
+      )
+    }
+
+    if (payButtonToggle) {
+      showSingleAction = (
+        <React.Fragment>
+          <p>How much did you pay?</p>
+          <AccountPay />
+        </React.Fragment>
+      )
+    }
     // if (url) {
     //   website = (
     //     <a target="_blank" href={url}>
@@ -225,6 +257,7 @@ export class AccountDetails extends React.Component {
     return (
       <section className={styles.detailPage}>
         <div className={styles.allContent}>
+          {showSingleAction}
           {editingButtons}
           <h3 className={styles.h3}>{accountName}</h3>
           {payButtons}
