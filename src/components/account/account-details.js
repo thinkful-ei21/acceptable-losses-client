@@ -3,7 +3,15 @@ import { connect } from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import moment from 'moment';
 
-import { updateAccount, deleteAccount, toggleEdit, payBill, toggleDelete, togglePay } from '../../actions/accounts';
+import {
+  updateAccount,
+  deleteAccount,
+  toggleEdit,
+  payBill,
+  toggleDelete,
+  togglePay,
+  clearAccount
+} from '../../actions/accounts';
 import AccountEdit from './account-edit-form';
 import AccountPay from './account-pay-form';
 
@@ -12,13 +20,12 @@ import Input from '../input';
 import styles from '../styles/accountDetails.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
-
 export class AccountDetails extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({
+    this.state = {
       confirmPayment: false
-    })
+    };
   }
 
   onSubmit(value) {
@@ -141,10 +148,13 @@ export class AccountDetails extends React.Component {
 
       editingButtons = (
         <div>
-          <button onClick={() => dispatch(toggleEdit())}
-            className={buttonStyles.editting}
-          >
-            <img src={require('../../assets/edit.svg')} alt="Edit icon"/>
+          <button onClick={() => dispatch(toggleEdit())} className={buttonStyles.editting}>
+            <img src={require('../../assets/edit.svg')} alt="Edit icon" />
+          </button>
+
+          <button onClick={() => dispatch(clearAccount())} className={buttonStyles.editting}>
+            back
+            {/* <img src={require('../../assets/edit.svg')} alt="Back icon"/> */}
           </button>
 
           {/* {deleteButtonToggle ? (
@@ -159,11 +169,9 @@ export class AccountDetails extends React.Component {
               <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
             </React.Fragment>
           ) : ( */}
-            <button onClick={() => dispatch(toggleDelete())}
-              className={buttonStyles.editting}
-            >
-              <img src={require('../../assets/delete.svg')} alt="Delete icon"/>
-            </button>
+          <button onClick={() => dispatch(toggleDelete())} className={buttonStyles.editting}>
+            <img src={require('../../assets/delete.svg')} alt="Delete icon" />
+          </button>
           {/* )} */}
           {/* {deleteButtonToggle ? (
             <button
@@ -184,11 +192,9 @@ export class AccountDetails extends React.Component {
           {/* {payButtonToggle === id ? (
             <AccountPay />
           ) : ( */}
-            <button className={buttonStyles.markAsPaid}
-              onClick={() => dispatch(togglePay(id))}
-            >
-              Mark as Paid
-            </button>
+          <button className={buttonStyles.markAsPaid} onClick={() => dispatch(togglePay(id))}>
+            Mark as Paid
+          </button>
           {/* )} */}
           {url ? (
             <button className={buttonStyles.payHere}>
@@ -196,10 +202,11 @@ export class AccountDetails extends React.Component {
                 Pay Here
               </a>
             </button>
-          ) : addPaySiteForm
-          }
+          ) : (
+            addPaySiteForm
+          )}
         </div>
-      )
+      );
     }
 
     // if (url && !editForm) {
@@ -223,7 +230,7 @@ export class AccountDetails extends React.Component {
           </button>
           <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
         </React.Fragment>
-      )
+      );
     }
 
     if (payButtonToggle) {
@@ -232,7 +239,7 @@ export class AccountDetails extends React.Component {
           <p>How much did you pay?</p>
           <AccountPay />
         </React.Fragment>
-      )
+      );
     }
     // if (url) {
     //   website = (

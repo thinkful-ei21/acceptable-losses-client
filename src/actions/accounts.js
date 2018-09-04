@@ -15,6 +15,11 @@ export const getAccountSuccess = account => ({
   account
 });
 
+export const CLEAR_ACCOUNT = 'CLEAR_ACCOUNT';
+export const clearAccount = () => ({
+  type: CLEAR_ACCOUNT
+});
+
 export const GET_ACCOUNTS_ERROR = 'GET_ACCOUNTS_ERROR';
 export const getAccountsError = error => ({
   type: GET_ACCOUNTS_ERROR,
@@ -55,7 +60,6 @@ export const RESET_TOGGLES = 'RESET_TOGGLES';
 export const resetToggles = () => ({
   type: RESET_TOGGLES
 });
-
 
 export const getAccounts = () => (dispatch, getState) => {
   const authToken = getState().auth.authToken;
