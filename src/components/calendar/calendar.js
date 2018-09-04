@@ -4,8 +4,10 @@ import requiresLogin from '../require-login';
 import { getAccounts, getDaysBills } from '../../actions/accounts';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import 'react-big-calendar/lib/css/react-big-calendar.css';
 import SelectedBills from './selected-bills';
+
+import '../styles/calendar.css';
+import styles  from  '../styles/calendarPage.module.css'
 
 class Calendar extends React.Component {
   componentDidMount() {
@@ -19,7 +21,6 @@ class Calendar extends React.Component {
 
   getBillHistory() {
     let allBills = this.props.accounts.map(account => account.bills);
-    console.log(allBills);
     let newArr;
     for (let i = 0; i < allBills.length; i++) {
       for (let j = 0; j < allBills[i].length; j++) {
@@ -88,7 +89,9 @@ class Calendar extends React.Component {
     let bills = [];
     return (
       <div>
-        <div style={{ height: '500px', width:'80%', margin:'0 auto', color:'white' }}>
+        <h2 className={styles.h2}>Calendar</h2>
+        <div className={styles.calendarPage} style={{ height: '500px'}}>
+        <div>
           <BigCalendar
             selectable
             events={bills}
@@ -99,9 +102,10 @@ class Calendar extends React.Component {
             dayPropGetter={this.customDayPropGetter}
             onSelectSlot={this.handleSelect}
           />
-        </div>
-        <div>
+          </div>
+          <div>
           <SelectedBills />
+          </div>
         </div>
       </div>
     );

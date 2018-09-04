@@ -1,0 +1,12 @@
+
+.calendarPage{
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-between; */
+}
+.h2 {
+  color: white;
+  font-size: 1.75em;
+  text-transform: capitalize;
+  margin:0 0 0 80px
+}
