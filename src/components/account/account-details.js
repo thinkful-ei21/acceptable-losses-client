@@ -94,8 +94,6 @@ export class AccountDetails extends React.Component {
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
-<<<<<<< HEAD
-=======
     } else if (nextDue) {
       payButtons = (
         <div>
@@ -113,7 +111,6 @@ export class AccountDetails extends React.Component {
           )}
         </div>
       );
->>>>>>> 9be4ea3cb48d786afd247fc5011ef18f49daad37
     // } else {
       // payButtons = (
       //   <div>
