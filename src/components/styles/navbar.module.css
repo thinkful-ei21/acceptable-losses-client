@@ -78,6 +78,10 @@
 
 
 @media only screen and (min-width: 800px) {
+  .navBackground {
+    z-index: 5;
+  }
+
   .mobile {
     display: none;
   }
