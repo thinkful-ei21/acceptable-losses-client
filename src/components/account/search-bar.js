@@ -11,17 +11,16 @@ import styles from '../styles/forms.module.css';
 
 class SearchForm extends React.Component {
   onSubmit(values) {
-    let searchTerm = values.search;
+    let searchTerm = values.searchBox;
     return this.props.dispatch(searchAccounts(searchTerm));
   }
-
-  render() {
-    const { handleSubmit, currentSearchTerm, dispatch, pristine, submitting } = this.props;
-    let clearButton;
-    if (currentSearchTerm !== '') {
-      clearButton = <button onClick={() => dispatch(searchAccounts(''))}>" {currentSearchTerm} " X</button>;
+  onChange(){            
+    if(this.props.pristine){
+    this.props.dispatch(searchAccounts(''))
     }
-
+  }
+  render() {
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
         <form id="search"
           role="search"
@@ -31,14 +30,15 @@ class SearchForm extends React.Component {
           <label htmlFor="search">Search</label>
           <Field component={Input}
             type="text"
-            name="search"
+            name="searchBox"
             placeholder="Search"
             styleClass={styles.searchInput}
+            onChange={this.onChange()}
+            value=''
           />
-          <button type="submit" disabled={pristine || submitting}>
+          <button type="submit" disabled={pristine || submitting }>
             <img src={require('../../assets/search.svg')} alt="search icon"/>
           </button>
-          {clearButton}
         </form>
     );
   }

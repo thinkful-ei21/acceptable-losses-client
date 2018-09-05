@@ -92,10 +92,10 @@ class Calendar extends React.Component {
     //   })
     let bills = [];
     return (
-      <div>
+      <section className={styles.wholePage}>
         <h2 className={styles.h2}>Calendar</h2>
-        <div className={styles.calendarPage} style={{ height: '500px'}}>
-        <div>
+        <div className={styles.calendarPage} style={{ height: '100%'}}>
+        <section className={styles.section}>
           <BigCalendar
             selectable
             events={bills}
@@ -106,12 +106,12 @@ class Calendar extends React.Component {
             dayPropGetter={this.customDayPropGetter}
             onSelectSlot={this.handleSelect}
           />
-          </div>
-          <div>
+          </section>
+          <section className={styles.section}>
           <SelectedBills />
-          </div>
+          </section>
         </div>
-      </div>
+      </section>
     );
   }
 }

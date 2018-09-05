@@ -12,7 +12,7 @@ export class UpcomingBills extends React.Component {
     if (this.props.accounts) {
       let accountsThirtyDays= this.props.accounts.filter(account=> {
         if(account.nextDue){
-          moment(account.nextDue.dueDate)< moment().add(1,'month')
+          return moment(account.nextDue.dueDate)< moment().add(1,'month')
         }
       })
       let accountsSorted = accountsThirtyDays.sort((a, b) => {
