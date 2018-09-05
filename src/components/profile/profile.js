@@ -29,7 +29,7 @@ export class Profile extends React.Component {
       toggleIncome: false
     })
   }
-  
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(hideEditInfoForm());
@@ -75,7 +75,7 @@ export class Profile extends React.Component {
   render() {
     const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, uploading } = this.props;
     const { firstName, profilePic } = user;
-    let form, userImg, uploadButtons;
+    let form, userImg, uploadButtons, mainContent;
 
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
       form = <ChangePasswordForm />;
@@ -143,14 +143,12 @@ export class Profile extends React.Component {
       );
     }
 
-    return (
-      <div className={styles.wholePage}>
+    mainContent = (
+      <React.Fragment>
         <h2 className={styles.h2}>Settings</h2>
-        {/* <h2>{firstName}</h2> */}
 
         <section className={styles.allContent}>
           <h3 className={styles.h3}>Manage Profile</h3>
-          {form}
 
           {userImg}
           <div className={styles.uploadImgButton}>{uploadButtons}</div>
@@ -178,13 +176,18 @@ export class Profile extends React.Component {
 
           <h3 className={styles.h3}>Manage Incomes</h3>
           <div className={styles.labelAndButton}>
-            <p>Update incomes</p>
-            <Link to="/incomes">
-              <button className={`${buttonStyles.form} ${styles.button}`}>Incomes</button>
-            </Link>
+            <p>Update Incomes</p>
+            <button className={`${buttonStyles.form} ${styles.button}`}>Incomes</button>
           </div>
         </section>
+      </React.Fragment>
+    )
+
+    return (
+      <div className={styles.wholePage}>
+        { !form ? mainContent : form }
       </div>
+
     );
   }
 }
