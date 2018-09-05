@@ -31,7 +31,11 @@ class Calendar extends React.Component {
   }
   customDayPropGetter = date => {
     let dates = moment(date).format('YYYY-MM-DD'),
-      billsDue = this.props.accounts.map(account => moment(account.nextDue.dueDate).format('YYYY-MM-DD'));
+      billsDue = this.props.accounts.map(account =>{
+         if(account.nextDue){
+           return moment(account.nextDue.dueDate).format('YYYY-MM-DD')
+          }
+      });
     let allBills = this.props.accounts.map(account => account.bills);
     let billsPaid = [];
     for (let i = 0; i < allBills.length; i++) {

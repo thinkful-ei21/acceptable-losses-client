@@ -101,10 +101,10 @@ export default function reducer(state = initialState, action) {
       ...state,
       selectedDay: action.data,
       daysBills: state.accounts.filter(account => {
-        if (moment(account.nextDue.dueDate).format('YYYY-MM-DD') === action.data) {
+        if (account.nextDue && moment(account.nextDue.dueDate).format('YYYY-MM-DD') === action.data) {
           return account.nextDue;
         }
-        return null;
+        return '';
       }),
       error: null
     };

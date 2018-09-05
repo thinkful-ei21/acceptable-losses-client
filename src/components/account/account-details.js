@@ -81,7 +81,7 @@ export class AccountDetails extends React.Component {
       editForm = editButtonToggle,
       showSingleAction;
 
-    if (this.state.webToggle && !this.state.payToggle) {
+    if (this.state.webToggle && !this.state.payToggle && nextDue) {
       payButtons = (
         <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
           <label htmlFor="website" />
@@ -92,9 +92,9 @@ export class AccountDetails extends React.Component {
           <button onClick={() => this.webToggle(false)}>X</button>
         </form>
       );
-    } else if (!this.state.webToggle && this.state.payToggle) {
+    } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
-    } else {
+    } else if (nextDue) {
       payButtons = (
         <div>
           <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
@@ -155,27 +155,25 @@ export class AccountDetails extends React.Component {
           <p className={styles.details}>{reminder}</p>
         </React.Fragment>
       );
-
-      let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
-        nextDueAmount = Number(nextDue.amount).toFixed(2);
-
       frequency = (
         <React.Fragment>
           <p className={styles.label}>Frequency:</p>
           <p className={styles.details}>{account.frequency}</p>
         </React.Fragment>
       );
-
-      nextDueBill = (
-        <React.Fragment>
-          <p className={styles.label}>Next Due:</p>
-          <p className={styles.details}>
-            {nextDueDate}
-            <span>${nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
-          </p>
-        </React.Fragment>
-      );
-
+      if(nextDue){
+        let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
+          nextDueAmount = Number(nextDue.amount).toFixed(2);
+        nextDueBill = (
+          <React.Fragment>
+            <p className={styles.label}>Next Due:</p>
+            <p className={styles.details}>
+              {nextDueDate}
+              <span>${nextDue.amount > 0 ? `${nextDueAmount}` : `---`}</span>
+            </p>
+          </React.Fragment>
+        );
+      }
       editingButtons = (
         <div>
           <button onClick={() => dispatch(toggleEdit())} className={buttonStyles.editting}>

@@ -8,10 +8,9 @@ import Input from '../input';
 
 class AccountPay extends React.Component {
   componentDidMount() {
-    const { nextDue } = this.props.selectedAccount;
     const { initialize } = this.props;
     initialize({
-      amount: nextDue.amount
+      amount: this.props.selectedAccount.nextDue ? this.props.selectedAccount.nextDue.amount: 0
     });
   }
 
@@ -32,8 +31,7 @@ class AccountPay extends React.Component {
 
   onSubmit(value) {
     const { dispatch, selectedAccount, selectedDay } = this.props;
-    let { dueDate } = selectedAccount.nextDue;
-    let updatedAccount = { amount: value.amount, dueDate };
+    let updatedAccount = { amount: value.amount, dueDate: selectedAccount.nextDue ? selectedAccount.nextDue.dueDate : '' };
     this.submitPayment();
     return dispatch(payBill(updatedAccount, selectedAccount.id))
       .then(() => dispatch(togglePay(null)))

@@ -20,9 +20,9 @@ export class AccountEdit extends React.Component {
       url,
       frequency,
       name,
-      dueDate: new Date(nextDue.dueDate).toISOString().substr(0, 10),
+      dueDate: nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): '',
       reminder,
-      amount: nextDue.amount
+      amount: nextDue ? nextDue.amount: 0
     });
   }
 
@@ -73,7 +73,7 @@ export class AccountEdit extends React.Component {
           <Field component={Input}
             type="number"
             name="amount"
-            value={amount}
+            value={amount ? amount : 0}
             styleClass={styles.formInput}
           />
 
@@ -103,7 +103,7 @@ export class AccountEdit extends React.Component {
             component={Input}
             type="date"
             name="dueDate"
-            value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
+            value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): ''}
             styleClass={styles.formInput}
           />
 

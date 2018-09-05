@@ -17,8 +17,9 @@ class AccountCard extends React.Component {
 
   render() {
     const { nextDue, id, url, dispatch, name, payButtonToggle, styles } = this.props;
-    let finalAmount = Number(nextDue.amount).toFixed(2);
-    let buttons;
+    let finalAmount, buttons;
+    if(nextDue){ finalAmount= Number(nextDue.amount).toFixed(2);}
+
     const markAsPaid = (
       <button
         className={buttonStyles.markAsPaid}
@@ -50,7 +51,7 @@ class AccountCard extends React.Component {
       );
     }
 
-    return (
+    if(nextDue){return (
       <li className={styles.li}>
         <Link to="/app/accounts" className={styles.accDetailsLink}>
           <h4 className={styles.h4} onClick={() => dispatch(getAccount(id))}>
@@ -73,6 +74,16 @@ class AccountCard extends React.Component {
         </div>
       </li>
     );
+  } else{return(
+      <li className={styles.li}>
+        <Link to="/app/accounts" className={styles.accDetailsLink}>
+          <h4 className={styles.h4} onClick={() => dispatch(getAccount(id))}>
+            {name}
+          </h4>
+        </Link>
+      </li>
+    )
+    }
   }
 }
 

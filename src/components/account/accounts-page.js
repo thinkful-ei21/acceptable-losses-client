@@ -19,7 +19,37 @@ export class AccountsPage extends React.Component {
     this.props.dispatch(resetToggles());
     this.props.dispatch(toggleFilter('abc'));
   }
-
+  filterAccounts(accounts,filter){
+    let filterResults;
+    if (filter === 'abc'){
+      filterResults = accounts.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+        return 0;
+      })
+    }
+    if(filter === 'pastDue'){
+      filterResults = accounts.filter(account=> {if(account.nextDue){
+         moment(account.nextDue.dueDate).format('MM-DD-YYYY')< moment().format('MM-DD-YYYY')
+        }
+      })
+    }
+    else{
+      filterResults = accounts.sort((a, b) => {
+        if(a.nextDue && b.nextDue){
+          var dateA = new Date(a.nextDue.dueDate);
+          var dateB = new Date(b.nextDue.dueDate);
+          if (filter === 'newest') {
+            return dateA - dateB;
+          }
+          if(filter === 'oldest'){
+            return dateB -dateA
+          }
+        }
+      });
+    }
+    return filterResults
+  }
   render() {
     const { searchTerm, filter, selectedAccount} = this.props;
     let accounts = this.props.accounts.filter(
@@ -32,30 +62,7 @@ export class AccountsPage extends React.Component {
 
     let accountResults,accountsSorted;
     if (accounts) {
-      if(filter === 'pastDue'){
-        accountsSorted= accounts.filter(account=> moment(account.nextDue.dueDate).format('MM-DD-YYYY')< moment().format('MM-DD-YYYY'))
-        // accountsSorted= accounts
-      }
-      if (filter === 'abc')
-        accountsSorted = accounts.sort((a, b) => {
-          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
-          return 0;
-        });
-      if (filter === 'newest') {
-        accountsSorted = accounts.sort((a, b) => {
-          var dateA = new Date(a.nextDue.dueDate);
-          var dateB = new Date(b.nextDue.dueDate);
-          return dateA - dateB;
-        });
-      }
-      if (filter === 'oldest') {
-        accountsSorted = accounts.sort((a, b) => {
-          var dateA = new Date(a.nextDue.dueDate);
-          var dateB = new Date(b.nextDue.dueDate);
-          return dateB - dateA;
-        });
-      }
+      accountsSorted= this.filterAccounts(accounts, filter)
       accountResults = accountsSorted.map((account, index) => (
         <React.Fragment key={index}>
           <AccountCard {...account}
