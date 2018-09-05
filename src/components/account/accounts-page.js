@@ -19,39 +19,46 @@ export class AccountsPage extends React.Component {
     this.props.dispatch(resetToggles());
     this.props.dispatch(toggleFilter('abc'));
   }
-  filterAccounts(accounts,filter){
+  filterAccounts(accounts, filter) {
     let filterResults;
-    if (filter === 'abc'){
+    if (filter === 'abc') {
       filterResults = accounts.sort((a, b) => {
         if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
         if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
         return 0;
-      })
+      });
     }
-    if(filter === 'pastDue'){
-      filterResults = accounts.filter(account=> {if(account.nextDue){
-         moment(account.nextDue.dueDate).format('MM-DD-YYYY')< moment().format('MM-DD-YYYY')
+    if (filter === 'pastDue') {
+      filterResults = accounts.filter(account => {
+        if (account.nextDue) {
+          //compare moment dates to include m,d,y
+          return moment(account.nextDue.dueDate).format('MM-DD-YYYY') < moment().format('MM-DD-YYYY');
+        } else {
+          return '';
         }
-      })
-    }
-    else{
+      });
+    } else {
       filterResults = accounts.sort((a, b) => {
-        if(a.nextDue && b.nextDue){
+        if (a.nextDue && b.nextDue) {
           var dateA = new Date(a.nextDue.dueDate);
           var dateB = new Date(b.nextDue.dueDate);
           if (filter === 'newest') {
             return dateA - dateB;
           }
-          if(filter === 'oldest'){
-            return dateB -dateA
+          if (filter === 'oldest') {
+            return dateB - dateA;
+          } else {
+            return '';
           }
+        } else {
+          return '';
         }
       });
     }
-    return filterResults
+    return filterResults;
   }
   render() {
-    const { searchTerm, filter, selectedAccount} = this.props;
+    const { searchTerm, filter, selectedAccount } = this.props;
     let accounts = this.props.accounts.filter(
       item =>
         item.name.toLowerCase().includes(searchTerm) ||
@@ -60,15 +67,13 @@ export class AccountsPage extends React.Component {
         item.bills.find(item => item.amount === searchTerm)
     );
 
-    let accountResults,accountsSorted;
+    let accountResults, accountsSorted;
     if (accounts) {
-      accountsSorted= this.filterAccounts(accounts, filter)
+      accountsSorted = this.filterAccounts(accounts, filter);
       accountResults = accountsSorted.map((account, index) => (
         <React.Fragment key={index}>
-          <AccountCard {...account}
-            styles={styles}
-          />
-          <hr className={styles.hr}/>
+          <AccountCard {...account} styles={styles} />
+          <hr className={styles.hr} />
         </React.Fragment>
       ));
     }
@@ -82,12 +87,10 @@ export class AccountsPage extends React.Component {
 
         <section className={styles.allContent}>
           <div className={styles.bills}>
-            <ul className={styles.billsList}>
-              {accountResults}
-            </ul>
+            <ul className={styles.billsList}>{accountResults}</ul>
           </div>
           {/* <div className={styles.details}> */}
-            {selectedAccount ? <AccountDetails /> : ''}
+          {selectedAccount ? <AccountDetails /> : ''}
           {/* </div> */}
         </section>
       </section>

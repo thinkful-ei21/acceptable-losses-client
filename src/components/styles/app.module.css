@@ -1,5 +1,5 @@
 .background {
-  height: 100vh;
+  min-height: 100vh;
   background: -moz-linear-gradient(50% 128.89% 90deg,rgba(0, 62, 107, 1) 0%,rgba(2, 60, 107, 1) 41.9%,rgba(39, 22, 114, 1) 100%);
   background: -webkit-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 41.9%, rgba(39, 22, 114, 1) 100%);
   background: -ms-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 41.9%, rgba(39, 22, 114, 1) 100%);
