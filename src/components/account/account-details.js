@@ -94,6 +94,26 @@ export class AccountDetails extends React.Component {
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
+<<<<<<< HEAD
+=======
+    } else if (nextDue) {
+      payButtons = (
+        <div>
+          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+            Mark as Paid
+          </button>
+          {url ? (
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          ) : (
+            <button onClick={() => this.webToggle(true)}>Add Website</button>
+          )}
+        </div>
+      );
+>>>>>>> 9be4ea3cb48d786afd247fc5011ef18f49daad37
     // } else {
       // payButtons = (
       //   <div>
