@@ -23,6 +23,13 @@ import ChangePasswordForm from './change-password-form';
 import styles from '../styles/settings.module.css';
 
 export class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      toggleIncome: false
+    })
+  }
+  
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(hideEditInfoForm());
@@ -95,9 +102,20 @@ export class Profile extends React.Component {
     }
 
     if (profilePic && profilePic.public_id && profilePic.secure_url) {
-      userImg = <img key={profilePic.public_id} src={profilePic.secure_url} alt="Your Ugly Mug :)" />;
+      userImg = (
+        <img key={profilePic.public_id}
+          src={profilePic.secure_url}
+          alt="Your Ugly Mug :)"
+          className={styles.userImg}
+        />
+      );
     } else {
-      userImg = <img src={require('../../assets/no-profile-image.png')} alt="missing profile pic" />;
+      userImg = (
+        <img src={require('../../assets/no-profile-image.png')}
+          alt="missing profile pic"
+          className={styles.userImg}
+        />
+      );
     }
 
     if (uploading) {
@@ -135,28 +153,36 @@ export class Profile extends React.Component {
           {form}
 
           {userImg}
-          <div>{uploadButtons}</div>
+          <div className={styles.uploadImgButton}>{uploadButtons}</div>
 
-          <p>Update Your First Name, Last Name, Email Address.</p>
-          <button className={buttonStyles.form} onClick={() => this.showEditInfoForm()}>
-            Update Your Info
-          </button>
+          <div className={styles.labelAndButton}>
+            <p>Update Your First Name, Last Name, Email Address.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
+              Update Your Info
+            </button>
+          </div>
 
-          <p>Change Your Password.</p>
-          <button className={buttonStyles.form} onClick={() => this.showChangePasswordForm()}>
-            Change Password
-          </button>
+          <div className={styles.labelAndButton}>
+            <p>Change Your Password.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showChangePasswordForm()}>
+              Change Password
+            </button>
+          </div>
 
-          <p>Delete User Account.</p>
-          <button className={buttonStyles.form} onClick={() => this.deleteUser()}>
-            Delete User
-          </button>
+          <div className={styles.labelAndButton}>
+            <p>Delete User Account.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.deleteUser()}>
+              Delete User
+            </button>
+          </div>
 
-          <h3>Manage Incomes</h3>
-          <p>Update incomes</p>
-          <Link to="/incomes">
-            <button className={buttonStyles.form}>Incomes</button>
-          </Link>
+          <h3 className={styles.h3}>Manage Incomes</h3>
+          <div className={styles.labelAndButton}>
+            <p>Update incomes</p>
+            <Link to="/incomes">
+              <button className={`${buttonStyles.form} ${styles.button}`}>Incomes</button>
+            </Link>
+          </div>
         </section>
       </div>
     );
