@@ -19,7 +19,7 @@ class Filters extends React.Component {
         <Field name="filters"
           component="select"
           onChange={this.onChange.bind(this)}
-          class={styles.filterDropDown}
+          className={styles.filterDropDown}
         >
           <option hidden>Filter by</option>
           <option value="abc">A-Z</option>
