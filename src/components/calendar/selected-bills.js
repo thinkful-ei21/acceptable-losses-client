@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import AccountCard from '../account/account-card';
-import AccountCardPaid from '../account/account-card-paid';
 import moment from 'moment';
 import { getDaysBills, getAccounts } from '../../actions/accounts';
 import '../styles/calendar.css';
@@ -17,7 +16,7 @@ export class SelectedBills extends React.Component {
     let billsDue, selectedDay, billsHistory;
     if (this.props.selectedDay) {
       selectedDay = moment(this.props.selectedDay).format('MMM Do, YYYY');
-      billsHistory = this.props.accounts.map((account, index) => <AccountCardPaid key={index} {...account} styles={styles}/>);
+      billsHistory = this.props.accounts.map((account, index) => <AccountCard key={index} {...account} styles={styles}/>);
     }
     return (
       <div className="selectedBills">

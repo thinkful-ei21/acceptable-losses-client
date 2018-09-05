@@ -12,7 +12,6 @@ import {
   CLEAR_ACCOUNT,
   TOGGLE_WEB
 } from '../actions/accounts';
-import moment from 'moment';
 
 const initialState = {
   accounts: [],
@@ -94,18 +93,19 @@ export default function reducer(state = initialState, action) {
       editButtonToggle: false,
       deleteButtonToggle: false,
       toggleWeb: null,
+      selectedDay:null,
       error: null
     };
   } else if (action.type === GET_DAYS_BILLS) {
     return {
       ...state,
       selectedDay: action.data,
-      daysBills: state.accounts.filter(account => {
-        if (account.nextDue && moment(account.nextDue.dueDate).format('YYYY-MM-DD') === action.data) {
-          return account.nextDue;
-        }
-        return '';
-      }),
+      // daysBills: state.accounts.filter(account => {
+      //   if (account.nextDue && moment(account.nextDue.dueDate).format('YYYY-MM-DD') === action.data) {
+      //     return account.nextDue;
+      //   }
+      //   return '';
+      // }),
       error: null
     };
   }

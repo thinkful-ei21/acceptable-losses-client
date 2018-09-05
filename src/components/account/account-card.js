@@ -41,7 +41,10 @@ class AccountCard extends React.Component {
       handleSubmit,
       pristine,
       submitting,
-      toggleWebForm
+      toggleWebForm,
+      selectedDay,
+      key,
+      bills
     } = this.props;
 
     let finalAmount, buttons;
@@ -90,7 +93,37 @@ class AccountCard extends React.Component {
         </React.Fragment>
       );
     }
-
+    let paidBill = bills.find(
+      bill =>
+        moment(bill.dueDate).format('YYYY-MM-DD') === moment(selectedDay).format('YYYY-MM-DD') &&
+        bill.datePaid !== null
+    );
+    if(paidBill){
+      return (
+        <li className={styles.li} key={key}>
+          <Link to="/app/accounts" className={styles.accDetailsLink}>
+            <h4 className={styles.h4}onClick={() => dispatch(getAccount(id))}>
+              {name}
+            </h4>
+          </Link>
+        <div className={styles.tabletViewBillInfo}>
+          <div className={styles.info}>
+            <div>
+            <p className={styles.dueLabel}>Paid:</p> 
+              <p className={styles.due}>{moment(paidBill.datePaid).format('MMM Do, YYYY')} </p>
+            </div>
+            <div>
+              <p className={styles.amountLabel}>Amount:</p> 
+              <p className={styles.amount} >${Number(paidBill.amount).toFixed(2)} </p>
+            </div>
+          </div>
+        </div>
+        </li>
+      );
+    }
+    if(selectedDay && moment(nextDue.dueDate).format('YYYY-MM-DD') !== moment(selectedDay).format('YYYY-MM-DD')){
+      return ''
+    }
     if (nextDue) {
       return (
         <li className={styles.li}>
@@ -130,6 +163,7 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  selectedDay: state.accounts.selectedDay,  
   payButtonToggle: state.accounts.payButtonToggle,
   toggleWebForm: state.accounts.toggleWeb
 });
