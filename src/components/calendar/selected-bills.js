@@ -17,13 +17,11 @@ export class SelectedBills extends React.Component {
     let billsDue, selectedDay, billsHistory;
     if (this.props.selectedDay) {
       selectedDay = moment(this.props.selectedDay).format('MMM Do, YYYY');
-      billsDue = this.props.daysBills.map((account, index) => <AccountCard key={index} {...account} styles={styles}/>);
       billsHistory = this.props.accounts.map((account, index) => <AccountCardPaid key={index} {...account} styles={styles}/>);
     }
     return (
       <div className="selectedBills">
         <h3 className={styles.h3}>{selectedDay ? selectedDay : "Select a date.."}</h3>
-        <ul>{billsDue}</ul>
         <ul>{billsHistory}</ul>
       </div>
     );
