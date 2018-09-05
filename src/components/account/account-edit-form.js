@@ -104,11 +104,6 @@ export class AccountEdit extends React.Component {
             type="date"
             name="dueDate"
             value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): ''}
-            styleClass={styles.formInput}
-<<<<<<< HEAD
-=======
-            // value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
->>>>>>> dd5ac6d16ed8bc1f6e223f62ad887c42b382be3d
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
