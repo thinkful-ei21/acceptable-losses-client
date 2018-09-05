@@ -7,7 +7,7 @@ import moment from 'moment';
 import SelectedBills from './selected-bills';
 
 import '../styles/calendar.css';
-import styles  from  '../styles/calendarPage.module.css'
+import styles from '../styles/calendarPage.module.css';
 
 class Calendar extends React.Component {
   componentDidMount() {
@@ -31,10 +31,12 @@ class Calendar extends React.Component {
   }
   customDayPropGetter = date => {
     let dates = moment(date).format('YYYY-MM-DD'),
-      billsDue = this.props.accounts.map(account =>{
-         if(account.nextDue){
-           return moment(account.nextDue.dueDate).format('YYYY-MM-DD')
-          }
+      billsDue = this.props.accounts.map(account => {
+        if (account.nextDue) {
+          return moment(account.nextDue.dueDate).format('YYYY-MM-DD');
+        } else {
+          return '';
+        }
       });
     let allBills = this.props.accounts.map(account => account.bills);
     let billsPaid = [];
@@ -74,7 +76,7 @@ class Calendar extends React.Component {
       return {
         style: {
           border: `${borderColor}`,
-          'background':'white',
+          background: 'white',
           'font-weight': 'normal'
         }
       };
@@ -94,21 +96,21 @@ class Calendar extends React.Component {
     return (
       <div>
         <h2 className={styles.h2}>Calendar</h2>
-        <div className={styles.calendarPage} style={{ height: '500px'}}>
-        <div>
-          <BigCalendar
-            selectable
-            events={bills}
-            startAccessor="startDate"
-            endAccessor="endDate"
-            localizer={BigCalendar.momentLocalizer(moment)}
-            views={['month']}
-            dayPropGetter={this.customDayPropGetter}
-            onSelectSlot={this.handleSelect}
-          />
+        <div className={styles.calendarPage} style={{ height: '500px' }}>
+          <div>
+            <BigCalendar
+              selectable
+              events={bills}
+              startAccessor="startDate"
+              endAccessor="endDate"
+              localizer={BigCalendar.momentLocalizer(moment)}
+              views={['month']}
+              dayPropGetter={this.customDayPropGetter}
+              onSelectSlot={this.handleSelect}
+            />
           </div>
           <div>
-          <SelectedBills />
+            <SelectedBills />
           </div>
         </div>
       </div>
