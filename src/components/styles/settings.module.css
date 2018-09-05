@@ -15,6 +15,7 @@
 .allContent {
   margin-top: -75px;
   padding: 0 30px;
+  padding-top: 30px;
   background-color: white;
   min-height: 100vh;
 }

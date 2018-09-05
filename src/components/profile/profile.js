@@ -148,11 +148,11 @@ export class Profile extends React.Component {
         <h2 className={styles.h2}>Settings</h2>
 
         <section className={styles.allContent}>
-          <h3 className={styles.h3}>Manage Profile</h3>
-
           {userImg}
           <div className={styles.uploadImgButton}>{uploadButtons}</div>
 
+          <h3 className={styles.h3}>Manage Profile</h3>
+          
           <div className={styles.labelAndButton}>
             <p>Update Your First Name, Last Name, Email Address.</p>
             <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
