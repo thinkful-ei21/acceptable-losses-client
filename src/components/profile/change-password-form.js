@@ -25,48 +25,52 @@ export class ChangePasswordForm extends React.Component {
   render() {
     const { handleSubmit, pristine, submitting, dispatch } = this.props;
     return (
-      <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={handleSubmit(values => this.onSubmit(values))}
+        className={styles.form}
+      >
         <fieldset>
           <legend>Change Password</legend>
-          <label htmlFor="firstName" className={styles.inputLabel}>
-            Old Password
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="password"
-            name="oldPassword"
-            validate={[required, passwordLength, isTrimmed]}
-            placeholder="Old Password"
-          />
-          <label htmlFor="newPassword" className={styles.inputLabel}>
-            New Password
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="password"
-            name="newPassword"
-            validate={[required, passwordLength, isTrimmed]}
-            placeholder="New Password"
-          />
-          <label htmlFor="confirmNewPassword" className={styles.inputLabel}>
-            Confirm New Password
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="password"
-            name="confirmNewPassword"
-            validate={[required, nonEmpty, matchesPassword]}
-            placeholder="Confirm New Password"
-          />
-          <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
-            SUBMIT
-          </button>
-          <button className={buttonStyles.form} onClick={() => dispatch(hideChangePasswordForm())}>
-            Cancel
-          </button>
+          <div className={styles.formInputs}>
+            <label htmlFor="firstName" className={styles.inputLabel}>
+              Old Password
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="password"
+              name="oldPassword"
+              validate={[required, passwordLength, isTrimmed]}
+              placeholder="Old Password"
+            />
+            <label htmlFor="newPassword" className={styles.inputLabel}>
+              New Password
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="password"
+              name="newPassword"
+              validate={[required, passwordLength, isTrimmed]}
+              placeholder="New Password"
+            />
+            <label htmlFor="confirmNewPassword" className={styles.inputLabel}>
+              Confirm New Password
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="password"
+              name="confirmNewPassword"
+              validate={[required, nonEmpty, matchesPassword]}
+              placeholder="Confirm New Password"
+            />
+            <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
+              SUBMIT
+            </button>
+            <button className={buttonStyles.form} onClick={() => dispatch(hideChangePasswordForm())}>
+              Cancel
+            </button>
+          </div>
         </fieldset>
       </form>
     );
