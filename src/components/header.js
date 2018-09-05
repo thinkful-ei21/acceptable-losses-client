@@ -53,7 +53,7 @@ export class HeaderBar extends React.Component {
                   className={styles.link}
                   onClick={() => this.toggleShowMenu()}
                 >
-                  <span>Accounts</span>
+                  <span>Bills</span>
                 </NavLink>
               </div>
 
@@ -120,7 +120,7 @@ export class HeaderBar extends React.Component {
 
           <NavLink role="navigation" to="/app/accounts" className={styles.link}>
             <img className={styles.linkIcon} src={require('../assets/bills.svg')} alt="bills icon" />
-            <p>Accounts</p>
+            <p>Bills</p>
           </NavLink>
 
           <NavLink role="navigation" to="/app/calendar" className={styles.link}>
