@@ -94,23 +94,23 @@ export class AccountDetails extends React.Component {
       );
     } else if (!this.state.webToggle && this.state.payToggle) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
-    } else {
-      payButtons = (
-        <div>
-          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
-            Mark as Paid
-          </button>
-          {url ? (
-            <button className={buttonStyles.payHere}>
-              <a target="_blank" href={url}>
-                Pay Here
-              </a>
-            </button>
-          ) : (
-            <button onClick={() => this.webToggle(true)}>Add Website</button>
-          )}
-        </div>
-      );
+    // } else {
+      // payButtons = (
+      //   <div>
+      //     <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+      //       Mark as Paid
+      //     </button>
+      //     {url ? (
+      //       <button className={buttonStyles.payHere}>
+      //         <a target="_blank" href={url}>
+      //           Pay Here
+      //         </a>
+      //       </button>
+      //     ) : (
+      //       <button onClick={() => this.webToggle(true)}>Add Website</button>
+      //     )}
+      //   </div>
+      // );
     }
 
     if (!editForm && !deleteButtonToggle && !this.state.payToggle) {
@@ -189,6 +189,23 @@ export class AccountDetails extends React.Component {
           <button onClick={() => dispatch(toggleDelete())} className={buttonStyles.editting}>
             <img src={require('../../assets/delete.svg')} alt="Delete icon" />
           </button>
+        </div>
+      );
+
+      payButtons = (
+        <div>
+          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+            Mark as Paid
+          </button>
+          {url ? (
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          ) : (
+            <button onClick={() => this.webToggle(true)}>Add Website</button>
+          )}
         </div>
       );
     }
