@@ -74,7 +74,6 @@ export class AccountEdit extends React.Component {
             type="number"
             name="amount"
             value={amount ? amount : 0}
-            styleClass={styles.formInput}
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
@@ -106,6 +105,10 @@ export class AccountEdit extends React.Component {
             name="dueDate"
             value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): ''}
             styleClass={styles.formInput}
+<<<<<<< HEAD
+=======
+            // value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
+>>>>>>> dd5ac6d16ed8bc1f6e223f62ad887c42b382be3d
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
