@@ -10,11 +10,13 @@ export class UpcomingBills extends React.Component {
     let accountResults;
 
     if (this.props.accounts) {
-      let accountsThirtyDays= this.props.accounts.filter(account=> {
-        if(account.nextDue){
-          return moment(account.nextDue.dueDate)< moment().add(1,'month')
+      let accountsThirtyDays = this.props.accounts.filter(account => {
+        if (account.nextDue) {
+          return moment(account.nextDue.dueDate) < moment().add(1, 'month');
+        } else {
+          return '';
         }
-      })
+      });
       let accountsSorted = accountsThirtyDays.sort((a, b) => {
         var dateA = new Date(a.nextDue.dueDate);
         var dateB = new Date(b.nextDue.dueDate);
@@ -22,11 +24,8 @@ export class UpcomingBills extends React.Component {
       });
       accountResults = accountsSorted.map((account, index) => (
         <React.Fragment key={index}>
-          <AccountCard
-            {...account}
-            styles={styles}
-          />
-          <hr className={styles.hr}/>
+          <AccountCard {...account} styles={styles} />
+          <hr className={styles.hr} />
         </React.Fragment>
       ));
     }

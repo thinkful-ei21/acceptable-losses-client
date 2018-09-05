@@ -44,21 +44,17 @@ export class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/login" component={loginPage} />
-          <Route exact path="/register" component={RegistrationPage} />
-        </div>
-        <div className={styles.background}>
-          <Route path="/app" component={HeaderBar} />
-          <Route exact path="/app/dashboard" component={Dashboard} />
-          <Route path="/app/accounts" component={AccountsPage} />
-          <Route exact path="/app/add-account" component={AddBillForm} />
-          <Route path="/app/incomes" component={Incomes} />
-          <Route exact path="/app/calendar" component={Calendar} />
-          <Route exact path="/app/profile" component={Profile} />
-        </div>
+      <div className={styles.background}>
+        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/login" component={loginPage} />
+        <Route exact path="/register" component={RegistrationPage} />
+        <Route path="/app" component={HeaderBar} />
+        <Route exact path="/app/dashboard" component={Dashboard} />
+        <Route path="/app/accounts" component={AccountsPage} />
+        <Route exact path="/app/add-account" component={AddBillForm} />
+        <Route path="/app/incomes" component={Incomes} />
+        <Route exact path="/app/calendar" component={Calendar} />
+        <Route exact path="/app/profile" component={Profile} />
       </div>
     );
   }

@@ -1,0 +1,27 @@
+.background {
+  padding-top: 50px;
+  text-align: center;
+ 
+}
+
+.title {
+  color: white;
+  font-size: 3em;
+  text-transform: capitalize;
+  position: relative;
+  margin: 50px 0 100px 0;
+
+}
+
+.sellApp {
+  color: white;
+  text-align: center;
+  font-size: 1.25em;
+  font-weight: 300;
+  margin: 50px;
+}
+
+.signIn {
+  color: rgba(255, 255, 255, .7);
+  text-decoration: none;
+}

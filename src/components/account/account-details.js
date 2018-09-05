@@ -311,6 +311,6 @@ const mapStateToProps = state => ({
 const accountDetails = connect(mapStateToProps)(AccountDetails);
 
 export default reduxForm({
-  form: 'search',
-  onSubmitFail: (errors, dispatch) => dispatch(focus('search', Object.keys(errors)[0]))
+  form: 'website',
+  onSubmitFail: (errors, dispatch) => dispatch(focus('website', Object.keys(errors)[0]))
 })(accountDetails);

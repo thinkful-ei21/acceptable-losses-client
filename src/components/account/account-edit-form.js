@@ -11,7 +11,6 @@ import Input from '../input';
 import styles from '../styles/forms.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
-
 export class AccountEdit extends React.Component {
   componentDidMount() {
     const { url, frequency, name, nextDue, reminder } = this.props.selectedAccount;
@@ -20,9 +19,9 @@ export class AccountEdit extends React.Component {
       url,
       frequency,
       name,
-      dueDate: nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): '',
+      dueDate: nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10) : '',
       reminder,
-      amount: nextDue ? nextDue.amount: 0
+      amount: nextDue ? nextDue.amount : 0
     });
   }
 
@@ -49,7 +48,8 @@ export class AccountEdit extends React.Component {
           <label htmlFor="name" className={styles.editFormLabel}>
             Name:
           </label>
-          <Field component={Input}
+          <Field
+            component={Input}
             type="text"
             name="name"
             value={name}
@@ -60,7 +60,8 @@ export class AccountEdit extends React.Component {
           <label htmlFor="url" className={styles.editFormLabel}>
             Website:
           </label>
-          <Field component={Input}
+          <Field
+            component={Input}
             type="text"
             name="url"
             value={url}
@@ -70,7 +71,8 @@ export class AccountEdit extends React.Component {
           <label htmlFor="amount" className={styles.editFormLabel}>
             Amount:
           </label>
-          <Field component={Input}
+          <Field
+            component={Input}
             type="number"
             name="amount"
             value={amount ? amount : 0}
@@ -80,7 +82,8 @@ export class AccountEdit extends React.Component {
           <label htmlFor="frequency" className={styles.editFormLabel}>
             Frequency:
           </label>
-          <Field name="frequency"
+          <Field
+            name="frequency"
             component="select"
             value={frequency}
             validate={[required, nonEmpty]}
@@ -95,7 +98,7 @@ export class AccountEdit extends React.Component {
             <option value="Annually">Annually</option>
           </Field>
 
-          <label htmlFor="dueDate"  className={styles.editFormLabel}>
+          <label htmlFor="dueDate" className={styles.editFormLabel}>
             Due Date:
           </label>
           <Field
@@ -103,14 +106,15 @@ export class AccountEdit extends React.Component {
             component={Input}
             type="date"
             name="dueDate"
-            value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): ''}
+            value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10) : ''}
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
           />
 
           <label htmlFor="reminder" className={styles.editFormLabel}>
             Reminder:
           </label>
-          <Field name="reminder"
+          <Field
+            name="reminder"
             component="select"
             value={reminder}
             validate={[required, nonEmpty]}
@@ -125,10 +129,19 @@ export class AccountEdit extends React.Component {
           </Field>
 
           <div className={styles.editButtons}>
-            <button type="submit" disabled={pristine || submitting}  className={`${buttonStyles.updateForm} ${styles.editUpdateButton}`}>
+            <button
+              type="submit"
+              disabled={pristine || submitting}
+              className={`${buttonStyles.updateForm} ${styles.editUpdateButton}`}
+            >
               Update
             </button>
-            <button className={`${buttonStyles.cancelForm} ${styles.editCancelButton}`} onClick={e => dispatch(toggleEdit())}>Cancel</button>
+            <button
+              className={`${buttonStyles.cancelForm} ${styles.editCancelButton}`}
+              onClick={e => dispatch(toggleEdit())}
+            >
+              Cancel
+            </button>
           </div>
         </fieldset>
       </form>
