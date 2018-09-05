@@ -20,6 +20,8 @@ import { clearAuthToken } from '../../local-storage';
 import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
 
+import styles from '../styles/settings.module.css';
+
 export class Profile extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -124,32 +126,37 @@ export class Profile extends React.Component {
     }
 
     return (
-      <div>
-        <h2>{firstName}</h2>
-        {userImg}
-        <div>{uploadButtons}</div>
-        <section>
-          <h3>Manage Profile</h3>
+      <div className={styles.wholePage}>
+        <h2 className={styles.h2}>Settings</h2>
+        {/* <h2>{firstName}</h2> */}
+
+        <section className={styles.allContent}>
+          <h3 className={styles.h3}>Manage Profile</h3>
           {form}
-          <p>Manage Your Profile Configs Here.</p>
+
+          {userImg}
+          <div>{uploadButtons}</div>
+
+          <p>Update Your First Name, Last Name, Email Address.</p>
           <button className={buttonStyles.form} onClick={() => this.showEditInfoForm()}>
             Update Your Info
           </button>
-          <p>Update Your First Name, Last Name, Email Address.</p>
+
+          <p>Change Your Password.</p>
           <button className={buttonStyles.form} onClick={() => this.showChangePasswordForm()}>
             Change Password
           </button>
-          <p>Change Your Password.</p>
+
+          <p>Delete User Account.</p>
           <button className={buttonStyles.form} onClick={() => this.deleteUser()}>
             Delete User
           </button>
-          <p>Delete User Account.</p>
-          <h3>Manage Income</h3>
-          <p>Manage All Your Incomes Here.</p>
+
+          <h3>Manage Incomes</h3>
+          <p>Update incomes</p>
           <Link to="/incomes">
             <button className={buttonStyles.form}>Incomes</button>
           </Link>
-          <p>Navigate to income.</p>
         </section>
       </div>
     );
