@@ -1,12 +1,38 @@
 
+.wholePage {
+  position: relative;
+}
+
+
+
+.h2 {
+  color: white;
+  font-size: 1.75em;
+  text-transform: capitalize;
+  position: relative;
+  top: -63px;
+  margin-left: 20px;
+}
+
+@media screen and (min-width: 800px) {
+  .h2 {
+    margin-left: 10vw;
+    top: -5vh;
+  }
+
+.desktopView {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .calendarPage{
   display: flex;
   flex-direction: row;
   /* justify-content: space-between; */
 }
-.h2 {
-  color: white;
-  font-size: 1.75em;
-  text-transform: capitalize;
-  margin:0 0 0 80px
 }

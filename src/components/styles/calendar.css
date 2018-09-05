@@ -1,15 +1,15 @@
 
 
-.selectedBills{
-  margin: 0 5vw;
-  margin-top:5vh;
-  width: 27vw;
-  height: 70vh;
-  overflow: auto;
-  border-radius: 7px;
-  background-color: white
-}
 
+
+
+  .selectedBills{
+    margin-top:4vh;
+    overflow: auto;
+    background-color: white;
+    width: 100%;
+    height: 75vh;
+  }
 
 .rbc-btn {
   color: inherit;
@@ -30,20 +30,11 @@ button.rbc-input::-moz-focus-inner {
   padding: 0;
 }
 .rbc-calendar {
-  height: 70vh;
-  width: 35vw;
-  margin:0 0 0 80px;
+  z-index: 0;
+  margin-top: 0;
+  width: 100%;
+  height: 75vh;
   box-sizing: border-box;
-  height: 100%;
-  /* display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-align-items: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch; */
 }
 .rbc-calendar *,
 .rbc-calendar *:before,
@@ -653,4 +644,25 @@ button.rbc-input::-moz-focus-inner {
   height: 1px;
   background-color: #74ad31;
   pointer-events: none;
+}
+
+
+@media screen and (min-width: 800px) {
+  .selectedBills{
+    margin: 0 0 0 2vw;
+    margin-top:4.5vh;
+    overflow: auto;
+    border-radius: 7px;
+    background-color: white;
+    width: 27vw;
+    height: 75vh;
+  }
+  .rbc-calendar {
+    z-index: 0;
+    margin-top: 0;
+    margin-left: 10vw;
+    width: 57vw;
+    height: 75vh;
+    box-sizing: border-box;
+  }
 }
