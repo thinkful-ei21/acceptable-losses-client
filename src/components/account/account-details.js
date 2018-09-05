@@ -94,23 +94,24 @@ export class AccountDetails extends React.Component {
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
-    } else if (nextDue) {
-      payButtons = (
-        <div>
-          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
-            Mark as Paid
-          </button>
-          {url ? (
-            <button className={buttonStyles.payHere}>
-              <a target="_blank" href={url}>
-                Pay Here
-              </a>
-            </button>
-          ) : (
-            <button onClick={() => this.webToggle(true)}>Add Website</button>
-          )}
-        </div>
-      );
+    }
+    // } else if (nextDue) {
+    //   payButtons = (
+    //     <div>
+    //       <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+    //         Mark as Paid
+    //       </button>
+    //       {url ? (
+    //         <button className={buttonStyles.payHere}>
+    //           <a target="_blank" href={url}>
+    //             Pay Here
+    //           </a>
+    //         </button>
+    //       ) : (
+    //         <button onClick={() => this.webToggle(true)}>Add Website</button>
+    //       )}
+    //     </div>
+    //   );
     // } else {
       // payButtons = (
       //   <div>
@@ -128,7 +129,7 @@ export class AccountDetails extends React.Component {
       //     )}
       //   </div>
       // );
-    }
+
 
     if (!editForm && !deleteButtonToggle && !this.state.payToggle) {
       billHistory = bills.map((bill, index) => {
@@ -207,22 +208,24 @@ export class AccountDetails extends React.Component {
         </div>
       );
 
-      payButtons = (
-        <div>
-          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
-            Mark as Paid
-          </button>
-          {url ? (
-            <button className={buttonStyles.payHere}>
-              <a target="_blank" href={url}>
-                Pay Here
-              </a>
+      if (nextDue) {
+        payButtons = (
+          <div>
+            <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+              Mark as Paid
             </button>
-          ) : (
-            <button onClick={() => this.webToggle(true)}>Add Website</button>
-          )}
-        </div>
-      );
+            {url ? (
+              <button className={buttonStyles.payHere}>
+                <a target="_blank" href={url}>
+                  Pay Here
+                </a>
+              </button>
+            ) : (
+              <button onClick={() => this.webToggle(true)}>Add Website</button>
+            )}
+          </div>
+        );
+      }
     }
 
     if (editForm) {
