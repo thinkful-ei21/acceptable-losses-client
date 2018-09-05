@@ -21,6 +21,8 @@ import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
 
 import styles from '../styles/settings.module.css';
+import formStyles from '../styles/forms.module.css';
+
 
 export class Profile extends React.Component {
   constructor(props) {
@@ -86,12 +88,13 @@ export class Profile extends React.Component {
     }
     if (!changePasswordForm && !editInfoForm && confirmDeleteUser) {
       form = (
-        <div>
+        <div className={formStyles.settingsDeleteUser}>
+          <h4>WARNING!</h4>
           <p>
-            <span>WARNING!</span>
             Deleting your account will result in permanent deletion of all user data.
-            <span>Are you sure you want to delete?</span>
           </p>
+
+          <p>Are you sure you want to delete?</p>
           <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
             Delete
           </button>
