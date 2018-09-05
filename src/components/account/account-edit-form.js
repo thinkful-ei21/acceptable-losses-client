@@ -73,13 +73,8 @@ export class AccountEdit extends React.Component {
           <Field component={Input}
             type="number"
             name="amount"
-<<<<<<< HEAD
             value={amount ? amount : 0}
-            styleClass={styles.formInput}
-=======
-            value={amount}
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
->>>>>>> fa61721dc2cb24267341f92c8fbc3d80f716088d
           />
 
           <label htmlFor="frequency" className={styles.editFormLabel}>
@@ -108,13 +103,8 @@ export class AccountEdit extends React.Component {
             component={Input}
             type="date"
             name="dueDate"
-<<<<<<< HEAD
             value={nextDue ? new Date(nextDue.dueDate).toISOString().substr(0, 10): ''}
-            styleClass={styles.formInput}
-=======
-            value={new Date(nextDue.dueDate).toISOString().substr(0, 10)}
             styleClass={`${styles.formInput} ${styles.editFormInput}`}
->>>>>>> fa61721dc2cb24267341f92c8fbc3d80f716088d
           />
 
           <label htmlFor="reminder" className={styles.editFormLabel}>
