@@ -37,7 +37,7 @@ export class Incomes extends React.Component {
   }
 
   render() {
-    const { incomes, addIncome, editIncome } = this.props;
+    const { incomes, addIncome, editIncome, hideIncome } = this.props;
     let incomeResults, incomesSorted, formDisplay;
     if (incomes) {
       incomesSorted = incomes.sort((a, b) => {
@@ -60,6 +60,7 @@ export class Incomes extends React.Component {
 
     return (
       <div>
+        <button onClick={() => hideIncome()}>Back to Settings</button>
         <h3>Incomes</h3>
         <button onClick={() => this.addIncome()}>Add Income</button>
         {formDisplay}

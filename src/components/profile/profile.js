@@ -19,6 +19,7 @@ import { clearAuthToken } from '../../local-storage';
 
 import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
+import Incomes from '../income/income-page.js';
 
 import styles from '../styles/settings.module.css';
 import formStyles from '../styles/forms.module.css';
@@ -71,8 +72,13 @@ export class Profile extends React.Component {
     const { dispatch } = this.props;
     const formData = new FormData();
     formData.append('fileName', e.target.files[0]);
-    console.log(formData);
     dispatch(uploadImage(formData));
+  }
+
+  toggleIncomeInfo() {
+    this.setState({
+      toggleIncome: !this.state.toggleIncome
+    })
   }
 
   render() {
@@ -183,11 +189,17 @@ export class Profile extends React.Component {
           <h3 className={styles.h3}>Manage Incomes</h3>
           <div className={styles.labelAndButton}>
             <p>Update Incomes</p>
-            <button className={`${buttonStyles.form} ${styles.button}`}>Incomes</button>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>Incomes</button>
           </div>
         </section>
       </React.Fragment>
     )
+
+    if (this.state.toggleIncome) {
+      form = (
+        <Incomes hideIncome={this.toggleIncomeInfo.bind(this)}/>
+      )
+    }
 
     return (
       <div className={styles.wholePage}>
