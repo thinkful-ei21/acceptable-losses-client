@@ -69,6 +69,7 @@ export class Profile extends React.Component {
     const { dispatch } = this.props;
     const formData = new FormData();
     formData.append('fileName', e.target.files[0]);
+    console.log(formData);
     dispatch(uploadImage(formData));
   }
 
@@ -118,6 +119,8 @@ export class Profile extends React.Component {
       );
     }
 
+    console.log(user);
+
     if (uploading) {
       uploadButtons = (
         <React.Fragment>
@@ -152,7 +155,7 @@ export class Profile extends React.Component {
           <div className={styles.uploadImgButton}>{uploadButtons}</div>
 
           <h3 className={styles.h3}>Manage Profile</h3>
-          
+
           <div className={styles.labelAndButton}>
             <p>Update Your First Name, Last Name, Email Address.</p>
             <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
