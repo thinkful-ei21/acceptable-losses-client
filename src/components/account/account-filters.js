@@ -15,7 +15,11 @@ class Filters extends React.Component {
     return (
       <form id="filter" className={styles.filterForm}>
         <label htmlFor="filters">Filter</label>
-        <Field name="filters" component="select" onChange={this.onChange.bind(this)} className={styles.filterDropDown}>
+        <Field name="filters"
+          component="select"
+          onChange={this.onChange.bind(this)}
+          className={styles.filterDropDown}
+        >
           <option hidden>Filter by</option>
           <option value="abc">A-Z</option>
           <option value="newest">Newest</option>

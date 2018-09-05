@@ -94,6 +94,7 @@ export class AccountDetails extends React.Component {
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
+<<<<<<< HEAD
     } else if (nextDue) {
       payButtons = (
         <div>
@@ -111,6 +112,25 @@ export class AccountDetails extends React.Component {
           )}
         </div>
       );
+=======
+    // } else {
+      // payButtons = (
+      //   <div>
+      //     <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+      //       Mark as Paid
+      //     </button>
+      //     {url ? (
+      //       <button className={buttonStyles.payHere}>
+      //         <a target="_blank" href={url}>
+      //           Pay Here
+      //         </a>
+      //       </button>
+      //     ) : (
+      //       <button onClick={() => this.webToggle(true)}>Add Website</button>
+      //     )}
+      //   </div>
+      // );
+>>>>>>> fa61721dc2cb24267341f92c8fbc3d80f716088d
     }
 
     if (!editForm && !deleteButtonToggle && !this.state.payToggle) {
@@ -176,16 +196,34 @@ export class AccountDetails extends React.Component {
       }
       editingButtons = (
         <div>
+          <button onClick={() => dispatch(clearAccount())} className={buttonStyles.backToBills}>
+            Back to Bills List
+            {/* <img src={require('../../assets/edit.svg')} alt="Back icon"/> */}
+          </button>
+
           <button onClick={() => dispatch(toggleEdit())} className={buttonStyles.editting}>
             <img src={require('../../assets/edit.svg')} alt="Edit icon" />
-          </button>
-          <button onClick={() => dispatch(clearAccount())} className={buttonStyles.editting}>
-            back
-            {/* <img src={require('../../assets/edit.svg')} alt="Back icon"/> */}
           </button>
           <button onClick={() => dispatch(toggleDelete())} className={buttonStyles.editting}>
             <img src={require('../../assets/delete.svg')} alt="Delete icon" />
           </button>
+        </div>
+      );
+
+      payButtons = (
+        <div>
+          <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
+            Mark as Paid
+          </button>
+          {url ? (
+            <button className={buttonStyles.payHere}>
+              <a target="_blank" href={url}>
+                Pay Here
+              </a>
+            </button>
+          ) : (
+            <button onClick={() => this.webToggle(true)}>Add Website</button>
+          )}
         </div>
       );
     }
@@ -197,15 +235,23 @@ export class AccountDetails extends React.Component {
     if (deleteButtonToggle) {
       showSingleAction = (
         <React.Fragment>
-          <p>Are you sure you want to delete this account?</p>
-          <button
-            onClick={() => {
-              return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
-            }}
-          >
-            Confirm Delete
-          </button>
-          <button onClick={() => dispatch(toggleDelete())}>Cancel Delete</button>
+          <p className={styles.deleteMsg}>
+            Are you sure you want to delete this account?
+          </p>
+          <div className={styles.deleteButtons}>
+            <button className={buttonStyles.confirmDelete}
+              onClick={() => {
+                return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
+              }}
+            >
+              Confirm
+            </button>
+            <button className={buttonStyles.cancelDelete}
+              onClick={() => dispatch(toggleDelete())}
+            >
+              Cancel
+            </button>
+          </div>
         </React.Fragment>
       );
     }
