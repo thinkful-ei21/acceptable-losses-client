@@ -8,13 +8,13 @@ export function LandingPage(props) {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <p>SELL APP HERE</p>
       <Link to="/login">
         <button>SIGN IN</button>
       </Link>
       <Link to="/register">Sign Up Here</Link>
-    </div>
+    </React.Fragment>
   );
 }
 

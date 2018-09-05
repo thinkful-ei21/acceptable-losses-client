@@ -3,20 +3,49 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 
-import { togglePay, getAccount, toggleWeb } from '../../actions/accounts';
+import { togglePay, getAccount, toggleWeb, updateAccount } from '../../actions/accounts';
 import AccountPay from './account-pay-form';
+import Input from '../input';
+import { Field, reduxForm, focus } from 'redux-form';
 
 // import styles from '../styles/summary.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
 class AccountCard extends React.Component {
-  webToggle() {
-    const { dispatch, id } = this.props;
-    return dispatch(toggleWeb(id));
+  // webToggle(id) {
+  //   return dispatch(toggleWeb(id));
+  // }
+
+  onSubmit(value) {
+    const { name, frequency, id, reminder, dispatch } = this.props;
+    const newAccount = {
+      reminder,
+      name,
+      frequency,
+      url: value.url
+    };
+    return dispatch(updateAccount(newAccount, id))
+      .then(() => dispatch(getAccount(id)))
+      .then(() => dispatch(toggleWeb(null)));
   }
 
   render() {
-    const { nextDue, id, url, dispatch, name, payButtonToggle, styles } = this.props;
+    const {
+      nextDue,
+      id,
+      url,
+      dispatch,
+      name,
+      payButtonToggle,
+      styles,
+      handleSubmit,
+      pristine,
+      submitting,
+      toggleWebForm
+    } = this.props;
+    console.log('pay', payButtonToggle);
+    console.log('web', toggleWebForm);
+    console.log('url', url);
     let finalAmount = Number(nextDue.amount).toFixed(2);
     let buttons;
     const markAsPaid = (
@@ -30,7 +59,18 @@ class AccountCard extends React.Component {
 
     if (payButtonToggle === id) {
       buttons = <AccountPay />;
-    } else if (payButtonToggle === null && url) {
+    } else if (!payButtonToggle && toggleWebForm === id) {
+      buttons = (
+        <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
+          <label htmlFor="website" />
+          <Field component={Input} type="text" name="url" placeholder="add website" />
+          <button type="submit" disabled={pristine || submitting}>
+            Save
+          </button>
+          <button onClick={() => dispatch(toggleWeb(null))}>X</button>
+        </form>
+      );
+    } else if (!payButtonToggle && !toggleWebForm && url) {
       buttons = (
         <React.Fragment>
           {markAsPaid}
@@ -41,11 +81,11 @@ class AccountCard extends React.Component {
           </button>
         </React.Fragment>
       );
-    } else if (payButtonToggle === null && !url) {
+    } else if (!payButtonToggle && !toggleWebForm && !url) {
       buttons = (
         <React.Fragment>
           {markAsPaid}
-          <button onClick={() => this.webToggle(true)}>Add Website</button>
+          <button onClick={() => dispatch(toggleWeb(id))}>Add Website</button>
         </React.Fragment>
       );
     }
@@ -78,7 +118,13 @@ class AccountCard extends React.Component {
 
 const mapStateToProps = state => ({
   payButtonToggle: state.accounts.payButtonToggle,
-  toggleWeb: state.accounts.toggleWeb
+  toggleWebForm: state.accounts.toggleWeb
 });
 
-export default connect(mapStateToProps)(AccountCard);
+const accountCard = connect(mapStateToProps)(AccountCard);
+// export default
+
+export default reduxForm({
+  form: 'website',
+  onSubmitFail: (errors, dispatch) => dispatch(focus('website', Object.keys(errors)[0]))
+})(accountCard);
