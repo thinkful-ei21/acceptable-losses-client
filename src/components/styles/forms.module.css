@@ -241,6 +241,10 @@ legend {
     margin: 0 auto;
   }
 
+  .validator {
+    color: #A8009C;
+  }
+
 }
 
 @media screen and (min-width: 1200px) {

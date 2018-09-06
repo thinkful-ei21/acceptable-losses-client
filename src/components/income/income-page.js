@@ -50,7 +50,7 @@ export class Incomes extends React.Component {
       });
       incomeResults = incomesSorted.map((income, index) => {
         return (
-          <React.Fragment>
+          <React.Fragment key={index}>
             <IncomeCard toggle={this.toggleUpdate} key={index} {...income} />
             <hr />
           </React.Fragment>
