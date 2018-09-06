@@ -7,6 +7,7 @@ import Input from '../input';
 
 import styles from '../styles/forms.module.css';
 import buttonStyles from '../styles/buttons.module.css';
+
 import { login } from '../../actions/auth';
 
 import { required, nonEmpty, matches, length, isTrimmed } from '../../validators';
@@ -26,50 +27,56 @@ export class ChangePasswordForm extends React.Component {
     const { handleSubmit, pristine, submitting, dispatch } = this.props;
     return (
       <form onSubmit={handleSubmit(values => this.onSubmit(values))}
-        className={styles.form}
+        className={styles.settingsForm}
       >
         <fieldset>
-          <legend>Change Password</legend>
+          <legend className={styles.settingsLegend}>Change Password</legend>
           <div className={styles.formInputs}>
             <label htmlFor="firstName" className={styles.inputLabel}>
               Old Password
             </label>
             <Field
               component={Input}
-              styleClass={styles.formInput}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="password"
               name="oldPassword"
               validate={[required, passwordLength, isTrimmed]}
               placeholder="Old Password"
+              // styleClass={styles.settingsInput}
             />
             <label htmlFor="newPassword" className={styles.inputLabel}>
               New Password
             </label>
             <Field
               component={Input}
-              styleClass={styles.formInput}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="password"
               name="newPassword"
               validate={[required, passwordLength, isTrimmed]}
               placeholder="New Password"
+              // styleClass={styles.settingsInput}
             />
             <label htmlFor="confirmNewPassword" className={styles.inputLabel}>
               Confirm New Password
             </label>
             <Field
               component={Input}
-              styleClass={styles.formInput}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="password"
               name="confirmNewPassword"
               validate={[required, nonEmpty, matchesPassword]}
               placeholder="Confirm New Password"
+              // styleClass={styles.settingsInput}
             />
-            <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
-              SUBMIT
-            </button>
-            <button className={buttonStyles.form} onClick={() => dispatch(hideChangePasswordForm())}>
-              Cancel
-            </button>
+
+            <div className={styles.settingsFormButtons}>
+              <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
+                SUBMIT
+              </button>
+              <button className={buttonStyles.form} onClick={() => dispatch(hideChangePasswordForm())}>
+                Cancel
+              </button>
+            </div>
           </div>
         </fieldset>
       </form>

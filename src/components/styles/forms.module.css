@@ -20,7 +20,8 @@ legend {
 
 }
 
-.form {
+.form,
+.settingsForm {
   width: 70vw;
   margin: 0 auto;
   text-align: center;
@@ -162,6 +163,17 @@ legend {
   margin-top: 20px;
 }
 
+.settingsFormButtons {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+.settingsFormButtons button:first-child {
+  margin-right: 15px;
+}
+
 
 @media screen and (min-width: 800px) {
   .formInputs {
@@ -179,7 +191,8 @@ legend {
     color: grey;
   }
 
-  .form {
+  .form,
+  .settingsForm {
     width: 50vw;
   }
 
@@ -189,5 +202,53 @@ legend {
 
   .filterDropDown {
     width: 75px;
+  }
+
+  .settingsLegend {
+    color: black;
+    font-size: 1.5em;
+    padding-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .settingsForm {
+    box-sizing: border-box;
+    margin: 0 5vw;
+    padding: 0 20px;
+    width: 27vw;
+    height: 75vh;
+    overflow: auto;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
+    position: relative;
+    text-align: left;
+  }
+
+  .settingsForm .formInputs label {
+    color: black;
+    opacity: 1;
+  }
+
+  .settingsInput {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+
+  .settingsFormButtons button:first-child {
+    margin: 0 auto;
+  }
+
+}
+
+@media screen and (min-width: 1200px) {
+  .settingsFormButtons button:first-child {
+    margin-right: 15px;
+  }
+
+  .settingsFormButtons button:last-child {
+    margin-top: 0;
   }
 }

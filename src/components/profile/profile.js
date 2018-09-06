@@ -92,17 +92,19 @@ export class Profile extends React.Component {
     }
     if (!changePasswordForm && !editInfoForm && confirmDeleteUser) {
       form = (
-        <div className={formStyles.settingsDeleteUser}>
+        <div className={`${formStyles.settingsDeleteUser} ${styles.form}`}>
           <h4>WARNING!</h4>
           <p>Deleting your account will result in permanent deletion of all user data.</p>
 
           <p>Are you sure you want to delete?</p>
-          <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
-            Delete
-          </button>
-          <button className={buttonStyles.form} onClick={() => dispatch(hideConfirmDeleteUser())}>
-            Cancel
-          </button>
+          <div className={formStyles.settingsFormButtons}>
+            <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
+              Delete
+            </button>
+            <button className={buttonStyles.form} onClick={() => dispatch(hideConfirmDeleteUser())}>
+              Cancel
+            </button>
+          </div>
         </div>
       );
     }
@@ -143,52 +145,62 @@ export class Profile extends React.Component {
     }
 
     mainContent = (
-      <React.Fragment>
-        <h2 className={styles.h2}>Settings</h2>
+      <section className={styles.allContent}>
+        {userImg}
+        <div className={styles.uploadImgButton}>{uploadButtons}</div>
 
-        <section className={styles.allContent}>
-          {userImg}
-          <div className={styles.uploadImgButton}>{uploadButtons}</div>
+        <h3 className={styles.h3}>Manage Profile</h3>
 
-          <h3 className={styles.h3}>Manage Profile</h3>
+        <div className={styles.labelAndButton}>
+          <p>Update Your First Name, Last Name, Email Address.</p>
+          <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
+            Update Your Info
+          </button>
+        </div>
 
-          <div className={styles.labelAndButton}>
-            <p>Update Your First Name, Last Name, Email Address.</p>
-            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
-              Update Your Info
-            </button>
-          </div>
+        <div className={styles.labelAndButton}>
+          <p>Change Your Password.</p>
+          <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showChangePasswordForm()}>
+            Change Password
+          </button>
+        </div>
 
-          <div className={styles.labelAndButton}>
-            <p>Change Your Password.</p>
-            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showChangePasswordForm()}>
-              Change Password
-            </button>
-          </div>
+        <div className={styles.labelAndButton}>
+          <p>Delete User Account.</p>
+          <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.deleteUser()}>
+            Delete User
+          </button>
+        </div>
 
-          <div className={styles.labelAndButton}>
-            <p>Delete User Account.</p>
-            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.deleteUser()}>
-              Delete User
-            </button>
-          </div>
-
-          <h3 className={styles.h3}>Manage Incomes</h3>
-          <div className={styles.labelAndButton}>
-            <p>Update Incomes</p>
-            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>
-              Incomes
-            </button>
-          </div>
-        </section>
-      </React.Fragment>
+        <h3 className={styles.h3}>Manage Incomes</h3>
+        <div className={styles.labelAndButton}>
+          <p>Update Incomes</p>
+          <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>
+            Incomes
+          </button>
+        </div>
+      </section>
     );
 
     if (this.state.toggleIncome) {
       form = <Incomes hideIncome={this.toggleIncomeInfo.bind(this)} />;
     }
 
-    return <div className={styles.wholePage}>{!form ? mainContent : form}</div>;
+    return (
+      <div className={styles.wholePage}>
+        <h2 className={styles.h2}>Settings</h2>
+
+        <div className={styles.mobileView}>
+        { !form ? mainContent : form }
+        </div>
+
+        <div className={styles.desktopView}>
+        { mainContent }
+        { form }
+        </div>
+      </div>
+
+    );
   }
 }
 
