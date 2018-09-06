@@ -147,6 +147,21 @@ legend {
   margin-left: 20px;
 }
 
+.settingsDeleteUser {
+  width: 70%;
+  margin: 0 auto;
+  color: white;
+  text-align: center;
+}
+
+.settingsDeleteUser h4 {
+  font-size: 1.5em;
+}
+
+.settingsDeleteUser p:last-child {
+  margin-top: 20px;
+}
+
 
 @media screen and (min-width: 800px) {
   .formInputs {
