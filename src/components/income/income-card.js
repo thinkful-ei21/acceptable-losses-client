@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { deleteIncome, getIncome, showUpdateForm, hideIncomeForm } from '../../actions/incomes';
 
-class IncomeCard extends React.Component {
+export class IncomeCard extends React.Component {
   toggleUpdate(id) {
     const { dispatch } = this.props;
     return dispatch(getIncome(id))

@@ -1,9 +1,9 @@
 import React from 'react';
-import { App } from '../../components/App';
+import { HeaderBar } from '../../components/header';
 import { shallow } from 'enzyme';
 
-describe('<App />', () => {
+describe('<HeaderBar />', () => {
   it('Should render without crashing', () => {
-    shallow(<App />);
+    shallow(<HeaderBar />);
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import LandingPage from '../../components/landing-page';
+import { LandingPage } from '../../components/landing-page';
 import { shallow } from 'enzyme';
 
 describe('<LandingPage />', () => {
