@@ -95,43 +95,8 @@ export class AccountDetails extends React.Component {
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
       payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
     }
-    // } else if (nextDue) {
-    //   payButtons = (
-    //     <div>
-    //       <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
-    //         Mark as Paid
-    //       </button>
-    //       {url ? (
-    //         <button className={buttonStyles.payHere}>
-    //           <a target="_blank" href={url}>
-    //             Pay Here
-    //           </a>
-    //         </button>
-    //       ) : (
-    //         <button onClick={() => this.webToggle(true)}>Add Website</button>
-    //       )}
-    //     </div>
-    //   );
-    // } else {
-      // payButtons = (
-      //   <div>
-      //     <button className={buttonStyles.markAsPaid} onClick={() => this.payToggle(true)}>
-      //       Mark as Paid
-      //     </button>
-      //     {url ? (
-      //       <button className={buttonStyles.payHere}>
-      //         <a target="_blank" href={url}>
-      //           Pay Here
-      //         </a>
-      //       </button>
-      //     ) : (
-      //       <button onClick={() => this.webToggle(true)}>Add Website</button>
-      //     )}
-      //   </div>
-      // );
 
-
-    if (!editForm && !deleteButtonToggle && !this.state.payToggle) {
+    if (!editForm && !deleteButtonToggle && !this.state.payToggle && !this.state.webToggle) {
       billHistory = bills.map((bill, index) => {
         return bill.isPaid ? (
           <tr key={index}>
@@ -179,7 +144,7 @@ export class AccountDetails extends React.Component {
           <p className={styles.details}>{account.frequency}</p>
         </React.Fragment>
       );
-      if(nextDue){
+      if (nextDue) {
         let nextDueDate = moment(nextDue.dueDate).format('MMM Do, YYYY'),
           nextDueAmount = Number(nextDue.amount).toFixed(2);
         nextDueBill = (
@@ -235,54 +200,23 @@ export class AccountDetails extends React.Component {
     if (deleteButtonToggle) {
       showSingleAction = (
         <React.Fragment>
-          <p className={styles.deleteMsg}>
-            Are you sure you want to delete this account?
-          </p>
+          <p className={styles.deleteMsg}>Are you sure you want to delete this account?</p>
           <div className={styles.deleteButtons}>
-            <button className={buttonStyles.confirmDelete}
+            <button
+              className={buttonStyles.confirmDelete}
               onClick={() => {
                 return dispatch(deleteAccount(id)).then(() => dispatch(toggleDelete()));
               }}
             >
               Confirm
             </button>
-            <button className={buttonStyles.cancelDelete}
-              onClick={() => dispatch(toggleDelete())}
-            >
+            <button className={buttonStyles.cancelDelete} onClick={() => dispatch(toggleDelete())}>
               Cancel
             </button>
           </div>
         </React.Fragment>
       );
     }
-
-    // if (this.state.payToggle) {
-    //   showSingleAction = (
-    //     <React.Fragment>
-    //       <p>How much did you pay?</p>
-    //       <AccountPay />
-    //     </React.Fragment>
-    //   );
-    // }
-    // if (url) {
-    //   website = (
-    //     <a target="_blank" href={url}>
-    //       Pay Here
-    //     </a>
-    //   );
-    // }
-
-    // if (!url && !editForm) {
-    //   website = (
-    //     <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
-    //       <label htmlFor="website" />
-    //       <Field component={Input} type="text" name="url" placeholder="add website" />
-    //       <button type="submit" disabled={pristine || submitting}>
-    //         Save
-    //       </button>
-    //     </form>
-    //   );
-    // }
 
     return (
       <section className={styles.detailPage}>
@@ -292,7 +226,6 @@ export class AccountDetails extends React.Component {
           <h3 className={styles.h3}>{accountName}</h3>
           {payButtons}
           {nextDueBill}
-          {/* {website} */}
           {frequency}
           {reminderFrequency}
           {billHistoryTable}
