@@ -15,6 +15,8 @@ import IncomeForm from './income-form';
 import UpdateIncome from './update-income';
 import requiresLogin from '../require-login';
 
+import styles from '../styles/settings.module.css';
+
 export class Incomes extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -59,14 +61,16 @@ export class Incomes extends React.Component {
     }
 
     return (
-      <div>
-        <button onClick={() => hideIncome()}>Back to Settings</button>
-        <h3>Incomes</h3>
-        <button onClick={() => this.addIncome()}>Add Income</button>
-        {formDisplay}
-        <p>---------------------------------------------------------------------------</p>
-        <ul>{incomeResults}</ul>
-      </div>
+      <section className={styles.incomePage}>
+        <div className={styles.incomeAllContent}>
+          <button onClick={() => hideIncome()}>Back to Settings</button>
+          <h3>Incomes</h3>
+          <button onClick={() => this.addIncome()}>Add Income</button>
+          {formDisplay}
+          <hr />
+          <ul>{incomeResults}</ul>
+        </div>
+      </section>
     );
   }
 }
