@@ -76,6 +76,36 @@
   padding:5px;
 }
 
+.incomeUl {
+  padding-left: 0;
+}
+
+.incomeLi {
+  list-style: none;
+}
+
+.incomeInfo {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+/* .incomeInfo h4, */
+.incomeInfo p {
+  margin: 10px 0;
+  font-size: 1.1em;
+}
+
+.incomeHeader {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.incomeHeader h3 {
+  font-size: 1.5em;
+}
+
 @media screen and (min-width: 800px) {
   .mobileView {
     display: none;
