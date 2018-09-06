@@ -32,7 +32,7 @@ export class ChangePasswordForm extends React.Component {
         <fieldset>
           <legend className={styles.settingsLegend}>Change Password</legend>
           <div className={styles.formInputs}>
-            <label htmlFor="firstName" className={styles.inputLabel}>
+            <label htmlFor="oldPassword" className={styles.inputLabel}>
               Old Password
             </label>
             <Field
