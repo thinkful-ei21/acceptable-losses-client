@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import { deleteIncome, getIncome, showUpdateForm, hideIncomeForm } from '../../actions/incomes';
 
+import styles from '../styles/settings.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
 export class IncomeCard extends React.Component {
   toggleUpdate(id) {
     const { dispatch } = this.props;
@@ -14,11 +17,18 @@ export class IncomeCard extends React.Component {
   render() {
     const { key, source, amount, id, dispatch } = this.props;
     return (
-      <li key={key} className="income-box">
-        <h4>{source}</h4>
-        <p>Amount: ${Number(amount).toFixed(2)}</p>
-        <button onClick={() => this.toggleUpdate(id)}>Edit</button>
-        <button onClick={() => dispatch(deleteIncome(id))}>Delete</button>
+      <li key={key} className={styles.incomeLi}>
+        <button onClick={() => this.toggleUpdate(id)} className={buttonStyles.editting}>
+          <img src={require('../../assets/edit.svg')} alt="Edit icon" />
+        </button>
+        <button onClick={() => dispatch(deleteIncome(id))} className={buttonStyles.editting}>
+          <img src={require('../../assets/delete.svg')} alt="Delete icon" />
+        </button>
+
+        <div className={styles.incomeInfo}>
+          <p>{source}</p>
+          <p>${Number(amount).toFixed(2)}</p>
+        </div>
       </li>
     );
   }

@@ -12,7 +12,6 @@ export const registerUser = user => () => {
   })
     .then(res => normalizeResponseErrors(res))
     .then(res => res.json())
-    .then(data => console.log(data))
     .catch(err => {
       const { reason, message, location } = err;
       if (reason === 'ValidationError') {

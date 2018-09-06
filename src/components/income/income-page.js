@@ -15,6 +15,9 @@ import IncomeForm from './income-form';
 import UpdateIncome from './update-income';
 import requiresLogin from '../require-login';
 
+import styles from '../styles/settings.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
 export class Incomes extends React.Component {
   componentDidMount() {
     const { dispatch } = this.props;
@@ -46,7 +49,12 @@ export class Incomes extends React.Component {
         return 0;
       });
       incomeResults = incomesSorted.map((income, index) => {
-        return <IncomeCard toggle={this.toggleUpdate} key={index} {...income} />;
+        return (
+          <React.Fragment key={index}>
+            <IncomeCard toggle={this.toggleUpdate} key={index} {...income} />
+            <hr />
+          </React.Fragment>
+        )
       });
     }
 
@@ -59,14 +67,22 @@ export class Incomes extends React.Component {
     }
 
     return (
-      <div>
-        <button onClick={() => hideIncome()}>Back to Settings</button>
-        <h3>Incomes</h3>
-        <button onClick={() => this.addIncome()}>Add Income</button>
-        {formDisplay}
-        <p>---------------------------------------------------------------------------</p>
-        <ul>{incomeResults}</ul>
-      </div>
+      <section className={styles.incomePage}>
+        <div className={styles.incomeAllContent}>
+          <button onClick={() => hideIncome()}>Back to Settings</button>
+
+          <div className={styles.incomeHeader}>
+            <h3>Incomes</h3>
+            <button className={buttonStyles.settingsAdd} onClick={() => this.addIncome()}>
+              <img src={require('../../assets/add.svg')} alt="add income icon" />
+            </button>
+          </div>
+
+          {formDisplay}
+          <hr />
+          <ul className={styles.incomeUl}>{incomeResults}</ul>
+        </div>
+      </section>
     );
   }
 }
