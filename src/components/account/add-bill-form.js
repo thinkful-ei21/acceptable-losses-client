@@ -16,7 +16,6 @@ export class AddBillForm extends React.Component {
   }
 
   onSubmit(values) {
-    console.log(values)
     return this.props
       .dispatch(createBill(values))
       .then(() => this.props.dispatch(getAccounts()))
