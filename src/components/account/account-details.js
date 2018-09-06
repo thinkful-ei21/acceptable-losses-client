@@ -86,10 +86,12 @@ export class AccountDetails extends React.Component {
         <form id="website" onSubmit={handleSubmit(values => this.onSubmit(values))}>
           <label htmlFor="website" />
           <Field component={Input} type="text" name="url" placeholder="add website" />
-          <button type="submit" disabled={pristine || submitting}>
+          <button className={buttonStyles.updateForm} type="submit" disabled={pristine || submitting}>
             Save
           </button>
-          <button onClick={() => this.webToggle(false)}>X</button>
+          <button className={buttonStyles.cancelForm} onClick={() => this.webToggle(false)}>
+            X
+          </button>
         </form>
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
@@ -186,7 +188,9 @@ export class AccountDetails extends React.Component {
                 </a>
               </button>
             ) : (
-              <button onClick={() => this.webToggle(true)}>Add Website</button>
+              <button className={buttonStyles.markAsPaid} onClick={() => this.webToggle(true)}>
+                Add Website
+              </button>
             )}
           </div>
         );
