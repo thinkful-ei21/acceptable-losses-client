@@ -14,10 +14,12 @@ export class Calendar extends React.Component {
     this.props.dispatch(getAccounts());
   }
 
-  handleSelect = ({ start }) => {
+  handleSelect = ({start}) => {
     let date = moment(start).format('YYYY-MM-DD');
     this.props.dispatch(getDaysBills(date));
+    return false
   };
+
 
   getBillHistory() {
     let allBills = this.props.accounts.map(account => account.bills);
@@ -99,15 +101,16 @@ export class Calendar extends React.Component {
         <div className={styles.calendarPage} style={{ height: '100%' }}>
           <section className={styles.section}>
             <BigCalendar
-              selectable
+              selectable={true}
               events={bills}
               startAccessor="startDate"
               endAccessor="endDate"
               localizer={BigCalendar.momentLocalizer(moment)}
               views={['month']}
               dayPropGetter={this.customDayPropGetter}
+              onSelecting={this.handleSelect}
               onSelectSlot={this.handleSelect}
-              longPressThreshold={10}
+              longPressThreshold={1}
             />
           </section>
           <section className={styles.section}>
