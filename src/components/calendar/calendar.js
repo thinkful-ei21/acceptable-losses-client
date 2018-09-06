@@ -9,7 +9,7 @@ import SelectedBills from './selected-bills';
 import '../styles/calendar.css';
 import styles from '../styles/calendarPage.module.css';
 
-class Calendar extends React.Component {
+export class Calendar extends React.Component {
   componentDidMount() {
     this.props.dispatch(getAccounts());
   }
