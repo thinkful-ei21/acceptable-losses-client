@@ -203,7 +203,8 @@ export class Profile extends React.Component {
 
     return (
       <div className={styles.wholePage}>
-        { !form ? mainContent : form }
+        { form ? form : '' }
+        { !form ? mainContent : '' }
       </div>
 
     );
