@@ -203,8 +203,14 @@ export class Profile extends React.Component {
 
     return (
       <div className={styles.wholePage}>
-        { form ? form : '' }
-        { !form ? mainContent : '' }
+        <div className={styles.mobileView}>
+        { !form ? mainContent : form }
+        </div>
+
+        <div className={styles.desktopView}>
+        { mainContent }
+        { form }
+        </div>
       </div>
 
     );

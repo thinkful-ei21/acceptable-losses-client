@@ -3,6 +3,10 @@
   box-sizing: border-box;
 }
 
+.desktopView {
+  display: none;
+}
+
 .h2 {
   color: white;
   font-size: 1.75em;
@@ -51,5 +55,13 @@
 }
 
 @media screen and (min-width: 800px) {
-  
+  .mobileView {
+    display: none;
+  }
+
+  .desktopView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
