@@ -54,6 +54,10 @@
   margin: 0;
 }
 
+.labelAndButton:last-child {
+  margin-bottom: 35px;
+}
+
 @media screen and (min-width: 800px) {
   .mobileView {
     display: none;
@@ -63,5 +67,32 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+  }
+
+  .h2 {
+    margin-left: 10vw;
+    top: -5vh;
+  }
+
+  .allContent {
+    box-sizing: border-box;
+    margin-top: 0;
+    margin-left: 10vw;
+    width: 54vw;
+    min-height: 0; /* overrides mobile */
+    height: 75vh;
+    background-color: white;
+    overflow: auto;
+    border-radius: 7px;
+  }
+
+  .form {
+    margin: 0 5vw;
+    width: 27vw;
+    height: 75vh;
+    overflow: auto;
+    border-radius: 7px;
+    background-color: white;
+    position: relative;
   }
 }
