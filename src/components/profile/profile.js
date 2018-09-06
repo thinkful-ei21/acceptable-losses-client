@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import {
   showChangePasswordForm,
@@ -82,7 +81,7 @@ export class Profile extends React.Component {
 
   render() {
     const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, uploading } = this.props;
-    const { firstName, profilePic } = user;
+    const { profilePic } = user;
     let form, userImg, uploadButtons, mainContent;
 
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
