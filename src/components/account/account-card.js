@@ -89,7 +89,7 @@ class AccountCard extends React.Component {
       buttons = (
         <React.Fragment>
           {markAsPaid}
-          <button onClick={() => dispatch(toggleWeb(id))}>Add Website</button>
+          <button className={buttonStyles.markAsPaid} onClick={() => dispatch(toggleWeb(id))}>Add Website</button>
         </React.Fragment>
       );
     }
