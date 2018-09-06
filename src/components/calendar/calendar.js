@@ -107,6 +107,7 @@ export class Calendar extends React.Component {
               views={['month']}
               dayPropGetter={this.customDayPropGetter}
               onSelectSlot={this.handleSelect}
+              longPressThreshold={10}
             />
           </section>
           <section className={styles.section}>
