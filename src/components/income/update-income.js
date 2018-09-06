@@ -30,13 +30,27 @@ export class UpdateIncomeForm extends React.Component {
       <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
         {err}
         <label htmlFor="source">Source</label>
-        <Field component={Input} type="text" name="source" id="source" validate={[required, nonEmpty]} />
+        <Field component={Input}
+          type="text"
+          name="source"
+          id="source"
+          validate={[required, nonEmpty]}
+        />
+
         <label htmlFor="amount">Amount</label>
-        <Field component={Input} type="amount" name="amount" id="amount" validate={required} />
-        <button type="submit" disabled={submitting}>
-          Submit
-        </button>
-        <button onClick={() => dispatch(hideUpdateForm())}>X</button>
+        <Field component={Input}
+          type="amount"
+          name="amount"
+          id="amount"
+          validate={required}
+        />
+
+        <div>
+          <button type="submit" disabled={submitting}>
+            Submit
+          </button>
+          <button onClick={() => dispatch(hideUpdateForm())}>Cancel</button>
+        </div>
       </form>
     );
   }

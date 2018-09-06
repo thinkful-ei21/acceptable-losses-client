@@ -30,44 +30,53 @@ export class EditInfoForm extends React.Component {
     }
     return (
       <form onSubmit={handleSubmit(values => this.onSubmit(values))}
-        className={styles.form}
+        className={styles.settingsForm}
       >
         {err}
         <fieldset>
-          <legend>Edit Info</legend>
+          <legend className={styles.settingsLegend}>Edit Info</legend>
           <div className={styles.formInputs}>
             <label htmlFor="firstName" className={styles.inputLabel}>
               First Name
             </label>
             <Field
               component={Input}
-              styleClass={styles.formInput}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="text"
               name="firstName"
               placeholder="First Name"
             />
+
             <label htmlFor="lastName" className={styles.inputLabel}>
               Last Name
             </label>
-            <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
+            <Field component={Input}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
+              type="text"
+              name="lastName"
+              placeholder="Last Name"
+            />
+
             <label htmlFor="username" className={styles.inputLabel}>
               Username
             </label>
             <Field
               component={Input}
-              styleClass={styles.formInput}
+              styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="text"
               name="username"
               validate={[required, nonEmpty, isTrimmed]}
               placeholder="Username"
             />
 
-            <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
-              SUBMIT
-            </button>
-            <button className={buttonStyles.form} onClick={() => dispatch(hideEditInfoForm())}>
-              CANCEL
-            </button>
+            <div className={styles.settingsFormButtons}>
+              <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
+                SUBMIT
+              </button>
+              <button className={buttonStyles.form} onClick={() => dispatch(hideEditInfoForm())}>
+                CANCEL
+              </button>
+            </div>
           </div>
         </fieldset>
       </form>
