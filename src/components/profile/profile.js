@@ -19,8 +19,20 @@ import { clearAuthToken } from '../../local-storage';
 
 import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
+import Incomes from '../income/income-page.js';
+
+import styles from '../styles/settings.module.css';
+import formStyles from '../styles/forms.module.css';
+
 
 export class Profile extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      toggleIncome: false
+    })
+  }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(hideEditInfoForm());
@@ -63,10 +75,16 @@ export class Profile extends React.Component {
     dispatch(uploadImage(formData));
   }
 
+  toggleIncomeInfo() {
+    this.setState({
+      toggleIncome: !this.state.toggleIncome
+    })
+  }
+
   render() {
     const { changePasswordForm, editInfoForm, confirmDeleteUser, dispatch, user, uploading } = this.props;
     const { firstName, profilePic } = user;
-    let form, userImg, uploadButtons;
+    let form, userImg, uploadButtons, mainContent;
 
     if (changePasswordForm && !editInfoForm && !confirmDeleteUser) {
       form = <ChangePasswordForm />;
@@ -76,12 +94,13 @@ export class Profile extends React.Component {
     }
     if (!changePasswordForm && !editInfoForm && confirmDeleteUser) {
       form = (
-        <div>
+        <div className={formStyles.settingsDeleteUser}>
+          <h4>WARNING!</h4>
           <p>
-            <span>WARNING!</span>
             Deleting your account will result in permanent deletion of all user data.
-            <span>Are you sure you want to delete?</span>
           </p>
+
+          <p>Are you sure you want to delete?</p>
           <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
             Delete
           </button>
@@ -93,10 +112,23 @@ export class Profile extends React.Component {
     }
 
     if (profilePic && profilePic.public_id && profilePic.secure_url) {
-      userImg = <img key={profilePic.public_id} src={profilePic.secure_url} alt="Your Ugly Mug :)" />;
+      userImg = (
+        <img key={profilePic.public_id}
+          src={profilePic.secure_url}
+          alt="Your Ugly Mug :)"
+          className={styles.userImg}
+        />
+      );
     } else {
-      userImg = <img src={require('../../assets/no-profile-image.png')} alt="missing profile pic" />;
+      userImg = (
+        <img src={require('../../assets/no-profile-image.png')}
+          alt="missing profile pic"
+          className={styles.userImg}
+        />
+      );
     }
+
+    console.log(user);
 
     if (uploading) {
       uploadButtons = (
@@ -123,35 +155,57 @@ export class Profile extends React.Component {
       );
     }
 
-    return (
-      <div>
-        <h2>{firstName}</h2>
-        {userImg}
-        <div>{uploadButtons}</div>
-        <section>
-          <h3>Manage Profile</h3>
-          {form}
-          <p>Manage Your Profile Configs Here.</p>
-          <button className={buttonStyles.form} onClick={() => this.showEditInfoForm()}>
-            Update Your Info
-          </button>
-          <p>Update Your First Name, Last Name, Email Address.</p>
-          <button className={buttonStyles.form} onClick={() => this.showChangePasswordForm()}>
-            Change Password
-          </button>
-          <p>Change Your Password.</p>
-          <button className={buttonStyles.form} onClick={() => this.deleteUser()}>
-            Delete User
-          </button>
-          <p>Delete User Account.</p>
-          <h3>Manage Income</h3>
-          <p>Manage All Your Incomes Here.</p>
-          <Link to="/incomes">
-            <button className={buttonStyles.form}>Incomes</button>
-          </Link>
-          <p>Navigate to income.</p>
+    mainContent = (
+      <React.Fragment>
+        <h2 className={styles.h2}>Settings</h2>
+
+        <section className={styles.allContent}>
+          {userImg}
+          <div className={styles.uploadImgButton}>{uploadButtons}</div>
+
+          <h3 className={styles.h3}>Manage Profile</h3>
+
+          <div className={styles.labelAndButton}>
+            <p>Update Your First Name, Last Name, Email Address.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showEditInfoForm()}>
+              Update Your Info
+            </button>
+          </div>
+
+          <div className={styles.labelAndButton}>
+            <p>Change Your Password.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.showChangePasswordForm()}>
+              Change Password
+            </button>
+          </div>
+
+          <div className={styles.labelAndButton}>
+            <p>Delete User Account.</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.deleteUser()}>
+              Delete User
+            </button>
+          </div>
+
+          <h3 className={styles.h3}>Manage Incomes</h3>
+          <div className={styles.labelAndButton}>
+            <p>Update Incomes</p>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>Incomes</button>
+          </div>
         </section>
+      </React.Fragment>
+    )
+
+    if (this.state.toggleIncome) {
+      form = (
+        <Incomes hideIncome={this.toggleIncomeInfo.bind(this)}/>
+      )
+    }
+
+    return (
+      <div className={styles.wholePage}>
+        { !form ? mainContent : form }
       </div>
+
     );
   }
 }

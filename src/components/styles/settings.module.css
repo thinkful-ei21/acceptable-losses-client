@@ -1,0 +1,51 @@
+.wholePage {
+  position: relative;
+  box-sizing: border-box;
+}
+
+.h2 {
+  color: white;
+  font-size: 1.75em;
+  text-transform: capitalize;
+  position: relative;
+  top: -63px;
+  margin-left: 20px;
+}
+
+.allContent {
+  margin-top: -75px;
+  padding: 0 30px;
+  padding-top: 30px;
+  background-color: white;
+  min-height: 100vh;
+}
+
+.h3 {
+  /* font-size: 2em; */
+  margin-bottom: 20px;
+  padding-top: 30px
+}
+
+.userImg {
+  width: 100px;
+}
+
+.uploadImgButton {
+  margin-bottom: 30px;
+}
+
+.labelAndButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.labelAndButton p {
+  width: 70%;
+}
+
+.button {
+  margin: 0;
+}

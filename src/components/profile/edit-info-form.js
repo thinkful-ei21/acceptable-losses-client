@@ -29,42 +29,46 @@ export class EditInfoForm extends React.Component {
       err = <div aria-live="polite">{error}</div>;
     }
     return (
-      <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
+      <form onSubmit={handleSubmit(values => this.onSubmit(values))}
+        className={styles.form}
+      >
         {err}
         <fieldset>
           <legend>Edit Info</legend>
-          <label htmlFor="firstName" className={styles.inputLabel}>
-            First Name
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="text"
-            name="firstName"
-            placeholder="First Name"
-          />
-          <label htmlFor="lastName" className={styles.inputLabel}>
-            Last Name
-          </label>
-          <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
-          <label htmlFor="username" className={styles.inputLabel}>
-            Username
-          </label>
-          <Field
-            component={Input}
-            styleClass={styles.formInput}
-            type="text"
-            name="username"
-            validate={[required, nonEmpty, isTrimmed]}
-            placeholder="Username"
-          />
+          <div className={styles.formInputs}>
+            <label htmlFor="firstName" className={styles.inputLabel}>
+              First Name
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="text"
+              name="firstName"
+              placeholder="First Name"
+            />
+            <label htmlFor="lastName" className={styles.inputLabel}>
+              Last Name
+            </label>
+            <Field component={Input} styleClass={styles.formInput} type="text" name="lastName" placeholder="Last Name" />
+            <label htmlFor="username" className={styles.inputLabel}>
+              Username
+            </label>
+            <Field
+              component={Input}
+              styleClass={styles.formInput}
+              type="text"
+              name="username"
+              validate={[required, nonEmpty, isTrimmed]}
+              placeholder="Username"
+            />
 
-          <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
-            SUBMIT
-          </button>
-          <button className={buttonStyles.form} onClick={() => dispatch(hideEditInfoForm())}>
-            Cancel
-          </button>
+            <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
+              SUBMIT
+            </button>
+            <button className={buttonStyles.form} onClick={() => dispatch(hideEditInfoForm())}>
+              CANCEL
+            </button>
+          </div>
         </fieldset>
       </form>
     );
