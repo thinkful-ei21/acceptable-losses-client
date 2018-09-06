@@ -87,12 +87,15 @@
   }
 
   .form {
+    box-sizing: border-box;
     margin: 0 5vw;
+    padding: 0 20px;
     width: 27vw;
     height: 75vh;
     overflow: auto;
     border-radius: 7px;
     background-color: white;
+    color: black;
     position: relative;
   }
 }

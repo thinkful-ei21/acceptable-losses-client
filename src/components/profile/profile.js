@@ -101,12 +101,14 @@ export class Profile extends React.Component {
           </p>
 
           <p>Are you sure you want to delete?</p>
-          <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
-            Delete
-          </button>
-          <button className={buttonStyles.form} onClick={() => dispatch(hideConfirmDeleteUser())}>
-            Cancel
-          </button>
+          <div className={formStyles.settingsFormButtons}>
+            <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
+              Delete
+            </button>
+            <button className={buttonStyles.form} onClick={() => dispatch(hideConfirmDeleteUser())}>
+              Cancel
+            </button>
+          </div>
         </div>
       );
     }
