@@ -34,7 +34,7 @@ export class IncomeForm extends React.Component {
         <button type="submit" disabled={pristine || submitting}>
           Submit
         </button>
-        <button onClick={() => this.cancelAdd()}>X</button>
+        <button onClick={() => this.cancelAdd()}>Cancel</button>
       </form>
     );
   }

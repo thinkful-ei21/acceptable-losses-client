@@ -36,7 +36,7 @@ export class UpdateIncomeForm extends React.Component {
         <button type="submit" disabled={submitting}>
           Submit
         </button>
-        <button onClick={() => dispatch(hideUpdateForm())}>X</button>
+        <button onClick={() => dispatch(hideUpdateForm())}>Cancel</button>
       </form>
     );
   }
