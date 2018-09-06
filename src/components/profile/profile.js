@@ -24,13 +24,12 @@ import Incomes from '../income/income-page.js';
 import styles from '../styles/settings.module.css';
 import formStyles from '../styles/forms.module.css';
 
-
 export class Profile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ({
+    this.state = {
       toggleIncome: false
-    })
+    };
   }
 
   componentDidMount() {
@@ -78,7 +77,7 @@ export class Profile extends React.Component {
   toggleIncomeInfo() {
     this.setState({
       toggleIncome: !this.state.toggleIncome
-    })
+    });
   }
 
   render() {
@@ -96,9 +95,7 @@ export class Profile extends React.Component {
       form = (
         <div className={formStyles.settingsDeleteUser}>
           <h4>WARNING!</h4>
-          <p>
-            Deleting your account will result in permanent deletion of all user data.
-          </p>
+          <p>Deleting your account will result in permanent deletion of all user data.</p>
 
           <p>Are you sure you want to delete?</p>
           <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
@@ -113,22 +110,13 @@ export class Profile extends React.Component {
 
     if (profilePic && profilePic.public_id && profilePic.secure_url) {
       userImg = (
-        <img key={profilePic.public_id}
-          src={profilePic.secure_url}
-          alt="Your Ugly Mug :)"
-          className={styles.userImg}
-        />
+        <img key={profilePic.public_id} src={profilePic.secure_url} alt="Your Ugly Mug :)" className={styles.userImg} />
       );
     } else {
       userImg = (
-        <img src={require('../../assets/no-profile-image.png')}
-          alt="missing profile pic"
-          className={styles.userImg}
-        />
+        <img src={require('../../assets/no-profile-image.png')} alt="missing profile pic" className={styles.userImg} />
       );
     }
-
-    console.log(user);
 
     if (uploading) {
       uploadButtons = (
@@ -189,24 +177,19 @@ export class Profile extends React.Component {
           <h3 className={styles.h3}>Manage Incomes</h3>
           <div className={styles.labelAndButton}>
             <p>Update Incomes</p>
-            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>Incomes</button>
+            <button className={`${buttonStyles.form} ${styles.button}`} onClick={() => this.toggleIncomeInfo()}>
+              Incomes
+            </button>
           </div>
         </section>
       </React.Fragment>
-    )
+    );
 
     if (this.state.toggleIncome) {
-      form = (
-        <Incomes hideIncome={this.toggleIncomeInfo.bind(this)}/>
-      )
+      form = <Incomes hideIncome={this.toggleIncomeInfo.bind(this)} />;
     }
 
-    return (
-      <div className={styles.wholePage}>
-        { !form ? mainContent : form }
-      </div>
-
-    );
+    return <div className={styles.wholePage}>{!form ? mainContent : form}</div>;
   }
 }
 
