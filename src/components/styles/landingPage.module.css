@@ -18,7 +18,8 @@
   text-align: center;
   font-size: 1.25em;
   font-weight: 300;
-  margin: 50px;
+  margin: 50px auto;
+  max-width: 50%;
 }
 
 .signIn {

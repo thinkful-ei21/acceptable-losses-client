@@ -14,11 +14,19 @@ export function LandingPage(props) {
   return (
     <div className={styles.background}>
       <h1 className={styles.title}>Acceptable Losses</h1>
-      <p className={styles.sellApp}>
-        SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL
-        THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP
-        HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! - SELL THE APP HERE! -
-      </p>
+      <div className={styles.sellApp}>
+        <p>Have you ever been late on a bill? Has a bill ever caught you off guard?</p>
+
+        <p>
+          <strong>IF YES TO ANY OF ABOVE, YOU'VE COME TO THE RIGHT PLACE!</strong>
+        </p>
+
+        <p>
+          With our app, you can keep track of all of your bills, see due dates of upcoming bills, click a button to
+          visit your bill's payment website and mark them as paid. Staying on top of your expenses is as easy as hitting
+          a button!!
+        </p>
+      </div>
       <Link className={styles.signIn} to="/login">
         <button className={buttonStyles.form}>SIGN IN</button>
       </Link>
