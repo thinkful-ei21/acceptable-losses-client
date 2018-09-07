@@ -166,7 +166,6 @@ const mapStateToProps = state => ({
 });
 
 const accountCard = connect(mapStateToProps)(AccountCard);
-// export default
 
 export default reduxForm({
   form: 'website',

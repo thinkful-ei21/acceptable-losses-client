@@ -87,11 +87,11 @@ export class AccountsPage extends React.Component {
 
         <section className={styles.allContent}>
           <div className={styles.bills}>
-            <ul className={styles.billsList}>{accountResults}</ul>
+            <ul className={styles.billsList}>
+              {accountResults}
+            </ul>
           </div>
-          {/* <div className={styles.details}> */}
           {selectedAccount ? <AccountDetails /> : ''}
-          {/* </div> */}
         </section>
       </section>
     );
