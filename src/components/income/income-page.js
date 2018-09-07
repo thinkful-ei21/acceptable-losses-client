@@ -69,17 +69,15 @@ export class Incomes extends React.Component {
     return (
       <section className={styles.incomePage}>
         <div className={styles.incomeAllContent}>
-          <div className={styles.incomeHeader}>
-            <div className={styles.incomeHeaderButtons}>
-              <button className={buttonStyles.settingsAdd} onClick={() => this.addIncome()}>
-                <img src={require('../../assets/add.svg')} alt="add income icon" />
-              </button>
-              <button className={buttonStyles.back} onClick={() => hideIncome()}>
-                Back
-              </button>
-            </div>
 
+          <button className={buttonStyles.back} onClick={() => hideIncome()}>
+            Back
+          </button>
+          <div className={styles.incomeHeader}>
             <h3>Incomes</h3>
+            <button className={buttonStyles.settingsAdd} onClick={() => this.addIncome()}>
+              <img src={require('../../assets/add.svg')} alt="add income icon" />
+            </button>
           </div>
 
           {formDisplay}
