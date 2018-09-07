@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 
 import { togglePay, payBill, getDaysBills } from '../../actions/accounts';
 
+import buttonStyles from '../styles/buttons.module.css';
+import styles from '../styles/forms.module.css';
+// import '../styles/inputfile.css';
+
 import Input from '../input';
 
 class AccountPay extends React.Component {
   componentDidMount() {
     const { initialize } = this.props;
     initialize({
-      amount: this.props.selectedAccount.nextDue ? this.props.selectedAccount.nextDue.amount: 0
+      amount: this.props.selectedAccount.nextDue ? this.props.selectedAccount.nextDue.amount : 0
     });
   }
 
@@ -31,7 +35,10 @@ class AccountPay extends React.Component {
 
   onSubmit(value) {
     const { dispatch, selectedAccount, selectedDay } = this.props;
-    let updatedAccount = { amount: value.amount, dueDate: selectedAccount.nextDue ? selectedAccount.nextDue.dueDate : '' };
+    let updatedAccount = {
+      amount: value.amount,
+      dueDate: selectedAccount.nextDue ? selectedAccount.nextDue.dueDate : ''
+    };
     this.submitPayment();
     return dispatch(payBill(updatedAccount, selectedAccount.id))
       .then(() => dispatch(togglePay(null)))
@@ -44,11 +51,20 @@ class AccountPay extends React.Component {
       <section>
         <form id="amount" onSubmit={handleSubmit(values => this.onSubmit(values))}>
           <label htmlFor="amount" />
-          <Field component={Input} type="number" value={this.props.selectedAccount.amount} name="amount" />
-          <button type="submit" disabled={submitting}>
-            Confirm Payment
+          <Field
+            styleClass={styles.formInput}
+            component={Input}
+            type="number"
+            value={this.props.selectedAccount.amount}
+            placeholder="Amount"
+            name="amount"
+          />
+          <button className={buttonStyles.confirmPay} type="submit" disabled={submitting}>
+            Confirm
           </button>
-          <button onClick={() => this.cancel()}>Cancel</button>
+          <button className={buttonStyles.cancelForm} onClick={() => this.cancel()}>
+            Cancel
+          </button>
         </form>
       </section>
     );

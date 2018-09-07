@@ -95,7 +95,12 @@ export class AccountDetails extends React.Component {
         </form>
       );
     } else if (!this.state.webToggle && this.state.payToggle && nextDue) {
-      payButtons = <AccountPay payToggle={this.payToggle.bind(this)} />;
+      payButtons = (
+        <div>
+          <h4 className={styles.h4}>{name}</h4>
+          <AccountPay payToggle={this.payToggle.bind(this)} />
+        </div>
+      );
     }
 
     if (!editForm && !deleteButtonToggle && !this.state.payToggle && !this.state.webToggle) {

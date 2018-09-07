@@ -11,7 +11,6 @@ import {
 } from '../../actions/profile';
 import { deleteUser, uploadImage, deleteImage } from '../../actions/auth';
 
-import buttonStyles from '../styles/buttons.module.css';
 import requiresLogin from '../require-login';
 import { clearAuth } from '../../actions/auth';
 import { clearAuthToken } from '../../local-storage';
@@ -20,8 +19,10 @@ import EditInfoForm from './edit-info-form';
 import ChangePasswordForm from './change-password-form';
 import Incomes from '../income/income-page.js';
 
+import buttonStyles from '../styles/buttons.module.css';
 import styles from '../styles/settings.module.css';
 import formStyles from '../styles/forms.module.css';
+import '../styles/inputfile.css';
 
 export class Profile extends React.Component {
   constructor(props) {
@@ -128,16 +129,21 @@ export class Profile extends React.Component {
     } else if (!profilePic.public_id && !profilePic.secure_url && !uploading) {
       uploadButtons = (
         <React.Fragment>
-          <p>Upload an Image</p>
-          <input type="file" onChange={e => this.upload(e)} />
+          <label htmlFor="file">
+            <strong>Upload an Image</strong>
+          </label>
+          <input className={styles.inputfile} type="file" onChange={e => this.upload(e)} />
         </React.Fragment>
       );
     } else {
       uploadButtons = (
         <React.Fragment>
-          <p>Edit Image</p>
-          <input type="file" onChange={e => this.upload(e)} />
-          <button className={buttonStyles.form} onClick={() => dispatch(deleteImage(profilePic.public_id))}>
+          <div>
+            <input className="inputfile" name="file" id="file" type="file" onChange={e => this.upload(e)} />
+            <label htmlFor="file">Edit Image</label>
+          </div>
+
+          <button className="delButton" onClick={() => dispatch(deleteImage(profilePic.public_id))}>
             Delete
           </button>
         </React.Fragment>
@@ -146,7 +152,7 @@ export class Profile extends React.Component {
 
     mainContent = (
       <section className={styles.allContent}>
-        {userImg}
+        <div className={styles.imageContainer}>{userImg}</div>
         <div className={styles.uploadImgButton}>{uploadButtons}</div>
 
         <h3 className={styles.h3}>Manage Profile</h3>
@@ -190,16 +196,13 @@ export class Profile extends React.Component {
       <div className={styles.wholePage}>
         <h2 className={styles.h2}>Settings</h2>
 
-        <div className={styles.mobileView}>
-        { !form ? mainContent : form }
-        </div>
+        <div className={styles.mobileView}>{!form ? mainContent : form}</div>
 
         <div className={styles.desktopView}>
-        { mainContent }
-        { form }
+          {mainContent}
+          {form}
         </div>
       </div>
-
     );
   }
 }

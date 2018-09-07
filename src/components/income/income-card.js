@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { deleteIncome, getIncome, showUpdateForm, hideIncomeForm } from '../../actions/incomes';
 
 import styles from '../styles/settings.module.css';
+import cardStyles from '../styles/accountPage.module.css';
 import buttonStyles from '../styles/buttons.module.css';
 
 export class IncomeCard extends React.Component {
@@ -26,8 +27,14 @@ export class IncomeCard extends React.Component {
         </button>
 
         <div className={styles.incomeInfo}>
-          <p>{source}</p>
-          <p>${Number(amount).toFixed(2)}</p>
+          <div>
+            <p className={cardStyles.amountLabel}>Source:</p>
+            <p className={cardStyles.due}>{source}</p>
+          </div>
+          <div>
+            <p className={cardStyles.amountLabel}>Amount:</p>
+            <p className={cardStyles.amount}>${Number(amount).toFixed(2)}</p>
+          </div>
         </div>
       </li>
     );

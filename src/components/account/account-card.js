@@ -12,10 +12,6 @@ import { Field, reduxForm, focus } from 'redux-form';
 import buttonStyles from '../styles/buttons.module.css';
 
 class AccountCard extends React.Component {
-  // webToggle(id) {
-  //   return dispatch(toggleWeb(id));
-  // }
-
   onSubmit(value) {
     const { name, frequency, id, reminder, dispatch } = this.props;
     const newAccount = {
@@ -89,40 +85,41 @@ class AccountCard extends React.Component {
       buttons = (
         <React.Fragment>
           {markAsPaid}
-          <button className={buttonStyles.markAsPaid} onClick={() => dispatch(toggleWeb(id))}>Add Website</button>
+          <button className={buttonStyles.markAsPaid} onClick={() => dispatch(toggleWeb(id))}>
+            Add Website
+          </button>
         </React.Fragment>
       );
     }
     let paidBill = bills.find(
       bill =>
-        moment(bill.dueDate).format('YYYY-MM-DD') === moment(selectedDay).format('YYYY-MM-DD') &&
-        bill.datePaid !== null
+        moment(bill.dueDate).format('YYYY-MM-DD') === moment(selectedDay).format('YYYY-MM-DD') && bill.datePaid !== null
     );
-    if(paidBill){
+    if (paidBill) {
       return (
         <li className={styles.li} key={key}>
           <Link to="/app/accounts" className={styles.accDetailsLink}>
-            <h4 className={styles.h4}onClick={() => dispatch(getAccount(id))}>
+            <h4 className={styles.h4} onClick={() => dispatch(getAccount(id))}>
               {name}
             </h4>
           </Link>
-        <div className={styles.tabletViewBillInfo}>
-          <div className={styles.info}>
-            <div>
-            <p className={styles.dueLabel}>Paid:</p> 
-              <p className={styles.due}>{moment(paidBill.datePaid).format('MMM Do, YYYY')} </p>
-            </div>
-            <div>
-              <p className={styles.amountLabel}>Amount:</p> 
-              <p className={styles.amount} >${Number(paidBill.amount).toFixed(2)} </p>
+          <div className={styles.tabletViewBillInfo}>
+            <div className={styles.info}>
+              <div>
+                <p className={styles.dueLabel}>Paid:</p>
+                <p className={styles.due}>{moment(paidBill.datePaid).format('MMM Do, YYYY')} </p>
+              </div>
+              <div>
+                <p className={styles.amountLabel}>Amount:</p>
+                <p className={styles.amount}>${Number(paidBill.amount).toFixed(2)} </p>
+              </div>
             </div>
           </div>
-        </div>
         </li>
       );
     }
-    if(selectedDay && moment(nextDue.dueDate).format('YYYY-MM-DD') !== moment(selectedDay).format('YYYY-MM-DD')){
-      return ''
+    if (selectedDay && moment(nextDue.dueDate).format('YYYY-MM-DD') !== moment(selectedDay).format('YYYY-MM-DD')) {
+      return '';
     }
     if (nextDue) {
       return (
@@ -163,7 +160,7 @@ class AccountCard extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  selectedDay: state.accounts.selectedDay,  
+  selectedDay: state.accounts.selectedDay,
   payButtonToggle: state.accounts.payButtonToggle,
   toggleWebForm: state.accounts.toggleWeb
 });

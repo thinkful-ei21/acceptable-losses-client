@@ -31,11 +31,21 @@
 }
 
 .userImg {
-  width: 100px;
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.imageContainer {
+  width: 100%;
+  text-align: center;
 }
 
 .uploadImgButton {
-  margin-bottom: 30px;
+  display:flex;
+  flex-flow: row;
+  align-items: baseline;
+  justify-content: center;
+  /* margin-bottom: 30px; */
 }
 
 .labelAndButton {
@@ -91,16 +101,19 @@
   justify-content: space-between;
 }
 
-/* .incomeInfo h4, */
-.incomeInfo p {
-  margin: 10px 0;
-  font-size: 1.1em;
-}
-
 .incomeHeader {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
+  align-items: center;
   justify-content: space-between;
+}
+
+.incomeHeaderButtons {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .incomeHeader h3 {
@@ -148,4 +161,6 @@
     color: black;
     position: relative;
   }
+
+  
 }

@@ -1,0 +1,29 @@
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 13px;
+  padding: 9.5px 30px;
+  border-radius: 5px;
+  margin-top: 200x;
+  color: white;
+  background-color: #01b09f;
+}
+
+.delButton {
+  background-color: #01b09f;
+  color: white;
+  width: 125px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  display: block;
+  font-size: .75em;
+  transition: all 0.07s;
+}

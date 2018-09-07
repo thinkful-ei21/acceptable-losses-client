@@ -5,6 +5,9 @@ import { Field, reduxForm, focus } from 'redux-form';
 import { createIncome, getIncomes, hideIncomeForm } from '../../actions/incomes';
 import { required, nonEmpty } from '../../validators';
 
+import styles from '../styles/forms.module.css';
+import buttonStyles from '../styles/buttons.module.css';
+
 import Input from '../input';
 
 export class IncomeForm extends React.Component {
@@ -27,27 +30,39 @@ export class IncomeForm extends React.Component {
     return (
       <form onSubmit={handleSubmit(values => this.onSubmit(values))}>
         {err}
-        <label htmlFor="source">Source</label>
-        <Field component={Input}
+        <label htmlFor="source" className={styles.inputLabel}>
+          Source
+        </label>
+        <Field
+          styleClass={styles.formInput}
+          component={Input}
           type="text"
           name="source"
           id="source"
           validate={[required, nonEmpty]}
+          placeholder="Source"
         />
 
-        <label htmlFor="amount">Amount</label>
-        <Field component={Input}
+        <label htmlFor="amount" className={styles.inputLabel}>
+          Amount
+        </label>
+        <Field
+          styleClass={styles.formInput}
+          component={Input}
           type="amount"
           name="amount"
           id="amount"
           validate={required}
+          placeholder="Amount"
         />
 
-        <div>
-          <button type="submit" disabled={pristine || submitting}>
+        <div className={styles.settingsFormButtons}>
+          <button className={buttonStyles.form} type="submit" disabled={pristine || submitting}>
             Submit
           </button>
-          <button onClick={() => this.cancelAdd()}>Cancel</button>
+          <button className={buttonStyles.form} onClick={() => this.cancelAdd()}>
+            Cancel
+          </button>
         </div>
       </form>
     );
