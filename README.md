@@ -27,7 +27,9 @@ __________________________
 
 ### Mobile View
 
-![[MOBILE]Dashboard](src/assets/README/summary-M.png) ![[MOBILE]User Settings](src/assets/README/user-settings-m.png)![[MOBILE]Add Bill Form](src/assets/README/add-new-bil-M.png)
+![[MOBILE]Dashboard](src/assets/README/summary-M.png)
+![[MOBILE]User Settings](src/assets/README/user-settings-m.png)
+![[MOBILE]Add Bill Form](src/assets/README/add-new-bil-M.png)
 _________________
 ## Tech Stack
 
