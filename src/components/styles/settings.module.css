@@ -103,17 +103,8 @@
 
 .incomeHeader {
   display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.incomeHeaderButtons {
-  display: flex;
   flex-flow: row wrap;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: space-between;
 }
 
 .incomeHeader h3 {
@@ -162,5 +153,5 @@
     position: relative;
   }
 
-  
+
 }
