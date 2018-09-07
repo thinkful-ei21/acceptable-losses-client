@@ -26,9 +26,7 @@ export class ChangePasswordForm extends React.Component {
   render() {
     const { handleSubmit, pristine, submitting, dispatch } = this.props;
     return (
-      <form onSubmit={handleSubmit(values => this.onSubmit(values))}
-        className={styles.settingsForm}
-      >
+      <form onSubmit={handleSubmit(values => this.onSubmit(values))} className={styles.settingsForm}>
         <fieldset>
           <legend className={styles.settingsLegend}>Change Password</legend>
           <div className={styles.formInputs}>
@@ -56,14 +54,14 @@ export class ChangePasswordForm extends React.Component {
               placeholder="New Password"
               // styleClass={styles.settingsInput}
             />
-            <label htmlFor="confirmNewPassword" className={styles.inputLabel}>
+            <label htmlFor="confirmPassword" className={styles.inputLabel}>
               Confirm New Password
             </label>
             <Field
               component={Input}
               styleClass={`${styles.formInput} ${styles.settingsInput}`}
               type="password"
-              name="confirmNewPassword"
+              name="confirmPassword"
               validate={[required, nonEmpty, matchesPassword]}
               placeholder="Confirm New Password"
               // styleClass={styles.settingsInput}
