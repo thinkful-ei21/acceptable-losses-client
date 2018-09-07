@@ -96,7 +96,6 @@ export class Profile extends React.Component {
         <div className={`${formStyles.settingsDeleteUser} ${styles.form}`}>
           <h4>WARNING!</h4>
           <p>Deleting your account will result in permanent deletion of all user data.</p>
-
           <p>Are you sure you want to delete?</p>
           <div className={formStyles.settingsFormButtons}>
             <button className={buttonStyles.form} onClick={() => this.confirmDelete()}>
@@ -195,7 +194,7 @@ export class Profile extends React.Component {
     return (
       <div className={styles.wholePage}>
         <h2 className={styles.h2}>Settings</h2>
-
+        
         <div className={styles.mobileView}>{!form ? mainContent : form}</div>
 
         <div className={styles.desktopView}>

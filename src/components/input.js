@@ -12,12 +12,20 @@ export default class Input extends React.Component {
   render() {
     let error;
     if (this.props.meta.touched && this.props.meta.error) {
-      error = <div className={styles.validator}>{this.props.meta.error}</div>;
+      error = (
+        <div className={styles.validator} aria-live="polite">
+          {this.props.meta.error}
+        </div>
+      );
     }
 
     let warning;
     if (this.props.meta.touched && this.props.meta.warning) {
-      warning = <div className={styles.validator}>{this.props.meta.warning}</div>;
+      warning = (
+        <div className={styles.validator} aria-live="polite">
+          {this.props.meta.warning}
+        </div>
+      );
     }
 
     return (

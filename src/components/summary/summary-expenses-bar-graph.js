@@ -5,7 +5,7 @@ import styles from '../styles/graphs.module.css';
 
 export default function BarGraphExpenses(props) {
   return (
-    <div className={styles.expensesBar}>
+    <div className={styles.expensesBar} aria-label="Expenses bar graph">
       <ResponsiveBar
         data={props.graphData}
         keys={props.keys}

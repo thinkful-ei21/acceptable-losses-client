@@ -7,7 +7,7 @@ export default function PieChartExpenses(props) {
   return (
     // make sure parent container have a defined height when using responsive component,
     // otherwise height will be 0 and no chart will be rendered.
-    <div className={styles.pieChart}>
+    <div className={styles.pieChart} aria-label="Expenses pie chart">
       <ResponsivePie
         data={props.graphData}
         margin={{
