@@ -65,7 +65,7 @@ __________________________
 
 ## Dev Setup:
 
-* Clone both reops (this one and the [Server Repo]())
+* Clone both reops (this one and the [Server Repo](https://github.com/thinkful-ei21/acceptable-losses-server))
 
 * Once you have them cloned run `npm install` on both in order to get all dependancies.
 
