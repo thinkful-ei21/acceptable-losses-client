@@ -1,11 +1,5 @@
 # Welcome to Acceptable Losses!
-
-  * Looking for a way to beat that one boss?
-  * Can't seem to pass that one tricky level?
- 
- #### IF YES TO ANY OF ABOVE, YOU'VE COME TO THE RIGHT PLACE!
-        
-      
+          
 With our app, you can keep track of all of your bills, see due dates of upcoming bills, click a button to
 visit your bill's payment website and mark them as paid. Staying on top of your expenses is as easy as hitting
 a button!!
