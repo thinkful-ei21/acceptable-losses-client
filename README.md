@@ -10,6 +10,10 @@ __________________________
 ## Below are links to the live app and GitHub Repo for the server side:
 * [Live App](https://acceptable-losses-client.herokuapp.com)
 
+  Demo Login: 
+    - Username: DEMO@gmail.com
+    - Password: password
+
 * [Server Repo](https://github.com/thinkful-ei21/acceptable-losses-server)
 
 __________________________
