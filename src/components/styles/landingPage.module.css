@@ -133,6 +133,18 @@
   .landingCloud {
     width: 45vw;
   }
+
+  .features {
+    box-sizing: border-box;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 5%;
+  }
+
+  .featureCard {
+    width: 20%;
+    height: 34%;
+  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -151,6 +163,23 @@
 
   .landingCloud {
     width: 30vw;
+  }
+
+  .featureCard {
+    height: 37%;
+  }
+
+  .featureCard img {
+    width: 70px;
+    top: -35px;
+  }
+
+  .featureCard h2 {
+    font-size: 1.75em;
+  }
+
+  .featureCard p {
+    font-size: 1.1em;
   }
 }
 
@@ -174,5 +203,18 @@
 
   .landingCloud {
     width: 20vw;
+  }
+
+  .featureCard img {
+    width: 75px;
+    top: -37.5px;
+  }
+
+  .featureCard h2 {
+    font-size: 2em;
+  }
+
+  .featureCard p {
+    font-size: 1.25em;
   }
 }

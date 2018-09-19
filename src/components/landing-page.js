@@ -55,7 +55,7 @@ export function LandingPage(props) {
             src={require('../assets/landingPage/calendarFeature.svg')}
             alt="calendar feature icon"
           />
-          <h2>Calendar</h2>
+          <h2>Calendar View</h2>
           <p>Know when your bills are due on different days of the month.</p>
         </div>
 
