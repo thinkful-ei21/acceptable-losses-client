@@ -72,6 +72,21 @@ export function LandingPage(props) {
         </div>
       </section>
 
+      <section className={styles.demoAccount}>
+        <div className={styles.demoText}>
+          <h3>Try it out without the commitment.</h3>
+          <p>
+            Use this demo user to test out Acceptable
+            Losses without the need of signing up.
+          </p>
+        </div>
+        <div className={styles.demoInfo}>
+          <p className={styles.demoInfoLabel}>Username</p>
+          <p className={styles.demoInfoValue}>DEMO@gmail.com</p>
+          <p className={styles.demoInfoLabel}>Password</p>
+          <p className={styles.demoInfoValue}>password</p>
+        </div>
+      </section>
 
 
     </div>

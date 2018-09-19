@@ -68,7 +68,8 @@
   left: 0;
 }
 
-.features {
+.features,
+.demoAccount {
   background-color: white;
   height: 100vh;
   width: 100vw;
@@ -80,7 +81,8 @@
   padding: 10% 0;
 }
 
-.featureCard {
+.featureCard,
+.demoInfo {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
   padding: 0 5%;
   border-radius: 5px;
@@ -96,6 +98,50 @@
   position: relative;
   top: -25px;
 }
+
+/* more styles above with .features */
+.demoAccount {
+  justify-content: center;
+}
+
+.demoText {
+  color: #271672;
+  width: 85%;
+  margin-bottom: 10%;
+}
+
+.demoText h3 {
+  font-size: 2.5em;
+}
+
+.demoText p {
+  font-size: 1.25em;
+}
+
+/* more styles above with .featuerCard */
+.demoInfo {
+  box-sizing: border-box;
+  width: 70vw;
+  height: 35vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.demoInfoLabel {
+  text-align: left;
+  margin: 0;
+  margin-bottom: 3px;
+}
+
+.demoInfoValue {
+  color: #A8009C;
+  border: .25px solid rgba(0,0,0,.2);
+  padding: 7px;
+  margin-top: 0;
+}
+
 
 @media only screen and (min-width: 10px) {
   .landingContent {
@@ -113,6 +159,11 @@
 
   .featureCard {
     width: 65%;
+  }
+
+  .demoAccount {
+    height: 90vh;
+    margin-top: -15vh;
   }
 }
 
