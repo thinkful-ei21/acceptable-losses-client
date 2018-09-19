@@ -163,7 +163,7 @@
 
   .demoAccount {
     height: 90vh;
-    margin-top: -15vh;
+    margin-top: -12vh;
   }
 }
 
@@ -195,6 +195,26 @@
   .featureCard {
     width: 20%;
     height: 34%;
+  }
+
+  .demoAccount {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    height: 70vh;
+    margin-top: -15vh;
+  }
+
+  .demoText,
+  .demoInfo {
+    width: 40vw;
+  }
+
+  .demoInfo {
+    padding: 0 5%;
+  }
+
+  .demoText {
+    margin-bottom: 0;
   }
 }
 
@@ -232,6 +252,19 @@
   .featureCard p {
     font-size: 1.1em;
   }
+
+  .demoText,
+  .demoInfo {
+    width: 35vw;
+  }
+
+  .demoText h3 {
+    font-size: 2.75em;
+  }
+
+  .demoInfo {
+    font-size: 1.25em;
+  }
 }
 
 @media only screen and (min-width: 1200px) {
@@ -267,5 +300,25 @@
 
   .featureCard p {
     font-size: 1.25em;
+  }
+
+  .demoAccount {
+    box-sizing: border-box;
+    padding: 0 10%;
+    height: 90vh;
+    margin-top: -12vh;
+  }
+
+  .demoText,
+  .demoInfo {
+    width: 30vw;
+  }
+
+  .demoText h3 {
+    font-size: 3em;
+  }
+
+  .demoInfo {
+    font-size: 1.4em;
   }
 }
