@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
 import buttonStyles from './styles/buttons.module.css';
-import formStyles from './styles/forms.module.css';
 import styles from './styles/landingPage.module.css';
 
 export function LandingPage(props) {
@@ -12,25 +11,30 @@ export function LandingPage(props) {
   }
 
   return (
-    <div className={styles.background}>
-      <h1 className={styles.title}>Acceptable Losses</h1>
-      <section className={styles.sellApp}>
-        <p>Have you ever been late on a bill? Has a bill ever caught you off guard?</p>
+    <div>
+      <nav className={styles.nav}>
+        <Link to="/login">
+          Login
+        </Link>
+        <Link to="/register">
+          <button className={`${buttonStyles.form} ${styles.signInButton}`}>
+            SIGN UP
+          </button>
+        </Link>
+      </nav>
+
+      <section className={styles.landingContent}>
+        <h1>Acceptable Losses</h1>
         <p>
-          <strong>IF YES TO ANY OF ABOVE, YOU'VE COME TO THE RIGHT PLACE!</strong>
-        </p>
-        <p>
-          With our app, you can keep track of all of your bills, see due dates of upcoming bills, click a button to
-          visit your bill's payment website and mark them as paid. Staying on top of your expenses is as easy as hitting
-          a button!!
+          Have you ever been late on a bill? Has a bill ever caught you off guard?
+          With Acceptable Losses, you can keep track of all of your bills, see due
+          dates of upcoming bills, click a button to visit your bill's payment
+          website and mark them as paid. Staying on top of your expenses is as easy
+          as hitting a button!
         </p>
       </section>
-      <Link className={styles.signIn} to="/login">
-        <button className={buttonStyles.form}>SIGN IN</button>
-      </Link>
-      <Link className={formStyles.linkToOtherForm} to="/register">
-        Need to Register? Register here!
-      </Link>
+
+
     </div>
   );
 }

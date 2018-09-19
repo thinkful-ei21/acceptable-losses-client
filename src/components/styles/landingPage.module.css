@@ -1,28 +1,57 @@
-.background {
-  padding-top: 50px;
-  text-align: center;
- 
+.nav {
+  box-sizing: border-box;
+  background-color: #005D70;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5%;
 }
 
-.title {
+.nav a {
+  text-decoration: none;
   color: white;
-  font-size: 3em;
-  text-transform: capitalize;
-  position: relative;
-  margin: 50px 0 100px 0;
-
+  font-size: 1em;
 }
 
-.sellApp {
+.nav a:first-child:hover {
+  text-decoration: underline;
+}
+
+.nav a:visited {
+  color: white;
+}
+
+.signInButton {
+  display: inline;
+  margin-left: 20px;
+  margin-top: 0;
+  font-size: .9em;
+}
+
+.landingContent {
   color: white;
   text-align: center;
-  font-size: 1.25em;
-  font-weight: 300;
-  margin: 50px auto;
   max-width: 50%;
 }
 
-.signIn {
-  color: rgba(255, 255, 255, .7);
-  text-decoration: none;
+.landingContent h1 {
+  color: white;
+  font-size: 3em;
+}
+
+.landingContent p {
+  font-size: 1.25em;
+  font-weight: 300;
+}
+
+
+@media only screen and (min-width: 1200px) {
+  .nav {
+    padding: 0 3%;
+  }
 }
