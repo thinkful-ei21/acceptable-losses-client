@@ -23,19 +23,53 @@ export function LandingPage(props) {
         </Link>
       </nav>
 
-      <section className={styles.landingContent}>
-        <h1>Acceptable Losses</h1>
-        <p>
-          Have you ever been late on a bill? Has a bill ever caught you off guard?
-          With Acceptable Losses, you can keep track of all of your bills, see due
-          dates of upcoming bills, click a button to visit your bill's payment
-          website and mark them as paid. Staying on top of your expenses is as easy
-          as hitting a button!
-        </p>
-        <img className={styles.landingCloud}
-          src={require('../assets/landingPage/landingCloud.svg')}
-          alt="decorative 'cloud'"
-        />
+      <section className={styles.landingBackground}>
+        <div className={styles.landingContent}>
+          <h1>Acceptable Losses</h1>
+          <p>
+            Have you ever been late on a bill? Has a bill ever caught you off guard?
+            With Acceptable Losses, you can keep track of all of your bills, see due
+            dates of upcoming bills, click a button to visit your bill's payment
+            website and mark them as paid. Staying on top of your expenses is as easy
+            as hitting a button!
+          </p>
+          <img className={styles.landingCloud}
+            src={require('../assets/landingPage/landingCloud.svg')}
+            alt="decorative cloud"
+          />
+        </div>
+      </section>
+
+      <section className={styles.features}>
+        <div className={styles.featureCard}>
+          <img
+            src={require('../assets/landingPage/graphFeature.svg')}
+            alt="graph feature icon"
+          />
+          <h2>Expenses Graph</h2>
+          <p>See a summary of all your expenses visualized in a pie graph.</p>
+        </div>
+
+        <div className={styles.featureCard}>
+          <img
+            src={require('../assets/landingPage/calendarFeature.svg')}
+            alt="calendar feature icon"
+          />
+          <h2>Calendar</h2>
+          <p>Know when your bills are due on different days of the month.</p>
+        </div>
+
+        <div className={styles.featureCard}>
+          <img
+            src={require('../assets/landingPage/emailFeature.svg')}
+            alt="email feature icon"
+          />
+          <h2>Email Reminders</h2>
+          <p>
+            Set reminder frequency and never be surprised by a non-regular
+            bill again.
+          </p>
+        </div>
       </section>
 
 

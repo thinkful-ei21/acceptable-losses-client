@@ -33,6 +33,15 @@
   font-size: .9em;
 }
 
+.landingBackground {
+  height: 100vh;
+  width: 100vw;
+  background: -moz-linear-gradient(50% 128.89% 90deg,rgba(0, 62, 107, 1) 0%,rgba(2, 60, 107, 1) 30%,rgba(39, 22, 114, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 30%, rgba(39, 22, 114, 1) 100%);
+  background: -ms-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 30%, rgba(39, 22, 114, 1) 100%);
+  background: linear-gradient(0deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 30%, rgba(39, 22, 114, 1) 100%);
+}
+
 .landingContent {
   color: white;
   display: flex;
@@ -55,8 +64,37 @@
 
 .landingCloud {
   position: absolute;
-  bottom: 0;
+  bottom: -1px;
   left: 0;
+}
+
+.features {
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 10% 0;
+}
+
+.featureCard {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.15);
+  padding: 0 5%;
+  border-radius: 5px;
+}
+
+.featureCard img {
+  width: 50px;
+}
+
+.featureCard img,
+.featureCard h2,
+.featureCard p {
+  position: relative;
+  top: -25px;
 }
 
 @media only screen and (min-width: 10px) {
@@ -71,6 +109,10 @@
 
   .landingCloud {
     width: 60vw;
+  }
+
+  .featureCard {
+    width: 65%;
   }
 }
 
