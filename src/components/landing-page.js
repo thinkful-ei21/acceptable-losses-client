@@ -32,7 +32,12 @@ export function LandingPage(props) {
           website and mark them as paid. Staying on top of your expenses is as easy
           as hitting a button!
         </p>
+        <img className={styles.landingCloud}
+          src={require('../assets/landingPage/landingCloud.svg')}
+          alt="decorative 'cloud'"
+        />
       </section>
+
 
 
     </div>

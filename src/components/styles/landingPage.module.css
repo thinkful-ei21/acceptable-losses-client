@@ -35,13 +35,17 @@
 
 .landingContent {
   color: white;
-  text-align: center;
-  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  position: relative; /* for cloud positioning */
 }
 
 .landingContent h1 {
-  color: white;
-  font-size: 3em;
+  font-size: 3.75em;
+  line-height: 1;
+  margin-bottom: 2%;
 }
 
 .landingContent p {
@@ -49,6 +53,26 @@
   font-weight: 300;
 }
 
+.landingCloud {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+@media only screen and (min-width: 10px) {
+  .landingContent {
+    max-width: 80vw;
+  }
+
+  .landingContent h1,
+  .landingContent p {
+    margin-left: 5%;
+  }
+
+  .landingCloud {
+    width: 60vw;
+  }
+}
 
 @media only screen and (min-width: 1200px) {
   .nav {
