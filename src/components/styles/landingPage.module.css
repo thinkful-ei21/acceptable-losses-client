@@ -286,6 +286,10 @@
 }
 
 @media only screen and (min-width: 900px) {
+  .landingScreenshots {
+    background: no-repeat top 60% right/45% url('../../assets/landingPage/screenshots.svg');
+  }
+
   .landingContent {
     max-width: 50vw;
   }

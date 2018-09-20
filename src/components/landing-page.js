@@ -24,19 +24,21 @@ export function LandingPage(props) {
       </nav>
 
       <section className={styles.landingBackground}>
-        <div className={styles.landingContent}>
-          <h1>Acceptable Losses</h1>
-          <p>
-            Have you ever been late on a bill? Has a bill ever caught you off guard?
-            With Acceptable Losses, you can keep track of all of your bills, see due
-            dates of upcoming bills, click a button to visit your bill's payment
-            website and mark them as paid. Staying on top of your expenses is as easy
-            as hitting a button!
-          </p>
-          <img className={styles.landingCloud}
-            src={require('../assets/landingPage/landingCloud.svg')}
-            alt="decorative cloud"
-          />
+        <div className={styles.landingScreenshots}>
+          <div className={styles.landingContent}>
+            <h1>Acceptable Losses</h1>
+            <p>
+              Have you ever been late on a bill? Has a bill ever caught you off guard?
+              With Acceptable Losses, you can keep track of all of your bills, see due
+              dates of upcoming bills, click a button to visit your bill's payment
+              website and mark them as paid. Staying on top of your expenses is as easy
+              as hitting a button!
+            </p>
+            <img className={styles.landingCloud}
+              src={require('../assets/landingPage/landingCloud.svg')}
+              alt="decorative cloud"
+            />
+          </div>
         </div>
       </section>
 
