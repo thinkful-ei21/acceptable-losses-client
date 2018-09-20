@@ -122,7 +122,7 @@ export function LandingPage(props) {
             </div>
             <div className={styles.teamMember}>
               <p>Steven Imus</p>
-              <a href="http://jonathanriggs.me">imus.me</a>
+              <a href="https://github.com/imussg">github.com/imussg</a>
             </div>
           </div>
         </section>
