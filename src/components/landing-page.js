@@ -88,6 +88,31 @@ export function LandingPage(props) {
         </div>
       </section>
 
+      <footer className={styles.footer}>
+        <h4 className={styles.h4}>Meet the Co-creators</h4>
+        <section className={styles.team}>
+          <div>
+            <p>Jonathan Riggs</p>
+            <a href="http://jonathanriggs.me">jonathanriggs.me</a>
+          </div>
+          <div>
+            <p>Courtney Adams</p>
+            <a href="http://coadams.me">coadams.me</a>
+          </div>
+          <div>
+            <p>Leo Veras</p>
+            <a href="http://leoveres.com/">leoveres.com</a>
+          </div>
+          <div>
+            <p>Albert Sare</p>
+            <a href="http://jonathanriggs.me">alberto.me</a>
+          </div>
+          <div>
+            <p>Steven Imus</p>
+            <a href="http://jonathanriggs.me">imus.me</a>
+          </div>
+        </section>
+      </footer>
 
     </div>
   );

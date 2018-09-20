@@ -142,6 +142,29 @@
   margin-top: 0;
 }
 
+.footer {
+  background: -moz-linear-gradient(50% 128.89% 90deg,rgba(0, 62, 107, 1) 0%,rgba(2, 60, 107, 1) 15%,rgba(39, 22, 114, 1) 100%);
+  background: -webkit-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
+  background: -ms-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
+  background: linear-gradient(0deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
+}
+
+.h4 {
+  color: white;
+  font-size: 2em;
+  margin: 0;
+}
+
+.team p {
+  display: inline;
+  color: #C9F5F2;
+}
+
+.team a {
+  text-decoration: none;
+  color: #01B09F;
+}
+
 
 @media only screen and (min-width: 10px) {
   .landingContent {
