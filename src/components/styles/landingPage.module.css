@@ -288,8 +288,12 @@
     align-items: flex-start;
   }
 
-  .flexTeam {
+  .firstFlexTeam {
     width: 45vw;
+  }
+
+  .secondFlexTeam {
+    width: 50vw;
   }
 }
 
@@ -343,7 +347,7 @@
 
   .demoText,
   .demoInfo,
-  .flexTeam {
+  .firstFlexTeam {
     width: 35vw;
   }
 
@@ -408,7 +412,7 @@
 
   .demoText,
   .demoInfo,
-  .flexTeam {
+  .firstFlexTeam {
     width: 30vw;
   }
 
@@ -431,7 +435,7 @@
 }
 
 @media only screen and (min-width: 1400px) {
-  .flexTeam {
+  .firstFlexTeam {
     width: 25vw;
   }
 }

@@ -101,7 +101,7 @@ export function LandingPage(props) {
         />
         <h4 className={styles.h4}>Meet the Co-creators</h4>
         <section className={styles.team}>
-          <div className={styles.flexTeam}>
+          <div className={`${styles.flexTeam} ${styles.firstFlexTeam}`}>
             <div className={styles.teamMember}>
               <p>Jonathan Riggs</p>
               <a href="http://jonathanriggs.me">jonathanriggs.me</a>
@@ -115,14 +115,14 @@ export function LandingPage(props) {
               <a href="http://leoveres.com/">leoveres.com</a>
             </div>
           </div>
-          <div className={styles.flexTeam}>
+          <div className={`${styles.flexTeam} ${styles.secondFlexTeam}`}>
             <div className={styles.teamMember}>
               <p>Albert Sare</p>
               <a href="http://albert-sare.netlify.com/">albert-sare.netlify.com</a>
             </div>
             <div className={styles.teamMember}>
               <p>Steven Imus</p>
-              <a href="https://github.com/imussg">github.com/imussg</a>
+              <a href="https://portfolio-steven-imus.herokuapp.com/">portfolio-steven-imus.herokuapp.com</a>
             </div>
           </div>
         </section>
