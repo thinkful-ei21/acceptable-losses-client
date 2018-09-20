@@ -89,25 +89,29 @@ export function LandingPage(props) {
       </section>
 
       <footer className={styles.footer}>
+        <img className={styles.footerCloud}
+          src={require('../assets/landingPage/footerCloud.svg')}
+          alt="footer cloud"
+        />
         <h4 className={styles.h4}>Meet the Co-creators</h4>
         <section className={styles.team}>
-          <div>
+          <div className={styles.teamMember}>
             <p>Jonathan Riggs</p>
             <a href="http://jonathanriggs.me">jonathanriggs.me</a>
           </div>
-          <div>
+          <div className={styles.teamMember}>
             <p>Courtney Adams</p>
             <a href="http://coadams.me">coadams.me</a>
           </div>
-          <div>
+          <div className={styles.teamMember}>
             <p>Leo Veras</p>
             <a href="http://leoveres.com/">leoveres.com</a>
           </div>
-          <div>
+          <div className={styles.teamMember}>
             <p>Albert Sare</p>
             <a href="http://jonathanriggs.me">alberto.me</a>
           </div>
-          <div>
+          <div className={styles.teamMember}>
             <p>Steven Imus</p>
             <a href="http://jonathanriggs.me">imus.me</a>
           </div>

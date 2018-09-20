@@ -143,24 +143,41 @@
 }
 
 .footer {
+  position: relative; /* for footer cloud */
+  padding: 5%;
+  height: 40vh;
   background: -moz-linear-gradient(50% 128.89% 90deg,rgba(0, 62, 107, 1) 0%,rgba(2, 60, 107, 1) 15%,rgba(39, 22, 114, 1) 100%);
   background: -webkit-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
   background: -ms-linear-gradient(90deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
   background: linear-gradient(0deg, rgba(0, 62, 107, 1) 0%, rgba(2, 60, 107, 1) 15%, rgba(39, 22, 114, 1) 100%);
 }
 
+.footerCloud {
+  position: absolute;
+  top: -1px;
+  right: 0;
+}
+
 .h4 {
   color: white;
-  font-size: 2em;
+  font-size: 2.25em;
   margin: 0;
+  margin-top: 10vh;
+  margin-bottom: 3vh;
 }
 
-.team p {
+.teamMember {
+  margin-left: 5%;
+  margin-bottom: 1vh;
+}
+
+.teamMember p {
   display: inline;
   color: #C9F5F2;
+  margin-right: 2vw;
 }
 
-.team a {
+.teamMember a {
   text-decoration: none;
   color: #01B09F;
 }
@@ -187,6 +204,10 @@
   .demoAccount {
     height: 90vh;
     margin-top: -12vh;
+  }
+
+  .footerCloud {
+    width: 40vw;
   }
 }
 
