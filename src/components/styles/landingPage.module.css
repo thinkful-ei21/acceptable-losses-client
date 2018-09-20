@@ -394,13 +394,13 @@
     top: -37.5px;
   }
 
-  .featureCard h2 {
+  /* .featureCard h2 {
     font-size: 2em;
   }
 
   .featureCard p {
     font-size: 1.25em;
-  }
+  } */
 
   .demoAccount {
     background: no-repeat top 50% left 17%/40% url('../../assets/landingPage/demoBkgrd.svg');
