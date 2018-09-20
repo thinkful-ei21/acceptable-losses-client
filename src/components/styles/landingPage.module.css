@@ -169,6 +169,7 @@
 .teamMember {
   margin-left: 5%;
   margin-bottom: 1vh;
+  font-weight: 400;
 }
 
 .teamMember p {
@@ -260,6 +261,28 @@
   .demoText {
     margin-bottom: 0;
   }
+
+  .footer {
+    height: 30vh;
+  }
+
+  .footerCloud {
+    width: 30vw;
+  }
+
+  .h4 {
+    margin-top: 5vh;
+  }
+
+  .team {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .flexTeam {
+    width: 45vw;
+  }
 }
 
 @media only screen and (min-width: 900px) {
@@ -276,7 +299,8 @@
     font-size: 4.5em;
   }
 
-  .landingCloud {
+  .landingCloud,
+  .footerCloud {
     width: 30vw;
   }
 
@@ -298,16 +322,23 @@
   }
 
   .demoText,
-  .demoInfo {
+  .demoInfo,
+  .flexTeam {
     width: 35vw;
   }
 
-  .demoText h3 {
+  .demoText h3,
+  .h4 {
     font-size: 2.75em;
   }
 
-  .demoInfo {
+  .demoInfo,
+  .teamMember {
     font-size: 1.25em;
+  }
+
+  .footer {
+    height: 35vh;
   }
 }
 
@@ -329,7 +360,8 @@
     font-size: 5.5em;
   }
 
-  .landingCloud {
+  .landingCloud,
+  .footerCloud {
     width: 20vw;
   }
 
@@ -354,15 +386,31 @@
   }
 
   .demoText,
-  .demoInfo {
+  .demoInfo,
+  .flexTeam {
     width: 30vw;
   }
 
-  .demoText h3 {
+  .demoText h3,
+  .h4 {
     font-size: 3em;
   }
 
   .demoInfo {
     font-size: 1.4em;
+  }
+
+  .footer {
+    height: 30vh;
+  }
+
+  .h4 {
+    margin-top: 0;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .flexTeam {
+    width: 25vw;
   }
 }
