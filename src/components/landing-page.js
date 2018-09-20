@@ -24,7 +24,7 @@ export function LandingPage(props) {
       </nav>
 
       <section className={styles.landingBackground}>
-        <div className={styles.landingScreenshots}>
+        <div className={styles.landingScreenshot}>
           <div className={styles.landingContent}>
             <h1>Acceptable Losses</h1>
             <p>
@@ -43,34 +43,36 @@ export function LandingPage(props) {
       </section>
 
       <section className={styles.features}>
-        <div className={styles.featureCard}>
-          <img
-            src={require('../assets/landingPage/graphFeature.svg')}
-            alt="graph feature icon"
-          />
-          <h2>Expenses Graph</h2>
-          <p>See a summary of all your expenses visualized in a pie graph.</p>
-        </div>
+        <div className={styles.featuresBackground}>
+          <div className={styles.featureCard}>
+            <img
+              src={require('../assets/landingPage/graphFeature.svg')}
+              alt="graph feature icon"
+            />
+            <h2>Expenses Graph</h2>
+            <p>See a summary of all your expenses visualized in a pie graph.</p>
+          </div>
 
-        <div className={styles.featureCard}>
-          <img
-            src={require('../assets/landingPage/calendarFeature.svg')}
-            alt="calendar feature icon"
-          />
-          <h2>Calendar View</h2>
-          <p>Know when your bills are due on different days of the month.</p>
-        </div>
+          <div className={styles.featureCard}>
+            <img
+              src={require('../assets/landingPage/calendarFeature.svg')}
+              alt="calendar feature icon"
+            />
+            <h2>Calendar View</h2>
+            <p>Know when your bills are due on different days of the month.</p>
+          </div>
 
-        <div className={styles.featureCard}>
-          <img
-            src={require('../assets/landingPage/emailFeature.svg')}
-            alt="email feature icon"
-          />
-          <h2>Email Reminders</h2>
-          <p>
-            Set reminder frequency and never be surprised by a non-regular
-            bill again.
-          </p>
+          <div className={styles.featureCard}>
+            <img
+              src={require('../assets/landingPage/emailFeature.svg')}
+              alt="email feature icon"
+            />
+            <h2>Email Reminders</h2>
+            <p>
+              Set reminder frequency and never be surprised by a non-regular
+              bill again.
+            </p>
+          </div>
         </div>
       </section>
 
