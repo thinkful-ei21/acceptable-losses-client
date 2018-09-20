@@ -337,6 +337,10 @@
     font-size: 1.1em;
   }
 
+  .demoAccount {
+    background: no-repeat top 50% left 5%/45% url('../../assets/landingPage/demoBkgrd.svg');
+  }
+
   .demoText,
   .demoInfo,
   .flexTeam {
@@ -395,6 +399,7 @@
   }
 
   .demoAccount {
+    background: no-repeat top 50% left 17%/40% url('../../assets/landingPage/demoBkgrd.svg');
     box-sizing: border-box;
     padding: 0 10%;
     height: 90vh;
