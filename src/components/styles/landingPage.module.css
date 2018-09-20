@@ -68,11 +68,11 @@
   left: 0;
 }
 
-.features {
+.featuresBackground {
   background-color: white;
 }
 
-.featuresBackground,
+.features,
 .demoAccount {
   height: 100vh;
   width: 100vw;
@@ -84,7 +84,7 @@
   padding: 10% 0;
 }
 
-.demoAccount {
+.demoBackground {
   background-color: white;
 }
 
@@ -238,7 +238,7 @@
     width: 45vw;
   }
 
-  .featuresBackground {
+  .features {
     box-sizing: border-box;
     flex-direction: row;
     justify-content: space-around;
@@ -316,7 +316,7 @@
     width: 30vw;
   }
 
-  .featuresBackground {
+  .features {
     background: no-repeat center/100% url('../../assets/landingPage/featuresBkgrd.svg');
   }
 
